@@ -37,39 +37,45 @@
 
 void main(void) {
     
-    PORTA = 0x00;           // PORTA‚ğ‰Šú‰»
-    PORTB = 0x00;           // PORTB‚ğ‰Šú‰»
-    TRISA = 0b00000011;     // PORTA‚Ì“üo—Íİ’è RA0‚ÍA‘Š, RA1‚ÍB‘Š
-    TRISB = 0b00000010;     // PORTB‚Ì“üo—Íİ’è RB1‚ÍRX
-    CMCON = 0b00000111;     // ƒRƒ“ƒpƒŒ[ƒ^‚Íg—p‚µ‚È‚¢(RA0-RA4‚ÍƒfƒWƒ^ƒ‹ƒsƒ“‚Åg—p)
+    PORTA = 0x00;           // PORTAã‚’åˆæœŸåŒ–
+    PORTB = 0x00;           // PORTBã‚’åˆæœŸåŒ–
+    TRISA = 0b00000011;     // PORTAã®å…¥å‡ºåŠ›è¨­å®š RA0ã¯Aç›¸, RA1ã¯Bç›¸
+    TRISB = 0b00000010;     // PORTBã®å…¥å‡ºåŠ›è¨­å®š RB1ã¯RX
+    CMCON = 0b00000111;     // ã‚³ãƒ³ãƒ‘ãƒ¬ãƒ¼ã‚¿ã¯ä½¿ç”¨ã—ãªã„(RA0-RA4ã¯ãƒ‡ã‚¸ã‚¿ãƒ«ãƒ”ãƒ³ã§ä½¿ç”¨)
     
-    initUART();             // ’²•à“¯Šú®ƒVƒŠƒAƒ‹’ÊMİ’è
+    initUART();             // èª¿æ­©åŒæœŸå¼ã‚·ãƒªã‚¢ãƒ«é€šä¿¡è¨­å®š
  
     char tmp[20];
-    unsigned int val = 0;
-    int pre_RA0 = 0;
-    int pre_RA1 = 0;
-//    int no_loop;
-//    int no_step = 1;
-//    int length;
-    int p = 1;   //ƒGƒ“ƒR[ƒ_ƒXƒŠƒbƒgƒsƒbƒ` 
-    int dist = 0;  // ‘ª’·‹——£
-    int d = 1;
-//    float d = 1 / 4;
     int j = 10;
     int k = 0;
     int cnt = 0;
     int intvl = 10;
     
+    char *ptr;
+    
     while(1){
 
-        puts("OK");
-        printf("OK\r\n"); // ‘—M
-
         gets(tmp);
-
-        switch(tmp[0]){
-            case 'f' : cnt = 20;
+        
+        // ã‚«ãƒ³ãƒã‚’åŒºåˆ‡ã‚Šã«æ–‡å­—åˆ—ã‚’åˆ†å‰²
+        // 1å›ç›®
+        ptr = strtok(tmp, ",");
+        printf("%s\n", ptr);
+        printf("%s\n", ptr[0]);        
+                
+        switch(ptr[0]){
+            case 'f' : cnt=20;
+                        intvl=5;
+                        ptr = strtok(NULL, ",");
+                        if(ptr != NULL) {
+                            cnt = atoi(ptr);
+                        }
+                        printf("cnt = %d\n", cnt);
+                        ptr = strtok(NULL, ",");
+                        if(ptr != NULL) {
+                            intvl = atoi(ptr);
+                        }
+                        printf("intvl = %d\n", intvl);
                         for(k = 0 ; k < cnt ; k++){
                             MOTOR_P1 = 1;
                             MOTOR_P2 = 0;
@@ -102,7 +108,7 @@ void main(void) {
                         }
 
                         puts("MOTOR = F  OK");
-                        printf("MOTOR = F  OK\r\n"); // ‘—M
+                        printf("MOTOR = F  OK\r\n"); // é€ä¿¡
                         break;
                         
             case 'b' :  cnt = 20;
@@ -137,7 +143,7 @@ void main(void) {
                             }
                         }
                         puts("MOTOR = B  OK");
-                        printf("MOTOR = B  OK\r\n"); // ‘—M
+                        printf("MOTOR = B  OK\r\n"); // é€ä¿¡
                         break;
 
             case 'p' :  intvl = 1;
@@ -155,9 +161,6 @@ void main(void) {
                         
             default : break;
         }
-
-        printf("%d\r\n", dist);
-//        printf("dist = %f\r\n", dist); // ‘—M
 
     }
 }
