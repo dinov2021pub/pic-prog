@@ -35,21 +35,41 @@
 #define MAX_VALUE 32767
 #define MIN_VALUE 1
 
+
+char my_pop_back(char *str)
+{
+    int len = strlen(str);
+//    const int len = strlen(str);
+    if( len == 0 ) {
+        return '\0';      // str ‚ª‹ó•¶š—ñ‚Ìê‡‚ÍA'\0' ‚ğ•Ô‚·
+    } else {
+        char c = str[len-1];     // ––”ö•¶š‚ğ c ‚É‘ã“ü
+        str[len-1] = '\0';       // I’[‹L†‚Ìƒkƒ‹•¶š‚ğŸ‚ÌˆÊ’u‚É‘‚«‚Ş
+        return c;                      // ––”ö•¶š‚ğ•Ô‚·
+    }
+}
+
+enum week {
+  RTS,
+  BTS
+};
+
 void main(void) {
     
-    PORTA = 0x00;           // PORTAã‚’åˆæœŸåŒ–
-    PORTB = 0x00;           // PORTBã‚’åˆæœŸåŒ–
-    TRISA = 0b00000011;     // PORTAã®å…¥å‡ºåŠ›è¨­å®š RA0ã¯Aç›¸, RA1ã¯Bç›¸
-    TRISB = 0b00000010;     // PORTBã®å…¥å‡ºåŠ›è¨­å®š RB1ã¯RX
-    CMCON = 0b00000111;     // ã‚³ãƒ³ãƒ‘ãƒ¬ãƒ¼ã‚¿ã¯ä½¿ç”¨ã—ãªã„(RA0-RA4ã¯ãƒ‡ã‚¸ã‚¿ãƒ«ãƒ”ãƒ³ã§ä½¿ç”¨)
+    PORTA = 0x00;           // PORTA‚ğ‰Šú‰»
+    PORTB = 0x00;           // PORTB‚ğ‰Šú‰»
+    TRISA = 0b00000011;     // PORTA‚Ì“üo—Íİ’è RA0‚ÍA‘Š, RA1‚ÍB‘Š
+    TRISB = 0b00000010;     // PORTB‚Ì“üo—Íİ’è RB1‚ÍRX
+    CMCON = 0b00000111;     // ƒRƒ“ƒpƒŒ[ƒ^‚Íg—p‚µ‚È‚¢(RA0-RA4‚ÍƒfƒWƒ^ƒ‹ƒsƒ“‚Åg—p)
     
-    initUART();             // èª¿æ­©åŒæœŸå¼ã‚·ãƒªã‚¢ãƒ«é€šä¿¡è¨­å®š
+    initUART();             // ’²•à“¯Šú®ƒVƒŠƒAƒ‹’ÊMİ’è
  
     char tmp[20];
     int j = 10;
     int k = 0;
-    int cnt = 0;
+    int cnt = 10;
     int intvl = 10;
+//    char cmd[10];
     
     char *ptr;
     
@@ -57,25 +77,54 @@ void main(void) {
 
         gets(tmp);
         
-        // ã‚«ãƒ³ãƒã‚’åŒºåˆ‡ã‚Šã«æ–‡å­—åˆ—ã‚’åˆ†å‰²
-        // 1å›ç›®
-        ptr = strtok(tmp, ",");
+        // ƒJƒ“ƒ}‚ğ‹æØ‚è‚É•¶š—ñ‚ğ•ªŠ„
+        // 1‰ñ–Ú
+        ptr = strtok(tmp, "/");
+//        cmd = my_pop_back(*ptr);
         printf("%s\n", ptr);
         printf("%s\n", ptr[0]);        
-                
-        switch(ptr[0]){
-            case 'f' : cnt=20;
+        char c;
+        int len = strlen(ptr);
+//    const int len = strlen(str);
+        if( len == 0 ) {
+            c = '\0';      // str ‚ª‹ó•¶š—ñ‚Ìê‡‚ÍA'\0' ‚ğ•Ô‚·
+        } else {
+//            c = ptr[len-1];     // ––”ö•¶š‚ğ c ‚É‘ã“ü
+            ptr[len-1] = '\0';       // I’[‹L†‚Ìƒkƒ‹•¶š‚ğŸ‚ÌˆÊ’u‚É‘‚«‚Ş
+            c = '\0';      // str ‚ª‹ó•¶š—ñ‚Ìê‡‚ÍA'\0' ‚ğ•Ô‚·
+            
+        }
+        
+        char cmd[];
+        enum week wk; // enumŒ^‚ÌƒIƒuƒWƒFƒNƒg‚ğ’è‹`
+        wk = RTS; // enumŒ^‚Ì’è”‚ğ‘ã“ü
+        
+        if(strcmp(ptr,"RTS") == 0)
+        {
+            wk = RTS;
+//        }else if(strcmp(tmp,"BTS") == 0){
+//            cmd = 'b';      
+        }else{
+            wk = BTS;
+        }
+
+        printf("%s\n", tmp);
+        printf("%d\n", wk);
+          
+        switch(wk){
+//        switch(ptr[0]){
+            case RTS : cnt=20;
                         intvl=5;
-                        ptr = strtok(NULL, ",");
-                        if(ptr != NULL) {
-                            cnt = atoi(ptr);
-                        }
-                        printf("cnt = %d\n", cnt);
-                        ptr = strtok(NULL, ",");
-                        if(ptr != NULL) {
-                            intvl = atoi(ptr);
-                        }
-                        printf("intvl = %d\n", intvl);
+//                        ptr = strtok(NULL, ",");
+//                        if(ptr != NULL) {
+//                            cnt = atoi(ptr);
+//                        }
+//                        printf("cnt = %d\n", cnt);
+//                        ptr = strtok(NULL, ",");
+//                        if(ptr != NULL) {
+//                            intvl = atoi(ptr);
+ //                       }
+  //                      printf("intvl = %d\n", intvl);
                         for(k = 0 ; k < cnt ; k++){
                             MOTOR_P1 = 1;
                             MOTOR_P2 = 0;
@@ -108,10 +157,10 @@ void main(void) {
                         }
 
                         puts("MOTOR = F  OK");
-                        printf("MOTOR = F  OK\r\n"); // é€ä¿¡
+                        printf("MOTOR = F  OK\r\n"); // ‘—M
                         break;
                         
-            case 'b' :  cnt = 20;
+            case BTS :  cnt = 20;
                         for(k = 0 ; k < cnt ; k++){
                             MOTOR_P1 = 0;
                             MOTOR_P2 = 0;
@@ -143,20 +192,7 @@ void main(void) {
                             }
                         }
                         puts("MOTOR = B  OK");
-                        printf("MOTOR = B  OK\r\n"); // é€ä¿¡
-                        break;
-
-            case 'p' :  intvl = 1;
-                        break;
-            case 'o' :  intvl = 2;
-                        break;
-            case 'i' :  intvl = 5;
-                        break;
-            case 'u' :  intvl = 10;
-                        break;
-            case 'y' :  intvl = 20;
-                        break;
-            case 't' :  intvl = 50;
+                        printf("MOTOR = B  OK\r\n"); // ‘—M
                         break;
                         
             default : break;
@@ -164,3 +200,4 @@ void main(void) {
 
     }
 }
+

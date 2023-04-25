@@ -1,11 +1,12 @@
 /* 
  * File:   main.c
- * Author: Dejima_desktop
  *
  * Author: Shuichi Dejima
  *
- * Created on 2019/06/03, 15:26
- */
+ * Created on 2023/04/22, 15:26
+ *
+ * Ref: ƒtƒB[ƒ_[ƒRƒ“ƒgƒ[ƒ‹ƒ†ƒjƒbƒgd—l‘ 
+ *  */
 
 // CONFIG1
 #pragma config FOSC = INTOSCIO  // Oscillator Selection bits (INTRC oscillator; port I/O function on both RA6/OSC2/CLKO pin and RA7/OSC1/CLKI pin)
@@ -29,26 +30,40 @@
 #define MOTOR_P3 RB6 // MOTOR Phase3
 #define MOTOR_P2 RB5 // MOTOR Phase2
 #define MOTOR_P1 RB4 // MOTOR Phase1
-#define M_IN1 RA2 // H-bridge IN1
-#define M_IN2 RA3 // H-bridge IN2
+#define ROLL_P4 RA3 // ROLLER Phase4
+#define ROLL_P3 RA2 // ROLLER Phase3
+#define ROLL_P2 RA1 // ROLLER Phase2
+#define ROLL_P1 RA0 // ROLLER Phase1
+//#define M_IN1 RA2 // H-bridge IN1
+#//define M_IN2 RA3 // H-bridge IN2
 #define TR RB3 // Transistor
 #define MAX_VALUE 32767
 #define MIN_VALUE 1
 
+
+enum command {
+  F,
+  R,
+  MF,
+  MR,
+  FC,
+  VE
+};
+
 void main(void) {
     
-    PORTA = 0x00;           // PORTAã‚’åˆæœŸåŒ–
-    PORTB = 0x00;           // PORTBã‚’åˆæœŸåŒ–
-    TRISA = 0b00000011;     // PORTAã®å…¥å‡ºåŠ›è¨­å®š RA0ã¯Aç›¸, RA1ã¯Bç›¸
-    TRISB = 0b00000010;     // PORTBã®å…¥å‡ºåŠ›è¨­å®š RB1ã¯RX
-    CMCON = 0b00000111;     // ã‚³ãƒ³ãƒ‘ãƒ¬ãƒ¼ã‚¿ã¯ä½¿ç”¨ã—ãªã„(RA0-RA4ã¯ãƒ‡ã‚¸ã‚¿ãƒ«ãƒ”ãƒ³ã§ä½¿ç”¨)
+    PORTA = 0x00;           // PORTA‚ğ‰Šú‰»
+    PORTB = 0x00;           // PORTB‚ğ‰Šú‰»
+    TRISA = 0b00000000;     // PORTA‚Ì“üo—Íİ’è ‘S‚Äo—Í
+    TRISB = 0b00000010;     // PORTB‚Ì“üo—Íİ’è RB1‚ÍRX
+    CMCON = 0b00000111;     // ƒRƒ“ƒpƒŒ[ƒ^‚Íg—p‚µ‚È‚¢(RA0-RA4‚ÍƒfƒWƒ^ƒ‹ƒsƒ“‚Åg—p)
     
-    initUART();             // èª¿æ­©åŒæœŸå¼ã‚·ãƒªã‚¢ãƒ«é€šä¿¡è¨­å®š
+    initUART();             // ’²•à“¯Šú®ƒVƒŠƒAƒ‹’ÊMİ’è
  
     char tmp[20];
     int j = 10;
     int k = 0;
-    int cnt = 0;
+    int cnt = 10;
     int intvl = 10;
     
     char *ptr;
@@ -57,106 +72,151 @@ void main(void) {
 
         gets(tmp);
         
-        // ã‚«ãƒ³ãƒã‚’åŒºåˆ‡ã‚Šã«æ–‡å­—åˆ—ã‚’åˆ†å‰²
-        // 1å›ç›®
-        ptr = strtok(tmp, ",");
-        printf("%s\n", ptr);
-        printf("%s\n", ptr[0]);        
-                
-        switch(ptr[0]){
-            case 'f' : cnt=20;
-                        intvl=5;
-                        ptr = strtok(NULL, ",");
-                        if(ptr != NULL) {
-                            cnt = atoi(ptr);
-                        }
-                        printf("cnt = %d\n", cnt);
-                        ptr = strtok(NULL, ",");
-                        if(ptr != NULL) {
-                            intvl = atoi(ptr);
-                        }
-                        printf("intvl = %d\n", intvl);
-                        for(k = 0 ; k < cnt ; k++){
+        char rcmd[4];
+        char speed[5];
+        int mx_spd = 500;
+        int set_spd;
+        int spd;
+        char ln[4];
+        int hln;
+        
+        rcmd[0] = tmp[0];
+        rcmd[1] = tmp[1];
+        rcmd[2] = tmp[2];
+        rcmd[3] = '\0';
+       
+        enum command cmd; // enumŒ^‚ÌƒIƒuƒWƒFƒNƒg‚ğ’è‹`
+        
+        if(strcmp(rcmd,"$7F") == 0) {
+            cmd = F;
+        }else if(strcmp(rcmd,"$7R") == 0) {
+            cmd = R;
+        }else if(strcmp(rcmd,"$MF") == 0) {
+            cmd = MF;
+        }else if(strcmp(rcmd,"$MR") == 0) {
+            cmd = MR;
+        }else if(strcmp(rcmd,"$FC") == 0) {
+            cmd = FC;
+        }else if(strcmp(rcmd,"$VE") == 0) {
+            cmd = VE;
+        }
+
+        printf("%s\n", tmp);
+        printf("%d\n", cmd);
+          
+        switch(cmd){
+
+            case F : speed[0] = tmp[3];
+                    speed[1] = tmp[4];
+                    speed[2] = tmp[5];
+                    speed[3] = tmp[6];
+                    speed[4] = '\0';
+                    spd = atoi(speed);
+                    printf("speed = %d\r", spd);
+                    ln[0] = tmp[8];
+                    ln[1] = tmp[9];
+                    ln[2] = tmp[10];
+                    ln[4] = '\0';
+                    hln = atoi(ln);
+                    printf("length = %d\r", hln);
+                    
+                    cnt=20;
+                        intvl = (int)(mx_spd / spd);
+                        for(k = 0 ; k < hln ; k++){
                             MOTOR_P1 = 1;
                             MOTOR_P2 = 0;
                             MOTOR_P3 = 0;
                             MOTOR_P4 = 0;
                             for(j = 0 ; j < intvl ; j++){
-                                __delay_ms(1);
+                                __delay_us(100);
                             }
                             MOTOR_P1 = 0;
                             MOTOR_P2 = 1;
                             MOTOR_P3 = 0;
                             MOTOR_P4 = 0;
                             for(j = 0 ; j < intvl ; j++){
-                                __delay_ms(1);
+                                __delay_us(100);
                             }
                             MOTOR_P1 = 0;
                             MOTOR_P2 = 0;
                             MOTOR_P3 = 1;
                             MOTOR_P4 = 0;
                             for(j = 0 ; j < intvl ; j++){
-                                __delay_ms(1);
+                                __delay_us(100);
                             }
                             MOTOR_P1 = 0;
                             MOTOR_P2 = 0;
                             MOTOR_P3 = 0;
                             MOTOR_P4 = 1;
                             for(j = 0 ; j < intvl ; j++){
-                                __delay_ms(1);
+                                __delay_us(100);
                             }
                         }
 
                         puts("MOTOR = F  OK");
-                        printf("MOTOR = F  OK\r\n"); // é€ä¿¡
+                        printf("MOTOR = F  OK\r\n"); // ‘—M
                         break;
                         
-            case 'b' :  cnt = 20;
-                        for(k = 0 ; k < cnt ; k++){
+            case R : speed[0] = tmp[3];
+                    speed[1] = tmp[4];
+                    speed[2] = tmp[5];
+                    speed[3] = tmp[6];
+                    speed[4] = '\0';
+                    spd = atoi(speed);
+                    printf("speed = %d\r", spd);
+                    ln[0] = tmp[8];
+                    ln[1] = tmp[9];
+                    ln[2] = tmp[10];
+                    ln[4] = '\0';
+                    hln = atoi(ln);
+                    printf("length = %d\r", hln);
+                     cnt = 20;
+                        intvl = (int)(mx_spd / spd);
+                        for(k = 0 ; k < hln ; k++){
                             MOTOR_P1 = 0;
                             MOTOR_P2 = 0;
                             MOTOR_P3 = 0;
                             MOTOR_P4 = 1;
                             for(j = 0 ; j < intvl ; j++){
-                                __delay_ms(1);
+                                __delay_us(100);
                             }
                             MOTOR_P1 = 0;
                             MOTOR_P2 = 0;
                             MOTOR_P3 = 1;
                             MOTOR_P4 = 0;
                             for(j = 0 ; j < intvl ; j++){
-                                __delay_ms(1);
+                                __delay_us(100);
                             }
                             MOTOR_P1 = 0;
                             MOTOR_P2 = 1;
                             MOTOR_P3 = 0;
                             MOTOR_P4 = 0;
                             for(j = 0 ; j < intvl ; j++){
-                                __delay_ms(1);
+                                __delay_us(100);
                             }
                             MOTOR_P1 = 1;
                             MOTOR_P2 = 0;
                             MOTOR_P3 = 0;
                             MOTOR_P4 = 0;
                             for(j = 0 ; j < intvl ; j++){
-                                __delay_ms(1);
+                                __delay_us(100);
                             }
                         }
                         puts("MOTOR = B  OK");
-                        printf("MOTOR = B  OK\r\n"); // é€ä¿¡
+                        printf("MOTOR = B  OK\r\n"); // ‘—M
                         break;
-
-            case 'p' :  intvl = 1;
+ 
+            case MF :  cnt = 60;
+                       printf("MF\r"); // ‘—M
                         break;
-            case 'o' :  intvl = 2;
+            case MR :  cnt = 60;
+                       printf("MR\r"); // ‘—M
                         break;
-            case 'i' :  intvl = 5;
+            case FC :  cnt = 60;
+                       printf("FCr"); // ‘—M
                         break;
-            case 'u' :  intvl = 10;
-                        break;
-            case 'y' :  intvl = 20;
-                        break;
-            case 't' :  intvl = 50;
+            case VE : puts("$1.0\r");
+                       printf("$1.0\r"); // ‘—M
                         break;
                         
             default : break;
@@ -164,3 +224,4 @@ void main(void) {
 
     }
 }
+
