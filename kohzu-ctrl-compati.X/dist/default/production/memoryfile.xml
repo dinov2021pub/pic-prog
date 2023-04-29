@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\solder-feeder-ctrl-TEST.X.production.hex">
+  <executable name="dist/default/production\kohzu-ctrl-compati.X.production.hex">
     <memory name="program">
       <units>words</units>
       <length>4096</length>
-      <used>1571</used>
-      <free>2525</free>
+      <used>2043</used>
+      <free>2053</free>
     </memory>
     <memory name="data">
       <units>bytes</units>

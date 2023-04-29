@@ -42,8 +42,9 @@
 
 
 enum command {
-  F,
+  RPS,
   WTB,
+  OSC,
   VE
 };
 
@@ -95,16 +96,18 @@ void main(void) {
         cmd = VE;
         
         if(strcmp(rcmd,"RPS") == 0) {
-            cmd = F;
+            cmd = RPS;
         }else if(strcmp(rcmd,"WTB") == 0){
             cmd = WTB;
+        }else if(strcmp(rcmd,"OSC") == 0){
+            cmd = OSC;
         }
         ptr = strtok(tmp, "/");
 
           
         switch(cmd){
 
-            case F : 
+            case RPS : 
                     ptr = strtok(NULL, "/");
                     ptr = strtok(NULL, "/");
                     ptr = strtok(NULL, "/");
@@ -156,6 +159,66 @@ void main(void) {
                     }
                     break;
  
+            case OSC : 
+                    ptr = strtok(NULL, "/");
+                    ptr = strtok(NULL, "/");
+                    ptr = strtok(NULL, "/");
+                    ptr = strtok(NULL, "/");
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        dist = atoi(ptr);
+                    }
+                    printf("dist = %d\n", dist);
+                    
+                    if (dist > 0){
+                        for(k = 0 ; k < dist ; k++){
+                            ROLL_P1 = 1;
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                            ROLL_P1 = 0;
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        for(k = 0 ; k < dist ; k++){
+                            ROLL_P2 = 1;
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                            ROLL_P2 = 0;
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                    } else {
+                        dist *= -1;
+                        for(k = 0 ; k < dist ; k++){
+                            ROLL_P2 = 1;
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                            ROLL_P2 = 0;
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        for(k = 0 ; k < dist ; k++){
+                            ROLL_P1 = 1;
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                            ROLL_P1 = 0;
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                    }
+
+                    puts("C");
+                    printf("C\r\n"); // ‘—M
+                    break;
+                        
             case VE : cnt=10;
                         break;
                         

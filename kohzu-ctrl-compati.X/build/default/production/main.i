@@ -1236,8 +1236,9 @@ extern char * strrichr(const char *, int);
 
 # 44 "main.c"
 enum command {
-F,
+RPS,
 WTB,
+OSC,
 VE
 };
 
@@ -1289,16 +1290,18 @@ enum command cmd;
 cmd = VE;
 
 if(strcmp(rcmd,"RPS") == 0) {
-cmd = F;
+cmd = RPS;
 }else if(strcmp(rcmd,"WTB") == 0){
 cmd = WTB;
+}else if(strcmp(rcmd,"OSC") == 0){
+cmd = OSC;
 }
 ptr = strtok(tmp, "/");
 
 
 switch(cmd){
 
-case F :
+case RPS :
 ptr = strtok((0), "/");
 ptr = strtok((0), "/");
 ptr = strtok((0), "/");
@@ -1348,6 +1351,66 @@ intvl = mx_spd / set_spd;
 if (intvl == 0){
 intvl = 1;
 }
+break;
+
+case OSC :
+ptr = strtok((0), "/");
+ptr = strtok((0), "/");
+ptr = strtok((0), "/");
+ptr = strtok((0), "/");
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+dist = atoi(ptr);
+}
+printf("dist = %d\n", dist);
+
+if (dist > 0){
+for(k = 0 ; k < dist ; k++){
+RA0 = 1;
+for(j = 0 ; j < intvl ; j++){
+_delay((unsigned long)((1)*(4000000/4000000.0)));
+}
+RA0 = 0;
+for(j = 0 ; j < intvl ; j++){
+_delay((unsigned long)((1)*(4000000/4000000.0)));
+}
+}
+for(k = 0 ; k < dist ; k++){
+RA1 = 1;
+for(j = 0 ; j < intvl ; j++){
+_delay((unsigned long)((1)*(4000000/4000000.0)));
+}
+RA1 = 0;
+for(j = 0 ; j < intvl ; j++){
+_delay((unsigned long)((1)*(4000000/4000000.0)));
+}
+}
+} else {
+dist *= -1;
+for(k = 0 ; k < dist ; k++){
+RA1 = 1;
+for(j = 0 ; j < intvl ; j++){
+_delay((unsigned long)((1)*(4000000/4000000.0)));
+}
+RA1 = 0;
+for(j = 0 ; j < intvl ; j++){
+_delay((unsigned long)((1)*(4000000/4000000.0)));
+}
+}
+for(k = 0 ; k < dist ; k++){
+RA0 = 1;
+for(j = 0 ; j < intvl ; j++){
+_delay((unsigned long)((1)*(4000000/4000000.0)));
+}
+RA0 = 0;
+for(j = 0 ; j < intvl ; j++){
+_delay((unsigned long)((1)*(4000000/4000000.0)));
+}
+}
+}
+
+puts("C");
+printf("C\r\n");
 break;
 
 case VE : cnt=10;
