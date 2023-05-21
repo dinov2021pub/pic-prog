@@ -45,6 +45,8 @@ enum command {
   RPS,
   WTB,
   OSC,
+  NTD,
+  NDO,
   VE
 };
 
@@ -53,7 +55,7 @@ void main(void) {
     PORTA = 0x00;           // PORTAを初期化
     PORTB = 0x00;           // PORTBを初期化
     TRISA = 0b00000000;     // PORTAの入出力設定 全て出力
-    TRISB = 0b00000010;     // PORTBの入出力設定 RB1はRX
+    TRISB = 0b00000011;     // PORTBの入出力設定 RB1はRX, RB0 は入力
     CMCON = 0b00000111;     // コンパレータは使用しない(RA0-RA4はデジタルピンで使用)
     
     initUART();             // 調歩同期式シリアル通信設定
@@ -101,6 +103,10 @@ void main(void) {
             cmd = WTB;
         }else if(strcmp(rcmd,"OSC") == 0){
             cmd = OSC;
+        }else if(strcmp(rcmd,"NTD") == 0){
+            cmd = NTD;
+        }else if(strcmp(rcmd,"NDO") == 0){
+            cmd = NDO;
         }
         ptr = strtok(tmp, "/");
 
@@ -218,11 +224,81 @@ void main(void) {
                     puts("C");
                     printf("C\r\n"); // 送信
                     break;
+
+            case NTD : 
+                    printf("NTD\n");
+                    dist = 10000;
+                    for(k = 0 ; k < dist ; k++){
+                        ROLL_P1 = 1;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                        ROLL_P1 = 0;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+
+                        if(RB0 == 0){
+                            printf("Detected\n");
+                            break;
+                        }
+
+                    }
+                    puts("C");
+                    printf("C\r\n"); // 送信
+                    break;
                         
+            case NDO : 
+                    printf("NDO\n");
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        dist = atoi(ptr);
+                    }
+                    printf("dist = %d\n", dist);
+                    
+                    for(k = 0 ; k < 10000 ; k++){
+                        ROLL_P1 = 1;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                        ROLL_P1 = 0;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+
+                        if(RB0 == 0){
+                            printf("Detected");
+                            break;
+                        }
+
+                    }
+                    
+                    for(k = 0 ; k < dist ; k++){
+                        ROLL_P2 = 1;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                        ROLL_P2 = 0;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                    }
+
+                    puts("C");
+                    printf("C\r\n"); // 送信
+                    break;
+
             case VE : cnt=10;
-                        break;
+                    printf("VERSION 10");
+                    break;
                         
             default : break;
+        }
+        
+        if(RB0 == 0){
+            printf("SW OFF");
+        }else{
+            printf("SW ON");
         }
     }
 }
