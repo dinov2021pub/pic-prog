@@ -1,0 +1,43 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F1705 ]
+[d frameptr 6 ]
+"10 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 /Applications/microchip/xc8/v2.41/pic/sources/c99/common/Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"34 /Users/kudosoma/MPLABXProjects/Proto1.X/test.c
+[v _PICinit PICinit `(v  1 e 1 0 ]
+"50
+[v _main main `(i  1 e 2 0 ]
+"429 /Users/kudosoma/.mchp_packs/Microchip/PIC12-16F1xxx_DFP/1.6.241/xc8/pic/include/proc/pic16f1705.h
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"479
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"1022
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"1067
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"1547
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"2405
+[v _DAC1CON0 DAC1CON0 `VEuc  1 e 1 @280 ]
+"2515
+[v _DAC1CON1 DAC1CON1 `VEuc  1 e 1 @281 ]
+"2681
+[v _ANSELA ANSELA `VEuc  1 e 1 @396 ]
+"2726
+[v _ANSELC ANSELC `VEuc  1 e 1 @398 ]
+"50 /Users/kudosoma/MPLABXProjects/Proto1.X/test.c
+[v _main main `(i  1 e 2 0 ]
+{
+"61
+[v main@i i `i  1 a 2 2 ]
+"67
+} 0
+"34
+[v _PICinit PICinit `(v  1 e 1 0 ]
+{
+"48
+} 0
