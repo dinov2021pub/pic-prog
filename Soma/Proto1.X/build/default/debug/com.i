@@ -7287,9 +7287,9 @@ char *tempnam(const char *, const char *);
 
 
 void serial_init(unsigned long BR){
-    TX1STA = 0x24;
+    TXSTA = 0x24;
     BRG16 = 1;
-    RC1STA = 0x90;
+    RCSTA = 0x90;
     unsigned int X= 8000000/BR/4 - 1;
     SP1BRGH = X / 256;
     SP1BRGL = X % 256;
@@ -7313,12 +7313,12 @@ void PICinit(){
 
 void putch(unsigned char byte){
     while(!TXIF);
-    TX1REG = byte;
+    TXREG = byte;
 }
 
 unsigned char getch(){
     while(!RCIF);
-    return RC1REG;
+    return RCREG;
 }
 
 unsigned char getche(){
