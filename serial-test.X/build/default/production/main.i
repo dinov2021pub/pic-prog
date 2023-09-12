@@ -7285,8 +7285,7 @@ SP1BRGH = X / 256;
 SP1BRGL = X % 256;
 }
 
-
-void main() {
+void PICinit(){
 OSCCON = 0b01110000 ;
 ANSELA = 0b00000000 ;
 ANSELC = 0b00000000 ;
@@ -7294,6 +7293,14 @@ TRISA = 0b00000010 ;
 TRISC = 0b00000000 ;
 PORTA = 0b00000000 ;
 PORTC = 0b00000000 ;
+
+DAC1CON0 = 0b10010000;
+DAC1CON1 = 0;
+}
+
+void main() {
+
+PICinit();
 
 
 RA0PPS = 0x14;
@@ -7303,5 +7310,11 @@ serial_init(9600);
 
 while(1){
 getche();
+for (int i=0 ; i < 256 ; i++){
+DAC1CON1 = 200 ;
+_delay((unsigned long)((10)*(32000000/4000000.0))) ;
+DAC1CON1 = 0 ;
+_delay((unsigned long)((10)*(32000000/4000000.0))) ;
+}
 }
 }
