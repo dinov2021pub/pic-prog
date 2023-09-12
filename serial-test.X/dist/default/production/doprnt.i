@@ -263,10 +263,44 @@ const char * cp;
 
 while((c = *f++)) {
 
-# 557
+if(c != '%')
+
 {
 (putch(c) );
 continue;
+}
+
+# 565
+flag = 0;
+
+# 661
+switch(c = *f++) {
+
+case 0:
+goto alldone;
+
+# 754
+case 's':
+
+# 760
+cp = (*(const char * *)__va_arg((*(const char * **)ap), (const char *)0));
+
+# 766
+if(!cp)
+cp = "(null)";
+
+# 803
+while(*cp)
+(putch(*cp++) );
+continue;
+
+# 828
+default:
+
+# 839
+continue;
+
+# 848
 }
 
 # 1448
@@ -277,6 +311,8 @@ continue;
 
 # 1559
 }
+
+alldone:
 
 # 1566
 return 0;

@@ -7252,8 +7252,46 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
+# 14 "C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
 
-# 7 "main.c"
+
+
+
+extern void * __builtin_memcpy(void *, const void *, size_t);
+#pragma intrinsic(__builtin_memcpy)
+
+# 36
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
+
+# 19 "main.c"
 #pragma config FOSC = INTOSC
 #pragma config WDTE = OFF
 #pragma config PWRTE = ON
@@ -7298,7 +7336,48 @@ DAC1CON0 = 0b10010000;
 DAC1CON1 = 0;
 }
 
+enum command {
+SA1,
+SA2,
+SA3,
+SF1,
+SF2,
+SF3,
+LEP,
+LDS,
+LPE,
+LDR,
+VER
+};
+
+void ap_out(int ap_dat[]){
+
+for (int i=0 ; i < 20 ; i++){
+DAC1CON1 = ap_dat[i] ;
+_delay((unsigned long)((18)*(32000000/4000000.0))) ;
+}
+
+}
+
+
 void main() {
+char tmp[40];
+char rcmd[4];
+int dat0[20];
+int ap1_dat[20];
+int ap2_dat[20];
+int ap3_dat[20];
+int fp1_time;
+int fp1_amp;
+int fp2_time;
+int fp2_amp;
+int fp3_time;
+int fp3_amp;
+int intvl1;
+int intvl2;
+int intvl3;
+
+char *ptr;
 
 PICinit();
 
@@ -7309,12 +7388,190 @@ RXPPS = 0x01;
 serial_init(9600);
 
 while(1){
-getche();
-for (int i=0 ; i < 256 ; i++){
-DAC1CON1 = 200 ;
-_delay((unsigned long)((10)*(32000000/4000000.0))) ;
-DAC1CON1 = 0 ;
-_delay((unsigned long)((10)*(32000000/4000000.0))) ;
+
+rcmd[0] = 'Q';
+rcmd[1] = 'Q';
+rcmd[2] = 'Q';
+rcmd[3] = '\0';
+
+tmp[0] = 'Q';
+tmp[1] = 'Q';
+tmp[2] = 'Q';
+tmp[3] = '\0';
+
+gets(tmp);
+printf("%s\n", tmp);
+
+rcmd[0] = tmp[1];
+rcmd[1] = tmp[2];
+rcmd[2] = tmp[3];
+rcmd[3] = '\0';
+
+
+enum command cmd;
+
+cmd = VER;
+
+if(strcmp(rcmd,"LDS") == 0) {
+cmd = LDS;
+}else if(strcmp(rcmd,"SA1") == 0){
+cmd = SA1;
+}else if(strcmp(rcmd,"SA2") == 0){
+cmd = SA2;
+}else if(strcmp(rcmd,"SA3") == 0){
+cmd = SA3;
+}else if(strcmp(rcmd,"SF1") == 0){
+cmd = SF1;
+}else if(strcmp(rcmd,"SF2") == 0){
+cmd = SF2;
+}else if(strcmp(rcmd,"SF3") == 0){
+cmd = SF3;
+}else if(strcmp(rcmd,"LEP") == 0){
+cmd = LEP;
+}else if(strcmp(rcmd,"LPE") == 0){
+cmd = LPE;
+}else if(strcmp(rcmd,"LDR") == 0){
+cmd = LDR;
+}else if(strcmp(rcmd,"VER") == 0){
+cmd = VER;
 }
+ptr = strtok(tmp, "/");
+
+
+switch(cmd){
+
+case SA1 :
+for (int i=0 ; i < 20 ; i++){
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+ap1_dat[i] = atoi(ptr);
+}
+}
+printf("SA1 OK\n");
+break;
+
+case SA2 :
+for (int i=0 ; i < 20 ; i++){
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+ap2_dat[i] = atoi(ptr);
+}
+}
+printf("SA2 OK\n");
+break;
+
+case SA3 :
+for (int i=0 ; i < 20 ; i++){
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+ap3_dat[i] = atoi(ptr);
+}
+}
+printf("SA3 OK\n");
+break;
+
+case SF1 :
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+fp1_time = atoi(ptr);
+}
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+fp1_amp = atoi(ptr);
+}
+printf("SF1 OK\n");
+break;
+
+case SF2 :
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+fp2_time = atoi(ptr);
+}
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+fp2_amp = atoi(ptr);
+}
+printf("SF2 OK\n");
+break;
+
+case SF3 :
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+fp3_time = atoi(ptr);
+}
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+fp3_amp = atoi(ptr);
+}
+printf("SF3 OK\n");
+break;
+
+case LEP :
+
+for (int k=0 ; k < 6 ; k++){
+ptr = strtok((0), "/");
+if(strcmp(ptr,"A1") == 0) {
+for (int i=0 ; i < 20 ; i++){
+DAC1CON1 = ap1_dat[i] ;
+_delay((unsigned long)((18)*(32000000/4000000.0))) ;
+}
+}else if(strcmp(ptr,"A2") == 0) {
+for (int i=0 ; i < 20 ; i++){
+DAC1CON1 = ap2_dat[i] ;
+_delay((unsigned long)((18)*(32000000/4000000.0))) ;
+}
+}else if(strcmp(ptr,"A3") == 0) {
+for (int i=0 ; i < 20 ; i++){
+DAC1CON1 = ap3_dat[i] ;
+_delay((unsigned long)((18)*(32000000/4000000.0))) ;
+}
+}else if(strcmp(ptr,"F1") == 0) {
+DAC1CON1 = fp1_amp ;
+for (int i=0 ; i < fp1_time ; i++){
+_delay((unsigned long)((20)*(32000000/4000000.0))) ;
+}
+DAC1CON1 = 0 ;
+}else if(strcmp(ptr,"F2") == 0) {
+DAC1CON1 = fp2_amp ;
+for (int i=0 ; i < fp2_time ; i++){
+_delay((unsigned long)((20)*(32000000/4000000.0))) ;
+}
+DAC1CON1 = 0 ;
+}else if(strcmp(ptr,"F3") == 0) {
+DAC1CON1 = fp1_amp ;
+for (int i=0 ; i < fp3_time ; i++){
+_delay((unsigned long)((20)*(32000000/4000000.0))) ;
+}
+DAC1CON1 = 0 ;
+}
+}
+
+
+printf("___P_OK\n");
+break;
+
+case LDS :
+for (int i=0 ; i < 10 ; i++){
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+dat0[i] = atoi(ptr);
+}
+}
+break;
+
+case LPE :
+for (int i=0 ; i < 10 ; i++){
+DAC1CON1 = dat0[i] ;
+_delay((unsigned long)((18)*(32000000/4000000.0))) ;
+}
+break;
+
+case VER :
+printf("VERSION 10");
+break;
+
+default : break;
+}
+
 }
 }

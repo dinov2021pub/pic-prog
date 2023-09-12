@@ -4,6 +4,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p i ___va_start ]
 "16 C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\conio.h
 [v _putch `(v ~T0 @X0 0 ef1`uc ]
+"13 C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\stdarg.h
+[v ___va_arg `(*v ~T0 @X0 0 ev`*v ]
+[p i ___va_arg ]
 [; ;xc8\pic\include\__size_t.h: 4: typedef unsigned size_t;
 [; ;stdarg.h: 7: typedef void * va_list[1];
 [; ;stdarg.h: 10: extern void * __va_start(void);
@@ -203,6 +206,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 8  ]
 [e :U 9 ]
 {
+[; ;doprnt.c: 555: if(c != '%')
+"555
+[e $ ! != -> _c `ui -> 37 `ui 11  ]
 [; ;doprnt.c: 557: {
 "557
 {
@@ -214,7 +220,65 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 8  ]
 "560
 }
+[e :U 11 ]
 [; ;doprnt.c: 560: }
+[; ;doprnt.c: 565: flag = 0;
+"565
+[e = _flag -> -> 0 `i `uc ]
+[; ;doprnt.c: 661: switch(c = *f++) {
+"661
+[e $U 13  ]
+{
+[; ;doprnt.c: 663: case 0:
+"663
+[e :U 14 ]
+[; ;doprnt.c: 664: goto alldone;
+"664
+[e $U 15  ]
+[; ;doprnt.c: 754: case 's':
+"754
+[e :U 16 ]
+[; ;doprnt.c: 760: cp = (*(const char * *)__va_arg((*(const char * **)ap), (const char *)0));
+"760
+[e = _cp *U -> ( ___va_arg , (. -> *U -> &U _ap `***Cuc `*v -> -> 0 `i `*Cuc `**Cuc ]
+[; ;doprnt.c: 766: if(!cp)
+"766
+[e $ ! ! != _cp -> -> 0 `i `*Cuc 17  ]
+[; ;doprnt.c: 767: cp = "(null)";
+"767
+[e = _cp :s 1C ]
+[e :U 17 ]
+[; ;doprnt.c: 803: while(*cp)
+"803
+[e $U 18  ]
+[e :U 19 ]
+[; ;doprnt.c: 804: (putch(*cp++) );
+"804
+[e ( _putch (1 *U ++ _cp * -> -> 1 `i `x -> -> # *U _cp `i `x ]
+[e :U 18 ]
+"803
+[e $ != -> *U _cp `i -> -> -> 0 `i `Cuc `i 19  ]
+[e :U 20 ]
+[; ;doprnt.c: 805: continue;
+"805
+[e $U 8  ]
+[; ;doprnt.c: 828: default:
+"828
+[e :U 21 ]
+[; ;doprnt.c: 839: continue;
+"839
+[e $U 8  ]
+"848
+}
+[; ;doprnt.c: 848: }
+[e $U 12  ]
+"661
+[e :U 13 ]
+[e [\ = _c *U ++ _f * -> -> 1 `i `x -> -> # *U _f `i `x , $ -> -> 0 `i `uc 14
+ , $ -> -> 115 `ui `uc 16
+ 21 ]
+"848
+[e :U 12 ]
 [; ;doprnt.c: 1448: {
 "1448
 {
@@ -228,6 +292,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 10 ]
 [; ;doprnt.c: 1495: }
 [; ;doprnt.c: 1559: }
+[; ;doprnt.c: 1561: alldone:
+"1561
+[e :U 15 ]
 [; ;doprnt.c: 1566: return 0;
 "1566
 [e ) -> 0 `i ]
@@ -236,3 +303,5 @@ Version 3.2 HI-TECH Software Intermediate Code
 "1567
 [e :UE 7 ]
 }
+[a 1C 40 110 117 108 108 41 0 ]
+
