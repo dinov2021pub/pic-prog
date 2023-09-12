@@ -23,7 +23,7 @@
 #pragma config BORV = HI        //ブラウンアウトリセット電圧を高(2.7V)に設定
 #pragma config LPBOR = OFF      //低消費電力ブラウンアウトリセット無効
 #pragma config LVP = OFF        //低電圧プログラミングを行わない
- 
+
 #define _XTAL_FREQ 32000000     //クロック32MHz
  
 void serial_init(unsigned long BR){
@@ -35,8 +35,7 @@ void serial_init(unsigned long BR){
     SP1BRGL = X % 256;
 }
  
- 
-void main() {
+ void PICinit(){
     OSCCON = 0b01110000 ;     // 内部クロック8MHz　×4=32MHz
     ANSELA = 0b00000000 ;     // AN0-AN3を使わない
     ANSELC = 0b00000000 ;     // AN4-AN6を使わない
@@ -44,7 +43,15 @@ void main() {
     TRISC  = 0b00000000 ;     // 全て出力
     PORTA  = 0b00000000 ;     // PORTAクリア
     PORTC  = 0b00000000 ;     // PORTCクリア
+  
+    DAC1CON0 = 0b10010000;
+    DAC1CON1 = 0;
+}
+ 
+void main() {
    
+    PICinit();
+    
     /* TX RXピンの割り当て*/
     RA0PPS = 0x14;            //RA0にTXを割り当てる。
     RXPPS = 0x01;             //RXをRA1に割り当てる。
@@ -53,5 +60,11 @@ void main() {
    
     while(1){
         getche();
+        for (int i=0 ; i < 256 ; i++){
+            DAC1CON1 = 200 ;
+            __delay_us(10) ;
+            DAC1CON1 = 0 ;
+            __delay_us(10) ;
+        }
     }
 }

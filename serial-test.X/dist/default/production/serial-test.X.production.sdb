@@ -11,7 +11,9 @@
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
 "29 C:\Users\user\MPLABXProjects\serial-test.X\main.c
 [v _serial_init serial_init `(v  1 e 1 0 ]
-"39
+"38
+[v _PICinit PICinit `(v  1 e 1 0 ]
+"51
 [v _main main `(v  1 e 1 0 ]
 "13 C:\Users\user\MPLABXProjects\serial-test.X\uart.c
 [v _putch putch `(v  1 e 1 0 ]
@@ -29,6 +31,10 @@
 [v _TRISC TRISC `VEuc  1 e 1 @142 ]
 "1548
 [v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"2406
+[v _DAC1CON0 DAC1CON0 `VEuc  1 e 1 @280 ]
+"2516
+[v _DAC1CON1 DAC1CON1 `VEuc  1 e 1 @281 ]
 "2682
 [v _ANSELA ANSELA `VEuc  1 e 1 @396 ]
 "2727
@@ -61,10 +67,12 @@
 [v _RCIF RCIF `VEb  1 e 0 @141 ]
 "14219
 [v _TXIF TXIF `VEb  1 e 0 @140 ]
-"39 C:\Users\user\MPLABXProjects\serial-test.X\main.c
+"51 C:\Users\user\MPLABXProjects\serial-test.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"57
+"63
+[v main@i i `i  1 a 2 11 ]
+"70
 } 0
 "29
 [v _serial_init serial_init `(v  1 e 1 0 ]
@@ -106,4 +114,9 @@
 [v _getch getch `(uc  1 e 1 0 ]
 {
 "26
+} 0
+"38 C:\Users\user\MPLABXProjects\serial-test.X\main.c
+[v _PICinit PICinit `(v  1 e 1 0 ]
+{
+"49
 } 0
