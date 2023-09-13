@@ -5,7 +5,7 @@
  *
  * Created at 2023/09/12
  * Analog output controller with RS-232C comunication
- * PIC16F1705 - FT234X USBƒVƒŠƒAƒ‹•ÏŠ·ƒ‚ƒWƒ…[ƒ‹
+ * PIC16F1705 - FT234X USBã‚·ãƒªã‚¢ãƒ«å¤‰æ›ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
  * 
  * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf
  *  */
@@ -16,45 +16,45 @@
 #include <string.h>
 
 // CONFIG1
-#pragma config FOSC = INTOSC    //“à•”ƒNƒƒbƒN‚ðŽg‚¤
-#pragma config WDTE = OFF       //ƒEƒHƒbƒ`ƒhƒbƒNƒ^ƒCƒ}[–³Œø
-#pragma config PWRTE = ON       //ƒpƒ[ƒAƒbƒvƒ^ƒCƒ}[‚ð—LŒø‚É‚·‚é
-#pragma config MCLRE = OFF      //MCLRƒsƒ“‚ðRA3‚Æ‚µ‚ÄŽg—p‚·‚é
-#pragma config CP = OFF         //ƒvƒƒOƒ‰ƒ€ƒƒ‚ƒŠ‚ð•ÛŒì‚µ‚È‚¢
-#pragma config BOREN = ON       //ƒuƒ‰ƒEƒ“ƒAƒEƒgƒŠƒZƒbƒg‚ð—LŒø‚É‚·‚é
-#pragma config CLKOUTEN = OFF   //ƒNƒƒbƒNo—Í‚ð–³Œø‚Æ‚µARA4ƒsƒ“‚Æ‚µ‚ÄŽg—p‚·‚é
-#pragma config IESO = OFF       //“à•”EŠO•”ƒNƒƒbƒN‚ÌØ‚è‘Ö‚¦‚Å‚Ì‹N“®‚ðs‚í‚È‚¢
-#pragma config FCMEN = OFF      //ŠO•”ƒNƒƒbƒN‚ðŠÄŽ‹‚µ‚È‚¢
+#pragma config FOSC = INTOSC    //å†…éƒ¨ã‚¯ãƒ­ãƒƒã‚¯ã‚’ä½¿ã†
+#pragma config WDTE = OFF       //ã‚¦ã‚©ãƒƒãƒãƒ‰ãƒƒã‚¯ã‚¿ã‚¤ãƒžãƒ¼ç„¡åŠ¹
+#pragma config PWRTE = ON       //ãƒ‘ãƒ¯ãƒ¼ã‚¢ãƒƒãƒ—ã‚¿ã‚¤ãƒžãƒ¼ã‚’æœ‰åŠ¹ã«ã™ã‚‹
+#pragma config MCLRE = OFF      //MCLRãƒ”ãƒ³ã‚’RA3ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹
+#pragma config CP = OFF         //ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ¡ãƒ¢ãƒªã‚’ä¿è­·ã—ãªã„
+#pragma config BOREN = ON       //ãƒ–ãƒ©ã‚¦ãƒ³ã‚¢ã‚¦ãƒˆãƒªã‚»ãƒƒãƒˆã‚’æœ‰åŠ¹ã«ã™ã‚‹
+#pragma config CLKOUTEN = OFF   //ã‚¯ãƒ­ãƒƒã‚¯å‡ºåŠ›ã‚’ç„¡åŠ¹ã¨ã—ã€RA4ãƒ”ãƒ³ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹
+#pragma config IESO = OFF       //å†…éƒ¨ãƒ»å¤–éƒ¨ã‚¯ãƒ­ãƒƒã‚¯ã®åˆ‡ã‚Šæ›¿ãˆã§ã®èµ·å‹•ã‚’è¡Œã‚ãªã„
+#pragma config FCMEN = OFF      //å¤–éƒ¨ã‚¯ãƒ­ãƒƒã‚¯ã‚’ç›£è¦–ã—ãªã„
  
 // CONFIG2
-#pragma config WRT = OFF        //ƒtƒ‰ƒbƒVƒ…ƒƒ‚ƒŠ‚ð•ÛŒì‚µ‚È‚¢
-#pragma config PPS1WAY = OFF    //ƒƒbƒN‰ðœƒV[ƒPƒ“ƒX‚Å‰½“x‚Å‚àPPSLOCK‚ðƒZƒbƒg/ƒNƒŠƒA‚Å‚«‚é
-#pragma config ZCDDIS = ON      //ƒ[ƒƒNƒƒXŒŸo‰ñ˜H–³Œø
-#pragma config PLLEN = ON       //~4PLL‚ð“®ì‚³‚¹‚é
-#pragma config STVREN = ON      //ƒXƒ^ƒbƒNƒI[ƒo[ƒtƒ[ƒŠƒZƒbƒg‚ðs‚¤
-#pragma config BORV = HI        //ƒuƒ‰ƒEƒ“ƒAƒEƒgƒŠƒZƒbƒg“dˆ³‚ð‚(2.7V)‚ÉÝ’è
-#pragma config LPBOR = OFF      //’áÁ”ï“d—Íƒuƒ‰ƒEƒ“ƒAƒEƒgƒŠƒZƒbƒg–³Œø
-#pragma config LVP = OFF        //’á“dˆ³ƒvƒƒOƒ‰ƒ~ƒ“ƒO‚ðs‚í‚È‚¢
+#pragma config WRT = OFF        //ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãƒ¡ãƒ¢ãƒªã‚’ä¿è­·ã—ãªã„
+#pragma config PPS1WAY = OFF    //ãƒ­ãƒƒã‚¯è§£é™¤ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ä½•åº¦ã§ã‚‚PPSLOCKã‚’ã‚»ãƒƒãƒˆ/ã‚¯ãƒªã‚¢ã§ãã‚‹
+#pragma config ZCDDIS = ON      //ã‚¼ãƒ­ã‚¯ãƒ­ã‚¹æ¤œå‡ºå›žè·¯ç„¡åŠ¹
+#pragma config PLLEN = ON       //Ã—4PLLã‚’å‹•ä½œã•ã›ã‚‹
+#pragma config STVREN = ON      //ã‚¹ã‚¿ãƒƒã‚¯ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ãƒªã‚»ãƒƒãƒˆã‚’è¡Œã†
+#pragma config BORV = HI        //ãƒ–ãƒ©ã‚¦ãƒ³ã‚¢ã‚¦ãƒˆãƒªã‚»ãƒƒãƒˆé›»åœ§ã‚’é«˜(2.7V)ã«è¨­å®š
+#pragma config LPBOR = OFF      //ä½Žæ¶ˆè²»é›»åŠ›ãƒ–ãƒ©ã‚¦ãƒ³ã‚¢ã‚¦ãƒˆãƒªã‚»ãƒƒãƒˆç„¡åŠ¹
+#pragma config LVP = OFF        //ä½Žé›»åœ§ãƒ—ãƒ­ã‚°ãƒ©ãƒŸãƒ³ã‚°ã‚’è¡Œã‚ãªã„
 
-#define _XTAL_FREQ 32000000     //ƒNƒƒbƒN32MHz
+#define _XTAL_FREQ 32000000     //ã‚¯ãƒ­ãƒƒã‚¯32MHz
  
 void serial_init(unsigned long BR){
     TX1STA = 0x24;   //SYNC=0 TXEN = 1 BRGH = 1
     BRG16 = 1;       //BRG 16bit mode
-    RC1STA = 0x90;   //”ñ“¯ŠúAŒp‘±ŽóM‰Â
+    RC1STA = 0x90;   //éžåŒæœŸã€ç¶™ç¶šå—ä¿¡å¯
     unsigned int X= _XTAL_FREQ/BR/4 - 1;
     SP1BRGH = X / 256;
     SP1BRGL = X % 256;
 }
  
  void PICinit(){
-    OSCCON = 0b01110000 ;     // “à•”ƒNƒƒbƒN8MHz@~4=32MHz
-    ANSELA = 0b00000000 ;     // AN0-AN3‚ðŽg‚í‚È‚¢
-    ANSELC = 0b00000000 ;     // AN4-AN6‚ðŽg‚í‚È‚¢
-    TRISA  = 0b00000010 ;     // RA1‚Í“ü—Í‘¼‚Ío—Í
-    TRISC  = 0b00000000 ;     // ‘S‚Äo—Í
-    PORTA  = 0b00000000 ;     // PORTAƒNƒŠƒA
-    PORTC  = 0b00000000 ;     // PORTCƒNƒŠƒA
+    OSCCON = 0b01110000 ;     // å†…éƒ¨ã‚¯ãƒ­ãƒƒã‚¯8MHzã€€Ã—4=32MHz
+    ANSELA = 0b00000000 ;     // AN0-AN3ã‚’ä½¿ã‚ãªã„
+    ANSELC = 0b00000000 ;     // AN4-AN6ã‚’ä½¿ã‚ãªã„
+    TRISA  = 0b00000010 ;     // RA1ã¯å…¥åŠ›ä»–ã¯å‡ºåŠ›
+    TRISC  = 0b00000000 ;     // å…¨ã¦å‡ºåŠ›
+    PORTA  = 0b00000000 ;     // PORTAã‚¯ãƒªã‚¢
+    PORTC  = 0b00000000 ;     // PORTCã‚¯ãƒªã‚¢
   
     DAC1CON0 = 0b10010000;
     DAC1CON1 = 0;
@@ -77,11 +77,11 @@ enum command {
 
 
 int ap1_dat[300];
-int ap2_dat[20];
+int ap2_dat[10];
 
 void main() {
 
-    char tmp[80];
+    static char tmp[300];
     char rcmd[4];
     int fp1_time;
     int fp1_amp;
@@ -99,11 +99,11 @@ void main() {
     
     PICinit();
     
-    /* TX RXƒsƒ“‚ÌŠ„‚è“–‚Ä*/
-    RA0PPS = 0x14;            //RA0‚ÉTX‚ðŠ„‚è“–‚Ä‚éB
-    RXPPS = 0x01;             //RX‚ðRA1‚ÉŠ„‚è“–‚Ä‚éB
+    /* TX RXãƒ”ãƒ³ã®å‰²ã‚Šå½“ã¦*/
+    RA0PPS = 0x14;            //RA0ã«TXã‚’å‰²ã‚Šå½“ã¦ã‚‹ã€‚
+    RXPPS = 0x01;             //RXã‚’RA1ã«å‰²ã‚Šå½“ã¦ã‚‹ã€‚
    
-    serial_init(9600);        // Serial’ÊM‰Šú‰»‚ÆBaud Rate‚ÌÝ’è
+    serial_init(9600);        // Serialé€šä¿¡åˆæœŸåŒ–ã¨Baud Rateã®è¨­å®š
    
     while(1){
         
@@ -126,7 +126,7 @@ void main() {
         rcmd[3] = '\0';
 
 
-        enum command cmd; // enumŒ^‚ÌƒIƒuƒWƒFƒNƒg‚ð’è‹`
+        enum command cmd; // enumåž‹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å®šç¾©
 
         cmd = VER;
         
@@ -252,12 +252,12 @@ void main() {
                         if(strcmp(ptr,"A1") == 0) {
                             for (int i=0 ; i < num_ap1 ; i++){
                                 DAC1CON1 = ap1_dat[i] ;
-                                __delay_us(23) ;
+                                __delay_us(21) ;
                             }
                         }else if(strcmp(ptr,"A2") == 0) {
                             for (int i=0 ; i < num_ap2 ; i++){
                                 DAC1CON1 = ap2_dat[i] ;
-                                __delay_us(23) ;
+                                __delay_us(21) ;
                             }
 //                        }else if(strcmp(ptr,"A3") == 0) {
 //                            for (int i=0 ; i < 30 ; i++){
