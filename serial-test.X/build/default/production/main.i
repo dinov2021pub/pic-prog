@@ -7343,6 +7343,7 @@ SA3,
 SF1,
 SF2,
 SF3,
+SF4,
 LEP,
 LDS,
 LPE,
@@ -7350,32 +7351,24 @@ LDR,
 VER
 };
 
-void ap_out(int ap_dat[]){
 
-for (int i=0 ; i < 20 ; i++){
-DAC1CON1 = ap_dat[i] ;
-_delay((unsigned long)((18)*(32000000/4000000.0))) ;
-}
-
-}
-
+int ap1_dat[400];
+int ap2_dat[20];
 
 void main() {
-char tmp[40];
+char tmp[14];
 char rcmd[4];
-int dat0[20];
-int ap1_dat[20];
-int ap2_dat[20];
-int ap3_dat[20];
 int fp1_time;
 int fp1_amp;
 int fp2_time;
 int fp2_amp;
 int fp3_time;
 int fp3_amp;
-int intvl1;
-int intvl2;
-int intvl3;
+int fp4_time;
+int fp4_amp;
+
+int num_ap1 = 800;
+int num_ap2 = 20;
 
 char *ptr;
 
@@ -7426,6 +7419,8 @@ cmd = SF1;
 cmd = SF2;
 }else if(strcmp(rcmd,"SF3") == 0){
 cmd = SF3;
+}else if(strcmp(rcmd,"SF4") == 0){
+cmd = SF4;
 }else if(strcmp(rcmd,"LEP") == 0){
 cmd = LEP;
 }else if(strcmp(rcmd,"LPE") == 0){
@@ -7441,17 +7436,24 @@ ptr = strtok(tmp, "/");
 switch(cmd){
 
 case SA1 :
-for (int i=0 ; i < 20 ; i++){
+for (int i=0 ; i < num_ap1 ; i++){
+ap1_dat[i] = 0;
+}
+for (int i=0 ; i < num_ap1 ; i++){
 ptr = strtok((0), "/");
 if(ptr != (0)) {
 ap1_dat[i] = atoi(ptr);
+printf("%d\n", ap1_dat[i]);
 }
 }
 printf("SA1 OK\n");
 break;
 
 case SA2 :
-for (int i=0 ; i < 20 ; i++){
+for (int i=0 ; i < num_ap2 ; i++){
+ap2_dat[i] = 0;
+}
+for (int i=0 ; i < num_ap2 ; i++){
 ptr = strtok((0), "/");
 if(ptr != (0)) {
 ap2_dat[i] = atoi(ptr);
@@ -7461,12 +7463,8 @@ printf("SA2 OK\n");
 break;
 
 case SA3 :
-for (int i=0 ; i < 20 ; i++){
-ptr = strtok((0), "/");
-if(ptr != (0)) {
-ap3_dat[i] = atoi(ptr);
-}
-}
+
+# 196
 printf("SA3 OK\n");
 break;
 
@@ -7506,25 +7504,34 @@ fp3_amp = atoi(ptr);
 printf("SF3 OK\n");
 break;
 
+case SF4 :
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+fp4_time = atoi(ptr);
+}
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+fp4_amp = atoi(ptr);
+}
+printf("SF4 OK\n");
+break;
+
 case LEP :
 
 for (int k=0 ; k < 6 ; k++){
 ptr = strtok((0), "/");
 if(strcmp(ptr,"A1") == 0) {
-for (int i=0 ; i < 20 ; i++){
+for (int i=0 ; i < num_ap1 ; i++){
 DAC1CON1 = ap1_dat[i] ;
-_delay((unsigned long)((18)*(32000000/4000000.0))) ;
+_delay((unsigned long)((23)*(32000000/4000000.0))) ;
 }
 }else if(strcmp(ptr,"A2") == 0) {
-for (int i=0 ; i < 20 ; i++){
+for (int i=0 ; i < num_ap2 ; i++){
 DAC1CON1 = ap2_dat[i] ;
-_delay((unsigned long)((18)*(32000000/4000000.0))) ;
+_delay((unsigned long)((23)*(32000000/4000000.0))) ;
 }
-}else if(strcmp(ptr,"A3") == 0) {
-for (int i=0 ; i < 20 ; i++){
-DAC1CON1 = ap3_dat[i] ;
-_delay((unsigned long)((18)*(32000000/4000000.0))) ;
-}
+
+# 266
 }else if(strcmp(ptr,"F1") == 0) {
 DAC1CON1 = fp1_amp ;
 for (int i=0 ; i < fp1_time ; i++){
@@ -7538,8 +7545,14 @@ _delay((unsigned long)((20)*(32000000/4000000.0))) ;
 }
 DAC1CON1 = 0 ;
 }else if(strcmp(ptr,"F3") == 0) {
-DAC1CON1 = fp1_amp ;
+DAC1CON1 = fp3_amp ;
 for (int i=0 ; i < fp3_time ; i++){
+_delay((unsigned long)((20)*(32000000/4000000.0))) ;
+}
+DAC1CON1 = 0 ;
+}else if(strcmp(ptr,"F4") == 0) {
+DAC1CON1 = fp4_amp ;
+for (int i=0 ; i < fp4_time ; i++){
 _delay((unsigned long)((20)*(32000000/4000000.0))) ;
 }
 DAC1CON1 = 0 ;
@@ -7551,19 +7564,9 @@ printf("___P_OK\n");
 break;
 
 case LDS :
-for (int i=0 ; i < 10 ; i++){
-ptr = strtok((0), "/");
-if(ptr != (0)) {
-dat0[i] = atoi(ptr);
-}
-}
 break;
 
 case LPE :
-for (int i=0 ; i < 10 ; i++){
-DAC1CON1 = dat0[i] ;
-_delay((unsigned long)((18)*(32000000/4000000.0))) ;
-}
 break;
 
 case VER :
