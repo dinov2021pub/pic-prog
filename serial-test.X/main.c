@@ -76,11 +76,12 @@ enum command {
 };
 
 
-int ap1_dat[400];
+int ap1_dat[300];
 int ap2_dat[20];
 
 void main() {
-    char tmp[14];
+
+    char tmp[80];
     char rcmd[4];
     int fp1_time;
     int fp1_amp;
@@ -91,7 +92,7 @@ void main() {
     int fp4_time;
     int fp4_amp;
     
-    int num_ap1 = 800;
+    int num_ap1 = 300;
     int num_ap2 = 20;
     
     char *ptr; 
