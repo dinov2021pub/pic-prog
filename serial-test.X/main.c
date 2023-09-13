@@ -94,6 +94,9 @@ void main() {
     
     int num_ap1 = 300;
     int num_ap2 = 20;
+    int num_ap1_cnt = 0;
+    int num_ap2_cnt = 0;
+    
     
     char *ptr; 
     
@@ -169,6 +172,9 @@ void main() {
                         if(ptr != NULL) {
                             ap1_dat[i] = atoi(ptr);
                             printf("%d\n", ap1_dat[i]);
+                        }else{
+                            num_ap1_cnt = i;
+                            break;
                         }
                     }
                     printf("SA1 OK\n");
@@ -182,6 +188,9 @@ void main() {
                         ptr = strtok(NULL, "/");
                         if(ptr != NULL) {
                             ap2_dat[i] = atoi(ptr);
+                        }else{
+                            num_ap2_cnt = i;
+                            break;
                         }
                     }
                     printf("SA2 OK\n");
@@ -250,12 +259,12 @@ void main() {
                     for (int k=0 ; k < 6 ; k++){
                         ptr = strtok(NULL, "/");
                         if(strcmp(ptr,"A1") == 0) {
-                            for (int i=0 ; i < num_ap1 ; i++){
+                            for (int i=0 ; i < num_ap1_cnt ; i++){
                                 DAC1CON1 = ap1_dat[i] ;
                                 __delay_us(21) ;
                             }
                         }else if(strcmp(ptr,"A2") == 0) {
-                            for (int i=0 ; i < num_ap2 ; i++){
+                            for (int i=0 ; i < num_ap2_cnt ; i++){
                                 DAC1CON1 = ap2_dat[i] ;
                                 __delay_us(21) ;
                             }
