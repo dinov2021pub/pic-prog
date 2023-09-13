@@ -229,6 +229,12 @@ extern double round(double);
 # 12 "C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c"
 #pragma warning disable 350
 
+# 358
+const static unsigned int dpowers[] = {1, 10, 100, 1000, 10000,
+
+# 363
+};
+
 # 463
 int
 
@@ -279,6 +285,11 @@ switch(c = *f++) {
 case 0:
 goto alldone;
 
+# 723
+case 'd':
+case 'i':
+break;
+
 # 754
 case 's':
 
@@ -303,10 +314,48 @@ continue;
 # 848
 }
 
+# 1279
+{
+
+# 1285
+val = (unsigned int)(*(int *)__va_arg((*(int **)ap), (int)0));
+
+if((int)val < 0) {
+flag |= 0x03;
+val = -val;
+}
+
+}
+
+# 1331
+for(c = 1 ; c != sizeof dpowers/sizeof dpowers[0] ; c++)
+if(val < dpowers[c])
+break;
+
 # 1448
 {
 
+# 1464
+if(flag & 0x03)
+(putch('-') );
+
 # 1495
+}
+
+
+prec = c;
+
+while(prec--) {
+
+# 1504
+{
+
+# 1515
+c = (val / dpowers[(unsigned char)prec]) % 10 + '0';
+
+# 1549
+}
+(putch(c) );
 }
 
 # 1559

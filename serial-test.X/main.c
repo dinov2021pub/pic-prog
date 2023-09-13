@@ -67,6 +67,7 @@ enum command {
   SF1,
   SF2,
   SF3,
+  SF4,
   LEP,
   LDS,
   LPE,
@@ -74,32 +75,24 @@ enum command {
   VER
 };
 
-void ap_out(int ap_dat[]){
 
-    for (int i=0 ; i < 20 ; i++){
-        DAC1CON1 = ap_dat[i] ;
-        __delay_us(18) ;
-    }
-    
-}
-
+int ap1_dat[400];
+int ap2_dat[20];
 
 void main() {
-    char tmp[40];
+    char tmp[14];
     char rcmd[4];
-    int dat0[20];
-    int ap1_dat[20];
-    int ap2_dat[20];
-    int ap3_dat[20];
     int fp1_time;
     int fp1_amp;
     int fp2_time;
     int fp2_amp;
     int fp3_time;
     int fp3_amp;
-    int intvl1;
-    int intvl2;
-    int intvl3;
+    int fp4_time;
+    int fp4_amp;
+    
+    int num_ap1 = 800;
+    int num_ap2 = 20;
     
     char *ptr; 
     
@@ -150,6 +143,8 @@ void main() {
             cmd = SF2;
         }else if(strcmp(rcmd,"SF3") == 0){
             cmd = SF3;
+        }else if(strcmp(rcmd,"SF4") == 0){
+            cmd = SF4;
         }else if(strcmp(rcmd,"LEP") == 0){
             cmd = LEP;
         }else if(strcmp(rcmd,"LPE") == 0){
@@ -165,17 +160,24 @@ void main() {
         switch(cmd){
 
             case SA1 : 
-                    for (int i=0 ; i < 20 ; i++){
+                    for (int i=0 ; i < num_ap1 ; i++){
+                        ap1_dat[i] = 0;
+                    }
+                    for (int i=0 ; i < num_ap1 ; i++){
                         ptr = strtok(NULL, "/");
                         if(ptr != NULL) {
                             ap1_dat[i] = atoi(ptr);
+                            printf("%d\n", ap1_dat[i]);
                         }
                     }
                     printf("SA1 OK\n");
                     break;
 
             case SA2 : 
-                    for (int i=0 ; i < 20 ; i++){
+                    for (int i=0 ; i < num_ap2 ; i++){
+                        ap2_dat[i] = 0;
+                    }
+                    for (int i=0 ; i < num_ap2 ; i++){
                         ptr = strtok(NULL, "/");
                         if(ptr != NULL) {
                             ap2_dat[i] = atoi(ptr);
@@ -185,12 +187,12 @@ void main() {
                     break;
 
             case SA3 : 
-                    for (int i=0 ; i < 20 ; i++){
-                        ptr = strtok(NULL, "/");
-                        if(ptr != NULL) {
-                            ap3_dat[i] = atoi(ptr);
-                        }
-                    }
+//                    for (int i=0 ; i < 30 ; i++){
+//                        ptr = strtok(NULL, "/");
+//                        if(ptr != NULL) {
+//                            ap3_dat[i] = atoi(ptr);
+//                        }
+//                    }
                     printf("SA3 OK\n");
                     break;
 
@@ -230,25 +232,37 @@ void main() {
                     printf("SF3 OK\n");
                     break;
 
+            case SF4 : 
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        fp4_time = atoi(ptr);
+                    }
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        fp4_amp = atoi(ptr);
+                    }
+                    printf("SF4 OK\n");
+                    break;
+
             case LEP : 
 
                     for (int k=0 ; k < 6 ; k++){
                         ptr = strtok(NULL, "/");
                         if(strcmp(ptr,"A1") == 0) {
-                            for (int i=0 ; i < 20 ; i++){
+                            for (int i=0 ; i < num_ap1 ; i++){
                                 DAC1CON1 = ap1_dat[i] ;
-                                __delay_us(18) ;
+                                __delay_us(23) ;
                             }
                         }else if(strcmp(ptr,"A2") == 0) {
-                            for (int i=0 ; i < 20 ; i++){
+                            for (int i=0 ; i < num_ap2 ; i++){
                                 DAC1CON1 = ap2_dat[i] ;
-                                __delay_us(18) ;
+                                __delay_us(23) ;
                             }
-                        }else if(strcmp(ptr,"A3") == 0) {
-                            for (int i=0 ; i < 20 ; i++){
-                                DAC1CON1 = ap3_dat[i] ;
-                                __delay_us(18) ;
-                            }
+//                        }else if(strcmp(ptr,"A3") == 0) {
+//                            for (int i=0 ; i < 30 ; i++){
+//                                DAC1CON1 = ap3_dat[i] ;
+//                                __delay_us(18) ;
+//                            }
                         }else if(strcmp(ptr,"F1") == 0) {
                             DAC1CON1 = fp1_amp ;
                             for (int i=0 ; i < fp1_time ; i++){
@@ -262,8 +276,14 @@ void main() {
                             }
                             DAC1CON1 = 0 ;
                         }else if(strcmp(ptr,"F3") == 0) {
-                            DAC1CON1 = fp1_amp ;
+                            DAC1CON1 = fp3_amp ;
                             for (int i=0 ; i < fp3_time ; i++){
+                                __delay_us(20) ;
+                            }
+                            DAC1CON1 = 0 ;
+                        }else if(strcmp(ptr,"F4") == 0) {
+                            DAC1CON1 = fp4_amp ;
+                            for (int i=0 ; i < fp4_time ; i++){
                                 __delay_us(20) ;
                             }
                             DAC1CON1 = 0 ;
@@ -275,19 +295,9 @@ void main() {
                     break;
 
             case LDS : 
-                    for (int i=0 ; i < 10 ; i++){
-                        ptr = strtok(NULL, "/");
-                        if(ptr != NULL) {
-                            dat0[i] = atoi(ptr);
-                        }
-                    }
                     break;
 
             case LPE : 
-                    for (int i=0 ; i < 10 ; i++){
-                        DAC1CON1 = dat0[i] ;
-                        __delay_us(18) ;
-                    }
                     break;
 
             case VER : 

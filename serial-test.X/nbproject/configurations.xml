@@ -316,6 +316,8 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-fff"/>
         <property key="poweroptions.powerenable" value="true"/>
+        <property key="programmerToGoFilePath"
+                  value="C:/Users/user/pic/pic-prog/serial-test.X/debug/default/kohzu-ctrl-compati_ptg"/>
         <property key="programmerToGoImageName" value="kohzu-ctrl-compati_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>

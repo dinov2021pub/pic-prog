@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>kohzu-ctrl-compati</name>
+            <name>serial-test</name>
             <name>kohzu-ctrl-compati</name>
             <name>solder-feeder-ctrl</name>
             <name>kohzu-motor-ctrl-compati</name>
