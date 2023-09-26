@@ -35,7 +35,7 @@
 #define ROLL_P2 RA1 // ROLLER Phase2
 #define ROLL_P1 RA0 // ROLLER Phase1
 //#define M_IN1 RA2 // H-bridge IN1
-#//define M_IN2 RA3 // H-bridge IN2
+//#define M_IN2 RA3 // H-bridge IN2
 #define TR RB3 // Transistor
 #define MAX_VALUE 32767
 #define MIN_VALUE 1
@@ -52,13 +52,13 @@ enum command {
 
 void main(void) {
     
-    PORTA = 0x00;           // PORTA‚ð‰Šú‰»
-    PORTB = 0x00;           // PORTB‚ð‰Šú‰»
-    TRISA = 0b00000000;     // PORTA‚Ì“üo—ÍÝ’è ‘S‚Äo—Í
-    TRISB = 0b00000011;     // PORTB‚Ì“üo—ÍÝ’è RB1‚ÍRX, RB0 ‚Í“ü—Í
-    CMCON = 0b00000111;     // ƒRƒ“ƒpƒŒ[ƒ^‚ÍŽg—p‚µ‚È‚¢(RA0-RA4‚ÍƒfƒWƒ^ƒ‹ƒsƒ“‚ÅŽg—p)
+    PORTA = 0x00;           // PORTAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    PORTB = 0x00;           // PORTBï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    TRISA = 0b00000000;     // PORTAï¿½Ì“ï¿½ï¿½oï¿½ÍÝ’ï¿½ ï¿½Sï¿½Äoï¿½ï¿½
+    TRISB = 0b00000011;     // PORTBï¿½Ì“ï¿½ï¿½oï¿½ÍÝ’ï¿½ RB1ï¿½ï¿½RX, RB0 ï¿½Í“ï¿½ï¿½ï¿½
+    CMCON = 0b00000111;     // ï¿½Rï¿½ï¿½ï¿½pï¿½ï¿½ï¿½[ï¿½^ï¿½ÍŽgï¿½pï¿½ï¿½ï¿½È‚ï¿½(RA0-RA4ï¿½Íƒfï¿½Wï¿½^ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ÅŽgï¿½p)
     
-    initUART();             // ’²•à“¯ŠúŽ®ƒVƒŠƒAƒ‹’ÊMÝ’è
+    initUART();             // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ÊMï¿½Ý’ï¿½
  
     char tmp[40];
     int j = 10;
@@ -85,7 +85,7 @@ void main(void) {
         tmp[3] = '\0';
 
         gets(tmp);
-        printf("%s\n", tmp);
+//        printf("%s\n", tmp);
         
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
@@ -93,7 +93,7 @@ void main(void) {
         rcmd[3] = '\0';
 
 
-        enum command cmd; // enumŒ^‚ÌƒIƒuƒWƒFƒNƒg‚ð’è‹`
+        enum command cmd; // enumï¿½^ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½`
 
         cmd = VE;
         
@@ -121,7 +121,6 @@ void main(void) {
                     if(ptr != NULL) {
                         dist = atoi(ptr);
                     }
-                    printf("dist = %d\n", dist);
                     
                     if (dist > 0){
                         for(k = 0 ; k < dist ; k++){
@@ -148,8 +147,8 @@ void main(void) {
                         }
                     }
 
-                    puts("C");
-                    printf("C\r\n"); // ‘—M
+//                    puts("C");
+                    printf("C\r\n"); // ï¿½ï¿½ï¿½M
                     break;
                         
             case WTB : 
@@ -174,7 +173,7 @@ void main(void) {
                     if(ptr != NULL) {
                         dist = atoi(ptr);
                     }
-                    printf("dist = %d\n", dist);
+//                    printf("dist = %d\n", dist);
                     
                     if (dist > 0){
                         for(k = 0 ; k < dist ; k++){
@@ -221,12 +220,12 @@ void main(void) {
                         }
                     }
 
-                    puts("C");
-                    printf("C\r\n"); // ‘—M
+//                    puts("C");
+                    printf("C\r\n"); // ï¿½ï¿½ï¿½M
                     break;
 
             case NTD : 
-                    printf("NTD\n");
+//                    printf("NTD\n");
                     dist = 10000;
                     for(k = 0 ; k < dist ; k++){
                         ROLL_P1 = 1;
@@ -244,17 +243,17 @@ void main(void) {
                         }
 
                     }
-                    puts("C");
-                    printf("C\r\n"); // ‘—M
+//                    puts("C");
+                    printf("C\r\n"); // ï¿½ï¿½ï¿½M
                     break;
                         
             case NDO : 
-                    printf("NDO\n");
+//                    printf("NDO\n");
                     ptr = strtok(NULL, "/");
                     if(ptr != NULL) {
                         dist = atoi(ptr);
                     }
-                    printf("dist = %d\n", dist);
+//                    printf("dist = %d\n", dist);
                     
                     for(k = 0 ; k < 10000 ; k++){
                         ROLL_P1 = 1;
@@ -267,7 +266,7 @@ void main(void) {
                         }
 
                         if(RB0 == 0){
-                            printf("Detected");
+//                            printf("Detected");
                             break;
                         }
 
@@ -284,22 +283,22 @@ void main(void) {
                         }
                     }
 
-                    puts("C");
-                    printf("C\r\n"); // ‘—M
+//                    puts("C");
+                    printf("C\r\n"); // ï¿½ï¿½ï¿½M
                     break;
 
             case VE : cnt=10;
-                    printf("VERSION 10");
+                    printf("VERSION 10\r\n");
                     break;
                         
             default : break;
         }
         
-        if(RB0 == 0){
-            printf("SW OFF");
-        }else{
-            printf("SW ON");
-        }
+//        if(RB0 == 0){
+//            printf("SW OFF");
+//        }else{
+//            printf("SW ON");
+//        }
     }
 }
 
