@@ -26,16 +26,9 @@
 
 #define _XTAL_FREQ 4000000      // 4MHz
 
-#define MOTOR_P4 RB7 // MOTOR Phase4
-#define MOTOR_P3 RB6 // MOTOR Phase3
-#define MOTOR_P2 RB5 // MOTOR Phase2
-#define MOTOR_P1 RB4 // MOTOR Phase1
-#define ROLL_P4 RA3 // ROLLER Phase4
-#define ROLL_P3 RA2 // ROLLER Phase3
-#define ROLL_P2 RA1 // ROLLER Phase2
-#define ROLL_P1 RA0 // ROLLER Phase1
-//#define M_IN1 RA2 // H-bridge IN1
-//#define M_IN2 RA3 // H-bridge IN2
+#define FS_CCW RA1 // femto-Spotter axis CCW
+#define FS_CW RA0 // femto-Spotter axis CW
+#define NTCH RB0 // femto-Spotter Needle Touch detect
 #define TR RB3 // Transistor
 #define MAX_VALUE 32767
 #define MIN_VALUE 1
@@ -87,13 +80,11 @@ void main(void) {
         tmp[3] = '\0';
 
         gets(tmp);
-//        printf("%s\n", tmp);
         
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
         rcmd[2] = tmp[3];
         rcmd[3] = '\0';
-
 
         enum command cmd; // enum型のオブジェクトを定義
 
@@ -132,11 +123,11 @@ void main(void) {
                     
                     if (dist > 0){
                         for(k = 0 ; k < dist ; k++){
-                            ROLL_P1 = 1;
+                            FS_CW = 1;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
-                            ROLL_P1 = 0;
+                            FS_CW = 0;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
@@ -144,11 +135,11 @@ void main(void) {
                     } else {
                         dist *= -1;
                         for(k = 0 ; k < dist ; k++){
-                            ROLL_P2 = 1;
+                            FS_CCW = 1;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
-                            ROLL_P2 = 0;
+                            FS_CCW = 0;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
@@ -183,25 +174,24 @@ void main(void) {
                     if(ptr != NULL) {
                         dist = atoi(ptr);
                     }
-//                    printf("dist = %d\n", dist);
                     
                     if (dist > 0){
                         for(k = 0 ; k < dist ; k++){
-                            ROLL_P1 = 1;
+                            FS_CW = 1;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
-                            ROLL_P1 = 0;
+                            FS_CW = 0;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
                         }
                         for(k = 0 ; k < dist ; k++){
-                            ROLL_P2 = 1;
+                            FS_CCW = 1;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
-                            ROLL_P2 = 0;
+                            FS_CCW = 0;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
@@ -209,21 +199,21 @@ void main(void) {
                     } else {
                         dist *= -1;
                         for(k = 0 ; k < dist ; k++){
-                            ROLL_P2 = 1;
+                            FS_CCW = 1;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
-                            ROLL_P2 = 0;
+                            FS_CCW = 0;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
                         }
                         for(k = 0 ; k < dist ; k++){
-                            ROLL_P1 = 1;
+                            FS_CW = 1;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
-                            ROLL_P1 = 0;
+                            FS_CW = 0;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
@@ -236,14 +226,13 @@ void main(void) {
                     break;
 
             case NTD : 
-//                    printf("NTD\n");
                     dist = 10000;
                     for(k = 0 ; k < dist ; k++){
-                        ROLL_P1 = 1;
+                        FS_CW = 1;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
-                        ROLL_P1 = 0;
+                        FS_CW = 0;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
@@ -261,43 +250,39 @@ void main(void) {
                     break;
                         
             case NDO : 
-//                    printf("NDO\n");
                     ptr = strtok(NULL, "/");
                     if(ptr != NULL) {
                         dist = atoi(ptr);
                     }
-//                    printf("dist = %d\n", dist);
                     
                     for(k = 0 ; k < 10000 ; k++){
-                        ROLL_P1 = 1;
+                        FS_CW = 1;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
-                        ROLL_P1 = 0;
+                        FS_CW = 0;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
 
                         if(RB0 == 0){
-//                            printf("Detected");
                             break;
                         }
 
                     }
                     
                     for(k = 0 ; k < dist ; k++){
-                        ROLL_P2 = 1;
+                        FS_CCW = 1;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
-                        ROLL_P2 = 0;
+                        FS_CCW = 0;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
                     }
 
 //                    puts("C");
-//                    printf("C\r\n"); // 送信
                     printf("C\tNDO\r\n"); // 送信
                     break;
 
@@ -305,18 +290,13 @@ void main(void) {
                     printf("C\tREADY\r\n");
                     break;
 
-            case VER : cnt=10;
-                    printf("C\tVERSION 10\r\n");
+            case VER : 
+                    printf("C\tVERSION 0\r\n");
                     break;
                         
             default : break;
         }
-        
-//        if(RB0 == 0){
-//            printf("SW OFF");
-//        }else{
-//            printf("SW ON");
-//        }
+ 
     }
 }
 
