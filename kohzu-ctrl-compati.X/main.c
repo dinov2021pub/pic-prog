@@ -220,9 +220,7 @@ void main(void) {
                         }
                     }
 
-//                    puts("C");
                     printf("C\tOSC\r\n"); // 送信
-                    //printf("C\r\n"); // 送信
                     break;
 
             case NTD : 
@@ -237,14 +235,12 @@ void main(void) {
                             __delay_us(1);
                         }
 
-                        if(RB0 == 0){
-                            printf("Detected\n");
+                        if(NTCH == 0){
                             break;
                         }
 
                     }
 //                    puts("C");
-//                    printf("C\r\n"); // 送信
                     printf("C\tNTD\r\n"); // 送信
 
                     break;
@@ -265,7 +261,7 @@ void main(void) {
                             __delay_us(1);
                         }
 
-                        if(RB0 == 0){
+                        if(NTCH == 0){
                             break;
                         }
 
