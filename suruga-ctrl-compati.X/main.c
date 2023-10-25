@@ -134,7 +134,7 @@ void main(void) {
             rps_cmd[i] = ptr[i];
         }
         
-        printf("tmp = %s\r\n", rps_cmd); // 送信
+//        printf("tmp = %s\r\n", rps_cmd); // 送信
 //        printf("rmd_d= %d\r\n", atoi(tmp[3])); // 送信
 
           
@@ -232,7 +232,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-//                    printf("C\tRPS%d\r\n", axis); // 送信
+                    printf("C\tRPS%d\r\n", axis); // 送信
                     break;
                         
             case WTB : 
