@@ -30,6 +30,7 @@
 #define N_NTD RB6 // Needle Touch Detection
 #define N_NSD RB5 // Needle Start Position Drawback
 #define N_NDD RB4 // Needle Touch Detection Drawback
+#define SLCT RB3 // Modeselec, 0:External IO mode, 1:InternalRS-232C command
 #define NTCH RB0 // Needle Touch detect
 #define ROLL_P4 RA3 // ROLLER Phase4
 #define ROLL_P3 RA2 // ROLLER Phase3
@@ -60,7 +61,7 @@ void main(void) {
     PORTA = 0x00;           // PORTAを初期化
     PORTB = 0x00;           // PORTBを初期化
     TRISA = 0b00000000;     // PORTAの入出力設定 全て出力 0:出力, 1:入力
-    TRISB = 0b11110011;     // PORTBの入出力設定 RB1はRX, NTCH は接触検知入力, RB4:NDO入力, RB5:NSD入力, RB6:NTD入力, RB7:STOP入力　 0:出力, 1:入力
+    TRISB = 0b11111011;     // PORTBの入出力設定 RB1はRX, NTCH は接触検知入力, RB4:NDO入力, RB5:NSD入力, RB6:NTD入力, RB7:STOP入力　 0:出力, 1:入力
     CMCON = 0b00000111;     // コンパレータは使用しない(RA0-RA4はデジタルピンで使用)
     
     initUART();             // 調歩同期式シリアル通信設定
@@ -85,6 +86,7 @@ void main(void) {
     N_NTD = 1;
     N_NSD = 1;
     N_NDD = 1;
+    SLCT = 1;
 
     
     while(1){
@@ -101,15 +103,18 @@ void main(void) {
         tmp[2] = 'Q';
         tmp[3] = '\0';
 
-        if(N_NTD == 0){
-            cmd = NTD;
-        }else if(N_NSD == 0){
-            cmd = NSD;
-        }else if(N_NDD == 0){
-            cmd = NDD;
+        if (SLCT == 0){
+            if(N_NTD == 0){
+                cmd = NTD;
+            }else if(N_NSD == 0){
+                cmd = NSD;
+            }else if(N_NDD == 0){
+                cmd = NDD;
+            }
+        } else {
+            gets(tmp);
         }
 
-//        gets(tmp);
 //        printf("%s\n", tmp);
         
         rcmd[0] = tmp[1];
