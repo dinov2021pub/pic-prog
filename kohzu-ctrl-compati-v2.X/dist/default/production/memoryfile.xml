@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/default/production\kohzu-ctrl-compati-v2.X.production.hex">
+    <memory name="program">
+      <units>words</units>
+      <length>4096</length>
+      <used>2422</used>
+      <free>1674</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>256</length>
+      <used>80</used>
+      <free>176</free>
+    </memory>
+  </executable>
+</project>
