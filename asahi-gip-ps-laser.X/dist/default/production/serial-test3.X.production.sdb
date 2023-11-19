@@ -1,0 +1,357 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F1705 ]
+[d frameptr 6 ]
+"136 C:\Users\user\MPLABXProjects\serial-test3.X\main.c
+[e E4261 command `uc
+SA1 0
+SA2 1
+SA3 2
+SF1 3
+SF2 4
+SF3 5
+SF4 6
+LEP 7
+LDS 8
+LPE 9
+LDR 10
+LON 11
+LOF 12
+VER 13
+]
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\atoi.c
+[v _atoi atoi `(i  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\cgets.c
+[v _cgets cgets `(*.39uc  1 e 2 0 ]
+"477 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+[v _printf printf `(i  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\gets.c
+[v _gets gets `(*.39uc  1 e 2 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\isdigit.c
+[v _isdigit isdigit `(b  1 e 0 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\strchr.c
+[v _strchr strchr `(*.25uc  1 e 2 0 ]
+"33 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\strcmp.c
+[v _strcmp strcmp `(i  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\strcspn.c
+[v _strcspn strcspn `(ui  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\strspn.c
+[v _strspn strspn `(ui  1 e 2 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\strtok.c
+[v _strtok strtok `(*.39uc  1 e 2 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"43 C:\Users\user\MPLABXProjects\serial-test3.X\main.c
+[v _serial_init serial_init `(v  1 e 1 0 ]
+"52
+[v _PICinit PICinit `(v  1 e 1 0 ]
+"86
+[v _main main `(v  1 e 1 0 ]
+"13 C:\Users\user\MPLABXProjects\serial-test3.X\uart.c
+[v _putch putch `(v  1 e 1 0 ]
+"20
+[v _getch getch `(uc  1 e 1 0 ]
+"28
+[v _getche getche `(uc  1 e 1 0 ]
+"430 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1705.h
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"480
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"1023
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"1068
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"1548
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"2406
+[v _DAC1CON0 DAC1CON0 `VEuc  1 e 1 @280 ]
+"2516
+[v _DAC1CON1 DAC1CON1 `VEuc  1 e 1 @281 ]
+"2682
+[v _ANSELA ANSELA `VEuc  1 e 1 @396 ]
+"2727
+[v _ANSELC ANSELC `VEuc  1 e 1 @398 ]
+"2973
+[v _RCREG RCREG `VEuc  1 e 1 @409 ]
+"3031
+[v _TXREG TXREG `VEuc  1 e 1 @410 ]
+"3083
+[v _SP1BRGL SP1BRGL `VEuc  1 e 1 @411 ]
+"3088
+[v _SPBRG SPBRG `VEuc  1 e 1 @411 ]
+"3153
+[v _SP1BRGH SP1BRGH `VEuc  1 e 1 @412 ]
+"3207
+[v _RC1STA RC1STA `VEuc  1 e 1 @413 ]
+"3216
+[v _RCSTA RCSTA `VEuc  1 e 1 @413 ]
+"3387
+[v _TX1STA TX1STA `VEuc  1 e 1 @414 ]
+"3396
+[v _TXSTA TXSTA `VEuc  1 e 1 @414 ]
+"8149
+[v _RXPPS RXPPS `VEuc  1 e 1 @3620 ]
+"8269
+[v _RA0PPS RA0PPS `VEuc  1 e 1 @3728 ]
+"12005
+[v _BRG16 BRG16 `VEb  1 e 0 @3323 ]
+"13775
+[v _RCIF RCIF `VEb  1 e 0 @141 ]
+"14219
+[v _TXIF TXIF `VEb  1 e 0 @140 ]
+"358 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+[v _dpowers dpowers `DC[5]ui  1 s 10 dpowers ]
+"83 C:\Users\user\MPLABXProjects\serial-test3.X\main.c
+[v _ap1_dat ap1_dat `[300]i  1 e 600 @8300 ]
+"84
+[v _ap2_dat ap2_dat `[10]i  1 e 20 0 ]
+"86
+[v _main main `(v  1 e 1 0 ]
+{
+"307
+[v main@i_167 i `i  1 a 2 46 ]
+"300
+[v main@i_165 i `i  1 a 2 44 ]
+"293
+[v main@i_163 i `i  1 a 2 42 ]
+"286
+[v main@i_161 i `i  1 a 2 40 ]
+"275
+[v main@i_159 i `i  1 a 2 60 ]
+"270
+[v main@i_157 i `i  1 a 2 58 ]
+"267
+[v main@k k `i  1 a 2 56 ]
+"195
+[v main@i_138 i `i  1 a 2 62 ]
+"192
+[v main@i_137 i `i  1 a 2 54 ]
+"178
+[v main@i_132 i `i  1 a 2 64 ]
+"175
+[v main@i i `i  1 a 2 52 ]
+"136
+[v main@cmd cmd `E4261  1 a 1 66 ]
+"89
+[v main@rcmd rcmd `[4]uc  1 a 4 67 ]
+"105
+[v main@ptr ptr `*.39uc  1 a 2 71 ]
+"100
+[v main@num_ap2 num_ap2 `i  1 a 2 50 ]
+"99
+[v main@num_ap1 num_ap1 `i  1 a 2 48 ]
+"102
+[v main@num_ap2_cnt num_ap2_cnt `i  1 a 2 38 ]
+"101
+[v main@num_ap1_cnt num_ap1_cnt `i  1 a 2 36 ]
+"97
+[v main@fp4_amp fp4_amp `i  1 a 2 34 ]
+"96
+[v main@fp4_time fp4_time `i  1 a 2 32 ]
+"95
+[v main@fp3_amp fp3_amp `i  1 a 2 30 ]
+"94
+[v main@fp3_time fp3_time `i  1 a 2 28 ]
+"93
+[v main@fp2_amp fp2_amp `i  1 a 2 26 ]
+"92
+[v main@fp2_time fp2_time `i  1 a 2 24 ]
+"91
+[v main@fp1_amp fp1_amp `i  1 a 2 22 ]
+"90
+[v main@fp1_time fp1_time `i  1 a 2 20 ]
+"88
+[v main@tmp tmp `[300]uc  1 s 300 tmp ]
+"340
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\strtok.c
+[v _strtok strtok `(*.39uc  1 e 2 0 ]
+{
+[v strtok@s1 s1 `*.39uc  1 p 2 2 ]
+[v strtok@s2 s2 `*.25DCuc  1 p 2 4 ]
+"15
+[v strtok@sp sp `*.39uc  1 s 2 sp ]
+"31
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\strspn.c
+[v _strspn strspn `(ui  1 e 2 0 ]
+{
+"6
+[v strspn@i i `ui  1 a 2 0 ]
+"4
+[v strspn@s1 s1 `*.39DCuc  1 p 2 7 ]
+[v strspn@s2 s2 `*.25DCuc  1 p 2 9 ]
+"14
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\strcspn.c
+[v _strcspn strcspn `(ui  1 e 2 0 ]
+{
+"6
+[v strcspn@i i `ui  1 a 2 0 ]
+"4
+[v strcspn@s1 s1 `*.39DCuc  1 p 2 7 ]
+[v strcspn@s2 s2 `*.25DCuc  1 p 2 9 ]
+"14
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\strchr.c
+[v _strchr strchr `(*.25uc  1 e 2 0 ]
+{
+[v strchr@ptr ptr `*.25DCuc  1 p 2 0 ]
+[v strchr@chr chr `i  1 p 2 2 ]
+"11
+} 0
+"33 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\strcmp.c
+[v _strcmp strcmp `(i  1 e 2 0 ]
+{
+"35
+[v strcmp@r r `c  1 a 1 4 ]
+"33
+[v strcmp@s1 s1 `*.39DCuc  1 p 2 0 ]
+[v strcmp@s2 s2 `*.25DCuc  1 p 2 2 ]
+"42
+} 0
+"43 C:\Users\user\MPLABXProjects\serial-test3.X\main.c
+[v _serial_init serial_init `(v  1 e 1 0 ]
+{
+"47
+[v serial_init@X X `ui  1 a 2 8 ]
+"43
+[v serial_init@BR BR `ul  1 p 4 0 ]
+"50
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+{
+"10
+[v ___lldiv@quotient quotient `ul  1 a 4 9 ]
+"11
+[v ___lldiv@counter counter `uc  1 a 1 13 ]
+"5
+[v ___lldiv@divisor divisor `ul  1 p 4 0 ]
+[v ___lldiv@dividend dividend `ul  1 p 4 4 ]
+"30
+} 0
+"477 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+[v _printf printf `(i  1 e 2 0 ]
+{
+"545
+[v printf@val val `ui  1 a 2 13 ]
+"547
+[v printf@cp cp `*.26DCuc  1 a 2 11 ]
+"512
+[v printf@c c `uc  1 a 1 15 ]
+"479
+[v printf@ap ap `[1]*.4v  1 a 1 10 ]
+"521
+[v printf@prec prec `c  1 a 1 9 ]
+"525
+[v printf@flag flag `uc  1 a 1 8 ]
+"477
+[v printf@f f `*.25DCuc  1 p 2 0 ]
+"1567
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwmod@counter counter `uc  1 a 1 13 ]
+"5
+[v ___lwmod@divisor divisor `ui  1 p 2 8 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 10 ]
+"25
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwdiv@quotient quotient `ui  1 a 2 5 ]
+"11
+[v ___lwdiv@counter counter `uc  1 a 1 7 ]
+"5
+[v ___lwdiv@divisor divisor `ui  1 p 2 0 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 2 ]
+"30
+} 0
+"10 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\gets.c
+[v _gets gets `(*.39uc  1 e 2 0 ]
+{
+[v gets@s s `*.39uc  1 p 2 10 ]
+"13
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\cgets.c
+[v _cgets cgets `(*.39uc  1 e 2 0 ]
+{
+"6
+[v cgets@s1 s1 `*.39uc  1 a 2 8 ]
+"7
+[v cgets@c c `i  1 a 2 6 ]
+"4
+[v cgets@s s `*.39uc  1 p 2 2 ]
+"39
+} 0
+"28 C:\Users\user\MPLABXProjects\serial-test3.X\uart.c
+[v _getche getche `(uc  1 e 1 0 ]
+{
+"30
+[v getche@c c `uc  1 a 1 1 ]
+"36
+} 0
+"13
+[v _putch putch `(v  1 e 1 0 ]
+{
+[v putch@byte byte `uc  1 a 1 wreg ]
+[v putch@byte byte `uc  1 a 1 wreg ]
+[v putch@byte byte `uc  1 a 1 0 ]
+"18
+} 0
+"20
+[v _getch getch `(uc  1 e 1 0 ]
+{
+"26
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\atoi.c
+[v _atoi atoi `(i  1 e 2 0 ]
+{
+"7
+[v atoi@a a `i  1 a 2 1 ]
+"8
+[v atoi@sign sign `uc  1 a 1 0 ]
+"5
+[v atoi@s s `*.39DCuc  1 p 2 6 ]
+"24
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\isdigit.c
+[v _isdigit isdigit `(b  1 e 0 0 ]
+{
+[v isdigit@c c `uc  1 a 1 wreg ]
+[v isdigit@c c `uc  1 a 1 wreg ]
+"14
+[v isdigit@c c `uc  1 a 1 1 ]
+"15
+} 0
+"15 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"52 C:\Users\user\MPLABXProjects\serial-test3.X\main.c
+[v _PICinit PICinit `(v  1 e 1 0 ]
+{
+"63
+} 0
