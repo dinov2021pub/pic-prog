@@ -4,8 +4,7 @@
  * Author: Shuichi Dejima
  *
  * Created on 2023/10/16, 14:00
- * Compatible to Kohzu Controller for femto-spotter
- * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf
+ * Controller for Suruga seiki motor driver 
  *  */
 
 // CONFIG1
@@ -54,24 +53,28 @@ enum command {
 
 void main(void) {
     
-    PORTA = 0x00;           // PORTA‚ð‰Šú‰»
-    PORTB = 0x00;           // PORTB‚ð‰Šú‰»
-    TRISA = 0b00000000;     // PORTA‚Ì“üo—ÍÝ’è ‘S‚Äo—Í
-    TRISB = 0b00000011;     // PORTB‚Ì“üo—ÍÝ’è RB1‚ÍRX, RB0 ‚Í“ü—Í
-    CMCON = 0b00000111;     // ƒRƒ“ƒpƒŒ[ƒ^‚ÍŽg—p‚µ‚È‚¢(RA0-RA4‚ÍƒfƒWƒ^ƒ‹ƒsƒ“‚ÅŽg—p)
+    PORTA = 0x00;           // PORTAã‚’åˆæœŸåŒ–
+    PORTB = 0x00;           // PORTBã‚’åˆæœŸåŒ–
+    TRISA = 0b00000000;     // PORTAã®å…¥å‡ºåŠ›è¨­å®š å…¨ã¦å‡ºåŠ›
+    TRISB = 0b00000011;     // PORTBã®å…¥å‡ºåŠ›è¨­å®š RB1ã¯RX, RB0 ã¯å…¥åŠ›
+    CMCON = 0b00000111;     // ã‚³ãƒ³ãƒ‘ãƒ¬ãƒ¼ã‚¿ã¯ä½¿ç”¨ã—ãªã„(RA0-RA4ã¯ãƒ‡ã‚¸ã‚¿ãƒ«ãƒ”ãƒ³ã§ä½¿ç”¨)
     
-    initUART();             // ’²•à“¯ŠúŽ®ƒVƒŠƒAƒ‹’ÊMÝ’è
+    initUART();             // èª¿æ­©åŒæœŸå¼ã‚·ãƒªã‚¢ãƒ«é€šä¿¡è¨­å®š
  
     char tmp[40];
     int j = 10;
     int k = 0;
     int cnt = 10;
     int dist = 10;
-    int intvl = 20;
     int axis = 0;
     char rcmd[4];
-    char rps_cmd[6];
+    char rps_cmd[6];    // For tmp strings of RPS command
+    char wtb_cmd[6];    // For tmp strings of WTB command
     int mx_spd = 20250;
+// parameters for stage speed
+    int intvl_x = 20;
+    int intvl_y = 20;
+    int intvl_z = 20;
     int set_spd;
 //    char ln[4];
     
@@ -99,7 +102,7 @@ void main(void) {
 
         axis = atoi(tmp[4]);
 
-        enum command cmd; // enumŒ^‚ÌƒIƒuƒWƒFƒNƒg‚ð’è‹`
+        enum command cmd; // enumåž‹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å®šç¾©
 
         cmd = VER;
         
@@ -123,7 +126,7 @@ void main(void) {
         
         ptr = strtok(tmp, "/");
 //        rps_cmd = ptr;
-//        printf("axis= %d\r\n", axis); // ‘—M
+//        printf("axis= %d\r\n", axis); // é€ä¿¡
         rps_cmd[0]='\0';
         rps_cmd[1]='\0';
         rps_cmd[2]='\0';
@@ -133,9 +136,13 @@ void main(void) {
         for (i = 0; ptr[i] != '\0'; i++) {
             rps_cmd[i] = ptr[i];
         }
+
+        for (i = 0; ptr[i] != '\0'; i++) {
+            wtb_cmd[i] = ptr[i];
+        }
         
-//        printf("tmp = %s\r\n", rps_cmd); // ‘—M
-//        printf("rmd_d= %d\r\n", atoi(tmp[3])); // ‘—M
+//        printf("tmp = %s\r\n", rps_cmd); // é€ä¿¡
+//        printf("rmd_d= %d\r\n", atoi(tmp[3])); // é€ä¿¡
 
           
         switch(cmd){
@@ -153,11 +160,11 @@ void main(void) {
                         if (dist > 0){
                             for(k = 0 ; k < dist ; k++){
                                 X_P1 = 1;
-                                for(j = 0 ; j < intvl ; j++){
+                                for(j = 0 ; j < intvl_x ; j++){
                                     __delay_us(1);
                                 }
                                 X_P1 = 0;
-                                for(j = 0 ; j < intvl ; j++){
+                                for(j = 0 ; j < intvl_x ; j++){
                                     __delay_us(1);
                                 }
                             }
@@ -165,26 +172,27 @@ void main(void) {
                             dist *= -1;
                             for(k = 0 ; k < dist ; k++){
                                 X_P2 = 1;
-                                for(j = 0 ; j < intvl ; j++){
+                                for(j = 0 ; j < intvl_x ; j++){
                                     __delay_us(1);
                                 }
                                 X_P2 = 0;
-                                for(j = 0 ; j < intvl ; j++){
+                                for(j = 0 ; j < intvl_x ; j++){
                                     __delay_us(1);
                                 }
                             }
                         }
+                        printf("C\tRPS1\r\n"); // é€ä¿¡
                         
                     }
                     else if(strstr(rps_cmd,"RPS2")  != NULL){
                         if (dist > 0){
                             for(k = 0 ; k < dist ; k++){
                                 Y_P1 = 1;
-                                for(j = 0 ; j < intvl ; j++){
+                                for(j = 0 ; j < intvl_y ; j++){
                                     __delay_us(1);
                                 }
                                 Y_P1 = 0;
-                                for(j = 0 ; j < intvl ; j++){
+                                for(j = 0 ; j < intvl_y ; j++){
                                     __delay_us(1);
                                 }
                             }
@@ -192,26 +200,27 @@ void main(void) {
                             dist *= -1;
                             for(k = 0 ; k < dist ; k++){
                                 Y_P2 = 1;
-                                for(j = 0 ; j < intvl ; j++){
+                                for(j = 0 ; j < intvl_y ; j++){
                                     __delay_us(1);
                                 }
                                 Y_P2 = 0;
-                                for(j = 0 ; j < intvl ; j++){
+                                for(j = 0 ; j < intvl_y ; j++){
                                     __delay_us(1);
                                 }
                             }
                         }
+                        printf("C\tRPS2\r\n"); // é€ä¿¡
                         
                     }
                     else if(strstr(rps_cmd,"RPS3")  != NULL){
                         if (dist > 0){
                             for(k = 0 ; k < dist ; k++){
                                 NEEDLE_P1 = 1;
-                                for(j = 0 ; j < intvl ; j++){
+                                for(j = 0 ; j < intvl_z ; j++){
                                     __delay_us(1);
                                 }
                                 NEEDLE_P1 = 0;
-                                for(j = 0 ; j < intvl ; j++){
+                                for(j = 0 ; j < intvl_z ; j++){
                                     __delay_us(1);
                                 }
                             }
@@ -219,20 +228,19 @@ void main(void) {
                             dist *= -1;
                             for(k = 0 ; k < dist ; k++){
                                 NEEDLE_P2 = 1;
-                                for(j = 0 ; j < intvl ; j++){
+                                for(j = 0 ; j < intvl_z ; j++){
                                     __delay_us(1);
                                 }
                                 NEEDLE_P2 = 0;
-                                for(j = 0 ; j < intvl ; j++){
+                                for(j = 0 ; j < intvl_z ; j++){
                                     __delay_us(1);
                                 }
                             }
                         }
+                        printf("C\tRPS3\r\n"); // é€ä¿¡
                         
                     }
 
-//                    puts("C");
-                    printf("C\tRPS%d\r\n", axis); // ‘—M
                     break;
                         
             case WTB : 
@@ -242,11 +250,27 @@ void main(void) {
                     if(ptr != NULL) {
                         set_spd = atoi(ptr);
                     }
-                    intvl = mx_spd / set_spd;
-                    if (intvl == 0){
-                        intvl = 1;
+
+                    if(strstr(wtb_cmd,"WTB1") != NULL){
+                        intvl_x = mx_spd / set_spd;
+                        if (intvl_x == 0){
+                            intvl_x = 1;
+                        }                                                
+                        printf("C\tWTB1\r\n"); // é€ä¿¡
+                    } else if(strstr(wtb_cmd,"WTB2") != NULL){
+                        intvl_y = mx_spd / set_spd;
+                        if (intvl_y == 0){
+                            intvl_y = 1;
+                        }                                                
+                        printf("C\tWTB2\r\n"); // é€ä¿¡                    
+                    } else if(strstr(wtb_cmd,"WTB3") != NULL){
+                        intvl_z = mx_spd / set_spd;
+                        if (intvl_z == 0){
+                            intvl_z = 1;
+                        }                                                
+                        printf("C\tWTB3\r\n"); // é€ä¿¡
                     }
-                    printf("C\tWTB\r\n"); // ‘—M
+
 
                     break;
  
@@ -264,21 +288,21 @@ void main(void) {
                     if (dist > 0){
                         for(k = 0 ; k < dist ; k++){
                             NEEDLE_P1 = 1;
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < intvl_z ; j++){
                                 __delay_us(1);
                             }
                             NEEDLE_P1 = 0;
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < intvl_z ; j++){
                                 __delay_us(1);
                             }
                         }
                         for(k = 0 ; k < dist ; k++){
                             NEEDLE_P2 = 1;
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < intvl_z ; j++){
                                 __delay_us(1);
                             }
                             NEEDLE_P2 = 0;
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < intvl_z ; j++){
                                 __delay_us(1);
                             }
                         }
@@ -286,29 +310,29 @@ void main(void) {
                         dist *= -1;
                         for(k = 0 ; k < dist ; k++){
                             NEEDLE_P2 = 1;
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < intvl_z ; j++){
                                 __delay_us(1);
                             }
                             NEEDLE_P2 = 0;
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < intvl_z ; j++){
                                 __delay_us(1);
                             }
                         }
                         for(k = 0 ; k < dist ; k++){
                             NEEDLE_P1 = 1;
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < intvl_z ; j++){
                                 __delay_us(1);
                             }
                             NEEDLE_P1 = 0;
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < intvl_z ; j++){
                                 __delay_us(1);
                             }
                         }
                     }
 
 //                    puts("C");
-                    printf("C\tOSC\r\n"); // ‘—M
-                    //printf("C\r\n"); // ‘—M
+                    printf("C\tOSC\r\n"); // é€ä¿¡
+                    //printf("C\r\n"); // é€ä¿¡
                     break;
 
             case NTD : 
@@ -316,11 +340,11 @@ void main(void) {
                     dist = 10000;
                     for(k = 0 ; k < dist ; k++){
                         NEEDLE_P1 = 1;
-                        for(j = 0 ; j < intvl ; j++){
+                        for(j = 0 ; j < intvl_z ; j++){
                             __delay_us(1);
                         }
                         NEEDLE_P1 = 0;
-                        for(j = 0 ; j < intvl ; j++){
+                        for(j = 0 ; j < intvl_z ; j++){
                             __delay_us(1);
                         }
 
@@ -331,8 +355,8 @@ void main(void) {
 
                     }
 //                    puts("C");
-//                    printf("C\r\n"); // ‘—M
-                    printf("C\tNTD\r\n"); // ‘—M
+//                    printf("C\r\n"); // é€ä¿¡
+                    printf("C\tNTD\r\n"); // é€ä¿¡
 
                     break;
                         
@@ -346,11 +370,11 @@ void main(void) {
                     
                     for(k = 0 ; k < 10000 ; k++){
                         NEEDLE_P1 = 1;
-                        for(j = 0 ; j < intvl ; j++){
+                        for(j = 0 ; j < intvl_z ; j++){
                             __delay_us(1);
                         }
                         NEEDLE_P1 = 0;
-                        for(j = 0 ; j < intvl ; j++){
+                        for(j = 0 ; j < intvl_z ; j++){
                             __delay_us(1);
                         }
 
@@ -363,25 +387,25 @@ void main(void) {
                     
                     for(k = 0 ; k < dist ; k++){
                         NEEDLE_P2 = 1;
-                        for(j = 0 ; j < intvl ; j++){
+                        for(j = 0 ; j < intvl_z ; j++){
                             __delay_us(1);
                         }
                         NEEDLE_P2 = 0;
-                        for(j = 0 ; j < intvl ; j++){
+                        for(j = 0 ; j < intvl_z ; j++){
                             __delay_us(1);
                         }
                     }
 
 //                    puts("C");
-//                    printf("C\r\n"); // ‘—M
-                    printf("C\tNDO\r\n"); // ‘—M
+//                    printf("C\r\n"); // é€ä¿¡
+                    printf("C\tNDO\r\n"); // é€ä¿¡
                     break;
 
             case STS : 
                     printf("C\tREADY\r\n");
                     break;
 
-            case VER : cnt=10;
+            case VER : 
                     printf("C\tVERSION 10\r\n");
                     break;
                         
