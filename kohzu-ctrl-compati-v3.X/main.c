@@ -25,6 +25,7 @@
 #include <string.h>
 
 #define _XTAL_FREQ 4000000      // 4MHz
+//#define _XTAL_FREQ 160000000      // 16MHz
 
 
 #define LEDON RA7 // Needle Stop
@@ -60,15 +61,15 @@ enum command {
 
 void main(void) {
     
-    PORTA = 0x00;           // PORTA‚ğ‰Šú‰»
-    PORTB = 0x00;           // PORTB‚ğ‰Šú‰»
-    TRISA = 0b00000000;     // PORTA‚Ì“üo—Íİ’è ‘S‚Äo—Í 0:o—Í, 1:“ü—Í
-    TRISB = 0b10000000;     // PORTB‚Ì“üo—Íİ’è RB0:NTCH ‚ÍÚGŒŸ’m“ü—Í, RB1:NTD“ü—Í, RB2:STOP“ü—Í, RB4:NDO“ü—Í, RB5:NSD“ü—Í, RB6:RxD“ü—Í, RB7:TxDo—Í@ 0:o—Í, 1:“ü—Í
-//    TRISB = 0b01111111;     // PORTB‚Ì“üo—Íİ’è RB0:NTCH ‚ÍÚGŒŸ’m“ü—Í, RB1:NTD“ü—Í, RB2:STOP“ü—Í, RB4:NDO“ü—Í, RB5:NSD“ü—Í, RB6:RxD“ü—Í, RB7:TxDo—Í@ 0:o—Í, 1:“ü—Í
+    PORTA = 0x00;           // PORTAã‚’åˆæœŸåŒ–
+    PORTB = 0x00;           // PORTBã‚’åˆæœŸåŒ–
+    TRISA = 0b00000000;     // PORTAã®å…¥å‡ºåŠ›è¨­å®š å…¨ã¦å‡ºåŠ› 0:å‡ºåŠ›, 1:å…¥åŠ›
+    TRISB = 0b10000000;     // PORTBã®å…¥å‡ºåŠ›è¨­å®š RB0:NTCH ã¯æ¥è§¦æ¤œçŸ¥å…¥åŠ›, RB1:NTDå…¥åŠ›, RB2:STOPå…¥åŠ›, RB4:NDOå…¥åŠ›, RB5:NSDå…¥åŠ›, RB6:TxDå‡ºåŠ›, RB7:RxDå…¥åŠ›ã€€ 0:å‡ºåŠ›, 1:å…¥åŠ›
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
+    OSCCON = 0b01101010;    // Set internal clock to 4MHz
     
-    initUART();             // ’²•à“¯Šú®ƒVƒŠƒAƒ‹’ÊMİ’è
+    initUART();             // èª¿æ­©åŒæœŸå¼ã‚·ãƒªã‚¢ãƒ«é€šä¿¡è¨­å®š
  
     char tmp[40];
     int j = 10;
@@ -85,7 +86,7 @@ void main(void) {
     
     char *ptr;
 
-    enum command cmd; // enumŒ^‚ÌƒIƒuƒWƒFƒNƒg‚ğ’è‹`
+    enum command cmd; // enumå‹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å®šç¾©
 
     N_NTD = 1;
     N_NSD = 1;
@@ -119,13 +120,23 @@ void main(void) {
 //            gets(tmp);
 //        }
 
-//        gets(tmp);
-        tmp[0]= '1';
-        tmp[1]= 'E';
-        tmp[2]= '2';
-        tmp[3]= 'T';
-        printf("%s\n", tmp);
-        printf("TEST\n");
+        gets(tmp);
+//        printf("%s\n", tmp);
+
+//        LEDON = 1;
+//        __delay_us(20);
+
+//        tmp[0]= '1';
+//        tmp[1]= 'E';
+//        tmp[2]= '2';
+//        tmp[3]= 'T';
+//        printf("%s\n", tmp);
+//        printf("TEST\n");
+
+        
+        
+//        LEDON = 0;
+//        __delay_us(20);
         
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
@@ -158,10 +169,6 @@ void main(void) {
         }
         ptr = strtok(tmp, "/");
 
-        LEDON = 1;
-        __delay_ms(500);
-        LEDON = 0;
-        __delay_ms(500);
   
           
         switch(cmd){
@@ -201,7 +208,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tRPS\r\n"); // ‘—M
+                    printf("C\tRPS\r\n"); // é€ä¿¡
                     break;
                         
             case WTB : 
@@ -215,7 +222,7 @@ void main(void) {
                     if (intvl == 0){
                         intvl = 1;
                     }
-                    printf("C\tWTB\r\n"); // ‘—M
+                    printf("C\tWTB\r\n"); // é€ä¿¡
 
                     break;
  
@@ -275,7 +282,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tOSC\r\n"); // ‘—M
+                    printf("C\tOSC\r\n"); // é€ä¿¡
                     break;
 
             case NTD : 
@@ -296,7 +303,7 @@ void main(void) {
 
                     }
 //                    puts("C");
-                    printf("C\tNTD\r\n"); // ‘—M
+                    printf("C\tNTD\r\n"); // é€ä¿¡
 
                     break;
                         
@@ -334,7 +341,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tNDO\r\n"); // ‘—M
+                    printf("C\tNDO\r\n"); // é€ä¿¡
                     break;
 
             case NDD : 
@@ -365,7 +372,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tNDD\r\n"); // ‘—M
+                    printf("C\tNDD\r\n"); // é€ä¿¡
                     break;
 
             case NSD : 
@@ -382,7 +389,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tNSD\r\n"); // ‘—M
+                    printf("C\tNSD\r\n"); // é€ä¿¡
                     break;
 
             case NPD : 
