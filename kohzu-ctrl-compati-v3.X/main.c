@@ -28,7 +28,7 @@
 //#define _XTAL_FREQ 160000000      // 16MHz
 
 
-#define LEDON RA7 // Needle Stop
+#define LEDON RA3 // Needle Stop
 #define N_STOP RB2 // Needle Stop
 #define N_NTD RB1 // Needle Touch Detection
 #define N_NSD RB5 // Needle Start Position Drawback
@@ -56,6 +56,9 @@ enum command {
   NSD,
   VER,
   STS,
+  DA0,
+  DA1,
+  DA2,
   NON
 };
 
@@ -64,10 +67,15 @@ void main(void) {
     PORTA = 0x00;           // PORTAを初期化
     PORTB = 0x00;           // PORTBを初期化
     TRISA = 0b00000000;     // PORTAの入出力設定 全て出力 0:出力, 1:入力
-    TRISB = 0b10000000;     // PORTBの入出力設定 RB0:NTCH は接触検知入力, RB1:NTD入力, RB2:STOP入力, RB4:NDO入力, RB5:NSD入力, RB6:TxD出力, RB7:RxD入力　 0:出力, 1:入力
+    TRISB = 0b10100001;     // PORTBの入出力設定 RB0:NTCH は接触検知入力, RB1:NTD入力, RB2:STOP入力, RB4:NDO入力, RB5:NSD入力, RB6:TxD出力, RB7:RxD入力　 0:出力, 1:入力
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
     OSCCON = 0b01101010;    // Set internal clock to 4MHz
+    ANSELB = 0b00000000;    //すべてデジタル
+    
+    FVRCON = 0b00000000;   // アナログ出力　設定
+    DAC1CON0 = 0b10100000;   // アナログ出力　設定
+    DAC1CON1 = 0;   // アナログ出力　設定
     
     initUART();             // 調歩同期式シリアル通信設定
  
@@ -92,7 +100,7 @@ void main(void) {
     N_NSD = 1;
     N_NDD = 1;
     SLCT = 1;
-
+    NTCH = 1;
     
     while(1){
 
@@ -121,29 +129,20 @@ void main(void) {
 //        }
 
         gets(tmp);
-//        printf("%s\n", tmp);
 
-//        LEDON = 1;
-//        __delay_us(20);
-
-//        tmp[0]= '1';
-//        tmp[1]= 'E';
-//        tmp[2]= '2';
-//        tmp[3]= 'T';
-//        printf("%s\n", tmp);
-//        printf("TEST\n");
-
-        
-        
-//        LEDON = 0;
-//        __delay_us(20);
-        
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
         rcmd[2] = tmp[3];
         rcmd[3] = '\0';
 
 
+        if(NTCH == 0){
+            LEDON = 1;
+        } else{
+            LEDON = 0;
+        }       
+
+        
         if(strcmp(rcmd,"RPS") == 0) {
             cmd = RPS;
         }else if(strcmp(rcmd,"WTB") == 0){
@@ -164,6 +163,12 @@ void main(void) {
             cmd = NPD;
         }else if(strcmp(rcmd,"NSP") == 0){
             cmd = NSP;
+        }else if(strcmp(rcmd,"DA0") == 0){
+            cmd = DA0;
+        }else if(strcmp(rcmd,"DA1") == 0){
+            cmd = DA1;
+        }else if(strcmp(rcmd,"DA2") == 0){
+            cmd = DA2;
         }else if(strcmp(rcmd,"NSD") == 0){
             cmd = NSD;
         }
@@ -406,6 +411,20 @@ void main(void) {
                         nsp = atoi(ptr);
                     }
                     printf("C\tNSP\r\n");
+                    break;
+
+                    
+
+            case DA0 : 
+                    DAC1CON1 = 0;
+                    break;
+
+            case DA1 : 
+                    DAC1CON1 = 100;
+                    break;
+
+            case DA2 : 
+                    DAC1CON1 = 200;
                     break;
 
             case STS : 
