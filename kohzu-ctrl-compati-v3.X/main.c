@@ -29,6 +29,7 @@
 
 
 #define LEDON RA3 // Needle Stop
+#define LMTON RA6 // Limit Sensor
 #define N_STOP RB2 // Needle Stop
 #define N_NTD RB1 // Needle Touch Detection
 #define N_NSD RB5 // Needle Start Position Drawback
@@ -66,7 +67,7 @@ void main(void) {
     
     PORTA = 0x00;           // PORTAを初期化
     PORTB = 0x00;           // PORTBを初期化
-    TRISA = 0b00000000;     // PORTAの入出力設定 全て出力 0:出力, 1:入力
+    TRISA = 0b01000000;     // PORTAの入出力設定 RA6 をリミットセンサテスト用に入力(全て出力) 0:出力, 1:入力
     TRISB = 0b10100001;     // PORTBの入出力設定 RB0:NTCH は接触検知入力, RB1:NTD入力, RB2:STOP入力, RB4:NDO入力, RB5:NSD入力, RB6:TxD出力, RB7:RxD入力　 0:出力, 1:入力
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
@@ -129,6 +130,13 @@ void main(void) {
 //        }
 
         gets(tmp);
+  
+// For LMT SW Test
+//        if(LMTON == 1){
+//            LEDON = 1;
+//        } else{
+//            LEDON = 0;
+//        }       
 
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
