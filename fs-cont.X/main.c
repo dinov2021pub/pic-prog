@@ -65,20 +65,20 @@ enum command {
 
 void main(void) {
     
-    PORTA = 0x00;           // PORTA‚ğ‰Šú‰»
-    PORTB = 0x00;           // PORTB‚ğ‰Šú‰»
-    TRISA = 0b01000000;     // PORTA‚Ì“üo—Íİ’è RA6 ‚ğƒŠƒ~ƒbƒgƒZƒ“ƒTƒeƒXƒg—p‚É“ü—Í(‘S‚Äo—Í) 0:o—Í, 1:“ü—Í
-    TRISB = 0b10100001;     // PORTB‚Ì“üo—Íİ’è RB0:NTCH ‚ÍÚGŒŸ’m“ü—Í, RB1:NTD“ü—Í, RB2:STOP“ü—Í, RB4:NDO“ü—Í, RB5:NSD“ü—Í, RB6:TxDo—Í, RB7:RxD“ü—Í@ 0:o—Í, 1:“ü—Í
+    PORTA = 0x00;           // PORTAã‚’åˆæœŸåŒ–
+    PORTB = 0x00;           // PORTBã‚’åˆæœŸåŒ–
+    TRISA = 0b01000000;     // PORTAã®å…¥å‡ºåŠ›è¨­å®š RA6 ã‚’ãƒªãƒŸãƒƒãƒˆã‚»ãƒ³ã‚µãƒ†ã‚¹ãƒˆç”¨ã«å…¥åŠ›(å…¨ã¦å‡ºåŠ›) 0:å‡ºåŠ›, 1:å…¥åŠ›
+    TRISB = 0b10100001;     // PORTBã®å…¥å‡ºåŠ›è¨­å®š RB0:NTCH ã¯æ¥è§¦æ¤œçŸ¥å…¥åŠ›, RB1:NTDå…¥åŠ›, RB2:STOPå…¥åŠ›, RB4:NDOå…¥åŠ›, RB5:NSDå…¥åŠ›, RB6:TxDå‡ºåŠ›, RB7:RxDå…¥åŠ›ã€€ 0:å‡ºåŠ›, 1:å…¥åŠ›
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
     OSCCON = 0b01101010;    // Set internal clock to 4MHz
-    ANSELB = 0b00000000;    //‚·‚×‚ÄƒfƒWƒ^ƒ‹
+    ANSELB = 0b00000000;    //ã™ã¹ã¦ãƒ‡ã‚¸ã‚¿ãƒ«
     
-    FVRCON = 0b00000000;   // ƒAƒiƒƒOo—Í@İ’è
-    DAC1CON0 = 0b10100000;   // ƒAƒiƒƒOo—Í@İ’è
-    DAC1CON1 = 0;   // ƒAƒiƒƒOo—Í@İ’è
+    FVRCON = 0b00000000;   // ã‚¢ãƒŠãƒ­ã‚°å‡ºåŠ›ã€€è¨­å®š
+    DAC1CON0 = 0b10100000;   // ã‚¢ãƒŠãƒ­ã‚°å‡ºåŠ›ã€€è¨­å®š
+    DAC1CON1 = 0;   // ã‚¢ãƒŠãƒ­ã‚°å‡ºåŠ›ã€€è¨­å®š
     
-    initUART();             // ’²•à“¯Šú®ƒVƒŠƒAƒ‹’ÊMİ’è
+    initUART();             // èª¿æ­©åŒæœŸå¼ã‚·ãƒªã‚¢ãƒ«é€šä¿¡è¨­å®š
  
     char tmp[40];
     int j = 10;
@@ -95,7 +95,7 @@ void main(void) {
     
     char *ptr;
 
-    enum command cmd; // enumŒ^‚ÌƒIƒuƒWƒFƒNƒg‚ğ’è‹`
+    enum command cmd; // enumå‹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å®šç¾©
 
     N_NTD = 1;
     N_NSD = 1;
@@ -132,11 +132,11 @@ void main(void) {
         gets(tmp);
   
 // For LMT SW Test
-//        if(LMTON == 1){
-//            LEDON = 1;
-//        } else{
-//            LEDON = 0;
-//        }       
+        if(LMTON == 1){
+            LEDON = 1;
+        } else{
+            LEDON = 0;
+        }       
 
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
@@ -144,11 +144,11 @@ void main(void) {
         rcmd[3] = '\0';
 
 
-        if(NTCH == 0){
-            LEDON = 1;
-        } else{
-            LEDON = 0;
-        }       
+//        if(NTCH == 0){
+//            LEDON = 1;
+//        } else{
+//            LEDON = 0;
+//        }       
 
         
         if(strcmp(rcmd,"RPS") == 0) {
@@ -221,7 +221,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tRPS\r\n"); // ‘—M
+                    printf("C\tRPS\r\n"); // é€ä¿¡
                     break;
                         
             case WTB : 
@@ -235,7 +235,7 @@ void main(void) {
                     if (intvl == 0){
                         intvl = 1;
                     }
-                    printf("C\tWTB\r\n"); // ‘—M
+                    printf("C\tWTB\r\n"); // é€ä¿¡
 
                     break;
  
@@ -295,7 +295,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tOSC\r\n"); // ‘—M
+                    printf("C\tOSC\r\n"); // é€ä¿¡
                     break;
 
             case NTD : 
@@ -316,7 +316,7 @@ void main(void) {
 
                     }
 //                    puts("C");
-                    printf("C\tNTD\r\n"); // ‘—M
+                    printf("C\tNTD\r\n"); // é€ä¿¡
 
                     break;
                         
@@ -354,7 +354,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tNDO\r\n"); // ‘—M
+                    printf("C\tNDO\r\n"); // é€ä¿¡
                     break;
 
             case NDD : 
@@ -385,7 +385,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tNDD\r\n"); // ‘—M
+                    printf("C\tNDD\r\n"); // é€ä¿¡
                     break;
 
             case NSD : 
@@ -402,7 +402,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tNSD\r\n"); // ‘—M
+                    printf("C\tNSD\r\n"); // é€ä¿¡
                     break;
 
             case NPD : 
@@ -440,7 +440,7 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tVERSION 3\r\n");
+                    printf("C\tFS-CONT VERSION 0\r\n");
                     break;
                         
             default : break;
@@ -453,3 +453,4 @@ void main(void) {
 //        }
     }
 }
+
