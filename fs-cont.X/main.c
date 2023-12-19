@@ -49,12 +49,14 @@ enum command {
   RPS,
   WTB,
   OSC,
+  NOS,
   NTD,
   NDO,
   NDD,
   NPD,
   NSP,
   NSD,
+  RNP,
   VER,
   STS,
   DA0,
@@ -92,6 +94,8 @@ void main(void) {
     int npd = 2500;
     int nsp = 1000;
     char ln[4];
+    int npos = 0;   // Needle Position
+    int nip = 1000;     // Needle Initial Position
     
     char *ptr;
 
@@ -157,6 +161,8 @@ void main(void) {
             cmd = WTB;
         }else if(strcmp(rcmd,"OSC") == 0){
             cmd = OSC;
+        }else if(strcmp(rcmd,"NOS") == 0){
+            cmd = NOS;
         }else if(strcmp(rcmd,"NTD") == 0){
             cmd = NTD;
         }else if(strcmp(rcmd,"NDO") == 0){
@@ -171,6 +177,8 @@ void main(void) {
             cmd = NPD;
         }else if(strcmp(rcmd,"NSP") == 0){
             cmd = NSP;
+        }else if(strcmp(rcmd,"RNP") == 0){
+            cmd = RNP;
         }else if(strcmp(rcmd,"DA0") == 0){
             cmd = DA0;
         }else if(strcmp(rcmd,"DA1") == 0){
@@ -298,6 +306,34 @@ void main(void) {
                     printf("C\tOSC\r\n"); // 送信
                     break;
 
+            case NOS : 
+                    dist = 10000;
+                    for(k = 0 ; k < dist ; k++){    // Needle Upward
+                        if(LMTON == 1){     //LMT ON
+                            npos = 0;
+                            break;
+                        }
+                        FS_CCW = 1;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                        FS_CCW = 0;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                    }
+                    for(k = 0 ; k < nip ; k++){     // Needle Downward
+                        FS_CW = 1;
+                        npos += 1;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                        FS_CW = 0;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                    }
+
             case NTD : 
                     dist = 10000;
                     for(k = 0 ; k < dist ; k++){
@@ -421,6 +457,9 @@ void main(void) {
                     printf("C\tNSP\r\n");
                     break;
 
+            case RNP : 
+                    printf("C\tRNP/%d\r\n", &npos);
+                    break;
                     
 
             case DA0 : 
