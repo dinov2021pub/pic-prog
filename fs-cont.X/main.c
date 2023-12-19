@@ -43,18 +43,20 @@
 #define TR RB3 // Transistor
 #define MAX_VALUE 32767
 #define MIN_VALUE 1
+//#define NPD_ADR 1   //npd parameter address
 
+// __EEPROM_DATA(0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07);
 
 enum command {
   RPS,
   WTB,
   WNI,
+  WPD,
   OSC,
   NOS,
   NTD,
   NDO,
   NDD,
-  NPD,
   NSP,
   NSD,
   RNP,
@@ -69,7 +71,7 @@ enum command {
 };
 
 void main(void) {
-    
+
     PORTA = 0x00;           // PORTAを初期化
     PORTB = 0x00;           // PORTBを初期化
     TRISA = 0b01000000;     // PORTAの入出力設定 RA6 をリミットセンサ入力、それ以外は全て出力 0:出力, 1:入力
@@ -84,21 +86,24 @@ void main(void) {
     DAC1CON1 = 0;   // アナログ出力　設定
     
     initUART();             // 調歩同期式シリアル通信設定
+    
+    long NPD_ADR = 1;   //npd parameter address
  
     char tmp[40];
     int j = 10;
     int k = 0;
-    int cnt = 10;
     int dist = 10;
     int intvl = 20;
     char rcmd[4];
     int mx_spd = 20250;
     int set_spd;
-    int npd = 2500;
+    long int npd = 2500;     // needle protrude distance
+    int t_npd = 100;    // temporalneedle protrude distance
     int nsp = 500;
     char ln[4];
     int npos = 0;   // Needle Position
     int nip = 5000;     // Needle Initial Position
+    long ans;
     
     char *ptr;
 
@@ -110,10 +115,17 @@ void main(void) {
     SLCT = 1;
     NTCH = 1;
 
-    printf("C\tLMT = %d\r\n", LEDON); // LMT状況送信
-    
+    npd = eeprom_read(NPD_ADR);
+
     while(1){
 
+        ans = eeprom_read(NPD_ADR);
+    
+        printf("C\tEEPROM %d\r\n", ans); // 送信
+        
+//        ans += 1;
+        eeprom_write(NPD_ADR, ans);
+        
         cmd = NON;
         
         rcmd[0] = 'Q'; 
@@ -139,7 +151,7 @@ void main(void) {
 //        }
 
  
-        // For LMT SW Test
+        // LMT SW indicator = LED
         if(LMTON == 1){
             LEDON = 1;
         } else{
@@ -166,6 +178,8 @@ void main(void) {
             cmd = WTB;
         }else if(strcmp(rcmd,"WNI") == 0){
             cmd = WNI;
+        }else if(strcmp(rcmd,"WPD") == 0){
+            cmd = WPD;
         }else if(strcmp(rcmd,"OSC") == 0){
             cmd = OSC;
         }else if(strcmp(rcmd,"NOS") == 0){
@@ -180,16 +194,14 @@ void main(void) {
             cmd = VER;
         }else if(strcmp(rcmd,"STS") == 0){
             cmd = STS;
-        }else if(strcmp(rcmd,"NPD") == 0){
-            cmd = NPD;
         }else if(strcmp(rcmd,"NSP") == 0){
             cmd = NSP;
         }else if(strcmp(rcmd,"RNP") == 0){
             cmd = RNP;
-        }else if(strcmp(rcmd,"RPD") == 0){
-            cmd = RPD;
         }else if(strcmp(rcmd,"RNI") == 0){
             cmd = RNI;
+        }else if(strcmp(rcmd,"RPD") == 0){
+            cmd = RPD;
         }else if(strcmp(rcmd,"DA0") == 0){
             cmd = DA0;
         }else if(strcmp(rcmd,"DA1") == 0){
@@ -202,7 +214,6 @@ void main(void) {
         ptr = strtok(tmp, "/");
 
   
-          
         switch(cmd){
 
             case RPS : 
@@ -398,14 +409,12 @@ void main(void) {
                     break;
                         
             case NDO : 
-                    ptr = strtok(NULL, "/");
-                    if(ptr != NULL) {
-                        dist = atoi(ptr);
-                    }
-                    
+
+                    dist = 0;   //count moved distance
                     for(k = 0 ; k < 10000 ; k++){
                         FS_CCW = 1;
                         npos += 1;
+                        dist += 1;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
@@ -441,13 +450,15 @@ void main(void) {
                     break;
 
             case NDD : 
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        t_npd = atoi(ptr);
+                    }else{
+                        t_npd = npd;
+                    }
                     for(k = 0 ; k < 10000 ; k++){
                         FS_CCW = 1;
-                        if(npos > 1){
-                            npos -= 1;
-                        }else{
-                            npos = 0;
-                        }
+                        npos += 1;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
@@ -461,9 +472,13 @@ void main(void) {
                         }
                     }
                     
-                    for(k = 0 ; k < npd ; k++){
+                    for(k = 0 ; k < t_npd ; k++){
                         FS_CW = 1;
-                        npos += 1;
+                        if(npos > 1){
+                            npos -= 1;
+                        }else{
+                            npos = 0;
+                        }
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
@@ -495,12 +510,13 @@ void main(void) {
                     printf("C\tNSD\r\n"); // 送信
                     break;
 
-            case NPD : 
+            case WPD : 
                     ptr = strtok(NULL, "/");
                     if(ptr != NULL) {
                         npd = atoi(ptr);
                     }
-                    printf("C\tNPD\r\n");
+                    eeprom_write(NPD_ADR, npd);
+                    printf("C\tWPD\t%d\r\n", npd);
                     break;
 
             case NSP : 
