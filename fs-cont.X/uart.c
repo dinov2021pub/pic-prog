@@ -5,21 +5,21 @@
  
 void initUART()
 {   
-    SPBRG = SPBRG_DATA; // ƒ{[ƒŒ[ƒgİ’è
-    //TXSTA = (TX9_RX9_DATA | BRGH_DATA | 0x20); // 8or9bit, ’á‘¬or‚‘¬ƒTƒ“ƒvƒ‹w’è
-    //RCSTA = (TX9_RX9_DATA | 0x90); // ’á‘¬or‚‘¬ƒTƒ“ƒvƒ‹w’è
-    RCSTA = 0b10010000;
-    TXSTA = 0b00100000;
+    SPBRG = SPBRG_DATA; // ãƒœãƒ¼ãƒ¬ãƒ¼ãƒˆè¨­å®š
+    TXSTA = (TX9_RX9_DATA | BRGH_DATA | 0x20); // 8or9bit, ä½é€Ÿoré«˜é€Ÿã‚µãƒ³ãƒ—ãƒ«æŒ‡å®š
+    RCSTA = (TX9_RX9_DATA | 0x90); // ä½é€Ÿoré«˜é€Ÿã‚µãƒ³ãƒ—ãƒ«æŒ‡å®š
+    //RCSTA = 0b10010000;
+    //TXSTA = 0b00100000;
 }
  
-void putch(unsigned char byte) // 1byte‘—M
+void putch(unsigned char byte) // 1byteé€ä¿¡
 {
     while(!TXIF){
     }
     TXREG = byte;
 }
  
-unsigned char getch() // 1byteóM
+unsigned char getch() // 1byteå—ä¿¡
 {
     while(!RCIF){
     }
@@ -27,7 +27,7 @@ unsigned char getch() // 1byteóM
     return RCREG;
 }
  
-unsigned char getche() // getch‚µ‚Äecho
+unsigned char getche() // getchã—ã¦echo
 {
     unsigned char c;
  

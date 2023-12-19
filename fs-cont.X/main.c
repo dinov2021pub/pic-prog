@@ -48,6 +48,7 @@
 enum command {
   RPS,
   WTB,
+  WNI,
   OSC,
   NOS,
   NTD,
@@ -57,6 +58,8 @@ enum command {
   NSP,
   NSD,
   RNP,
+  RNI,
+  RPD,
   VER,
   STS,
   DA0,
@@ -69,7 +72,7 @@ void main(void) {
     
     PORTA = 0x00;           // PORTAを初期化
     PORTB = 0x00;           // PORTBを初期化
-    TRISA = 0b01000000;     // PORTAの入出力設定 RA6 をリミットセンサテスト用に入力(全て出力) 0:出力, 1:入力
+    TRISA = 0b01000000;     // PORTAの入出力設定 RA6 をリミットセンサ入力、それ以外は全て出力 0:出力, 1:入力
     TRISB = 0b10100001;     // PORTBの入出力設定 RB0:NTCH は接触検知入力, RB1:NTD入力, RB2:STOP入力, RB4:NDO入力, RB5:NSD入力, RB6:TxD出力, RB7:RxD入力　 0:出力, 1:入力
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
@@ -92,10 +95,10 @@ void main(void) {
     int mx_spd = 20250;
     int set_spd;
     int npd = 2500;
-    int nsp = 1000;
+    int nsp = 500;
     char ln[4];
     int npos = 0;   // Needle Position
-    int nip = 1000;     // Needle Initial Position
+    int nip = 5000;     // Needle Initial Position
     
     char *ptr;
 
@@ -106,6 +109,8 @@ void main(void) {
     N_NDD = 1;
     SLCT = 1;
     NTCH = 1;
+
+    printf("C\tLMT = %d\r\n", LEDON); // LMT状況送信
     
     while(1){
 
@@ -133,15 +138,15 @@ void main(void) {
 //            gets(tmp);
 //        }
 
-        gets(tmp);
-  
-// For LMT SW Test
+ 
+        // For LMT SW Test
         if(LMTON == 1){
             LEDON = 1;
         } else{
             LEDON = 0;
         }       
-
+        gets(tmp);
+        
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
         rcmd[2] = tmp[3];
@@ -159,6 +164,8 @@ void main(void) {
             cmd = RPS;
         }else if(strcmp(rcmd,"WTB") == 0){
             cmd = WTB;
+        }else if(strcmp(rcmd,"WNI") == 0){
+            cmd = WNI;
         }else if(strcmp(rcmd,"OSC") == 0){
             cmd = OSC;
         }else if(strcmp(rcmd,"NOS") == 0){
@@ -179,6 +186,10 @@ void main(void) {
             cmd = NSP;
         }else if(strcmp(rcmd,"RNP") == 0){
             cmd = RNP;
+        }else if(strcmp(rcmd,"RPD") == 0){
+            cmd = RPD;
+        }else if(strcmp(rcmd,"RNI") == 0){
+            cmd = RNI;
         }else if(strcmp(rcmd,"DA0") == 0){
             cmd = DA0;
         }else if(strcmp(rcmd,"DA1") == 0){
@@ -206,6 +217,7 @@ void main(void) {
                     if (dist > 0){
                         for(k = 0 ; k < dist ; k++){
                             FS_CCW = 1;
+                            npos += 1;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
@@ -218,6 +230,11 @@ void main(void) {
                         dist *= -1;
                         for(k = 0 ; k < dist ; k++){
                             FS_CW = 1;
+                            if(npos > 1){
+                                npos -= 1;
+                            }else{
+                                npos = 0;
+                            }
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
@@ -247,6 +264,15 @@ void main(void) {
 
                     break;
  
+            case WNI : 
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        nip = atoi(ptr);
+                    }
+                    printf("C\tWNI\t%d\r\n", nip); // 送信
+
+                    break;
+ 
             case OSC : 
                     ptr = strtok(NULL, "/");
                     ptr = strtok(NULL, "/");
@@ -260,6 +286,7 @@ void main(void) {
                     if (dist > 0){
                         for(k = 0 ; k < dist ; k++){
                             FS_CCW = 1;
+                            npos += 1;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
@@ -270,6 +297,11 @@ void main(void) {
                         }
                         for(k = 0 ; k < dist ; k++){
                             FS_CW = 1;
+                            if(npos > 1){
+                                npos -= 1;
+                            }else{
+                                npos = 0;
+                            }
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
@@ -282,6 +314,11 @@ void main(void) {
                         dist *= -1;
                         for(k = 0 ; k < dist ; k++){
                             FS_CW = 1;
+                            if(npos > 1){
+                                npos -= 1;
+                            }else{
+                                npos = 0;
+                            }
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
@@ -292,6 +329,7 @@ void main(void) {
                         }
                         for(k = 0 ; k < dist ; k++){
                             FS_CCW = 1;
+                            npos += 1;
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
@@ -309,22 +347,11 @@ void main(void) {
             case NOS : 
                     dist = 10000;
                     for(k = 0 ; k < dist ; k++){    // Needle Upward
-                        if(LMTON == 1){     //LMT ON
+                        if(LMTON == 0){     //LMT ON
                             npos = 0;
                             break;
                         }
-                        FS_CCW = 1;
-                        for(j = 0 ; j < intvl ; j++){
-                            __delay_us(1);
-                        }
-                        FS_CCW = 0;
-                        for(j = 0 ; j < intvl ; j++){
-                            __delay_us(1);
-                        }
-                    }
-                    for(k = 0 ; k < nip ; k++){     // Needle Downward
                         FS_CW = 1;
-                        npos += 1;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
@@ -333,11 +360,25 @@ void main(void) {
                             __delay_us(1);
                         }
                     }
+                    for(k = 0 ; k < nip ; k++){     // Needle Downward
+                        FS_CCW = 1;
+                        npos += 1;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                        FS_CCW = 0;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                    }
+                    printf("C\tNOS\t%d\r\n", npos); // 送信
+                    break;
 
             case NTD : 
                     dist = 10000;
                     for(k = 0 ; k < dist ; k++){
                         FS_CCW = 1;
+                        npos += 1;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
@@ -364,6 +405,7 @@ void main(void) {
                     
                     for(k = 0 ; k < 10000 ; k++){
                         FS_CCW = 1;
+                        npos += 1;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
@@ -380,6 +422,11 @@ void main(void) {
                     
                     for(k = 0 ; k < dist ; k++){
                         FS_CW = 1;
+                        if(npos > 1){
+                            npos -= 1;
+                        }else{
+                            npos = 0;
+                        }
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
@@ -396,6 +443,11 @@ void main(void) {
             case NDD : 
                     for(k = 0 ; k < 10000 ; k++){
                         FS_CCW = 1;
+                        if(npos > 1){
+                            npos -= 1;
+                        }else{
+                            npos = 0;
+                        }
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
@@ -411,6 +463,7 @@ void main(void) {
                     
                     for(k = 0 ; k < npd ; k++){
                         FS_CW = 1;
+                        npos += 1;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
@@ -428,6 +481,7 @@ void main(void) {
                     
                     for(k = 0 ; k < nsp ; k++){
                         FS_CW = 1;
+                        npos += 1;
                         for(j = 0 ; j < intvl ; j++){
                             __delay_us(1);
                         }
@@ -458,10 +512,17 @@ void main(void) {
                     break;
 
             case RNP : 
-                    printf("C\tRNP/%d\r\n", &npos);
+                    printf("C\tRNP/%d\r\n", npos);
+                    break;
+ 
+            case RNI : 
+                    printf("C\tRNI/%d\r\n", nip);
+                    break;
+ 
+            case RPD : 
+                    printf("C\tRPD/%d\r\n", npd);
                     break;
                     
-
             case DA0 : 
                     DAC1CON1 = 0;
                     break;
