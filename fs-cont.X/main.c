@@ -70,6 +70,32 @@ enum command {
   NON
 };
 
+void write_data_eeprom(long adr, long value){
+    long set_value;
+    
+    set_value = value & 0x00FF;
+    eeprom_write(adr, set_value);
+
+    set_value = value >> 8;
+    set_value = set_value & 0x00FF;    
+    eeprom_write(adr+1, set_value);
+}
+
+long read_data_eeprom(long adr){
+    long set_value_h;
+    long set_value_l;
+    long set_value;
+    
+    set_value_l = eeprom_read(adr);
+    set_value_h = eeprom_read(adr+1);
+
+    set_value_h = set_value_h << 8;
+    set_value = set_value_h | set_value_l;    
+    
+    return set_value;
+}
+
+
 void main(void) {
 
     PORTA = 0x00;           // PORTAを初期化
@@ -87,7 +113,9 @@ void main(void) {
     
     initUART();             // 調歩同期式シリアル通信設定
     
-    long NPD_ADR = 1;   //npd parameter address
+    long INTVL_ADR = 8;   //intvl parameter address
+    long NPD_ADR = 10;   //npd parameter address
+    long NIP_ADR = 12;   //nip parameter address
  
     char tmp[40];
     int j = 10;
@@ -116,15 +144,16 @@ void main(void) {
     NTCH = 1;
 
     npd = eeprom_read(NPD_ADR);
+    nip = eeprom_read(NIP_ADR);
+    intvl = eeprom_read(INTVL_ADR);
 
     while(1){
 
-        ans = eeprom_read(NPD_ADR);
-    
-        printf("C\tEEPROM %d\r\n", ans); // 送信
+//        ans = read_data_eeprom(NPD_ADR);
+//        printf("C\tEEPROM %d\r\n", ans); // 送信
         
 //        ans += 1;
-        eeprom_write(NPD_ADR, ans);
+//        eeprom_write(NPD_ADR, ans);
         
         cmd = NON;
         
@@ -271,7 +300,9 @@ void main(void) {
                     if (intvl == 0){
                         intvl = 1;
                     }
-                    printf("C\tWTB\r\n"); // 送信
+
+                    write_data_eeprom(INTVL_ADR, intvl);
+                    printf("C\tWTB\t%d\r\n", intvl); // 送信
 
                     break;
  
@@ -280,8 +311,10 @@ void main(void) {
                     if(ptr != NULL) {
                         nip = atoi(ptr);
                     }
-                    printf("C\tWNI\t%d\r\n", nip); // 送信
 
+                    write_data_eeprom(NIP_ADR, nip);
+                    printf("C\tWNI\t%d\r\n", nip); // 送信
+                    
                     break;
  
             case OSC : 
@@ -515,7 +548,7 @@ void main(void) {
                     if(ptr != NULL) {
                         npd = atoi(ptr);
                     }
-                    eeprom_write(NPD_ADR, npd);
+                    write_data_eeprom(NPD_ADR, npd);
                     printf("C\tWPD\t%d\r\n", npd);
                     break;
 
