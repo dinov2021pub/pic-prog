@@ -59,6 +59,7 @@ enum command {
   NDD,
   NSP,
   NSD,
+  NSC,
   RNP,
   RNI,
   RPD,
@@ -219,6 +220,8 @@ void main(void) {
             cmd = NDO;
         }else if(strcmp(rcmd,"NDD") == 0){
             cmd = NDD;
+        }else if(strcmp(rcmd,"NSC") == 0){
+            cmd = NSC;
         }else if(strcmp(rcmd,"VER") == 0){
             cmd = VER;
         }else if(strcmp(rcmd,"STS") == 0){
@@ -541,6 +544,40 @@ void main(void) {
 
 //                    puts("C");
                     printf("C\tNSD\r\n"); // 送信
+                    break;
+
+            case NSC : 
+                    
+                    for(k = 0 ; k < npd ; k++){
+                        FS_CCW = 1;
+                        npos += 1;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                        FS_CCW = 0;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                    }
+
+                    for(k = 0 ; k < npd ; k++){
+                        FS_CW = 1;
+                        if(npos > 1){
+                            npos -= 1;
+                        }else{
+                            npos = 0;
+                        }
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                        FS_CW = 0;
+                        for(j = 0 ; j < intvl ; j++){
+                            __delay_us(1);
+                        }
+                    }
+
+//                    puts("C");
+                    printf("C\tNSC\r\n"); // 送信
                     break;
 
             case WPD : 
