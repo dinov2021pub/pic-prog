@@ -144,9 +144,9 @@ void main(void) {
     SLCT = 1;
     NTCH = 1;
 
-    npd = eeprom_read(NPD_ADR);
-    nip = eeprom_read(NIP_ADR);
-    intvl = eeprom_read(INTVL_ADR);
+    npd = read_data_eeprom(NPD_ADR);
+    nip = read_data_eeprom(NIP_ADR);
+    intvl = read_data_eeprom(INTVL_ADR);
 
     while(1){
 
