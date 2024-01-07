@@ -36,7 +36,7 @@ Repository of PIC micon program
 
 ## fs-cont.X
 - kohzu-ctrl-compati-V3.X をベースに、本格的に femto-Spotter 用のコントローラとして開発開始
-- 神津精機のコントローラ CRUX とコマンドがコンパチなコントローラ（SC-200/400には対応しない）
+- 神津精機のコントローラ SC-200/400 とコマンドがコンパチなコントローラ（CRUXには対応しない）
 - PIC 16F1788 を使って、ステッピングモータを制御するプログラム
 - USART により通信する。
 - モータドライバは Melec DB-5410
