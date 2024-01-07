@@ -38,7 +38,7 @@
 #define N_NOS RB2 // Needle Origin Set
 #define N_NTD RB1 // Needle Touch Detection
 #define NTCH RB0 // Needle Touch detect switch
-#define ROLL_P4 RA3 // ROLLER Phase4
+#define N_READY RA3 // READY / BUSY
 #define ROLL_P3 RA2 // ROLLER Phase3
 #define FS_CW RA1 // FS_CW
 #define FS_CCW RA0 // FS_CCW
@@ -257,6 +257,7 @@ void main(void) {
         }
         ptr = strtok(tmp, "/");
 
+        N_READY = 1;
   
         switch(cmd){
 
@@ -659,6 +660,8 @@ void main(void) {
 //        }else{
 //            printf("SW ON");
 //        }
+        N_READY = 0;
+
     }
 }
 
