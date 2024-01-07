@@ -3,9 +3,11 @@
  *
  * Author: Shuichi Dejima
  *
- * Created on 2023/04/29, 15:26
+ * Created on 2023/12/25, 15:26
  * Compatible to Kohzu Controller for femto-spotter
  * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf
+ * PIC : 16F1788
+ * PCB : dino-con ver.001
  *  */
 
 // CONFIG1
@@ -28,15 +30,15 @@
 //#define _XTAL_FREQ 160000000      // 16MHz
 
 
-#define LEDON RA3 // Needle Stop
+#define LEDON RA7 // LED ON
 #define LMTON RA6 // Limit Sensor
-#define N_STOP RB2 // Needle Stop
-#define N_NTD RB1 // Needle Touch Detection
-#define N_NSD RB5 // Needle Start Position Drawback
-#define N_NDD RB4 // Needle Touch Detection Drawback
+#define N_NDO RB5 // Needle Detect Oscillation
+#define N_NSC RB4 // Needle Oscillation
 #define SLCT RB3 // Modeselec, 0:External IO mode, 1:InternalRS-232C command
-#define NTCH RB0 // Needle Touch detect
-#define ROLL_P4 RA3 // ROLLER Phase4
+#define N_NOS RB2 // Needle Origin Set
+#define N_NTD RB1 // Needle Touch Detection
+#define NTCH RB0 // Needle Touch detect switch
+#define N_READY RA3 // READY / BUSY
 #define ROLL_P3 RA2 // ROLLER Phase3
 #define FS_CW RA1 // FS_CW
 #define FS_CCW RA0 // FS_CCW
@@ -63,6 +65,7 @@ enum command {
   RNP,
   RNI,
   RPD,
+  RLM,
   VER,
   STS,
   DA0,
@@ -102,7 +105,8 @@ void main(void) {
     PORTA = 0x00;           // PORTAを初期化
     PORTB = 0x00;           // PORTBを初期化
     TRISA = 0b01000000;     // PORTAの入出力設定 RA6 をリミットセンサ入力、それ以外は全て出力 0:出力, 1:入力
-    TRISB = 0b10100001;     // PORTBの入出力設定 RB0:NTCH は接触検知入力, RB1:NTD入力, RB2:STOP入力, RB4:NDO入力, RB5:NSD入力, RB6:TxD出力, RB7:RxD入力　 0:出力, 1:入力
+    TRISB = 0b10111111;     // PORTBの入出力設定 RB0:NTCH は接触検知入力, RB1:NTD入力, RB2:STOP入力, RB4:NDO入力, RB5:NSD入力, RB6:TxD出力, RB7:RxD入力　 0:出力, 1:入力
+//    TRISB = 0b10100001;     // PORTBの入出力設定 RB0:NTCH は接触検知入力, RB1:NTD入力, RB2:STOP入力, RB4:NDO入力, RB5:NSD入力, RB6:TxD出力, RB7:RxD入力　 0:出力, 1:入力
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
     OSCCON = 0b01101010;    // Set internal clock to 4MHz
@@ -111,6 +115,9 @@ void main(void) {
     FVRCON = 0b00000000;   // アナログ出力　設定
     DAC1CON0 = 0b10100000;   // アナログ出力　設定
     DAC1CON1 = 0;   // アナログ出力　設定
+    
+    WPUB = 0b00111111;  // weak pull up
+    OPTION_REG = 0x00;  // weak pull up enable
     
     initUART();             // 調歩同期式シリアル通信設定
     
@@ -139,14 +146,15 @@ void main(void) {
     enum command cmd; // enum型のオブジェクトを定義
 
     N_NTD = 1;
-    N_NSD = 1;
-    N_NDD = 1;
+    N_NDO = 1;
+    N_NSC = 1;
     SLCT = 1;
+    N_NOS = 1;
     NTCH = 1;
-
-    npd = eeprom_read(NPD_ADR);
-    nip = eeprom_read(NIP_ADR);
-    intvl = eeprom_read(INTVL_ADR);
+    
+    npd = read_data_eeprom(NPD_ADR);
+    nip = read_data_eeprom(NIP_ADR);
+    intvl = read_data_eeprom(INTVL_ADR);
 
     while(1){
 
@@ -168,26 +176,28 @@ void main(void) {
         tmp[2] = 'Q';
         tmp[3] = '\0';
 
-//        if (SLCT == 0){
-//            if(N_NTD == 0){
+        if (SLCT == 0){
+            if(N_NDO == 0){
+                cmd = NDO;
+//            }else if(N_NTD == 0){
 //                cmd = NTD;
-//            }else if(N_NSD == 0){
-//                cmd = NSD;
-///            }else if(N_NDD == 0){
-//                cmd = NDD;
-//            }
-//        } else {
-//            gets(tmp);
-//        }
+            }else if(N_NSC == 0){
+                cmd = NSC;
+            }else if(N_NOS == 0){
+                cmd = NOS;
+            }
+        } else {
+            gets(tmp);
+        }
 
  
         // LMT SW indicator = LED
-        if(LMTON == 1){
-            LEDON = 1;
-        } else{
-            LEDON = 0;
-        }       
-        gets(tmp);
+//        if(LMTON == 1){
+//            LEDON = 1;
+//        } else{
+//            LEDON = 0;
+//        }       
+//        gets(tmp);
         
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
@@ -234,6 +244,8 @@ void main(void) {
             cmd = RNI;
         }else if(strcmp(rcmd,"RPD") == 0){
             cmd = RPD;
+        }else if(strcmp(rcmd,"RLM") == 0){
+            cmd = RLM;
         }else if(strcmp(rcmd,"DA0") == 0){
             cmd = DA0;
         }else if(strcmp(rcmd,"DA1") == 0){
@@ -245,6 +257,7 @@ void main(void) {
         }
         ptr = strtok(tmp, "/");
 
+        N_READY = 1;
   
         switch(cmd){
 
@@ -435,6 +448,7 @@ void main(void) {
                         }
 
                         if(NTCH == 0){
+                            LEDON = 1;
                             break;
                         }
 
@@ -460,6 +474,7 @@ void main(void) {
                         }
 
                         if(NTCH == 0){
+                            LEDON = 1;
                             break;
                         }
 
@@ -481,6 +496,7 @@ void main(void) {
                         }
                     }
 
+                    LEDON = 0;
 //                    puts("C");
                     printf("C\tNDO\r\n"); // 送信
                     break;
@@ -504,6 +520,7 @@ void main(void) {
                         }
 
                         if(NTCH == 0){
+                            LEDON = 1;
                             break;
                         }
                     }
@@ -523,7 +540,9 @@ void main(void) {
                             __delay_us(1);
                         }
                     }
-
+                    
+                    LEDON = 0;
+                    
 //                    puts("C");
                     printf("C\tNDD\r\n"); // 送信
                     break;
@@ -608,6 +627,10 @@ void main(void) {
             case RPD : 
                     printf("C\tRPD/%d\r\n", npd);
                     break;
+
+            case RLM : 
+                    printf("C\tRLM/%d\r\n", LMTON);
+                    break;
                     
             case DA0 : 
                     DAC1CON1 = 0;
@@ -637,6 +660,8 @@ void main(void) {
 //        }else{
 //            printf("SW ON");
 //        }
+        N_READY = 0;
+
     }
 }
 
