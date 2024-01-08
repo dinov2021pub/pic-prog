@@ -110,6 +110,7 @@ void main() {
     int num_ap1_cnt = 0;
     int num_ap2_cnt = 0;
     
+    int max_v;  // Analog max voltage
     
     char *ptr; 
     
@@ -418,18 +419,24 @@ void main() {
                 break;
                 
             case SIN :
+                ptr = strtok(NULL, "/");
+                if(ptr != NULL) {
+                    max_v = atoi(ptr);
+                }
                 DAC1CON1 = 0 ;
                 int v_cnt = 0;
-                for (int k = 0; k < 178 ; k++){     
+                for (int k = 0; k < max_v ; k++){     
                     DAC1CON1 = v_cnt ;
                     __delay_us(250) ;
                     v_cnt += 1;
                 }
-                for (int k = 0; k < 178 ; k++){     
+                for (int k = 0; k < max_v ; k++){     
                     DAC1CON1 = v_cnt ;
                     __delay_us(250) ;
                     v_cnt -= 1;
                 }
+                printf("C\tSIN\n");
+
                 break;
                 
             case VER : 
