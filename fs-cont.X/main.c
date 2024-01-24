@@ -144,7 +144,6 @@ void main(void) {
     int npos = 0;   // Needle Position
     int nip = 5000;     // Needle Initial Position
     long int ndcnt = 0; // Dispensed count
-    long ans;
     
     char *ptr;
 
@@ -164,12 +163,6 @@ void main(void) {
 
     while(1){
 
-//        ans = read_data_eeprom(NPD_ADR);
-//        printf("C\tEEPROM %d\r\n", ans); // 送信
-        
-//        ans += 1;
-//        eeprom_write(NPD_ADR, ans);
-        
         cmd = NON;
         
         rcmd[0] = 'Q'; 
