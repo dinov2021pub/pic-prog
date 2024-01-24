@@ -45,7 +45,6 @@
 #define TR RB3 // Transistor
 #define MAX_VALUE 32767
 #define MIN_VALUE 1
-//#define NPD_ADR 1   //npd parameter address
 
 // __EEPROM_DATA(0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07);
 
@@ -109,7 +108,6 @@ void main(void) {
     PORTB = 0x00;           // PORTBを初期化
     TRISA = 0b01000000;     // PORTAの入出力設定 RA6 をリミットセンサ入力、それ以外は全て出力 0:出力, 1:入力
     TRISB = 0b10111111;     // PORTBの入出力設定 RB0:NTCH は接触検知入力, RB1:NTD入力, RB2:STOP入力, RB4:NDO入力, RB5:NSD入力, RB6:TxD出力, RB7:RxD入力　 0:出力, 1:入力
-//    TRISB = 0b10100001;     // PORTBの入出力設定 RB0:NTCH は接触検知入力, RB1:NTD入力, RB2:STOP入力, RB4:NDO入力, RB5:NSD入力, RB6:TxD出力, RB7:RxD入力　 0:出力, 1:入力
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
     OSCCON = 0b01101010;    // Set internal clock to 4MHz
@@ -178,8 +176,6 @@ void main(void) {
         if (SLCT == 0){
             if(N_NDO == 0){
                 cmd = NDO;
-//            }else if(N_NTD == 0){
-//                cmd = NTD;
             }else if(N_NSC == 0){
                 cmd = NSC;
             }else if(N_NOS == 0){
@@ -189,28 +185,13 @@ void main(void) {
             gets(tmp);
         }
 
- 
-        // LMT SW indicator = LED
-//        if(LMTON == 1){
-//            LEDON = 1;
-//        } else{
-//            LEDON = 0;
-//        }       
-//        gets(tmp);
-        
+      
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
         rcmd[2] = tmp[3];
         rcmd[3] = '\0';
 
 
-//        if(NTCH == 0){
-//            LEDON = 1;
-//        } else{
-//            LEDON = 0;
-//        }       
-
-        
         if(strcmp(rcmd,"RPS") == 0) {
             cmd = RPS;
         }else if(strcmp(rcmd,"WTB") == 0){
@@ -683,11 +664,6 @@ void main(void) {
             default : break;
         }
         
-//        if(NTCH == 0){
-//            printf("SW OFF");
-//        }else{
-//            printf("SW ON");
-//        }
         N_READY = 0;
 
     }
