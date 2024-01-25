@@ -1,3 +1,4 @@
+
 /* 
  * File:   main.c
  *
@@ -39,6 +40,7 @@
 #pragma config LVP = OFF        //低電圧プログラミングを行わない
 
 #define _XTAL_FREQ 32000000     //クロック32MHz
+#define ACQ_US_DELAY 5
  
 void serial_init(unsigned long BR){
     TX1STA = 0x24;   //SYNC=0 TXEN = 1 BRGH = 1
@@ -49,17 +51,39 @@ void serial_init(unsigned long BR){
     SP1BRGL = X % 256;
 }
  
+/* ADconvert */
+unsigned int AD_convert(unsigned char channel){
+    //ADC チャンネルセレクト AN4
+    ADCON0bits.CHS0 = 0;   //ADC チャンネルセレクト
+    ADCON0bits.CHS1 = 0;   //ADC チャンネルセレクト
+    ADCON0bits.CHS2 = 1;   //ADC チャンネルセレクト
+    ADCON0bits.CHS3 = 0;   //ADC チャンネルセレクト
+    ADCON0bits.CHS4 = 0;   //ADC チャンネルセレクト
+    __delay_us(20);         // 20us待つ
+    ADCON0bits.GO_nDONE = 1;   //ADC start
+    while(ADCON0bits.GO_nDONE){};   // Wait for the conversion to finish
+    
+	return (ADRESH<<8) + ADRESL;
+}
+
  void PICinit(){
     OSCCON = 0b01110000 ;     // 内部クロック8MHz　×4=32MHz
     ANSELA = 0b00000000 ;     // AN0-AN3を使わない
-    ANSELC = 0b00000000 ;     // AN4-AN6を使わない
-    TRISA  = 0b00000010 ;     // RA1は入力他は出力
-    TRISC  = 0b00000000 ;     // 全て出力
+    ANSELC = 0b00000001 ;     // PORTC ANALOG SELECT REGISTER  RC0(=AN4):analog input
+    TRISA  = 0b00000010 ;     // RA1は入力、他は出力
+    TRISC  = 0b00000001 ;     // RC0は入力、他は出力
     PORTA  = 0b00000000 ;     // PORTAクリア
     PORTC  = 0b00000000 ;     // PORTCクリア
-  
-    DAC1CON0 = 0b10010000;
-    DAC1CON1 = 0;
+    
+    ADCON0 = 0b00010001;       //ADC CONTROL REGISTER 0
+    ADCON1 = 0b10100011;    // bit7(ADFM)=1(右詰め),bit<6:4>=010 Fosc/32=1.0us
+                            // bit<1:0>=00 VREF+=FVR
+    FVRCON = 0b10000010;    // bit7(FVRON)=1,bit<1:0>=10 ADFVR×2=2.048V
+
+    ADRESL = 0x00;  // ADRESL 0; 
+    ADRESH = 0x00;  // ADRESH 0; 
+    ADCON0 = 0x01;    // GO_nDONE stop; ADON enabled; CHS AN0; 
+
 }
  
 enum command {
@@ -81,6 +105,7 @@ enum command {
   PLS,
   SPO,
   SIN,
+  AIN,
   VER
 };
 
@@ -111,6 +136,8 @@ void main() {
     int num_ap2_cnt = 0;
     
     int max_v;  // Analog max voltage
+
+    unsigned int val;
     
     char *ptr; 
     
@@ -147,7 +174,7 @@ void main() {
 
         enum command cmd; // enum型のオブジェクトを定義
 
-//        cmd = VER;
+//        cmd = AIN;
         
         if(strcmp(rcmd,"LDS") == 0) {
             cmd = LDS;
@@ -185,6 +212,8 @@ void main() {
             cmd = SPO;
         }else if(strcmp(rcmd,"SIN") == 0){
             cmd = SIN;
+        }else if(strcmp(rcmd,"AIN") == 0){
+            cmd = AIN;
         }else if(strcmp(rcmd,"VER") == 0){
             cmd = VER;
         }
@@ -438,13 +467,24 @@ void main() {
                 printf("C\tSIN\n");
 
                 break;
+
+           case AIN :
                 
+                val = 0;
+                for (int k = 0; k < 10 ; k++){     
+                    // val = adconv();
+					val = AD_convert(1);
+                    printf("C\tAIN = %u\n", val);                    
+                    __delay_ms(500) ;
+                }
+                break;
+                 
             case VER : 
                     printf("FLASER-CONT VERSION 1");
                     break;
                                                                 
             default : break;
         }
-        
+
     }
 }
