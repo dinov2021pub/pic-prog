@@ -66,6 +66,9 @@ enum command {
   RNI,
   RPD,
   RLM,
+  WRP,
+  RDC,
+  WDC,
   VER,
   STS,
   DA0,
@@ -147,7 +150,8 @@ void main(void) {
     long INTVL_ADR = 8;   //intvl parameter address
     long NPD_ADR = 10;   //npd parameter address
     long NIP_ADR = 12;   //nip parameter address
- 
+    long NDCNT_ADR = 14; //dispensed count
+
     char tmp[40];
     int j = 10;
     int k = 0;
@@ -162,7 +166,7 @@ void main(void) {
     char ln[4];
     int npos = 0;   // Needle Position
     int nip = 5000;     // Needle Initial Position
-    long ans;
+    long int ndcnt = 0; // Dispensed count
     
     char *ptr;
 
@@ -177,6 +181,7 @@ void main(void) {
     N_NOS = 1;
     NTCH = 1;
     
+    ndcnt = read_data_eeprom(NDCNT_ADR);
     npd = read_data_eeprom(NPD_ADR);
     nip = read_data_eeprom(NIP_ADR);
     intvl = read_data_eeprom(INTVL_ADR);
@@ -257,6 +262,12 @@ void main(void) {
             cmd = NDD;
         }else if(strcmp(rcmd,"NSC") == 0){
             cmd = NSC;
+        }else if(strcmp(rcmd,"WRP") == 0){
+            cmd = WRP;
+        }else if(strcmp(rcmd,"RDC") == 0){
+            cmd = RDC;
+        }else if(strcmp(rcmd,"WDC") == 0){
+            cmd = WDC;        
         }else if(strcmp(rcmd,"VER") == 0){
             cmd = VER;
         }else if(strcmp(rcmd,"STS") == 0){
@@ -426,7 +437,8 @@ void main(void) {
                             }
                         }
                     }
-
+                    ndcnt += 1;
+                    write_data_eeprom(NDCNT_ADR, ndcnt);
 //                    puts("C");
                     printf("C\tOSC\r\n"); // 送信
                     break;
@@ -522,7 +534,8 @@ void main(void) {
                             __delay_us(1);
                         }
                     }
-
+                    ndcnt += 1;
+                    write_data_eeprom(NDCNT_ADR, ndcnt);
                     LEDON = 0;
 //                    puts("C");
                     printf("C\tNDO\r\n"); // 送信
@@ -569,7 +582,8 @@ void main(void) {
                     }
                     
                     LEDON = 0;
-                    
+                    ndcnt += 1;
+                    write_data_eeprom(NDCNT_ADR, ndcnt);
 //                    puts("C");
                     printf("C\tNDD\r\n"); // 送信
                     break;
@@ -623,6 +637,8 @@ void main(void) {
                     }
 
 //                    puts("C");
+                    ndcnt += 1;
+                    write_data_eeprom(NDCNT_ADR, ndcnt);
                     printf("C\tNSC\r\n"); // 送信
                     break;
 
@@ -659,6 +675,21 @@ void main(void) {
                     printf("C\tRLM/%d\r\n", LMTON);
                     break;
                     
+            case WRP :
+                    npos = 0;
+                    printf("C\tWRP3/0\r\n");
+                    break;
+
+            case RDC :
+                    printf("C\tRDC/%d\r\n", ndcnt);
+                    break;
+
+            case WDC :
+                    ndcnt = 0;
+                    write_data_eeprom(NDCNT_ADR, ndcnt);
+                    printf("C\tWDC/%d\r\n", ndcnt);
+                    break;
+
             case DA0 : 
                     DAC1CON1 = 0;
                     break;
