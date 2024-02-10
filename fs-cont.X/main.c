@@ -45,6 +45,7 @@
 #define TR RB3 // Transistor
 #define MAX_VALUE 32767
 #define MIN_VALUE 1
+//#define NPD_ADR 1   //npd parameter address
 
 // __EEPROM_DATA(0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07);
 
@@ -65,14 +66,12 @@ enum command {
   RNI,
   RPD,
   RLM,
-  WRP,
-  RDC,
-  WDC,
   VER,
   STS,
   DA0,
   DA1,
   DA2,
+  AIN,
   NON
 };
 
@@ -101,12 +100,26 @@ long read_data_eeprom(long adr){
     return set_value;
 }
 
+/* ADconvert */
+unsigned int AD_convert(unsigned char channel){
+    //ADC チャンネルセレクト AN4
+    ADCON0bits.CHS0 = 0;   //ADC チャンネルセレクト
+    ADCON0bits.CHS1 = 0;   //ADC チャンネルセレクト
+    ADCON0bits.CHS2 = 1;   //ADC チャンネルセレクト
+    ADCON0bits.CHS3 = 0;   //ADC チャンネルセレクト
+    ADCON0bits.CHS4 = 0;   //ADC チャンネルセレクト
+    __delay_us(20);         // 20us待つ
+    ADCON0bits.GO_nDONE = 1;   //ADC start
+    while(ADCON0bits.GO_nDONE){};   // Wait for the conversion to finish
+    
+	return (ADRESH<<8) + ADRESL;
+}
 
 void main(void) {
 
     PORTA = 0x00;           // PORTAを初期化
     PORTB = 0x00;           // PORTBを初期化
-    TRISA = 0b01000000;     // PORTAの入出力設定 RA6 をリミットセンサ入力、それ以外は全て出力 0:出力, 1:入力
+    TRISA = 0b01100000;     // PORTAの入出力設定 RA6 をリミットセンサ入力、それ以外は全て出力 0:出力, 1:入力 => RA5をテスト用で一時的に入力
     TRISB = 0b10111111;     // PORTBの入出力設定 RB0:NTCH は接触検知入力, RB1:NTD入力, RB2:STOP入力, RB4:NDO入力, RB5:NSD入力, RB6:TxD出力, RB7:RxD入力　 0:出力, 1:入力
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
@@ -120,12 +133,20 @@ void main(void) {
     WPUB = 0b00111111;  // weak pull up
     OPTION_REG = 0x00;  // weak pull up enable
     
+    ADCON0 = 0b00010001;       //ADC CONTROL REGISTER 0　AN4
+    ADCON1 = 0b10100011;    // bit7(ADFM)=1(右詰め),bit<6:4>=010 Fosc/32=1.0us
+                            // bit<1:0>=00 VREF+=FVR
+    FVRCON = 0b10000010;    // bit7(FVRON)=1,bit<1:0>=10 ADFVR×2=2.048V
+    
+    ADRESL = 0x00;  // ADRESL 0; 
+    ADRESH = 0x00;  // ADRESH 0; 
+//    ADCON0 = 0x01;    // GO_nDONE stop; ADON enabled; CHS AN0; 
+    
     initUART();             // 調歩同期式シリアル通信設定
     
     long INTVL_ADR = 8;   //intvl parameter address
     long NPD_ADR = 10;   //npd parameter address
     long NIP_ADR = 12;   //nip parameter address
-    long NDCNT_ADR = 14;   //dispensed count
  
     char tmp[40];
     int j = 10;
@@ -141,12 +162,14 @@ void main(void) {
     char ln[4];
     int npos = 0;   // Needle Position
     int nip = 5000;     // Needle Initial Position
-    long int ndcnt = 0; // Dispensed count
+    long ans;
     
     char *ptr;
 
     enum command cmd; // enum型のオブジェクトを定義
 
+    unsigned int val;
+    
     N_NTD = 1;
     N_NDO = 1;
     N_NSC = 1;
@@ -154,13 +177,18 @@ void main(void) {
     N_NOS = 1;
     NTCH = 1;
     
-    ndcnt = read_data_eeprom(NDCNT_ADR);
     npd = read_data_eeprom(NPD_ADR);
     nip = read_data_eeprom(NIP_ADR);
     intvl = read_data_eeprom(INTVL_ADR);
 
     while(1){
 
+//        ans = read_data_eeprom(NPD_ADR);
+//        printf("C\tEEPROM %d\r\n", ans); // 送信
+        
+//        ans += 1;
+//        eeprom_write(NPD_ADR, ans);
+        
         cmd = NON;
         
         rcmd[0] = 'Q'; 
@@ -176,6 +204,8 @@ void main(void) {
         if (SLCT == 0){
             if(N_NDO == 0){
                 cmd = NDO;
+//            }else if(N_NTD == 0){
+//                cmd = NTD;
             }else if(N_NSC == 0){
                 cmd = NSC;
             }else if(N_NOS == 0){
@@ -185,13 +215,28 @@ void main(void) {
             gets(tmp);
         }
 
-      
+ 
+        // LMT SW indicator = LED
+//        if(LMTON == 1){
+//            LEDON = 1;
+//        } else{
+//            LEDON = 0;
+//        }       
+//        gets(tmp);
+        
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
         rcmd[2] = tmp[3];
         rcmd[3] = '\0';
 
 
+//        if(NTCH == 0){
+//            LEDON = 1;
+//        } else{
+//            LEDON = 0;
+//        }       
+
+        
         if(strcmp(rcmd,"RPS") == 0) {
             cmd = RPS;
         }else if(strcmp(rcmd,"WTB") == 0){
@@ -212,12 +257,6 @@ void main(void) {
             cmd = NDD;
         }else if(strcmp(rcmd,"NSC") == 0){
             cmd = NSC;
-        }else if(strcmp(rcmd,"WRP") == 0){
-            cmd = WRP;
-        }else if(strcmp(rcmd,"RDC") == 0){
-            cmd = RDC;
-        }else if(strcmp(rcmd,"WDC") == 0){
-            cmd = WDC;
         }else if(strcmp(rcmd,"VER") == 0){
             cmd = VER;
         }else if(strcmp(rcmd,"STS") == 0){
@@ -238,6 +277,8 @@ void main(void) {
             cmd = DA1;
         }else if(strcmp(rcmd,"DA2") == 0){
             cmd = DA2;
+        }else if(strcmp(rcmd,"AIN") == 0){
+            cmd = AIN;
         }else if(strcmp(rcmd,"NSD") == 0){
             cmd = NSD;
         }
@@ -385,8 +426,7 @@ void main(void) {
                             }
                         }
                     }
-                    ndcnt += 1;
-                    write_data_eeprom(NDCNT_ADR, ndcnt);
+
 //                    puts("C");
                     printf("C\tOSC\r\n"); // 送信
                     break;
@@ -483,8 +523,6 @@ void main(void) {
                         }
                     }
 
-                    ndcnt += 1;
-                    write_data_eeprom(NDCNT_ADR, ndcnt);
                     LEDON = 0;
 //                    puts("C");
                     printf("C\tNDO\r\n"); // 送信
@@ -531,9 +569,7 @@ void main(void) {
                     }
                     
                     LEDON = 0;
-                    ndcnt += 1;
-                    write_data_eeprom(NDCNT_ADR, ndcnt);
-
+                    
 //                    puts("C");
                     printf("C\tNDD\r\n"); // 送信
                     break;
@@ -587,9 +623,6 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    ndcnt += 1;
-                    write_data_eeprom(NDCNT_ADR, ndcnt);
-
                     printf("C\tNSC\r\n"); // 送信
                     break;
 
@@ -625,22 +658,7 @@ void main(void) {
             case RLM : 
                     printf("C\tRLM/%d\r\n", LMTON);
                     break;
-
-            case WRP :
-                    npos = 0;
-                    printf("C\tWRP3/0\r\n");
-                    break;
- 
-            case RDC :
-                    printf("C\tRDC/%d\r\n", ndcnt);
-                    break;
-
-            case WDC :
-                    ndcnt = 0;
-                    write_data_eeprom(NDCNT_ADR, ndcnt);
-                    printf("C\tWDC/%d\r\n", ndcnt);
-                    break;
- 
+                    
             case DA0 : 
                     DAC1CON1 = 0;
                     break;
@@ -651,6 +669,15 @@ void main(void) {
 
             case DA2 : 
                     DAC1CON1 = 200;
+                    break;
+
+            case AIN : 
+                    val = 0;
+                    for (int k = 0; k < 10 ; k++){     
+                        val = AD_convert(1);
+                        printf("C\tAIN = %u\n", val);                    
+                        __delay_ms(500) ;
+                    }                    
                     break;
 
             case STS : 
@@ -664,6 +691,11 @@ void main(void) {
             default : break;
         }
         
+//        if(NTCH == 0){
+//            printf("SW OFF");
+//        }else{
+//            printf("SW ON");
+//        }
         N_READY = 0;
 
     }
