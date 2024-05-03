@@ -729,6 +729,10 @@ void main(void) {
 //        }
         N_READY = 0;
 
+        if(NTCH == 0){
+            LEDON = 1;
+        }
+
     }
 }
 
