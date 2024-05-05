@@ -74,6 +74,7 @@ enum command {
   DA0,
   DA1,
   DA2,
+  PMV,
   AIN,
   NON
 };
@@ -167,6 +168,10 @@ void main(void) {
     int npos = 0;   // Needle Position
     int nip = 5000;     // Needle Initial Position
     long int ndcnt = 0; // Dispensed count
+    int pzt_l = 0;  // pzt displacement %
+    int pzt_l_d = 0;  // pzt displacement %
+    int pzt_t = 100;  // pzt displacement time ms
+    int pzt_d = 0;
     
     char *ptr;
 
@@ -288,6 +293,8 @@ void main(void) {
             cmd = DA1;
         }else if(strcmp(rcmd,"DA2") == 0){
             cmd = DA2;
+        }else if(strcmp(rcmd,"PMV") == 0){
+            cmd = PMV;
         }else if(strcmp(rcmd,"AIN") == 0){
             cmd = AIN;
         }else if(strcmp(rcmd,"NSD") == 0){
@@ -700,6 +707,30 @@ void main(void) {
 
             case DA2 : 
                     DAC1CON1 = 200;
+                    break;
+
+            case PMV : 
+                    DAC1CON1 = 0;
+                    pzt_d = 0;
+                    
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        pzt_l = atoi(ptr);
+                    }
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        pzt_t = atoi(ptr);
+                    }
+                    pzt_l_d = (int)(pzt_l / pzt_t);
+                    
+                    for (int k = 0; k < pzt_t ; k++){     
+                        __delay_ms(1) ;
+                        DAC1CON1 = pzt_d;
+                        pzt_d = pzt_d + pzt_l_d;
+                    }
+                    DAC1CON1 = 0;
+                    printf("C\tPMV\n");                    
+                    
                     break;
 
             case AIN : 
