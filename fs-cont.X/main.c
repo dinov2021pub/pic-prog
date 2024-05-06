@@ -169,9 +169,9 @@ void main(void) {
     int nip = 5000;     // Needle Initial Position
     long int ndcnt = 0; // Dispensed count
     int pzt_l = 0;  // pzt displacement %
-    int pzt_l_d = 0;  // pzt displacement %
+    double pzt_l_d = 0;  // pzt displacement %
     int pzt_t = 100;  // pzt displacement time ms
-    int pzt_d = 0;
+    double pzt_d = 0;
     
     char *ptr;
 
@@ -711,7 +711,7 @@ void main(void) {
 
             case PMV : 
                     DAC1CON1 = 0;
-                    pzt_d = 0;
+                    pzt_d = 0.0;
                     
                     ptr = strtok(NULL, "/");
                     if(ptr != NULL) {
@@ -721,11 +721,11 @@ void main(void) {
                     if(ptr != NULL) {
                         pzt_t = atoi(ptr);
                     }
-                    pzt_l_d = (int)(pzt_l / pzt_t);
+                    pzt_l_d = 2.55 * pzt_l / pzt_t;
                     
                     for (int k = 0; k < pzt_t ; k++){     
-                        __delay_ms(1) ;
-                        DAC1CON1 = pzt_d;
+                        __delay_us(100) ;
+                        DAC1CON1 = (int)pzt_d;
                         pzt_d = pzt_d + pzt_l_d;
                     }
                     DAC1CON1 = 0;
