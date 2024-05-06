@@ -74,7 +74,9 @@ enum command {
   DA0,
   DA1,
   DA2,
-  PMV,
+  PMV,  // PZT move triangle
+  PMA,  // PZT move absolutely
+  PMR,  // PZT move relatively
   AIN,
   NON
 };
@@ -172,7 +174,7 @@ void main(void) {
     double pzt_l_d = 0;  // pzt displacement %
     int pzt_t = 100;  // pzt displacement time ms
     double pzt_d = 0;
-    
+    int c_pzt = 0;  // current pzt position (0-255)
     char *ptr;
 
     enum command cmd; // enum型のオブジェクトを定義
@@ -295,6 +297,10 @@ void main(void) {
             cmd = DA2;
         }else if(strcmp(rcmd,"PMV") == 0){
             cmd = PMV;
+        }else if(strcmp(rcmd,"PMA") == 0){
+            cmd = PMA;
+        }else if(strcmp(rcmd,"PMR") == 0){
+            cmd = PMR;
         }else if(strcmp(rcmd,"AIN") == 0){
             cmd = AIN;
         }else if(strcmp(rcmd,"NSD") == 0){
@@ -730,6 +736,37 @@ void main(void) {
                     }
                     DAC1CON1 = 0;
                     printf("C\tPMV\n");                    
+                    
+                    break;
+
+            case PMA : 
+                    
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        pzt_l = atoi(ptr);
+                    }
+                    c_pzt = (int)(2.55 * pzt_l);
+                    DAC1CON1 = c_pzt;
+                    printf("C\tPMA\n");                    
+                    
+                    break;
+
+            case PMR : 
+                    
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        pzt_l = atoi(ptr);
+                    }
+                    c_pzt = c_pzt + (int)(2.55 * pzt_l);
+                    if(c_pzt < 0){
+                        c_pzt = 0;
+                    }
+                    if(c_pzt > 255){
+                        c_pzt = 255;
+                    }
+                        
+                    DAC1CON1 = c_pzt;
+                    printf("C\tPMR\n");                    
                     
                     break;
 
