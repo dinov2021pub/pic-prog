@@ -77,6 +77,7 @@ enum command {
   PMV,  // PZT move triangle
   PMA,  // PZT move absolutely
   PMR,  // PZT move relatively
+  RPP,  // Read PZT Position
   AIN,
   NON
 };
@@ -301,6 +302,8 @@ void main(void) {
             cmd = PMA;
         }else if(strcmp(rcmd,"PMR") == 0){
             cmd = PMR;
+        }else if(strcmp(rcmd,"RPP") == 0){
+            cmd = RPP;
         }else if(strcmp(rcmd,"AIN") == 0){
             cmd = AIN;
         }else if(strcmp(rcmd,"NSD") == 0){
@@ -735,7 +738,7 @@ void main(void) {
                         pzt_d = pzt_d + pzt_l_d;
                     }
                     DAC1CON1 = 0;
-                    printf("C\tPMV\n");                    
+                    printf("C\tPMV\r\n");                    
                     
                     break;
 
@@ -747,7 +750,7 @@ void main(void) {
                     }
                     c_pzt = (int)(2.55 * pzt_l);
                     DAC1CON1 = c_pzt;
-                    printf("C\tPMA\n");                    
+                    printf("C\tPMA\r\n");                    
                     
                     break;
 
@@ -766,8 +769,13 @@ void main(void) {
                     }
                         
                     DAC1CON1 = c_pzt;
-                    printf("C\tPMR\n");                    
+                    printf("C\tPMR\r\n");                    
                     
+                    break;
+
+            case RPP : 
+                    printf("C\tRPP/%d\r\n", c_pzt);                    
+
                     break;
 
             case AIN : 
