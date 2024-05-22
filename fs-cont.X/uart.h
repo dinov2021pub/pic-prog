@@ -8,7 +8,7 @@
  
 #define BAUDRATE 9600       // 9.6kbps
 #define TX9_RX9_BIT 0       // 0: 8bit, 1: 9bit
-#define BRGH_BIT 1          // 0: 低速サンプル指定, 1: 高速サンプル指定
+#define BRGH_BIT 1          // 0: low speed sampling, 1:high speed sampling
  
 #if TX9_RX9_BIT == 1
 #define TX9_RX9_DATA 0x40 // 9bit
@@ -24,7 +24,6 @@
 #define SPBRG_DATA ((unsigned char)(((_XTAL_FREQ / 64) / BAUDRATE) - 1))
 #endif
  
-// プロトタイプ宣言
 void initUART();
 void putch(unsigned char byte);
 unsigned char getch();
