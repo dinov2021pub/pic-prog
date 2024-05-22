@@ -140,7 +140,7 @@ void main(void) {
     WPUB = 0b00111111;  // weak pull up
     OPTION_REG = 0x00;  // weak pull up enable
     
-    ADCON0 = 0b00010001;       //ADC CONTROL REGISTER 0　AN4
+    ADCON0 = 0b00010001;       //ADC CONTROL REGISTER 0 AN4
     ADCON1 = 0b10100011;    // bit7(ADFM)=1(right justified), bit<6:4>=010 Fosc/32=1.0us
                             // bit<1:0>=00 VREF+=FVR
     FVRCON = 0b10000010;    // bit7(FVRON)=1,bit<1:0>=10 ADFVR×2=2.048V
