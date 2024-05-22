@@ -109,13 +109,13 @@ long read_data_eeprom(long adr){
 
 /* ADconvert */
 unsigned int AD_convert(unsigned char channel){
-    //ADC チャンネルセレクト AN4
-    ADCON0bits.CHS0 = 0;   //ADC チャンネルセレクト
-    ADCON0bits.CHS1 = 0;   //ADC チャンネルセレクト
-    ADCON0bits.CHS2 = 1;   //ADC チャンネルセレクト
-    ADCON0bits.CHS3 = 0;   //ADC チャンネルセレクト
-    ADCON0bits.CHS4 = 0;   //ADC チャンネルセレクト
-    __delay_us(20);         // 20us待つ
+    //ADC Select Channel AN4
+    ADCON0bits.CHS0 = 0;   //ADC Channel select
+    ADCON0bits.CHS1 = 0;   //ADC Channel select
+    ADCON0bits.CHS2 = 1;   //ADC Channel select
+    ADCON0bits.CHS3 = 0;   //ADC Channel select
+    ADCON0bits.CHS4 = 0;   //ADC Channel select
+    __delay_us(20);         // wait for 20us
     ADCON0bits.GO_nDONE = 1;   //ADC start
     while(ADCON0bits.GO_nDONE){};   // Wait for the conversion to finish
     
@@ -124,24 +124,24 @@ unsigned int AD_convert(unsigned char channel){
 
 void main(void) {
 
-    PORTA = 0x00;           // PORTAを初期化
-    PORTB = 0x00;           // PORTBを初期化
-    TRISA = 0b01100000;     // PORTAの入出力設定 RA6 をリミットセンサ入力、それ以外は全て出力 0:出力, 1:入力 => RA5をテスト用で一時的に入力
-    TRISB = 0b10111111;     // PORTBの入出力設定 RB0:NTCH は接触検知入力, RB1:NTD入力, RB2:STOP入力, RB4:NDO入力, RB5:NSD入力, RB6:TxD出力, RB7:RxD入力　 0:出力, 1:入力
+    PORTA = 0x00;           // initialize PORTA
+    PORTB = 0x00;           // initialize PORTB
+    TRISA = 0b01100000;     // PORTA in/output settings  RA6:limit sensor input, except output  0:output, 1:input => RA5 temporalily input
+    TRISB = 0b10111111;     // PORTB in/output settings RB0:NTCH touch sensor input,  RB1:NTD input, RB2:STOP input, RB4:NDO input, RB5:NSD input, RB6:TxD output, RB7:RxD input　 0:output, 1:input
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
     OSCCON = 0b01101010;    // Set internal clock to 4MHz
-    ANSELB = 0b00000000;    //すべてデジタル
+    ANSELB = 0b00000000;    // All digital
     
-    FVRCON = 0b00000000;   // アナログ出力　設定
-    DAC1CON0 = 0b10100000;   // アナログ出力　設定
-    DAC1CON1 = 0;   // アナログ出力　設定
+    FVRCON = 0b00000000;   // Analog outout settings
+    DAC1CON0 = 0b10100000;   // Anaog output settings
+    DAC1CON1 = 0;   // Analog output settings
     
     WPUB = 0b00111111;  // weak pull up
     OPTION_REG = 0x00;  // weak pull up enable
     
     ADCON0 = 0b00010001;       //ADC CONTROL REGISTER 0　AN4
-    ADCON1 = 0b10100011;    // bit7(ADFM)=1(右詰め),bit<6:4>=010 Fosc/32=1.0us
+    ADCON1 = 0b10100011;    // bit7(ADFM)=1(right justified), bit<6:4>=010 Fosc/32=1.0us
                             // bit<1:0>=00 VREF+=FVR
     FVRCON = 0b10000010;    // bit7(FVRON)=1,bit<1:0>=10 ADFVR×2=2.048V
     
@@ -149,7 +149,7 @@ void main(void) {
     ADRESH = 0x00;  // ADRESH 0; 
 //    ADCON0 = 0x01;    // GO_nDONE stop; ADON enabled; CHS AN0; 
     
-    initUART();             // 調歩同期式シリアル通信設定
+    initUART(); // Start-stop synchronization serial communication
     
     long INTVL_ADR = 8;   //intvl parameter address
     long NPD_ADR = 10;   //npd parameter address
@@ -178,7 +178,7 @@ void main(void) {
     int c_pzt = 0;  // current pzt position (0-255)
     char *ptr;
 
-    enum command cmd; // enum型のオブジェクトを定義
+    enum command cmd; // enum type object
 
     unsigned int val;
     
@@ -197,7 +197,7 @@ void main(void) {
     while(1){
 
 //        ans = read_data_eeprom(NPD_ADR);
-//        printf("C\tEEPROM %d\r\n", ans); // 送信
+//        printf("C\tEEPROM %d\r\n", ans); // Send
         
 //        ans += 1;
 //        eeprom_write(NPD_ADR, ans);
@@ -356,7 +356,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tRPS\r\n"); // 送信
+                    printf("C\tRPS\r\n"); // Send
                     break;
                         
             case WTB : 
@@ -372,7 +372,7 @@ void main(void) {
                     }
 
                     write_data_eeprom(INTVL_ADR, intvl);
-                    printf("C\tWTB\t%d\r\n", intvl); // 送信
+                    printf("C\tWTB\t%d\r\n", intvl); // Send
 
                     break;
  
@@ -383,7 +383,7 @@ void main(void) {
                     }
 
                     write_data_eeprom(NIP_ADR, nip);
-                    printf("C\tWNI\t%d\r\n", nip); // 送信
+                    printf("C\tWNI\t%d\r\n", nip); // Send
                     
                     break;
  
@@ -456,7 +456,7 @@ void main(void) {
                     ndcnt += 1;
                     write_data_eeprom(NDCNT_ADR, ndcnt);
 //                    puts("C");
-                    printf("C\tOSC\r\n"); // 送信
+                    printf("C\tOSC\r\n"); // Send
                     break;
 
             case NOS : 
@@ -486,7 +486,7 @@ void main(void) {
                             __delay_us(1);
                         }
                     }
-                    printf("C\tNOS\t%d\r\n", npos); // 送信
+                    printf("C\tNOS\t%d\r\n", npos); // Send
                     break;
 
             case NTD : 
@@ -509,7 +509,7 @@ void main(void) {
 
                     }
 //                    puts("C");
-                    printf("C\tNTD\r\n"); // 送信
+                    printf("C\tNTD\r\n"); // Send
 
                     break;
                         
@@ -554,7 +554,7 @@ void main(void) {
                     write_data_eeprom(NDCNT_ADR, ndcnt);
                     LEDON = 0;
 //                    puts("C");
-                    printf("C\tNDO\r\n"); // 送信
+                    printf("C\tNDO\r\n"); // Send
                     break;
 
             case NDD : 
@@ -601,7 +601,7 @@ void main(void) {
                     ndcnt += 1;
                     write_data_eeprom(NDCNT_ADR, ndcnt);
 //                    puts("C");
-                    printf("C\tNDD\r\n"); // 送信
+                    printf("C\tNDD\r\n"); // Send
                     break;
 
             case NSD : 
@@ -619,7 +619,7 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tNSD\r\n"); // 送信
+                    printf("C\tNSD\r\n"); // Send
                     break;
 
             case NSC : 
@@ -655,7 +655,7 @@ void main(void) {
 //                    puts("C");
                     ndcnt += 1;
                     write_data_eeprom(NDCNT_ADR, ndcnt);
-                    printf("C\tNSC\r\n"); // 送信
+                    printf("C\tNSC\r\n"); // Send
                     break;
 
             case WPD : 
