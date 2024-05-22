@@ -70,6 +70,8 @@ enum command {
   RDC,
   WDC,
   VER,
+  VE1,
+  VE2,
   STS,
   DA0,
   DA1,
@@ -127,7 +129,7 @@ void main(void) {
     PORTA = 0x00;           // initialize PORTA
     PORTB = 0x00;           // initialize PORTB
     TRISA = 0b01100000;     // PORTA in/output settings  RA6:limit sensor input, except output  0:output, 1:input => RA5 temporalily input
-    TRISB = 0b10111111;     // PORTB in/output settings RB0:NTCH touch sensor input,  RB1:NTD input, RB2:STOP input, RB4:NDO input, RB5:NSD input, RB6:TxD output, RB7:RxD inputã€€ 0:output, 1:input
+    TRISB = 0b10111111;     // PORTB in/output settings RB0:NTCH touch sensor input,  RB1:NTD input, RB2:STOP input, RB4:NDO input, RB5:NSD input, RB6:TxD output, RB7:RxD inputã€? 0:output, 1:input
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
     OSCCON = 0b01101010;    // Set internal clock to 4MHz
@@ -143,7 +145,7 @@ void main(void) {
     ADCON0 = 0b00010001;       //ADC CONTROL REGISTER 0 AN4
     ADCON1 = 0b10100011;    // bit7(ADFM)=1(right justified), bit<6:4>=010 Fosc/32=1.0us
                             // bit<1:0>=00 VREF+=FVR
-    FVRCON = 0b10000010;    // bit7(FVRON)=1,bit<1:0>=10 ADFVRÃ—2=2.048V
+    FVRCON = 0b10000010;    // bit7(FVRON)=1,bit<1:0>=10 ADFVRÃ?2=2.048V
     
     ADRESL = 0x00;  // ADRESL 0; 
     ADRESH = 0x00;  // ADRESH 0; 
@@ -278,6 +280,10 @@ void main(void) {
             cmd = WDC;        
         }else if(strcmp(rcmd,"VER") == 0){
             cmd = VER;
+        }else if(strcmp(rcmd,"VE1") == 0){
+            cmd = VE1;
+        }else if(strcmp(rcmd,"VE2") == 0){
+            cmd = VE2;            
         }else if(strcmp(rcmd,"STS") == 0){
             cmd = STS;
         }else if(strcmp(rcmd,"NSP") == 0){
@@ -795,7 +801,15 @@ void main(void) {
             case VER : 
                     printf("C\tFS-CONT VERSION 0\r\n");
                     break;
-                        
+                    
+            case VE1 : 
+                    printf("C\tFS-CONT VERSION VE1\r\n");
+                    break;   
+                    
+            case VE2 : 
+                    printf("C\tFS-CONT VERSION VE2\r\n");
+                    break;                      
+                    
             default : break;
         }
         
