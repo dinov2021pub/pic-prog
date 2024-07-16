@@ -1,3 +1,10 @@
+# Settings
+- MPLAB X IDE でGithubにアクセスするには、access token が必要
+- Push 時に表示される Password の欄に access token を入力する
+- 詳細はこちら
+   - https://homepage.noakobo.net/news/archives/70#google_vignette
+ 
+
 # pic-prog
 Repository of PIC micon program
 
