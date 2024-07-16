@@ -224,12 +224,7 @@ void main(void) {
 
     while(1){
 
-//        ans = read_data_eeprom(NPD_ADR);
-//        printf("C\tEEPROM %d\r\n", ans); // Send
-        
-//        ans += 1;
-//        eeprom_write(NPD_ADR, ans);
-        
+       
         cmd = NON;
         
         rcmd[0] = 'Q'; 
