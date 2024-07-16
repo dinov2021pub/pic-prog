@@ -43,3 +43,11 @@ Repository of PIC micon program
 - PCとの接続は、RS-232C (内部にコンバータ https://akizukidenshi.com/catalog/g/gI-16063/ ) にて通信。基板(dino-con)には、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を接続できる端子がある。
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ１７８８－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/gI-11885/)。[データシート](https://akizukidenshi.com/download/ds/microchip/pic16f1788.pdf)
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
+
+## qcw-laser-cont.X
+- Raycus ファイバーレーザ RFL-QCW-*** 向けにアナログ信号入力でQCWパルス発振するためのプログラム
+- PIC 16F11788 を使用
+- USART通信
+- femto-Spotter コントローラ fs-cont をベースに開発
+- 不要なコマンドが多く存在（短納期で仕上げる必要があったため）
+
