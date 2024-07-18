@@ -3,11 +3,10 @@
  *
  * Author: Shuichi Dejima
  *
- * Created on 2023/12/25, 15:26
- * Compatible to Kohzu Controller for femto-spotter
- * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf
+ * Created on 2024/07/12, 15:26
+ * Controller for Raycus fiber laser RFL-QCW-600/6000 and 1000/10000
  * PIC : 16F1788
- * PCB : dino-con ver.001
+ * PCB : 
  *  */
 
 // CONFIG1
@@ -879,7 +878,7 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tFS-CONT VERSION 0\r\n");
+                    printf("C\tQCW-LASER-CONT VERSION 1\r\n");
                     break;
                         
             default : break;
