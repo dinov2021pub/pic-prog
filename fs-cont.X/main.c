@@ -38,6 +38,7 @@
 #define N_NOS RB2 // Needle Origin Set
 #define N_NTD RB1 // Needle Touch Detection
 #define NTCH RB0 // Needle Touch detect switch
+#define N_NTCH RA4 // Needle touch output 1:touch, 0:non-touch
 #define N_READY RA3 // READY / BUSY
 #define ROLL_P3 RA2 // ROLLER Phase3
 #define FS_CW RA1 // FS_CW
@@ -128,7 +129,7 @@ void main(void) {
 
     PORTA = 0x00;           // initialize PORTA
     PORTB = 0x00;           // initialize PORTB
-    TRISA = 0b01100000;     // PORTA in/output settings  RA6:limit sensor input, except output  0:output, 1:input => RA5 temporalily input
+    TRISA = 0b01100000;     // PORTA in/output settings  RA6:limit sensor input, except output  0:output, 1:input => RA5 temporalily input, RA3:READY/BUSY, RA4:N_NTCH
     TRISB = 0b10111111;     // PORTB in/output settings RB0:NTCH touch sensor input,  RB1:NTD input, RB2:STOP input, RB4:NDO input, RB5:NSD input, RB6:TxD output, RB7:RxD inputã€? 0:output, 1:input
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
@@ -149,13 +150,12 @@ void main(void) {
     
     ADRESL = 0x00;  // ADRESL 0; 
     ADRESH = 0x00;  // ADRESH 0; 
-//    ADCON0 = 0x01;    // GO_nDONE stop; ADON enabled; CHS AN0; 
     
     initUART(); // Start-stop synchronization serial communication
     
     long INTVL_ADR = 8;   //intvl parameter address
     long NPD_ADR = 10;   //npd parameter address
-    long NIP_ADR = 12;   //nip parameter address
+    long NIP_ADR = 12;   //nip(needle initial position) parameter address
     long NDCNT_ADR = 14; //dispensed count
 
     char tmp[40];
@@ -198,12 +198,6 @@ void main(void) {
 
     while(1){
 
-//        ans = read_data_eeprom(NPD_ADR);
-//        printf("C\tEEPROM %d\r\n", ans); // Send
-        
-//        ans += 1;
-//        eeprom_write(NPD_ADR, ans);
-        
         cmd = NON;
         
         rcmd[0] = 'Q'; 
@@ -219,8 +213,6 @@ void main(void) {
         if (SLCT == 0){
             if(N_NDO == 0){
                 cmd = NDO;
-//            }else if(N_NTD == 0){
-//                cmd = NTD;
             }else if(N_NSC == 0){
                 cmd = NSC;
             }else if(N_NOS == 0){
@@ -229,27 +221,20 @@ void main(void) {
         } else {
             gets(tmp);
         }
-
  
-        // LMT SW indicator = LED
-//        if(LMTON == 1){
-//            LEDON = 1;
-//        } else{
-//            LEDON = 0;
-//        }       
-//        gets(tmp);
-        
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
         rcmd[2] = tmp[3];
         rcmd[3] = '\0';
 
 
-//        if(NTCH == 0){
-//            LEDON = 1;
-//        } else{
-//            LEDON = 0;
-//        }       
+        if(NTCH == 0){
+            LEDON = 1;
+            N_NTCH = 1;
+        } else{
+            LEDON = 0;
+            N_NTCH = 0;
+        }       
 
         
         if(strcmp(rcmd,"RPS") == 0) {
@@ -465,7 +450,7 @@ void main(void) {
                     printf("C\tOSC\r\n"); // Send
                     break;
 
-            case NOS : 
+            case NOS :  //Needle Position initialize
                     dist = 10000;
                     for(k = 0 ; k < dist ; k++){    // Needle Upward
                         if(LMTON == 0){     //LMT ON
@@ -510,6 +495,7 @@ void main(void) {
 
                         if(NTCH == 0){
                             LEDON = 1;
+                            N_NTCH = 1;
                             break;
                         }
 
@@ -536,6 +522,7 @@ void main(void) {
 
                         if(NTCH == 0){
                             LEDON = 1;
+                            N_NTCH = 1;
                             break;
                         }
 
@@ -558,8 +545,12 @@ void main(void) {
                     }
                     ndcnt += 1;
                     write_data_eeprom(NDCNT_ADR, ndcnt);
-                    LEDON = 0;
-//                    puts("C");
+
+                    if(NTCH == 1){
+                        LEDON = 0;
+                        N_NTCH = 0;
+                    }
+
                     printf("C\tNDO\r\n"); // Send
                     break;
 
@@ -583,6 +574,7 @@ void main(void) {
 
                         if(NTCH == 0){
                             LEDON = 1;
+                            N_NTCH = 1;
                             break;
                         }
                     }
@@ -603,10 +595,13 @@ void main(void) {
                         }
                     }
                     
-                    LEDON = 0;
+                    if(NTCH == 1){
+                        LEDON = 0;
+                        N_NTCH = 0;
+                    }
                     ndcnt += 1;
                     write_data_eeprom(NDCNT_ADR, ndcnt);
-//                    puts("C");
+
                     printf("C\tNDD\r\n"); // Send
                     break;
 
@@ -812,18 +807,19 @@ void main(void) {
                     
             default : break;
         }
-        
-//        if(NTCH == 0){
-//            printf("SW OFF");
-//        }else{
-//            printf("SW ON");
-//        }
+
+       
+
         N_READY = 0;
 
         if(NTCH == 0){
             LEDON = 1;
+            N_NTCH = 1;
         }
-
+        else{
+            LEDON = 0;
+            N_NTCH = 0;
+        }
     }
 }
 
