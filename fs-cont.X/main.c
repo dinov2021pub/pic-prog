@@ -46,7 +46,6 @@
 #define TR RB3 // Transistor
 #define MAX_VALUE 32767
 #define MIN_VALUE 1
-//#define NPD_ADR 1   //npd parameter address
 
 // __EEPROM_DATA(0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07);
 
@@ -71,8 +70,6 @@ enum command {
   RDC,
   WDC,
   VER,
-  VE1,
-  VE2,
   STS,
   DA0,
   DA1,
@@ -162,16 +159,17 @@ void main(void) {
     int j = 10;
     int k = 0;
     int dist = 10;
-    int intvl = 20;
+    int intvl = 100;
     char rcmd[4];
     int mx_spd = 20250;
     int set_spd;
     long int npd = 2500;     // needle protrude distance
     int t_npd = 100;    // temporalneedle protrude distance
+    long int npd = 1000;
     int nsp = 500;
     char ln[4];
     int npos = 0;   // Needle Position
-    int nip = 5000;     // Needle Initial Position
+    int nip = 1000;     // Needle Initial Position
     long int ndcnt = 0; // Dispensed count
     int pzt_l = 0;  // pzt displacement %
     double pzt_l_d = 0;  // pzt displacement %
@@ -192,10 +190,22 @@ void main(void) {
     NTCH = 1;
     
     ndcnt = read_data_eeprom(NDCNT_ADR);
+    if(ndcnt == -1){
+        ndcnt = 0;
+    }
     npd = read_data_eeprom(NPD_ADR);
+    if(npd == -1){
+        npd = 1000;
+    }
     nip = read_data_eeprom(NIP_ADR);
+    if (nip == -1){
+        nip = 1000;
+    }
     intvl = read_data_eeprom(INTVL_ADR);
-
+    if (intvl == -1){
+        intvl = 100;
+    }
+    
     while(1){
 
         cmd = NON;
@@ -218,7 +228,22 @@ void main(void) {
             }else if(N_NOS == 0){
                 cmd = NOS;
             }
+            
+            if(NTCH == 0){
+                N_NTCH = 1;
+            }
+            else{
+                N_NTCH = 0;
+            }
+
         } else {
+            if(NTCH == 0){
+                LEDON = 1;
+            }
+            else{
+                LEDON = 0;
+            }
+
             gets(tmp);
         }
  
@@ -228,15 +253,6 @@ void main(void) {
         rcmd[3] = '\0';
 
 
-        if(NTCH == 0){
-            LEDON = 1;
-            N_NTCH = 1;
-        } else{
-            LEDON = 0;
-            N_NTCH = 0;
-        }       
-
-        
         if(strcmp(rcmd,"RPS") == 0) {
             cmd = RPS;
         }else if(strcmp(rcmd,"WTB") == 0){
@@ -265,10 +281,6 @@ void main(void) {
             cmd = WDC;        
         }else if(strcmp(rcmd,"VER") == 0){
             cmd = VER;
-        }else if(strcmp(rcmd,"VE1") == 0){
-            cmd = VE1;
-        }else if(strcmp(rcmd,"VE2") == 0){
-            cmd = VE2;            
         }else if(strcmp(rcmd,"STS") == 0){
             cmd = STS;
         }else if(strcmp(rcmd,"NSP") == 0){
@@ -346,7 +358,6 @@ void main(void) {
                         }
                     }
 
-//                    puts("C");
                     printf("C\tRPS\r\n"); // Send
                     break;
                         
@@ -446,7 +457,7 @@ void main(void) {
                     }
                     ndcnt += 1;
                     write_data_eeprom(NDCNT_ADR, ndcnt);
-//                    puts("C");
+
                     printf("C\tOSC\r\n"); // Send
                     break;
 
@@ -500,7 +511,6 @@ void main(void) {
                         }
 
                     }
-//                    puts("C");
                     printf("C\tNTD\r\n"); // Send
 
                     break;
@@ -619,7 +629,6 @@ void main(void) {
                         }
                     }
 
-//                    puts("C");
                     printf("C\tNSD\r\n"); // Send
                     break;
 
@@ -653,7 +662,6 @@ void main(void) {
                         }
                     }
 
-//                    puts("C");
                     ndcnt += 1;
                     write_data_eeprom(NDCNT_ADR, ndcnt);
                     printf("C\tNSC\r\n"); // Send
@@ -702,7 +710,10 @@ void main(void) {
                     break;
 
             case WDC :
-                    ndcnt = 0;
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        ndcnt = atoi(ptr);
+                    }
                     write_data_eeprom(NDCNT_ADR, ndcnt);
                     printf("C\tWDC/%d\r\n", ndcnt);
                     break;
@@ -797,29 +808,11 @@ void main(void) {
                     printf("C\tFS-CONT VERSION 0\r\n");
                     break;
                     
-            case VE1 : 
-                    printf("C\tFS-CONT VERSION VE1\r\n");
-                    break;   
-                    
-            case VE2 : 
-                    printf("C\tFS-CONT VERSION VE2\r\n");
-                    break;                      
-                    
             default : break;
         }
 
-       
-
         N_READY = 0;
 
-        if(NTCH == 0){
-            LEDON = 1;
-            N_NTCH = 1;
-        }
-        else{
-            LEDON = 0;
-            N_NTCH = 0;
-        }
     }
 }
 
