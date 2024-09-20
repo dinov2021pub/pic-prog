@@ -10,6 +10,7 @@
  * PCB : dino-con ver.002
  *  */
 
+
 // CONFIG1
 #pragma config FOSC = INTOSC  // Oscillator Selection bits (INTRC oscillator; port I/O function on both RA6/OSC2/CLKO pin and RA7/OSC1/CLKI pin)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled)
