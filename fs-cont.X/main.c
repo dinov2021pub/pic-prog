@@ -36,7 +36,7 @@
 #define N_NSC RB4 // Needle Oscillation
 #define SLCT RB3 // Modeselec, 0:External IO mode, 1:InternalRS-232C command
 #define N_NOS RB2 // Needle Origin Set
-#define N_NTD RB1 // Needle Touch Detection
+#define N_NTD RB1 // Needle Touch Detection (output))
 #define NTCH RB0 // Needle Touch detect switch
 #define N_NTCH RA4 // Needle touch output 1:touch, 0:non-touch
 #define N_READY RA3 // READY / BUSY
@@ -187,7 +187,7 @@ void main(void) {
     N_NSC = 1;
     SLCT = 1;
     N_NOS = 1;
-    NTCH = 1;
+//    NTCH = 1;
     
     ndcnt = read_data_eeprom(NDCNT_ADR);
     if(ndcnt == -1){
@@ -237,16 +237,21 @@ void main(void) {
             }
 
         } else {
-            if(NTCH == 0){
-                LEDON = 1;
-            }
-            else{
-                LEDON = 0;
+  
+            if (RCIF){
+                gets(tmp);
             }
 
-            gets(tmp);
         }
- 
+
+        if(NTCH == 0){
+            LEDON = 1;
+        }
+        else{
+            LEDON = 0;
+        }
+
+   
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
         rcmd[2] = tmp[3];
