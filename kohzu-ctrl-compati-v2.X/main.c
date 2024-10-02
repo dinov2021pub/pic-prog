@@ -4,6 +4,7 @@
  * Author: Shuichi Dejima
  *
  * Created on 2023/04/29, 15:26
+ * Last modified on 2024/10/02, 13:00
  * Compatible to Kohzu Controller for femto-spotter
  * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf
  *  */
