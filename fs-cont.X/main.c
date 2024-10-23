@@ -80,7 +80,8 @@ enum command {
   PMR,  // PZT move relatively
   RPP,  // Read PZT Position
   AIN,
-  NON
+  NON,
+  ERR
 };
 
 void write_data_eeprom(long adr, long value){
@@ -317,9 +318,12 @@ void main(void) {
             cmd = AIN;
         }else if(strcmp(rcmd,"NSD") == 0){
             cmd = NSD;
+        }else if(strcmp(tmp,"QQQ") != 0){
+            cmd = ERR;    
         }
         ptr = strtok(tmp, "/");
-
+//        printf("rcmd = %s", rcmd);
+ //       printf("tmp = %s", tmp);
         N_READY = 1;
   
         switch(cmd){
@@ -812,6 +816,10 @@ void main(void) {
 
             case VER : 
                     printf("C\tFS-CONT VERSION 0\r\n");
+                    break;
+
+            case ERR : 
+                    printf("E\tError\r\n");
                     break;
                     
             default : break;
