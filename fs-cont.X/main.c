@@ -324,6 +324,7 @@ void main(void) {
         ptr = strtok(tmp, "/");
 //        printf("rcmd = %s", rcmd);
  //       printf("tmp = %s", tmp);
+        
         N_READY = 1;
   
         switch(cmd){
