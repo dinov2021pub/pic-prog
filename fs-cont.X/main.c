@@ -4,6 +4,7 @@
  * Author: Shuichi Dejima
  *
  * Created on 2023/12/25, 15:26
+ * Release on 2024/10/24
  * Compatible to Kohzu Controller for femto-spotter
  * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf and CRUX_CRUX-A_manual_Rev1.41_JP.pdf
  * PIC : 16F1788
