@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>fs-cont</name>
+            <name>fs-cont2</name>
             <creation-uuid>56cd5294-fe5c-4442-b1cc-2eda52e8ce9e</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
