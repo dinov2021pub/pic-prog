@@ -79,6 +79,7 @@ enum command {
   DA2,
   PMV,  // PZT move triangle
   PMA,  // PZT move absolutely
+  PTD,  // PZT move Touch Detection
   PMR,  // PZT move relatively
   RPP,  // Read PZT Position
   AIN,
@@ -312,6 +313,8 @@ void main(void) {
             cmd = PMV;
         }else if(strcmp(rcmd,"PMA") == 0){
             cmd = PMA;
+        }else if(strcmp(rcmd,"PTD") == 0){
+            cmd = PTD;
         }else if(strcmp(rcmd,"PMR") == 0){
             cmd = PMR;
         }else if(strcmp(rcmd,"RPP") == 0){
@@ -767,17 +770,37 @@ void main(void) {
                     
                     break;
 
-            case PMA : 
+            case PTD : 
+                    
+                    DAC1CON1 = 0;
+                    pzt_d = 0.0;
                     
                     ptr = strtok(NULL, "/");
                     if(ptr != NULL) {
                         pzt_l = atoi(ptr);
                     }
-                    c_pzt = (int)(2.55 * pzt_l);
-                    DAC1CON1 = c_pzt;
-                    printf("C\tPMA\r\n");                    
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        pzt_t = atoi(ptr);
+                    }
+                    pzt_l_d = 2.55 * pzt_l / pzt_t;
+                    
+                    for (int k = 0; k < pzt_t ; k++){     
+                        __delay_us(100) ;
+                        DAC1CON1 = (int)pzt_d;
+                        pzt_d = pzt_d + pzt_l_d;
+ 
+                        if(NTCH == 0){
+                            LEDON = 1;
+                            N_NTCH = 1;
+                            break;
+                        }
+                    }
+                    DAC1CON1 = 0;
+                    printf("C\tPTD\r\n");                    
                     
                     break;
+
 
             case PMR : 
                     
@@ -818,7 +841,7 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tFS-CONT VERSION 0\r\n");
+                    printf("C\tFS-CONT VERSION 2\r\n");
                     break;
 
             case ERR : 
