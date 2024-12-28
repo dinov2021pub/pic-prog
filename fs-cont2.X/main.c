@@ -10,6 +10,7 @@
  * PIC : 16F1788
  * PCB : dino-con ver.002
  * Git test 2
+ * Version : 2.0.1
  *  */
 
 
@@ -160,19 +161,19 @@ void main(void) {
     long NIP_ADR = 12;   //nip(needle initial position) parameter address
     long NDCNT_ADR = 14; //dispensed count
 
-    char tmp[40];
+    char tmp[64];
     int j = 10;
     int k = 0;
     int dist = 10;
     int intvl = 100;
-    char rcmd[4];
+    char rcmd[8];
     int mx_spd = 20250;
     int set_spd;
     long int npd = 2500;     // needle protrude distance
     int t_npd = 100;    // temporalneedle protrude distance
     long int npd = 1000;
     int nsp = 500;
-    char ln[4];
+//    char ln[4];
     int npos = 0;   // Needle Position
     int nip = 1000;     // Needle Initial Position
     long int ndcnt = 0; // Dispensed count
@@ -215,10 +216,10 @@ void main(void) {
 
         cmd = NON;
         
-        rcmd[0] = 'Q'; 
-        rcmd[1] = 'Q'; 
-        rcmd[2] = 'Q'; 
-        rcmd[3] = '\0'; 
+//        rcmd[0] = 'Q'; 
+//        rcmd[1] = 'Q'; 
+//        rcmd[2] = 'Q'; 
+//        rcmd[3] = '\0'; 
 
         tmp[0] = 'Q';
         tmp[1] = 'Q';
@@ -242,12 +243,9 @@ void main(void) {
             }
 
         } else {
-  
-            if (RCIF){
-                gets(tmp);
-            }
-
+            gets(tmp);
         }
+
 
         if(NTCH == 0){
             LEDON = 1;
@@ -327,8 +325,6 @@ void main(void) {
             cmd = ERR;    
         }
         ptr = strtok(tmp, "/");
-//        printf("rcmd = %s", rcmd);
- //       printf("tmp = %s", tmp);
         
         N_READY = 1;
   
@@ -841,7 +837,7 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tFS-CONT VERSION 2\r\n");
+                    printf("C\tFS-CONT VERSION 2.0.1\r\n");
                     break;
 
             case ERR : 
