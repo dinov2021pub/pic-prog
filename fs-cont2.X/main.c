@@ -10,7 +10,7 @@
  * PIC : 16F1788
  * PCB : dino-con ver.002
  * Git test 2
- * Version : 2.0.1
+ * Version : 2.0.2
  *  */
 
 
@@ -759,9 +759,11 @@ void main(void) {
                     for (int k = 0; k < pzt_t ; k++){     
                         __delay_us(100) ;
                         DAC1CON1 = (int)pzt_d;
+                        c_pzt = (int)pzt_d;
                         pzt_d = pzt_d + pzt_l_d;
                     }
                     DAC1CON1 = 0;
+                    c_pzt = 0;
                     printf("C\tPMV\r\n");                    
                     
                     break;
@@ -784,6 +786,7 @@ void main(void) {
                     for (int k = 0; k < pzt_t ; k++){     
                         __delay_us(100) ;
                         DAC1CON1 = (int)pzt_d;
+                        c_pzt = (int)pzt_d;
                         pzt_d = pzt_d + pzt_l_d;
  
                         if(NTCH == 0){
@@ -793,6 +796,7 @@ void main(void) {
                         }
                     }
                     DAC1CON1 = 0;
+                    c_pzt = 0;
                     printf("C\tPTD\r\n");                    
                     
                     break;
@@ -837,7 +841,7 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tFS-CONT VERSION 2.0.1\r\n");
+                    printf("C\tFS-CONT VERSION 2.0.2\r\n");
                     break;
 
             case ERR : 
