@@ -29,10 +29,10 @@
 //#define MOTOR_P3 RB6 // MOTOR Phase3
 #define X_P2 RB5 // None
 #define X_P1 RB4 // None
-#define Y_P2 RA3 // DC fan ON/OFF 
+#define Y_P2 RA3  
 #define Y_P1 RA2 // LD red pointer ON/OFF
-#define NEEDLE_P2 RA1 // Needle axis CW
-#define NEEDLE_P1 RA0 // Needle axis CCW
+#define NEEDLE_P2 RA1 // DC fan ON/OFF
+#define NEEDLE_P1 RA0 
 //#define M_IN1 RA2 // H-bridge IN1
 //#define M_IN2 RA3 // H-bridge IN2
 #define TR RB3 // Transistor
@@ -46,6 +46,8 @@ enum command {
   OSC,
   NTD,
   NDO,
+  DCF,  // Control DC fan
+  LDP,  // Control LD red pointer
   VER,
   STS,
   NON
@@ -77,6 +79,12 @@ void main(void) {
     int intvl_z = 20;
     int set_spd;
 //    char ln[4];
+
+    int ld_on_off;
+    int dcf_on_off;
+    
+    NEEDLE_P2 = 0;
+    Y_P1 = 0;
     
     char *ptr;
     
@@ -116,6 +124,10 @@ void main(void) {
             cmd = NTD;
         }else if(strcmp(rcmd,"NDO") == 0){
             cmd = NDO;
+        }else if(strcmp(rcmd,"LDP") == 0){
+            cmd = LDP;
+        }else if(strcmp(rcmd,"DCF") == 0){
+            cmd = DCF;
         }else if(strcmp(rcmd,"VER") == 0){
             cmd = VER;
         }else if(strcmp(rcmd,"STS") == 0){
@@ -399,6 +411,35 @@ void main(void) {
 //                    puts("C");
 //                    printf("C\r\n"); // 送信
                     printf("C\tNDO\r\n"); // 送信
+                    break;
+
+            case LDP : 
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        ld_on_off = atoi(ptr);
+                    }
+
+                    if(ld_on_off == 0){
+                        Y_P1 = 0;                
+                    }else if(ld_on_off == 1){
+                        Y_P1 = 1;                
+                    }
+                    printf("C\tLDP\t%d\r\n", ld_on_off);
+                    break;
+
+                    
+            case DCF : 
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        dcf_on_off = atoi(ptr);
+                    }
+
+                    if(dcf_on_off == 0){
+                        NEEDLE_P2 = 0;                
+                    }else if(dcf_on_off == 1){
+                        NEEDLE_P2 = 1;                
+                    }
+                    printf("C\tDCF\t%d\r\n", dcf_on_off);
                     break;
 
             case STS : 
