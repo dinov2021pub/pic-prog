@@ -4,13 +4,14 @@
  * Author: Shuichi Dejima
  *
  * Created on 2023/12/25, 15:26
- * Release on 2024/10/24, 10:10
+ * Release on 2025/04/26, 10:10
  * Compatible to Kohzu Controller for femto-spotter
  * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf and CRUX_CRUX-A_manual_Rev1.41_JP.pdf
+ * MAnual : コントローラ使い方_fs-cont_FS-300M単体_PZT.pdf
  * PIC : 16F1788
  * PCB : dino-con ver.002
  * Git test 2
- * Version : 2.0.2
+ * Version : 2.0.3
  *  */
 
 
@@ -182,6 +183,8 @@ void main(void) {
     int pzt_t = 100;  // pzt displacement time ms
     double pzt_d = 0;
     int c_pzt = 0;  // current pzt position (0-255)
+    int pzt_wt = 0; // wait time for PMV
+    
     char *ptr;
 
     enum command cmd; // enum type object
@@ -755,12 +758,20 @@ void main(void) {
                         pzt_t = atoi(ptr);
                     }
                     pzt_l_d = 2.55 * pzt_l / pzt_t;
+
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        pzt_wt = atoi(ptr);
+                    }
                     
                     for (int k = 0; k < pzt_t ; k++){     
                         __delay_us(100) ;
                         DAC1CON1 = (int)pzt_d;
                         c_pzt = (int)pzt_d;
                         pzt_d = pzt_d + pzt_l_d;
+                    }
+                    for (k = 0; k < pzt_wt; k++){
+                        __delay_ms(1) ;
                     }
                     DAC1CON1 = 0;
                     c_pzt = 0;
@@ -841,7 +852,7 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tFS-CONT VERSION 2.0.2\r\n");
+                    printf("C\tFS-CONT VERSION 2.0.3\r\n");
                     break;
 
             case ERR : 
