@@ -7,11 +7,11 @@
  * Release on 2025/04/26, 10:10
  * Compatible to Kohzu Controller for femto-spotter
  * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf and CRUX_CRUX-A_manual_Rev1.41_JP.pdf
- * MAnual : コントローラ使い方_fs-cont_FS-300M単体_PZT.pdf
+ * Manual : コントローラ使い方_fs-cont_FS-300M単体_PZT.pdf
  * PIC : 16F1788
- * PCB : dino-con ver.002
+ * PCB : dino-con ver.003
  * Git test 2
- * Version : 2.0.3
+ * Version : 2.0.4
  *  */
 
 
@@ -41,7 +41,7 @@
 #define N_NSC RB4 // Needle Oscillation
 #define SLCT RB3 // Modeselec, 0:External IO mode, 1:InternalRS-232C command
 #define N_NOS RB2 // Needle Origin Set
-#define N_NTD RB1 // Needle Touch Detection (output))
+#define N_PMV RB1 // PZT move Oscillation (input))
 #define NTCH RB0 // Needle Touch detect switch
 #define N_NTCH RA4 // Needle touch output 1:touch, 0:non-touch
 #define N_READY RA3 // READY / BUSY
@@ -83,7 +83,9 @@ enum command {
   PMA,  // PZT move absolutely
   PTD,  // PZT move Touch Detection
   PMR,  // PZT move relatively
-  RPP,  // Read PZT Position
+  RPL,  // Read PZT Location
+  WPP,  // Write PZT Parameters
+  RPP,  // Read PZT Parameters
   AIN,
   NON,
   ERR
@@ -134,7 +136,7 @@ void main(void) {
     PORTA = 0x00;           // initialize PORTA
     PORTB = 0x00;           // initialize PORTB
     TRISA = 0b01100000;     // PORTA in/output settings  RA6:limit sensor input, except output  0:output, 1:input => RA5 temporalily input, RA3:READY/BUSY, RA4:N_NTCH
-    TRISB = 0b10111111;     // PORTB in/output settings RB0:NTCH touch sensor input,  RB1:NTD input, RB2:STOP input, RB4:NDO input, RB5:NSD input, RB6:TxD output, RB7:RxD input縲? 0:output, 1:input
+    TRISB = 0b10111111;     // PORTB in/output settings RB0:NTCH touch sensor input,  RB1:PMV input, RB2:NOS input, RB4:NDO input, RB5:NDO input, RB6:TxD output, RB7:RxD input =>   0:output, 1:input
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
     OSCCON = 0b01101010;    // Set internal clock to 4MHz
@@ -161,6 +163,9 @@ void main(void) {
     long NPD_ADR = 10;   //npd parameter address
     long NIP_ADR = 12;   //nip(needle initial position) parameter address
     long NDCNT_ADR = 14; //dispensed count
+    long PZT_L_ADR = 16; //pzt L parameter
+    long PZT_t_ADR = 18; //pzt t parameter
+    long PZT_wt_ADR = 20; //pzt wt parameter
 
     char tmp[64];
     int j = 10;
@@ -184,6 +189,9 @@ void main(void) {
     double pzt_d = 0;
     int c_pzt = 0;  // current pzt position (0-255)
     int pzt_wt = 0; // wait time for PMV
+    int m_pzt_l = 0;  // pzt displacement %
+    int m_pzt_t = 100;  // pzt displacement time ms
+    int m_pzt_wt = 0; // wait time for PMV
     
     char *ptr;
 
@@ -191,12 +199,10 @@ void main(void) {
 
     unsigned int val;
     
-    N_NTD = 1;
     N_NDO = 1;
     N_NSC = 1;
     SLCT = 1;
     N_NOS = 1;
-//    NTCH = 1;
     
     ndcnt = read_data_eeprom(NDCNT_ADR);
     if(ndcnt == -1){
@@ -213,6 +219,21 @@ void main(void) {
     intvl = read_data_eeprom(INTVL_ADR);
     if (intvl == -1){
         intvl = 100;
+    }
+    
+    m_pzt_l = read_data_eeprom(PZT_L_ADR);
+    if (m_pzt_l == -1){
+        m_pzt_l = 0;
+    }
+ 
+    m_pzt_t = read_data_eeprom(PZT_t_ADR);
+    if (m_pzt_t == -1){
+        m_pzt_t = 100;
+    }
+
+    m_pzt_wt = read_data_eeprom(PZT_wt_ADR);
+    if (m_pzt_wt == -1){
+        m_pzt_wt = 100;
     }
     
     while(1){
@@ -236,6 +257,8 @@ void main(void) {
                 cmd = NSC;
             }else if(N_NOS == 0){
                 cmd = NOS;
+            }else if(N_PMV == 0){
+                cmd = PMV;
             }
             
             if(NTCH == 0){
@@ -318,6 +341,10 @@ void main(void) {
             cmd = PTD;
         }else if(strcmp(rcmd,"PMR") == 0){
             cmd = PMR;
+        }else if(strcmp(rcmd,"RPL") == 0){
+            cmd = RPL;
+        }else if(strcmp(rcmd,"WPP") == 0){
+            cmd = WPP;
         }else if(strcmp(rcmd,"RPP") == 0){
             cmd = RPP;
         }else if(strcmp(rcmd,"AIN") == 0){
@@ -752,17 +779,22 @@ void main(void) {
                     ptr = strtok(NULL, "/");
                     if(ptr != NULL) {
                         pzt_l = atoi(ptr);
-                    }
-                    ptr = strtok(NULL, "/");
-                    if(ptr != NULL) {
-                        pzt_t = atoi(ptr);
+
+                        ptr = strtok(NULL, "/");
+                        if(ptr != NULL) {
+                            pzt_t = atoi(ptr);
+                        }
+
+                        ptr = strtok(NULL, "/");
+                        if(ptr != NULL) {
+                            pzt_wt = atoi(ptr);
+                        }
+                    }else{
+                        pzt_l = m_pzt_l;
+                        pzt_t = m_pzt_t;
+                        pzt_wt = m_pzt_wt;
                     }
                     pzt_l_d = 2.55 * pzt_l / pzt_t;
-
-                    ptr = strtok(NULL, "/");
-                    if(ptr != NULL) {
-                        pzt_wt = atoi(ptr);
-                    }
                     
                     for (int k = 0; k < pzt_t ; k++){     
                         __delay_us(100) ;
@@ -833,9 +865,35 @@ void main(void) {
                     break;
 
 
-            case RPP : 
-                    printf("C\tRPP/%d\r\n", c_pzt);                    
+            case RPL : 
+                    printf("C\tRPL/%d\r\n", c_pzt);                    
 
+                    break;
+
+            case WPP : 
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        m_pzt_l = atoi(ptr);
+                    }
+                    write_data_eeprom(PZT_L_ADR, m_pzt_l);
+
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        m_pzt_t = atoi(ptr);
+                    }
+                    write_data_eeprom(PZT_t_ADR, m_pzt_t);
+
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        m_pzt_wt = atoi(ptr);
+                    }
+                    write_data_eeprom(PZT_wt_ADR, m_pzt_wt);
+                    
+                    printf("C\tWPP/%d/%d/%d\r\n", m_pzt_l, m_pzt_t, m_pzt_wt);
+                    break;
+
+            case RPP : 
+                    printf("C\tWPP/%d/%d/%d\r\n", m_pzt_l, m_pzt_t, m_pzt_wt);
                     break;
 
             case AIN : 
@@ -852,7 +910,7 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tFS-CONT VERSION 2.0.3\r\n");
+                    printf("C\tFS-CONT VERSION 2.0.4\r\n");
                     break;
 
             case ERR : 
