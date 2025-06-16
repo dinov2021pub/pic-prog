@@ -4,14 +4,14 @@
  * Author: Shuichi Dejima
  *
  * Created on 2023/12/25, 15:26
- * Release on 2025/04/26, 10:10
+ * Release on 2025/05/16, 10:10
  * Compatible to Kohzu Controller for femto-spotter
  * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf and CRUX_CRUX-A_manual_Rev1.41_JP.pdf
  * Manual : コントローラ使い方_fs-cont_FS-300M単体_PZT.pdf
  * PIC : 16F1788
  * PCB : dino-con ver.003
  * Git test 2
- * Version : 2.0.4
+ * Version : 2.1.0
  *  */
 
 
@@ -53,6 +53,11 @@
 #define MIN_VALUE 1
 
 // __EEPROM_DATA(0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07);
+#define CMD_BUF_LEN 64
+
+volatile char cmd_buf[CMD_BUF_LEN];
+volatile uint8_t cmd_index = 0;
+volatile uint8_t cmd_ready = 0;
 
 enum command {
   RPS,
@@ -131,6 +136,18 @@ unsigned int AD_convert(unsigned char channel){
 	return (ADRESH<<8) + ADRESL;
 }
 
+void uart_write(char data) {
+    while (!TXSTAbits.TRMT); // バッファ空くのを待つ
+    TXREG = data;
+}
+
+void uart_write_str(const char* str) {
+    while (*str) {
+        uart_write(*str++);
+    }
+}
+
+
 void main(void) {
 
     PORTA = 0x00;           // initialize PORTA
@@ -138,7 +155,7 @@ void main(void) {
     TRISA = 0b01100000;     // PORTA in/output settings  RA6:limit sensor input, except output  0:output, 1:input => RA5 temporalily input, RA3:READY/BUSY, RA4:N_NTCH
     TRISB = 0b10111111;     // PORTB in/output settings RB0:NTCH touch sensor input,  RB1:PMV input, RB2:NOS input, RB4:NDO input, RB5:NDO input, RB6:TxD output, RB7:RxD input =>   0:output, 1:input
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
-    PIE1 = 0b00110000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
+    PIE1 = 0b00100000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
     OSCCON = 0b01101010;    // Set internal clock to 4MHz
     ANSELB = 0b00000000;    // All digital
     
@@ -156,7 +173,7 @@ void main(void) {
     
     ADRESL = 0x00;  // ADRESL 0; 
     ADRESH = 0x00;  // ADRESH 0; 
-    
+
     initUART(); // Start-stop synchronization serial communication
     
     long INTVL_ADR = 8;   //intvl parameter address
@@ -198,14 +215,14 @@ void main(void) {
     enum command cmd; // enum type object
 
     unsigned int val;
-    
+
     N_NDO = 1;
     N_NSC = 1;
     SLCT = 1;
     N_NOS = 1;
     
     ndcnt = read_data_eeprom(NDCNT_ADR);
-    if(ndcnt == -1){
+        if(ndcnt == -1){
         ndcnt = 0;
     }
     npd = read_data_eeprom(NPD_ADR);
@@ -240,11 +257,6 @@ void main(void) {
 
         cmd = NON;
         
-//        rcmd[0] = 'Q'; 
-//        rcmd[1] = 'Q'; 
-//        rcmd[2] = 'Q'; 
-//        rcmd[3] = '\0'; 
-
         tmp[0] = 'Q';
         tmp[1] = 'Q';
         tmp[2] = 'Q';
@@ -269,9 +281,13 @@ void main(void) {
             }
 
         } else {
-            gets(tmp);
+            //            gets(tmp);
+            if (cmd_ready) {
+                cmd_ready = 0;
+                strcpy(tmp, cmd_buf);
+                memset(cmd_buf, '\0', sizeof(cmd_buf));
+            }
         }
-
 
         if(NTCH == 0){
             LEDON = 1;
@@ -279,13 +295,11 @@ void main(void) {
         else{
             LEDON = 0;
         }
-
    
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
         rcmd[2] = tmp[3];
         rcmd[3] = '\0';
-
 
         if(strcmp(rcmd,"RPS") == 0) {
             cmd = RPS;
@@ -351,7 +365,7 @@ void main(void) {
             cmd = AIN;
         }else if(strcmp(rcmd,"NSD") == 0){
             cmd = NSD;
-        }else if(strcmp(tmp,"QQQ") != 0){
+        }else if(strcmp(tmp,"QQQ") == 0){
             cmd = ERR;    
         }
         ptr = strtok(tmp, "/");
@@ -910,11 +924,11 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tFS-CONT VERSION 2.0.4\r\n");
+                    printf("C\tFS-CONT VERSION 2.1.0\r\n");
                     break;
 
             case ERR : 
-                    printf("E\tError\r\n");
+//                    printf("E\tError\r\n");
                     break;
                     
             default : break;
@@ -922,6 +936,34 @@ void main(void) {
 
         N_READY = 0;
 
+        memset(tmp, '\0', sizeof(tmp));
+    }
+}
+
+void __interrupt() isr(void) {
+    if (PIE1bits.RCIE && PIR1bits.RCIF) {
+        char c = RCREG;
+        uart_write(c);
+        
+        // 受信バッファオーバーランの処理
+        if (RCSTAbits.OERR) {
+            RCSTAbits.CREN = 0;
+            RCSTAbits.CREN = 1;
+        }
+
+        if (c == '\r' || c == '\n') {
+            if (cmd_index > 0) {
+                cmd_buf[cmd_index] = '\0';  // 終端
+                cmd_ready = 1;              // フラグON
+                cmd_index = 0;
+            }
+        } else {
+            if (cmd_index < CMD_BUF_LEN - 1) {
+                cmd_buf[cmd_index++] = c; 
+           } else {
+                cmd_index = 0;  // オーバーフロー処理
+            }
+        }
     }
 }
 
