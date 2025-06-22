@@ -4,14 +4,14 @@
  * Author: Shuichi Dejima
  *
  * Created on 2023/12/25, 15:26
- * Release on 2025/05/16, 10:10
+ * Release on 2025/06/22, 10:10
  * Compatible to Kohzu Controller for femto-spotter
  * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf and CRUX_CRUX-A_manual_Rev1.41_JP.pdf
  * Manual : コントローラ使い方_fs-cont_FS-300M単体_PZT.pdf
  * PIC : 16F1788
- * PCB : dino-con ver.003
+ * PCB : dino-con ver.002
  * Git test 2
- * Version : 2.1.0
+ * Version : 2.2.0
  *  */
 
 
@@ -265,12 +265,16 @@ void main(void) {
         if (SLCT == 0){
             if(N_NDO == 0){
                 cmd = NDO;
+                printf("C\tEXT-NDO\r\n"); // Send
             }else if(N_NSC == 0){
                 cmd = NSC;
+                printf("C\tEXT-NSC\r\n"); // Send
             }else if(N_NOS == 0){
                 cmd = NOS;
+                printf("C\tEXT-NOS\r\n"); // Send
             }else if(N_PMV == 0){
                 cmd = PMV;
+                printf("C\tEXT-PMV\r\n"); // Send
             }
             
             if(NTCH == 0){
@@ -365,8 +369,10 @@ void main(void) {
             cmd = AIN;
         }else if(strcmp(rcmd,"NSD") == 0){
             cmd = NSD;
-        }else if(strcmp(tmp,"QQQ") == 0){
-            cmd = ERR;    
+        }else{
+            if(cmd_ready == 0 && SLCT == 1 && strcmp(tmp,"QQQ") != 0){
+                cmd = ERR;    
+            }
         }
         ptr = strtok(tmp, "/");
         
@@ -924,11 +930,11 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tFS-CONT VERSION 2.1.0\r\n");
+                    printf("C\tFS-CONT VERSION 2.2.0\r\n");
                     break;
 
             case ERR : 
-//                    printf("E\tError\r\n");
+                    printf("E\tError_%s\r\n", tmp);
                     break;
                     
             default : break;
