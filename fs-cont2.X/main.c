@@ -4,14 +4,14 @@
  * Author: Shuichi Dejima
  *
  * Created on 2023/12/25, 15:26
- * Release on 2025/06/22, 10:10
+ * Release on 2025/07/18, 10:10
  * Compatible to Kohzu Controller for femto-spotter
  * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf and CRUX_CRUX-A_manual_Rev1.41_JP.pdf
  * Manual : コントローラ使い方_fs-cont_FS-300M単体_PZT.pdf
  * PIC : 16F1788
- * PCB : dino-con ver.002
+ * PCB : dino-con ver.003
  * Git test 2
- * Version : 2.2.0
+ * Version : 2.2.1
  *  */
 
 
@@ -913,7 +913,7 @@ void main(void) {
                     break;
 
             case RPP : 
-                    printf("C\tWPP/%d/%d/%d\r\n", m_pzt_l, m_pzt_t, m_pzt_wt);
+                    printf("C\tRPP/%d/%d/%d\r\n", m_pzt_l, m_pzt_t, m_pzt_wt);
                     break;
 
             case AIN : 
