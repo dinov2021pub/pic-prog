@@ -4,14 +4,14 @@
  * Author: Shuichi Dejima
  *
  * Created on 2023/12/25, 15:26
- * Release on 2025/07/18, 10:10
+ * Release on 2025/07/25, 10:10
  * Compatible to Kohzu Controller for femto-spotter
  * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf and CRUX_CRUX-A_manual_Rev1.41_JP.pdf
  * Manual : コントローラ使い方_fs-cont_FS-300M単体_PZT.pdf
  * PIC : 16F1788
  * PCB : dino-con ver.003
  * Git test 2
- * Version : 2.2.1
+ * Version : 2.2.2
  *  */
 
 
@@ -188,7 +188,9 @@ void main(void) {
     int j = 10;
     int k = 0;
     int dist = 10;
+    int dist_slow = 2;  // move distanvce with slow speed
     int intvl = 100;
+    int t_intvl = 100;
     char rcmd[8];
     int mx_spd = 20250;
     int set_spd;
@@ -390,9 +392,52 @@ void main(void) {
                     }
                     
                     if (dist > 0){
-                        for(k = 0 ; k < dist ; k++){
+                        dist_slow = (int)(dist * 0.2);
+                        // Forward
+                        t_intvl = (int)(intvl * 2);
+                        for(k = 0 ; k < dist_slow ; k++){
                             FS_CCW = 1;
-                            npos += 1;
+                            if(npos < 1000000){
+                                npos += 1;
+                            }else{
+                                npos = 1000000;
+                            }
+                            
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                            FS_CCW = 0;
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        t_intvl = intvl;
+                        for(k = dist_slow ; k < dist - dist_slow ; k++){
+                            FS_CCW = 1;
+                            if(npos < 1000000){
+                                npos += 1;
+                            }else{
+                                npos = 1000000;
+                            }
+                            
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                            FS_CCW = 0;
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        t_intvl = (int)(intvl * 2);
+                        for(k = dist - dist_slow ; k < dist ; k++){
+                            FS_CCW = 1;
+                            if(npos < 1000000){
+                                npos += 1;
+                            }else{
+                                npos = 1000000;
+                            }
+                            
+                            if(k > dist)
                             for(j = 0 ; j < intvl ; j++){
                                 __delay_us(1);
                             }
@@ -403,7 +448,42 @@ void main(void) {
                         }
                     } else {
                         dist *= -1;
-                        for(k = 0 ; k < dist ; k++){
+                        dist_slow = (int)(dist * 0.2);
+                        // Backward
+                        t_intvl = (int)(intvl * 2);
+                        for(k = 0 ; k < dist_slow ; k++){
+                            FS_CW = 1;
+                            if(npos > 1){
+                                npos -= 1;
+                            }else{
+                                npos = 0;
+                            }
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                            FS_CW = 0;
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        t_intvl = intvl;
+                        for(k = dist_slow ; k < dist - dist_slow ; k++){
+                            FS_CW = 1;
+                            if(npos > 1){
+                                npos -= 1;
+                            }else{
+                                npos = 0;
+                            }
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                            FS_CW = 0;
+                            for(j = 0 ; j < intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        t_intvl = intvl;
+                        for(k = dist - dist_slow ; k < dist ; k++){
                             FS_CW = 1;
                             if(npos > 1){
                                 npos -= 1;
@@ -462,57 +542,208 @@ void main(void) {
                     }
                     
                     if (dist > 0){
-                        for(k = 0 ; k < dist ; k++){
+                        dist_slow = (int)(dist * 0.2);
+                        // Forward
+                        t_intvl = (int)(intvl * 2);
+                        for(k = 0 ; k < dist_slow ; k++){
                             FS_CCW = 1;
-                            npos += 1;
-                            for(j = 0 ; j < intvl ; j++){
+                            if(npos < 1000000){
+                                npos += 1;
+                            }else{
+                                npos = 1000000;
+                            }
+                            for(j = 0 ; j < t_intvl ; j++){
                                 __delay_us(1);
                             }
                             FS_CCW = 0;
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < t_intvl ; j++){
                                 __delay_us(1);
                             }
                         }
-                        for(k = 0 ; k < dist ; k++){
+                        t_intvl = intvl;
+                        for(k = dist_slow ; k < dist - dist_slow ; k++){
+                            FS_CCW = 1;
+                            if(npos < 1000000){
+                                npos += 1;
+                            }else{
+                                npos = 1000000;
+                            }
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                            FS_CCW = 0;
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        t_intvl = (int)(intvl * 2);
+                        for(k = dist - dist_slow ; k < dist ; k++){
+                            FS_CCW = 1;                            
+                            if(npos < 1000000){
+                                npos += 1;
+                            }else{
+                                npos = 1000000;
+                            }
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                            FS_CCW = 0;
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        // Backward
+                        __delay_ms(100);
+                        t_intvl = (int)(intvl * 2);
+                        for(k = 0 ; k < dist_slow ; k++){
                             FS_CW = 1;
                             if(npos > 1){
                                 npos -= 1;
                             }else{
                                 npos = 0;
                             }
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < t_intvl ; j++){
                                 __delay_us(1);
                             }
                             FS_CW = 0;
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        t_intvl = intvl;
+                        for(k = dist_slow ; k < dist - dist_slow ; k++){
+                            FS_CW = 1;
+                            if(npos > 1){
+                                npos -= 1;
+                            }else{
+                                npos = 0;
+                            }
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                            FS_CW = 0;
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        t_intvl = (int)(intvl * 2);
+                        for(k = dist - dist_slow ; k < dist ; k++){
+                            FS_CW = 1;
+                            if(npos > 1){
+                                npos -= 1;
+                            }else{
+                                npos = 0;
+                            }
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                            FS_CW = 0;
+                            for(j = 0 ; j < t_intvl ; j++){
                                 __delay_us(1);
                             }
                         }
                     } else {
                         dist *= -1;
-                        for(k = 0 ; k < dist ; k++){
+                        dist_slow = (int)(dist * 0.2);
+                        // Forward
+                        t_intvl = (int)(intvl * 2);
+                        for(k = 0 ; k < dist_slow ; k++){
                             FS_CW = 1;
                             if(npos > 1){
                                 npos -= 1;
                             }else{
                                 npos = 0;
                             }
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < t_intvl ; j++){
                                 __delay_us(1);
                             }
                             FS_CW = 0;
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < t_intvl ; j++){
                                 __delay_us(1);
                             }
                         }
-                        for(k = 0 ; k < dist ; k++){
+                        t_intvl = intvl;
+                        for(k = dist_slow ; k < dist - dist_slow ; k++){
+                            FS_CW = 1;
+                            if(npos > 1){
+                                npos -= 1;
+                            }else{
+                                npos = 0;
+                            }
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                            FS_CW = 0;
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        t_intvl = (int)(intvl * 2);
+                        for(k = dist - dist_slow ; k < dist ; k++){
+                            FS_CW = 1;
+                            if(npos > 1){
+                                npos -= 1;
+                            }else{
+                                npos = 0;
+                            }
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                            FS_CW = 0;
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        // Backward
+                        __delay_ms(100);
+                        t_intvl = (int)(intvl * 2);
+                        for(k = 0 ; k < dist_slow ; k++){
                             FS_CCW = 1;
-                            npos += 1;
-                            for(j = 0 ; j < intvl ; j++){
+                            if(npos < 1000000){
+                                npos += 1;
+                            }else{
+                                npos = 1000000;
+                            }
+
+                            for(j = 0 ; j < t_intvl ; j++){
                                 __delay_us(1);
                             }
                             FS_CCW = 0;
-                            for(j = 0 ; j < intvl ; j++){
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        t_intvl = intvl;
+                        for(k = dist_slow ; k < dist - dist_slow ; k++){
+                            FS_CCW = 1;
+                            if(npos < 1000000){
+                                npos += 1;
+                            }else{
+                                npos = 1000000;
+                            }
+
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                            FS_CCW = 0;
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                        }
+                        t_intvl = (int)(intvl * 2);
+                        for(k = dist - dist_slow ; k < dist ; k++){
+                            FS_CCW = 1;
+                            if(npos < 1000000){
+                                npos += 1;
+                            }else{
+                                npos = 1000000;
+                            }
+
+                            for(j = 0 ; j < t_intvl ; j++){
+                                __delay_us(1);
+                            }
+                            FS_CCW = 0;
+                            for(j = 0 ; j < t_intvl ; j++){
                                 __delay_us(1);
                             }
                         }
@@ -930,7 +1161,7 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tFS-CONT VERSION 2.2.0\r\n");
+                    printf("C\tFS-CONT VERSION 2.2.2\r\n");
                     break;
 
             case ERR : 
