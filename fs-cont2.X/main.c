@@ -11,7 +11,7 @@
  * PIC : 16F1788
  * PCB : dino-con ver.003
  * Git test 2
- * Version : 2.2.2
+ * Version : 2.2.3
  *  */
 
 
@@ -1062,6 +1062,35 @@ void main(void) {
                     
                     break;
 
+            case PMA : 
+                    DAC1CON1 = 0;
+                    pzt_d = 0.0;
+                    
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        pzt_l = atoi(ptr);
+
+                        ptr = strtok(NULL, "/");
+                        if(ptr != NULL) {
+                            pzt_wt = atoi(ptr);
+                        }
+                    }else{
+                        pzt_l = m_pzt_l;
+                        pzt_wt = m_pzt_wt;
+                    }
+
+                    DAC1CON1 = (int)(2.55 * pzt_l);
+
+                    for (k = 0; k < pzt_wt; k++){
+                        __delay_ms(1) ;
+                    }
+
+                    DAC1CON1 = 0;
+                    c_pzt = 0;
+                    printf("C\tPMA\r\n");                    
+                    
+                    break;
+
             case PTD : 
                     
                     DAC1CON1 = 0;
@@ -1111,7 +1140,7 @@ void main(void) {
                     }
                         
                     DAC1CON1 = c_pzt;
-                    printf("C\tPMR\r\n");                    
+                    printf("C\tPMR=%d\r\n", c_pzt);                    
                     
                     break;
 
@@ -1161,7 +1190,7 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tFS-CONT VERSION 2.2.2\r\n");
+                    printf("C\tFS-CONT VERSION 2.2.3\r\n");
                     break;
 
             case ERR : 
