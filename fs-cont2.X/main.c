@@ -4,7 +4,7 @@
  * Author: Shuichi Dejima
  *
  * Created on 2023/12/25, 15:26
- * Release on 2025/07/25, 10:10
+ * Release on 2025/07/31, 10:10
  * Compatible to Kohzu Controller for femto-spotter
  * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf and CRUX_CRUX-A_manual_Rev1.41_JP.pdf
  * Manual : コントローラ使い方_fs-cont_FS-300M単体_PZT.pdf
@@ -41,7 +41,7 @@
 #define N_NSC RB4 // Needle Oscillation
 #define SLCT RB3 // Modeselec, 0:External IO mode, 1:InternalRS-232C command
 #define N_NOS RB2 // Needle Origin Set
-#define N_PMV RB1 // PZT move Oscillation (input))
+#define N_PMO RB1 // PZT move Oscillation (input))
 #define NTCH RB0 // Needle Touch detect switch
 #define N_NTCH RA4 // Needle touch output 1:touch, 0:non-touch
 #define N_READY RA3 // READY / BUSY
@@ -86,6 +86,7 @@ enum command {
   DA2,
   PMV,  // PZT move triangle
   PMA,  // PZT move absolutely
+  PMO,  // PZT move and shrink
   PTD,  // PZT move Touch Detection
   PMR,  // PZT move relatively
   RPL,  // Read PZT Location
@@ -202,6 +203,7 @@ void main(void) {
     int npos = 0;   // Needle Position
     int nip = 1000;     // Needle Initial Position
     long int ndcnt = 0; // Dispensed count
+    int exp_div = 8;    // divide number when needle move
     int pzt_l = 0;  // pzt displacement %
     double pzt_l_d = 0;  // pzt displacement %
     int pzt_t = 100;  // pzt displacement time ms
@@ -274,9 +276,9 @@ void main(void) {
             }else if(N_NOS == 0){
                 cmd = NOS;
                 printf("C\tEXT-NOS\r\n"); // Send
-            }else if(N_PMV == 0){
-                cmd = PMV;
-                printf("C\tEXT-PMV\r\n"); // Send
+            }else if(N_PMO == 0){
+                cmd = PMO;
+                printf("C\tEXT-PMO\r\n"); // Send
             }
             
             if(NTCH == 0){
@@ -357,6 +359,8 @@ void main(void) {
             cmd = PMV;
         }else if(strcmp(rcmd,"PMA") == 0){
             cmd = PMA;
+        }else if(strcmp(rcmd,"PMO") == 0){
+            cmd = PMO;
         }else if(strcmp(rcmd,"PTD") == 0){
             cmd = PTD;
         }else if(strcmp(rcmd,"PMR") == 0){
@@ -1062,7 +1066,7 @@ void main(void) {
                     
                     break;
 
-            case PMA : 
+            case PMO : 
                     DAC1CON1 = 0;
                     pzt_d = 0.0;
                     
@@ -1079,7 +1083,10 @@ void main(void) {
                         pzt_wt = m_pzt_wt;
                     }
 
-                    DAC1CON1 = (int)(2.55 * pzt_l);
+                    for (k = 0;k < exp_div; k++){
+                        __delay_ms(5) ;
+                        DAC1CON1 = (int)(2.55 * pzt_l * (k + 1)/ exp_div);
+                    }
 
                     for (k = 0; k < pzt_wt; k++){
                         __delay_ms(1) ;
@@ -1087,6 +1094,32 @@ void main(void) {
 
                     DAC1CON1 = 0;
                     c_pzt = 0;
+                    printf("C\tPMO\r\n");                    
+                    
+                    break;
+
+            case PMA : 
+                    DAC1CON1 = 0;
+                    
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        pzt_l = atoi(ptr);
+
+                        ptr = strtok(NULL, "/");
+                        if(ptr != NULL) {
+                            pzt_wt = atoi(ptr);
+                        }
+                    }else{
+                        pzt_l = m_pzt_l;
+                        pzt_wt = m_pzt_wt;
+                    }
+
+                    for (k = 0;k < exp_div; k++){
+                        __delay_ms(5) ;
+                        DAC1CON1 = (int)(2.55 * pzt_l * (k + 1)/ exp_div);
+                    }
+
+                    c_pzt = (int)(2.55 * pzt_l);
                     printf("C\tPMA\r\n");                    
                     
                     break;
