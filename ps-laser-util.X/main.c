@@ -56,13 +56,13 @@ enum command {
 
 void main(void) {
     
-    PORTA = 0x00;           // PORTA繧貞?晄悄蛹?
-    PORTB = 0x00;           // PORTB繧貞?晄悄蛹?
-    TRISA = 0b00000000;     // PORTA縺ｮ蜈･蜃ｺ蜉幄ｨｭ螳? 蜈ｨ縺ｦ蜃ｺ蜉?
+    PORTA = 0x00;           // PORTAを初期化
+    PORTB = 0x00;           // PORTBを初期化
+    TRISA = 0b00000000;     // PORTAの入出力設定 RA0はA相, RA1はB相
     TRISB = 0b00000011;     // PORTB縺ｮ蜈･蜃ｺ蜉幄ｨｭ螳? RB1縺ｯRX, RB0 縺ｯ蜈･蜉?
-    CMCON = 0b00000111;     // 繧ｳ繝ｳ繝代Ξ繝ｼ繧ｿ縺ｯ菴ｿ逕ｨ縺励↑縺?(RA0-RA4縺ｯ繝?繧ｸ繧ｿ繝ｫ繝斐Φ縺ｧ菴ｿ逕ｨ)
+    CMCON = 0b00000111;     // コンパレータは使用しない(RA0-RA4はデジタルピンで使用)
     
-    initUART();             // 隱ｿ豁ｩ蜷梧悄蠑上す繝ｪ繧｢繝ｫ騾壻ｿ｡險ｭ螳?
+    initUART();             // 調歩同期式シリアル通信設定
  
     char tmp[40];
     int j = 10;
