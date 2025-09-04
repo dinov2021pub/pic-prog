@@ -32,7 +32,7 @@
 #define Y_P2 RA3  
 #define Y_P1 RA2 // LD red pointer ON/OFF
 #define NEEDLE_P2 RA1 // DC fan ON/OFF
-#define NEEDLE_P1 RA0 
+#define NEEDLE_P1 RA0 // Shutter ON/OFF
 //#define M_IN1 RA2 // H-bridge IN1
 //#define M_IN2 RA3 // H-bridge IN2
 #define TR RB3 // Transistor
@@ -48,6 +48,7 @@ enum command {
   NDO,
   DCF,  // Control DC fan
   LDP,  // Control LD red pointer
+  SHT,  // Shutter Controller
   VER,
   STS,
   NON
@@ -82,8 +83,10 @@ void main(void) {
 
     int ld_on_off;
     int dcf_on_off;
+    int sht_on_off;
     
     NEEDLE_P2 = 0;
+    NEEDLE_P1 = 0;
     Y_P1 = 0;
     
     char *ptr;
@@ -128,6 +131,8 @@ void main(void) {
             cmd = LDP;
         }else if(strcmp(rcmd,"DCF") == 0){
             cmd = DCF;
+        }else if(strcmp(rcmd,"SHT") == 0){
+            cmd = SHT;
         }else if(strcmp(rcmd,"VER") == 0){
             cmd = VER;
         }else if(strcmp(rcmd,"STS") == 0){
@@ -441,13 +446,28 @@ void main(void) {
                     }
                     printf("C\tDCF\t%d\r\n", dcf_on_off);
                     break;
+                    
+                    
+            case SHT : 
+                    ptr = strtok(NULL, "/");
+                    if(ptr != NULL) {
+                        sht_on_off = atoi(ptr);
+                    }
+
+                    if(sht_on_off == 0){
+                        NEEDLE_P1 = 0;                
+                    }else if(sht_on_off == 1){
+                        NEEDLE_P1 = 1;                
+                    }
+                    printf("C\tSHT\t%d\r\n", sht_on_off);
+                    break;
 
             case STS : 
                     printf("C\tREADY\r\n");
                     break;
 
             case VER : 
-                    printf("C\tVERSION 1.000\r\n");
+                    printf("C\tVERSION 1.0\r\n");
                     break;
                         
             default : break;
