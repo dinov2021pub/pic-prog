@@ -447,7 +447,7 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tVERSION 1.0\r\n");
+                    printf("C\tVERSION 1.000\r\n");
                     break;
                         
             default : break;
