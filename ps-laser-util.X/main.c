@@ -56,14 +56,19 @@ enum command {
 
 void main(void) {
     
-    PORTA = 0x00;           // PORTA��������
-    PORTB = 0x00;           // PORTB��������
-    TRISA = 0b00000000;     // PORTA�̓��o�͐ݒ� RA0��A��, RA1��B��
-    TRISB = 0b00000011;     // PORTBの入出力設�? RB1はRX, RB0 は入�?
-    CMCON = 0b00000111;     // �R���p���[�^�͎g�p���Ȃ�(RA0-RA4�̓f�W�^���s���Ŏg�p)
-    
-    initUART();             // �����������V���A���ʐM�ݒ�
+    PORTA = 0x00;           // PORTAを初期化
+    PORTB = 0x00;           // PORTBを初期化
+
+    TRISA = 0b00000000;     // PORTAの入出力設定 RA0はレーザーシャッター、RA1はDCファン、RA2はマーカーレーザーに使用
+    TRISB = 0b00000010;     // PORTBの入出力設定 RB1はUART受信(RX)、RB2はUART送信(TX) RB1のみ入力設定
+    CMCON = 0b00000111;     // コンパレータは使用しない(RA0-RA4はデジタルピンで使用)
+                            // PIC16F628Aは古い世代のPICマイコンで、A/Dコンバータ（ADC）を搭載していないため、アナログ入力の切り替えが不要
+
+
+    initUART();             // 調歩同期式シリアル通信設定
  
+    
+    
     char tmp[40];
     int j = 10;
     int k = 0;
@@ -113,7 +118,7 @@ void main(void) {
 
         axis = atoi(tmp[4]);
 
-        enum command cmd; // enum型�?�オブジェクトを定義
+        enum command cmd; // enum列挙型とオブジェクトの定義
 
         cmd = VER;
         
@@ -143,7 +148,7 @@ void main(void) {
         
         ptr = strtok(tmp, "/");
 //        rps_cmd = ptr;
-//        printf("axis= %d\r\n", axis); // 送信
+//        printf("axis= %d\r\n", axis); // 送信｡
         rps_cmd[0]='\0';
         rps_cmd[1]='\0';
         rps_cmd[2]='\0';
@@ -158,8 +163,8 @@ void main(void) {
             wtb_cmd[i] = ptr[i];
         }
         
-//        printf("tmp = %s\r\n", rps_cmd); // 送信
-//        printf("rmd_d= %d\r\n", atoi(tmp[3])); // 送信
+//        printf("tmp = %s\r\n", rps_cmd); // 送信｡
+//        printf("rmd_d= %d\r\n", atoi(tmp[3])); // 送信｡
 
           
         switch(cmd){
@@ -198,7 +203,7 @@ void main(void) {
                                 }
                             }
                         }
-                        printf("C\tRPS1\r\n"); // 送信
+                        printf("C\tRPS1\r\n"); // 送信｡
                         
                     }
                     else if(strstr(rps_cmd,"RPS2")  != NULL){
@@ -226,7 +231,7 @@ void main(void) {
                                 }
                             }
                         }
-                        printf("C\tRPS2\r\n"); // 送信
+                        printf("C\tRPS2\r\n"); // 送信｡
                         
                     }
                     else if(strstr(rps_cmd,"RPS3")  != NULL){
@@ -254,7 +259,7 @@ void main(void) {
                                 }
                             }
                         }
-                        printf("C\tRPS3\r\n"); // 送信
+                        printf("C\tRPS3\r\n"); // 送信｡
                         
                     }
 
@@ -273,19 +278,19 @@ void main(void) {
                         if (intvl_x == 0){
                             intvl_x = 1;
                         }                                                
-                        printf("C\tWTB1\r\n"); // 送信
+                        printf("C\tWTB1\r\n"); // 送信｡
                     } else if(strstr(wtb_cmd,"WTB2") != NULL){
                         intvl_y = mx_spd / set_spd;
                         if (intvl_y == 0){
                             intvl_y = 1;
                         }                                                
-                        printf("C\tWTB2\r\n"); // 送信                    
+                        printf("C\tWTB2\r\n"); // 送信｡                    
                     } else if(strstr(wtb_cmd,"WTB3") != NULL){
                         intvl_z = mx_spd / set_spd;
                         if (intvl_z == 0){
                             intvl_z = 1;
                         }                                                
-                        printf("C\tWTB3\r\n"); // 送信
+                        printf("C\tWTB3\r\n"); // 送信｡
                     }
 
 
@@ -348,8 +353,8 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tOSC\r\n"); // 送信
-                    //printf("C\r\n"); // 送信
+                    printf("C\tOSC\r\n"); // 送信｡
+                    //printf("C\r\n"); // 送信｡
                     break;
 
             case NTD : 
@@ -372,8 +377,8 @@ void main(void) {
 
                     }
 //                    puts("C");
-//                    printf("C\r\n"); // 送信
-                    printf("C\tNTD\r\n"); // 送信
+//                    printf("C\r\n"); // 送信｡
+                    printf("C\tNTD\r\n"); // 送信｡
 
                     break;
                         
@@ -414,8 +419,8 @@ void main(void) {
                     }
 
 //                    puts("C");
-//                    printf("C\r\n"); // 送信
-                    printf("C\tNDO\r\n"); // 送信
+//                    printf("C\r\n"); // 送信｡
+                    printf("C\tNDO\r\n"); // 送信｡
                     break;
 
             case LDP : 
