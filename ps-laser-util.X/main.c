@@ -56,14 +56,16 @@ enum command {
 
 void main(void) {
     
-    PORTA = 0x00;           // PORTA‚ğ‰Šú‰»
-    PORTB = 0x00;           // PORTB‚ğ‰Šú‰»
-    TRISA = 0b00000000;     // PORTA‚Ì“üo—Íİ’è RA0‚ÍƒŒ[ƒU[ƒVƒƒƒbƒ^[ARA1‚ÍDCƒtƒ@ƒ“ARA2‚Íƒ}[ƒJ[ƒŒ[ƒU[‚Ég—p
-    TRISB = 0b00000010;     // PORTB‚Ì“üo—Íİ’è RB1‚ÍUARTóM(RX)ARB2‚ÍUART‘—M(TX) RB1‚Ì‚İ“ü—Íİ’è
-    CMCON = 0b00000111;     // ƒRƒ“ƒpƒŒ[ƒ^‚Íg—p‚µ‚È‚¢(RA0-RA4‚ÍƒfƒWƒ^ƒ‹ƒsƒ“‚Åg—p)
-                            // PIC16F628A‚ÍŒÃ‚¢¢‘ã‚ÌPICƒ}ƒCƒRƒ“‚ÅAA/DƒRƒ“ƒo[ƒ^iADCj‚ğ“‹Ú‚µ‚Ä‚¢‚È‚¢‚½‚ßAƒAƒiƒƒO“ü—Í‚ÌØ‚è‘Ö‚¦‚ª•s—v
+    PORTA = 0x00;           // PORTAã‚’åˆæœŸåŒ–
+    PORTB = 0x00;           // PORTBã‚’åˆæœŸåŒ–
 
-    initUART();             // ’²•à“¯Šú®ƒVƒŠƒAƒ‹’ÊMİ’è
+    TRISA = 0b00000000;     // PORTAã®å…¥å‡ºåŠ›è¨­å®š RA0ã¯ãƒ¬ãƒ¼ã‚¶ãƒ¼ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã€RA1ã¯DCãƒ•ã‚¡ãƒ³ã€RA2ã¯ãƒãƒ¼ã‚«ãƒ¼ãƒ¬ãƒ¼ã‚¶ãƒ¼ã«ä½¿ç”¨
+    TRISB = 0b00000010;     // PORTBã®å…¥å‡ºåŠ›è¨­å®š RB1ã¯UARTå—ä¿¡(RX)ã€RB2ã¯UARTé€ä¿¡(TX) RB1ã®ã¿å…¥åŠ›è¨­å®š
+    CMCON = 0b00000111;     // ã‚³ãƒ³ãƒ‘ãƒ¬ãƒ¼ã‚¿ã¯ä½¿ç”¨ã—ãªã„(RA0-RA4ã¯ãƒ‡ã‚¸ã‚¿ãƒ«ãƒ”ãƒ³ã§ä½¿ç”¨)
+                            // PIC16F628Aã¯å¤ã„ä¸–ä»£ã®PICãƒã‚¤ã‚³ãƒ³ã§ã€A/Dã‚³ãƒ³ãƒãƒ¼ã‚¿ï¼ˆADCï¼‰ã‚’æ­è¼‰ã—ã¦ã„ãªã„ãŸã‚ã€ã‚¢ãƒŠãƒ­ã‚°å…¥åŠ›ã®åˆ‡ã‚Šæ›¿ãˆãŒä¸è¦
+
+
+    initUART();             // èª¿æ­©åŒæœŸå¼ã‚·ãƒªã‚¢ãƒ«é€šä¿¡è¨­å®š
  
     
     
@@ -116,7 +118,7 @@ void main(void) {
 
         axis = atoi(tmp[4]);
 
-        enum command cmd; // enum—ñ‹“Œ^‚ÆƒIƒuƒWƒFƒNƒg‚Ì’è‹`
+        enum command cmd; // enumåˆ—æŒ™å‹ã¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å®šç¾©
 
         cmd = VER;
         
@@ -146,7 +148,7 @@ void main(void) {
         
         ptr = strtok(tmp, "/");
 //        rps_cmd = ptr;
-//        printf("axis= %d\r\n", axis); // ‘—M¡
+//        printf("axis= %d\r\n", axis); // é€ä¿¡ï½¡
         rps_cmd[0]='\0';
         rps_cmd[1]='\0';
         rps_cmd[2]='\0';
@@ -161,8 +163,8 @@ void main(void) {
             wtb_cmd[i] = ptr[i];
         }
         
-//        printf("tmp = %s\r\n", rps_cmd); // ‘—M¡
-//        printf("rmd_d= %d\r\n", atoi(tmp[3])); // ‘—M¡
+//        printf("tmp = %s\r\n", rps_cmd); // é€ä¿¡ï½¡
+//        printf("rmd_d= %d\r\n", atoi(tmp[3])); // é€ä¿¡ï½¡
 
           
         switch(cmd){
@@ -201,7 +203,7 @@ void main(void) {
                                 }
                             }
                         }
-                        printf("C\tRPS1\r\n"); // ‘—M¡
+                        printf("C\tRPS1\r\n"); // é€ä¿¡ï½¡
                         
                     }
                     else if(strstr(rps_cmd,"RPS2")  != NULL){
@@ -229,7 +231,7 @@ void main(void) {
                                 }
                             }
                         }
-                        printf("C\tRPS2\r\n"); // ‘—M¡
+                        printf("C\tRPS2\r\n"); // é€ä¿¡ï½¡
                         
                     }
                     else if(strstr(rps_cmd,"RPS3")  != NULL){
@@ -257,7 +259,7 @@ void main(void) {
                                 }
                             }
                         }
-                        printf("C\tRPS3\r\n"); // ‘—M¡
+                        printf("C\tRPS3\r\n"); // é€ä¿¡ï½¡
                         
                     }
 
@@ -276,19 +278,19 @@ void main(void) {
                         if (intvl_x == 0){
                             intvl_x = 1;
                         }                                                
-                        printf("C\tWTB1\r\n"); // ‘—M¡
+                        printf("C\tWTB1\r\n"); // é€ä¿¡ï½¡
                     } else if(strstr(wtb_cmd,"WTB2") != NULL){
                         intvl_y = mx_spd / set_spd;
                         if (intvl_y == 0){
                             intvl_y = 1;
                         }                                                
-                        printf("C\tWTB2\r\n"); // ‘—M¡                    
+                        printf("C\tWTB2\r\n"); // é€ä¿¡ï½¡                    
                     } else if(strstr(wtb_cmd,"WTB3") != NULL){
                         intvl_z = mx_spd / set_spd;
                         if (intvl_z == 0){
                             intvl_z = 1;
                         }                                                
-                        printf("C\tWTB3\r\n"); // ‘—M¡
+                        printf("C\tWTB3\r\n"); // é€ä¿¡ï½¡
                     }
 
 
@@ -351,8 +353,8 @@ void main(void) {
                     }
 
 //                    puts("C");
-                    printf("C\tOSC\r\n"); // ‘—M¡
-                    //printf("C\r\n"); // ‘—M¡
+                    printf("C\tOSC\r\n"); // é€ä¿¡ï½¡
+                    //printf("C\r\n"); // é€ä¿¡ï½¡
                     break;
 
             case NTD : 
@@ -375,8 +377,8 @@ void main(void) {
 
                     }
 //                    puts("C");
-//                    printf("C\r\n"); // ‘—M¡
-                    printf("C\tNTD\r\n"); // ‘—M¡
+//                    printf("C\r\n"); // é€ä¿¡ï½¡
+                    printf("C\tNTD\r\n"); // é€ä¿¡ï½¡
 
                     break;
                         
@@ -417,8 +419,8 @@ void main(void) {
                     }
 
 //                    puts("C");
-//                    printf("C\r\n"); // ‘—M¡
-                    printf("C\tNDO\r\n"); // ‘—M¡
+//                    printf("C\r\n"); // é€ä¿¡ï½¡
+                    printf("C\tNDO\r\n"); // é€ä¿¡ï½¡
                     break;
 
             case LDP : 
