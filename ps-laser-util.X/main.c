@@ -65,6 +65,8 @@ void main(void) {
 
     initUART();             // ’²•à“¯Šú®ƒVƒŠƒAƒ‹’ÊMİ’è
  
+    
+    
     char tmp[40];
     int j = 10;
     int k = 0;
