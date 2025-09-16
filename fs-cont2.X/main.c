@@ -158,6 +158,7 @@ void main(void) {
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00100000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
     OSCCON = 0b01101010;    // Set internal clock to 4MHz
+    //OSCCON = 0b01111010;    // Set internal clock to 16MHz
     ANSELB = 0b00000000;    // All digital
     
     FVRCON = 0b00000000;   // Analog outout settings
@@ -835,7 +836,8 @@ void main(void) {
 
                     }
                     
-                    for(k = 0 ; k < dist ; k++){
+                    for(k = 0 ; k < (dist+10) ; k++){    // for new CVD50*
+//                    for(k = 0 ; k < dist ; k++){  // for old DB series 
                         FS_CW = 1;
                         if(npos > 1){
                             npos -= 1;
@@ -1223,7 +1225,7 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tFS-CONT VERSION 2.2.3\r\n");
+                    printf("C\tFS-CONT VERSION 2.2.4\r\n");
                     break;
 
             case ERR : 
