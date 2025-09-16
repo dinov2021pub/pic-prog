@@ -836,8 +836,7 @@ void main(void) {
 
                     }
                     
-                    for(k = 0 ; k < (dist+10) ; k++){    // for new CVD50*
-//                    for(k = 0 ; k < dist ; k++){  // for old DB series 
+                    for(k = 0 ; k < dist ; k++){  
                         FS_CW = 1;
                         if(npos > 1){
                             npos -= 1;
