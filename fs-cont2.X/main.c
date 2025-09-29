@@ -31,8 +31,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define _XTAL_FREQ 4000000      // 4MHz
-//#define _XTAL_FREQ 160000000      // 16MHz
+//#define _XTAL_FREQ 4000000      // 4MHz
+#define _XTAL_FREQ 160000000      // 16MHz
 
 
 #define LEDON RA7 // LED ON
@@ -157,7 +157,9 @@ void main(void) {
     TRISB = 0b10111111;     // PORTB in/output settings RB0:NTCH touch sensor input,  RB1:PMV input, RB2:NOS input, RB4:NDO input, RB5:NDO input, RB6:TxD output, RB7:RxD input =>   0:output, 1:input
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00100000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
-    OSCCON = 0b01101010;    // Set internal clock to 4MHz
+    //OSCCON = 0b01101010;    // Set internal clock to 4MHz
+    OSCCON = 0b01111010;    // Set internal clock to 16MHz
+    
     ANSELB = 0b00000000;    // All digital
     
     FVRCON = 0b00000000;   // Analog outout settings
