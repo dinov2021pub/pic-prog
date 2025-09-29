@@ -7,7 +7,7 @@
  * Release on 2025/07/31, 10:10
  * Compatible to Kohzu Controller for femto-spotter
  * Ref: Operation_ManualJ_for_SC210_410_rev2.pdf and CRUX_CRUX-A_manual_Rev1.41_JP.pdf
- * Manual : ÉRÉìÉgÉçÅ[ÉâégÇ¢ï˚_fs-cont_FS-300MíPëÃ_PZT.pdf
+ * Manual : „Ç≥„É≥„Éà„É≠„Éº„É©‰Ωø„ÅÑÊñπ_fs-cont_FS-300MÂçò‰Ωì_PZT.pdf
  * PIC : 16F1788
  * PCB : dino-con ver.003
  * Git test 2
@@ -31,8 +31,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define _XTAL_FREQ 4000000      // 4MHz
-//#define _XTAL_FREQ 160000000      // 16MHz
+//#define _XTAL_FREQ 4000000      // 4MHz
+#define _XTAL_FREQ 160000000      // 16MHz
 
 
 #define LEDON RA7 // LED ON
@@ -138,7 +138,7 @@ unsigned int AD_convert(unsigned char channel){
 }
 
 void uart_write(char data) {
-    while (!TXSTAbits.TRMT); // ÉoÉbÉtÉ@ãÛÇ≠ÇÃÇë“Ç¬
+    while (!TXSTAbits.TRMT); // „Éê„ÉÉ„Éï„Ç°Á©∫„Åè„ÅÆ„ÇíÂæÖ„Å§
     TXREG = data;
 }
 
@@ -157,8 +157,10 @@ void main(void) {
     TRISB = 0b10111111;     // PORTB in/output settings RB0:NTCH touch sensor input,  RB1:PMV input, RB2:NOS input, RB4:NDO input, RB5:NDO input, RB6:TxD output, RB7:RxD input =>   0:output, 1:input
     APFCON1 = 0b00000110;   // RB7=>RxD, RB6=>TxD
     PIE1 = 0b00100000;  //PERIPHERAL INTERRUPT ENABLE REGISTER 1
-    OSCCON = 0b01101010;    // Set internal clock to 4MHz
-    //OSCCON = 0b01111010;    // Set internal clock to 16MHz
+
+  „ÄÄ//OSCCON = 0b01101010;    // Set internal clock to 4MHz
+    OSCCON = 0b01111010;    // Set internal clock to 16MHz
+  
     ANSELB = 0b00000000;    // All digital
     
     FVRCON = 0b00000000;   // Analog outout settings
@@ -171,7 +173,7 @@ void main(void) {
     ADCON0 = 0b00010001;       //ADC CONTROL REGISTER 0 AN4
     ADCON1 = 0b10100011;    // bit7(ADFM)=1(right justified), bit<6:4>=010 Fosc/32=1.0us
                             // bit<1:0>=00 VREF+=FVR
-    FVRCON = 0b10000010;    // bit7(FVRON)=1,bit<1:0>=10 ADFVR√?2=2.048V
+    FVRCON = 0b10000010;    // bit7(FVRON)=1,bit<1:0>=10 ADFVRÔæÉ?2=2.048V
     
     ADRESL = 0x00;  // ADRESL 0; 
     ADRESH = 0x00;  // ADRESH 0; 
@@ -1245,7 +1247,7 @@ void __interrupt() isr(void) {
         char c = RCREG;
         uart_write(c);
         
-        // éÛêMÉoÉbÉtÉ@ÉIÅ[ÉoÅ[ÉâÉìÇÃèàóù
+        // Âèó‰ø°„Éê„ÉÉ„Éï„Ç°„Ç™„Éº„Éê„Éº„É©„É≥„ÅÆÂá¶ÁêÜ
         if (RCSTAbits.OERR) {
             RCSTAbits.CREN = 0;
             RCSTAbits.CREN = 1;
@@ -1253,15 +1255,15 @@ void __interrupt() isr(void) {
 
         if (c == '\r' || c == '\n') {
             if (cmd_index > 0) {
-                cmd_buf[cmd_index] = '\0';  // èIí[
-                cmd_ready = 1;              // ÉtÉâÉOON
+                cmd_buf[cmd_index] = '\0';  // ÁµÇÁ´Ø
+                cmd_ready = 1;              // „Éï„É©„Ç∞ON
                 cmd_index = 0;
             }
         } else {
             if (cmd_index < CMD_BUF_LEN - 1) {
                 cmd_buf[cmd_index++] = c; 
            } else {
-                cmd_index = 0;  // ÉIÅ[ÉoÅ[ÉtÉçÅ[èàóù
+                cmd_index = 0;  // „Ç™„Éº„Éê„Éº„Éï„É≠„ÉºÂá¶ÁêÜ
             }
         }
     }
