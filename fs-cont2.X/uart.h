@@ -3,7 +3,8 @@
  
 #ifndef _XTAL_FREQ
 //#define _XTAL_FREQ 32000000 // 4MHz
-#define _XTAL_FREQ 4000000 // 4MHz
+//#define _XTAL_FREQ 4000000 // 4MHz
+#define _XTAL_FREQ 16000000 // 16MHz
 #endif
  
 #define BAUDRATE 9600       // 9.6kbps
