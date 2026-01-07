@@ -2,11 +2,13 @@
 /* 
  * File:   main.c
  *
- * Laser Controller of GIP Technology ps-laser
+ * Laser Controller of GIP Technology ps-laser -> Fiber laser MPR-1000
  * 
  * Author: Shuichi Dejima
  *
  * Created at 2023/11/19
+ * Modified at 2026/01/07
+ * 
  * Analog output controller with RS-232C comunication
  * PIC16F1705 - FT234X USBシリアル変換モジュール
  * 
@@ -19,33 +21,33 @@
 #include <string.h>
 
 // CONFIG1
-#pragma config FOSC = INTOSC    //内部クロックを使う
-#pragma config WDTE = OFF       //ウォッチドックタイマー無効
-#pragma config PWRTE = ON       //パワーアップタイマーを有効にする
+#pragma config FOSC = INTOSC    //�?部クロ�?クを使�?
+#pragma config WDTE = OFF       //ウォ�?チド�?クタイマ�?�無効
+#pragma config PWRTE = ON       //パワーア�?プタイマ�?�を有効にする
 #pragma config MCLRE = OFF      //MCLRピンをRA3として使用する
-#pragma config CP = OFF         //プログラムメモリを保護しない
-#pragma config BOREN = ON       //ブラウンアウトリセットを有効にする
-#pragma config CLKOUTEN = OFF   //クロック出力を無効とし、RA4ピンとして使用する
-#pragma config IESO = OFF       //内部・外部クロックの切り替えでの起動を行わない
-#pragma config FCMEN = OFF      //外部クロックを監視しない
+#pragma config CP = OFF         //プログラ�?メモリを保護しな�?
+#pragma config BOREN = ON       //ブラウンアウトリセ�?トを有効にする
+#pragma config CLKOUTEN = OFF   //クロ�?ク出力を無効とし�?�RA4ピンとして使用する
+#pragma config IESO = OFF       //�?部・外部クロ�?クの�?り替えでの起動を行わな�?
+#pragma config FCMEN = OFF      //外部クロ�?クを監視しな�?
  
 // CONFIG2
-#pragma config WRT = OFF        //フラッシュメモリを保護しない
-#pragma config PPS1WAY = OFF    //ロック解除シーケンスで何度でもPPSLOCKをセット/クリアできる
-#pragma config ZCDDIS = ON      //ゼロクロス検出回路無効
-#pragma config PLLEN = ON       //×4PLLを動作させる
-#pragma config STVREN = ON      //スタックオーバーフローリセットを行う
-#pragma config BORV = HI        //ブラウンアウトリセット電圧を高(2.7V)に設定
-#pragma config LPBOR = OFF      //低消費電力ブラウンアウトリセット無効
-#pragma config LVP = OFF        //低電圧プログラミングを行わない
+#pragma config WRT = OFF        //フラ�?シュメモリを保護しな�?
+#pragma config PPS1WAY = OFF    //ロ�?ク解除シーケンスで何度でもPPSLOCKをセ�?�?/クリアできる
+#pragma config ZCDDIS = ON      //ゼロクロス検�?�回路無効
+#pragma config PLLEN = ON       //�?4PLLを動作させる
+#pragma config STVREN = ON      //スタ�?クオーバ�?�フローリセ�?トを行う
+#pragma config BORV = HI        //ブラウンアウトリセ�?ト電圧を�?(2.7V)に設�?
+#pragma config LPBOR = OFF      //低消費電力ブラウンアウトリセ�?ト無効
+#pragma config LVP = OFF        //低電圧プログラミングを行わな�?
 
-#define _XTAL_FREQ 32000000     //クロック32MHz
+#define _XTAL_FREQ 32000000     //クロ�?ク32MHz
 #define ACQ_US_DELAY 5
  
 void serial_init(unsigned long BR){
     TX1STA = 0x24;   //SYNC=0 TXEN = 1 BRGH = 1
     BRG16 = 1;       //BRG 16bit mode
-    RC1STA = 0x90;   //非同期、継続受信可
+    RC1STA = 0x90;   //非同期�?�継続受信可
     unsigned int X= _XTAL_FREQ/BR/4 - 1;
     SP1BRGH = X / 256;
     SP1BRGL = X % 256;
@@ -53,13 +55,13 @@ void serial_init(unsigned long BR){
  
 /* ADconvert */
 unsigned int AD_convert(unsigned char channel){
-    //ADC チャンネルセレクト AN4
-    ADCON0bits.CHS0 = 0;   //ADC チャンネルセレクト
-    ADCON0bits.CHS1 = 0;   //ADC チャンネルセレクト
-    ADCON0bits.CHS2 = 1;   //ADC チャンネルセレクト
-    ADCON0bits.CHS3 = 0;   //ADC チャンネルセレクト
-    ADCON0bits.CHS4 = 0;   //ADC チャンネルセレクト
-    __delay_us(20);         // 20us待つ
+    //ADC チャンネルセレク�? AN4
+    ADCON0bits.CHS0 = 0;   //ADC チャンネルセレク�?
+    ADCON0bits.CHS1 = 0;   //ADC チャンネルセレク�?
+    ADCON0bits.CHS2 = 1;   //ADC チャンネルセレク�?
+    ADCON0bits.CHS3 = 0;   //ADC チャンネルセレク�?
+    ADCON0bits.CHS4 = 0;   //ADC チャンネルセレク�?
+    __delay_us(20);         // 20us�?つ
     ADCON0bits.GO_nDONE = 1;   //ADC start
     while(ADCON0bits.GO_nDONE){};   // Wait for the conversion to finish
     
@@ -67,23 +69,25 @@ unsigned int AD_convert(unsigned char channel){
 }
 
  void PICinit(){
-    OSCCON = 0b01110000 ;     // 内部クロック8MHz　×4=32MHz
-    ANSELA = 0b00000000 ;     // AN0-AN3を使わない
+    OSCCON = 0b01110000 ;     // �?部クロ�?ク8MHz�?�?4=32MHz
+    ANSELA = 0b00000000 ;     // AN0-AN3を使わな�?
     ANSELC = 0b00000001 ;     // PORTC ANALOG SELECT REGISTER  RC0(=AN4):analog input
-    TRISA  = 0b00000010 ;     // RA1は入力、他は出力
-    TRISC  = 0b00000001 ;     // RC0は入力、他は出力
+    TRISA  = 0b00000010 ;     // RA1は入力�?�他�?�出�?
+    TRISC  = 0b00000001 ;     // RC0は入力�?�他�?�出�?
     PORTA  = 0b00000000 ;     // PORTAクリア
     PORTC  = 0b00000000 ;     // PORTCクリア
     
     ADCON0 = 0b00010001;       //ADC CONTROL REGISTER 0
-    ADCON1 = 0b10100011;    // bit7(ADFM)=1(右詰め),bit<6:4>=010 Fosc/32=1.0us
+    ADCON1 = 0b10100011;    // bit7(ADFM)=1(右詰�?),bit<6:4>=010 Fosc/32=1.0us
                             // bit<1:0>=00 VREF+=FVR
-    FVRCON = 0b10000010;    // bit7(FVRON)=1,bit<1:0>=10 ADFVR×2=2.048V
+    FVRCON = 0b10000010;    // bit7(FVRON)=1,bit<1:0>=10 ADFVR�?2=2.048V
 
     ADRESL = 0x00;  // ADRESL 0; 
     ADRESH = 0x00;  // ADRESH 0; 
     ADCON0 = 0x01;    // GO_nDONE stop; ADON enabled; CHS AN0; 
 
+    DAC1CON0bits.DAC1EN = 1;   // DAC �L��
+    DAC1CON0bits.DAC1OE2 = 1; // DAC �o�͂��s��RA2��
 }
  
 enum command {
@@ -144,10 +148,10 @@ void main() {
     PICinit();
     
     /* TX RXピンの割り当て*/
-    RA0PPS = 0x14;            //RA0にTXを割り当てる。
-    RXPPS = 0x01;             //RXをRA1に割り当てる。
+    RA0PPS = 0x14;            //RA0にTXを割り当てる�??
+    RXPPS = 0x01;             //RXをRA1に割り当てる�??
    
-    serial_init(9600);        // Serial通信初期化とBaud Rateの設定
+    serial_init(9600);        // Serial通信初期化とBaud Rateの設�?
    
     while(1){
         
@@ -164,7 +168,8 @@ void main() {
         tmp[3] = '\0';
 
         gets(tmp);
-        printf("%s\n", tmp);
+//        printf("%s\n", tmp);
+        if (strlen(tmp) < 3) continue;
         
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
@@ -172,7 +177,7 @@ void main() {
         rcmd[3] = '\0';
 
 
-        enum command cmd; // enum型のオブジェクトを定義
+        enum command cmd; // enum型�?�オブジェクトを定義
 
 //        cmd = AIN;
         
@@ -289,7 +294,7 @@ void main() {
                     printf("C\tSF2\r\n");
                     break;
 
-            case SF3 : 
+              case SF3 : 
                     ptr = strtok(NULL, "/");
                     if(ptr != NULL) {
                         fp3_time = atoi(ptr);
@@ -419,7 +424,9 @@ void main() {
                     __delay_us(15) ;
                 }
                 DAC1CON1 = 0 ;
+                break;
 
+                
             case LON : 
                     DAC1CON1 = 200 ;
                     break;
@@ -480,7 +487,7 @@ void main() {
                 break;
                  
             case VER : 
-                    printf("FLASER-CONT VERSION 1");
+                    printf("FLASER-CONT VERSION 1.1\r\n");
                     break;
                                                                 
             default : break;
