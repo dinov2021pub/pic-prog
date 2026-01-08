@@ -58,3 +58,11 @@ Repository of PIC micon program
 - femto-Spotter コントローラ fs-cont をベースに開発
 - 不要なコマンドが多く存在（短納期で仕上げる必要があったため）
 
+## ps-laser-util.X
+- Raycus ファイバーレーザ RFL-QCW-*** 向けにアナログ信号入力でQCWパルス発振するためのプログラム
+- PIC 16F648A を使用
+- USART通信
+- femto-Spotter コントローラ fs-cont をベースに開発
+- 不要なコマンドが多く存在（短納期で仕上げる必要があったため）
+
+
