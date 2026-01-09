@@ -103,3 +103,8 @@ Repository of PIC micon program
 - PCとの接続は、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を使用した。
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ１７７８－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g113552/)。[データシート](https://akizukidenshi.com/goodsaffix/pic16f1778.pdf)
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
+- 開発環境のバージョンを以下に示す。
+>- MPLAB X バージョン：v6.25
+>- XC8 バージョン：v3.10
+>- teraterm バージョン：v5.4.1
+>- ファームウェア バージョン：Version 
