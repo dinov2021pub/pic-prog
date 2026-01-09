@@ -62,10 +62,10 @@ Repository of PIC micon program
 - ピコ秒グリーンレーザーの周辺機器の制御を行うプログラム。
 - PIC 16F648A を用い、冷却ファン、位置合わせレーザー、メカニカルシャッターの制御をする。
 - USART により通信する。通信仕様は以下。
-- ボーレート：9600bps
-- データ：8bit
-- パリティ：none
-- ストップビット：１
+>- ボーレート：9600bps
+>- データ：8bit
+>- パリティ：none
+>- ストップビット：１
 
 - PCとの接続は、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を使用した。
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ６４８Ａ－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g100466/)。[データシート](https://akizukidenshi.com/goodsaffix/pic16f627a_628a_648a.pdf)
