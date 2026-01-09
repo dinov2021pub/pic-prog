@@ -70,23 +70,24 @@ Repository of PIC micon program
 - PCとの接続は、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を使用した。
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ６４８Ａ－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g100466/)。[データシート](https://akizukidenshi.com/goodsaffix/pic16f627a_628a_648a.pdf)
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
-- 開発環境を以下に示す
+- 開発環境のバージョンを以下に示す。
 >- MPLAB X バージョン：v6.25
 >- XC8 バージョン：v2.50
 >- teraterm バージョン：v5.4.1
 >- ファームウェア バージョン：Version 2.0 (2026年1月9日現在)
 - teratermでの動作確認
 >- コマンドのフォーマット
->>- スペース 送信したいコマンド / 1または0()
+>>- スペース,コマンド,/,1または0
 >- コマンドについて
 >>- DCF:DCファンON/OFF
 >>>- 1:DCファンON、0:DCファンOFF
 >>- LDP:位置合わせレーザーON/OFF
 >>>- 1:位置合わせレーザーON、0:位置合わせレーザーOFF
->>- SHT:シャッター開/閉
+>>- SHT:シャッター開/閉　動作後、フォトインタラプタの状態を戻り値として返します。
 >>>- 1:シャッター開、0:シャッター閉
->>- PHO:シャッター状態確認
->>>- 1:シャッター開、0:シャッター閉
+>>>- 1:フォトインタラプタ開、0:フォトインタラプタ閉 
+>>- PHO:フォトインタラプタ状態確認
+>>>- 1:フォトインタラプタ開、0:フォトインタラプタ閉
 >>- VER:ファームウェアバージョン確認
 >>- NON:何もしない
 
