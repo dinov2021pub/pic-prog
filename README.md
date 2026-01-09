@@ -59,10 +59,22 @@ Repository of PIC micon program
 - 不要なコマンドが多く存在（短納期で仕上げる必要があったため）
 
 ## ps-laser-util.X
-- Raycus ファイバーレーザ RFL-QCW-*** 向けにアナログ信号入力でQCWパルス発振するためのプログラム
-- PIC 16F648A を使用
-- USART通信
-- femto-Spotter コントローラ fs-cont をベースに開発
-- 不要なコマンドが多く存在（短納期で仕上げる必要があったため）
+- kohzu-ctrl-compati-V3.X をベースに、本格的に femto-Spotter 用のコントローラとして開発開始す
+- 神津精機のコントローラ SC-200/400 とコマンドがコンパチなコントローラ（CRUXには対応しない）
+- PIC 16F1788 を使って、ステッピングモータを制御するプログラム
+- USART により通信する。
+- モータドライバは Melec DB-5410
+- PCとの接続は、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を使用した。
+- PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ648A－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g100466/)。[データシート](https://akizukidenshi.com/goodsaffix/pic16f627a_628a_648a.pdf)
+- 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
+- MPLAB X バージョン：v6.25
+- XC8 バージョン：v2.50
+- ファームウェア バージョン：Version 2.0 (2026年1月9日現在)
+
+コマンド
+  
+
+
+
 
 
