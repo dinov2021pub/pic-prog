@@ -92,3 +92,14 @@ Repository of PIC micon program
 >>- NON:何もしない
 
 ## led-dimming-unit.X
+- ピコ秒グリーンレーザーの照明の制御を行うコントロール基板のプログラム。
+- PIC 16F1778 を用い、同軸照明、リング照明の制御をする。
+- USART により通信する。通信仕様は以下。
+>- ボーレート：9600bps
+>- データ：8bit
+>- パリティ：none
+>- ストップビット：１
+
+- PCとの接続は、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を使用した。
+- PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ１７７８－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g113552/)。[データシート](https://akizukidenshi.com/goodsaffix/pic16f1778.pdf)
+- 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
