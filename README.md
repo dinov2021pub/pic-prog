@@ -93,7 +93,7 @@ Repository of PIC micon program
 >>>- 0:フォトインタラプタ開、1:フォトインタラプタ閉
 >>- VER:ファームウェアバージョン確認
 >>- NON:何もしない
->>- ![説明文]<img width="822" height="546" alt="スクリーンショット 2026-01-09 173637" src="https://github.com/user-attachments/assets/5cb4d1c4-28e8-47e3-980f-272239696d8b" />
+<img width="822" height="546" alt="スクリーンショット 2026-01-09 173637" src="https://github.com/user-attachments/assets/5cb4d1c4-28e8-47e3-980f-272239696d8b" />
 
 
 ## led-dimming-unit.X
