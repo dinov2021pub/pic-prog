@@ -81,6 +81,7 @@ Repository of PIC micon program
 >- コマンドのフォーマット
 >>- スペース、コマンド、/、1または0
 >- コマンドについて
+>>- VER:ファームウェアバージョン確認
 >>- LDP:位置合わせレーザーON/OFF
 >>>- 1:位置合わせレーザーON、0:位置合わせレーザーOFF
 >>- DCF:DCファンON/OFF
@@ -90,7 +91,6 @@ Repository of PIC micon program
 >>>- 0:フォトインタラプタ開、1:フォトインタラプタ閉
 >>- PHO:フォトインタラプタ状態確認
 >>>- 0:フォトインタラプタ開、1:フォトインタラプタ閉
->>- VER:ファームウェアバージョン確認
 >>- NON:何もしない
 <img width="822" height="546" alt="スクリーンショット 2026-01-13 120324" src="https://github.com/user-attachments/assets/9dc75af9-0613-4c93-9f67-4e3112fea1a2" />
 
