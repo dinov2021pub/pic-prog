@@ -91,8 +91,7 @@ Repository of PIC micon program
 >>>- 0:フォトインタラプタ開、1:フォトインタラプタ閉
 >>- VER:ファームウェアバージョン確認
 >>- NON:何もしない
-<img width="822" height="546" alt="スクリーンショット 2026-01-09 173637" src="https://github.com/user-attachments/assets/5cb4d1c4-28e8-47e3-980f-272239696d8b" />
-
+<img width="822" height="546" alt="スクリーンショット 2026-01-13 120324" src="https://github.com/user-attachments/assets/9dc75af9-0613-4c93-9f67-4e3112fea1a2" />
 
 ## led-dimming-unit.X
 - ピコ秒グリーンレーザーの照明の制御を行うコントロール基板のプログラム。
