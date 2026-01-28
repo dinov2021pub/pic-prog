@@ -77,6 +77,7 @@ Repository of PIC micon program
 - ファームウェア バージョンを以下に示す。
 >- ＊－V1, 位置合わせレーザー、DCファンを制御
 >- ＊－V2,V1に追加でシャッター制御機能を追加してVersion 2.0とした(2026年1月9日現在)
+>- ＊－V3,シャッターを再設計しなおしてVersion 3.0とした 
 - teratermでの動作確認
 >- コマンドのフォーマット
 >>- スペース、コマンド、/、1または0
@@ -99,12 +100,13 @@ Repository of PIC micon program
 - PIC 16F1778 を用い、同軸照明、リング照明の制御をする。
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ１７７８－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g113552/)。[データシート](https://akizukidenshi.com/goodsaffix/pic16f1778.pdf)
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
-- 開発環境のバージョンを以下に示す。
+- 開発環境
 >- MPLAB X バージョン：v6.25
 >- XC8 バージョン：v2.50
+>- MCC melody バージョン：v5.6.3.11
+>- 通信ソフト
 >- teraterm バージョン：v5.4.1
-- ファームウェア バージョンを以下に示す。
+- ファームウェア バージョン
 >- ＊－V1
--
 -　
 
