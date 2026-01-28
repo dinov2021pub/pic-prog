@@ -104,7 +104,7 @@ Repository of PIC micon program
 >- MPLAB X バージョン：v6.25
 >- XC8 バージョン：v2.50
 >- MCC melody バージョン：v5.6.3.11
->- 通信ソフト
+- 通信ソフト
 >- teraterm バージョン：v5.4.1
 - ファームウェア バージョン
 >- ＊－V1
