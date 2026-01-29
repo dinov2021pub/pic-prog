@@ -108,6 +108,3 @@ Repository of PIC micon program
 >- teraterm バージョン：v5.4.1
 - ファームウェア バージョン
 >- ＊－V1 同軸照明 リング照明上下左右を調光
-- teratermでの動作確認
--　
-
