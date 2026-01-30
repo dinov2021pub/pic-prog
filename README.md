@@ -57,6 +57,7 @@ Repository of PIC micon program
 - USART通信
 - femto-Spotter コントローラ fs-cont をベースに開発
 - 不要なコマンドが多く存在（短納期で仕上げる必要があったため）
+- 2026/01/30 使用可能
 
 ## ps-laser-util.X
 - ピコ秒グリーンレーザーの周辺機器の制御を行うコントロール基板のプログラム。

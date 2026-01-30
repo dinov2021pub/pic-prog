@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/default/production\led-dimming-unit.X.production.hex">
+    <memory name="program">
+      <units>words</units>
+      <length>16384</length>
+      <used>601</used>
+      <free>15783</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>2016</length>
+      <used>25</used>
+      <free>1991</free>
+    </memory>
+  </executable>
+</project>

@@ -1,10 +1,10 @@
 
-# 1 "C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c"
+# 1 "C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c"
 
-# 4 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\__size_t.h"
+# 4 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\__size_t.h"
 typedef unsigned size_t;
 
-# 7 "C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\stdarg.h"
+# 7 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdarg.h"
 typedef void * va_list[1];
 
 #pragma intrinsic(__va_start)
@@ -13,31 +13,31 @@ extern void * __va_start(void);
 #pragma intrinsic(__va_arg)
 extern void * __va_arg(void *, ...);
 
-# 43 "C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\stdio.h"
+# 43 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdio.h"
 struct __prbuf
 {
 char * ptr;
 void (* func)(char);
 };
 
-# 29 "C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\errno.h"
+# 29 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\errno.h"
 extern int errno;
 
-# 12 "C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\conio.h"
+# 12 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\conio.h"
 extern void init_uart(void);
 
 extern char getch(void);
-extern char getche(void);
+extern char getche(void) __attribute__((__deprecated__));
 extern void putch(char);
 extern void ungetch(char);
 
 extern __bit kbhit(void);
 
 # 23
-extern char * cgets(char *);
-extern void cputs(const char *);
+extern char * cgets(char *) __attribute__((__deprecated__));
+extern void cputs(const char *) __attribute__((__deprecated__));
 
-# 88 "C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\stdio.h"
+# 88 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdio.h"
 extern int cprintf(char *, ...);
 #pragma printf_check(cprintf)
 
@@ -64,7 +64,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 4 "C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\ctype.h"
+# 4 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\ctype.h"
 extern __bit isalpha(char);
 extern __bit isupper(char);
 extern __bit islower(char);
@@ -81,7 +81,10 @@ extern __bit iscntrl(char);
 extern char toupper(char);
 extern char tolower(char);
 
-# 7 "C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\stdlib.h"
+# 51
+int isdig(int) __attribute__((__deprecated__));
+
+# 7 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdlib.h"
 typedef unsigned short wchar_t;
 
 # 15
@@ -106,7 +109,7 @@ unsigned long rem;
 extern double atof(const char *);
 extern double strtod(const char *, const char **);
 extern int atoi(const char *);
-extern unsigned xtoi(const char *);
+extern unsigned xtoi(const char *) __attribute__((__deprecated__));
 extern long atol(const char *);
 
 # 73
@@ -116,9 +119,9 @@ extern int rand(void);
 extern void srand(unsigned int);
 extern void * calloc(size_t, size_t);
 extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
+extern udiv_t udiv(unsigned numer, unsigned denom) __attribute__((__deprecated__));
 extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
+extern uldiv_t uldiv(unsigned long numer,unsigned long denom) __attribute__((__deprecated__));
 
 # 85
 extern unsigned long _lrotl(unsigned long value, unsigned int shift);
@@ -134,11 +137,11 @@ extern void free(void *);
 extern void * realloc(void *, size_t);
 
 
-# 13 "C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\xc8debug.h"
+# 13 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\xc8debug.h"
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
 
-# 104 "C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\stdlib.h"
+# 104 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdlib.h"
 extern int atexit(void (*)(void));
 extern char * getenv(const char *);
 extern char ** environ;
@@ -148,18 +151,18 @@ extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *,
 extern int abs(int);
 extern long labs(long);
 
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
+extern char * itoa(char * buf, int val, int base) __attribute__((__deprecated__));
+extern char * utoa(char * buf, unsigned val, int base) __attribute__((__deprecated__));
 
 
 
 
-extern char * ltoa(char * buf, long val, int base);
+extern char * ltoa(char * buf, long val, int base) __attribute__((__deprecated__));
 extern char * ultoa(char * buf, unsigned long val, int base);
 
-extern char * ftoa(float f, int * status);
+extern char * ftoa(float f, int * status) __attribute__((__deprecated__));
 
-# 14 "C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\string.h"
+# 14 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\string.h"
 extern void * memcpy(void *, const void *, size_t);
 extern void * memmove(void *, const void *, size_t);
 extern void * memset(void *, int, size_t);
@@ -181,23 +184,23 @@ extern char * strtok(char *, const char *);
 
 extern int memcmp(const void *, const void *, size_t);
 extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *);
+extern int stricmp(const char *, const char *) __attribute__((__deprecated__));
 extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t) __attribute__((__deprecated__));
 extern void * memchr(const void *, int, size_t);
 extern size_t strcspn(const char *, const char *);
 extern char * strpbrk(const char *, const char *);
 extern size_t strspn(const char *, const char *);
 extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *);
+extern char * stristr(const char *, const char *) __attribute__((__deprecated__));
 extern char * strerror(int);
 extern size_t strlen(const char *);
 extern char * strchr(const char *, int);
-extern char * strichr(const char *, int);
+extern char * strichr(const char *, int) __attribute__((__deprecated__));
 extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int);
+extern char * strrichr(const char *, int) __attribute__((__deprecated__));
 
-# 30 "C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\math.h"
+# 30 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\math.h"
 extern double fabs(double);
 extern double floor(double);
 extern double ceil(double);
@@ -218,7 +221,7 @@ extern double exp(double) ;
 extern double sinh(double) ;
 extern double cosh(double) ;
 extern double tanh(double);
-extern double eval_poly(double, const double *, int);
+extern double eval_poly(double, const double *, int) __attribute__((__deprecated__));
 extern double frexp(double, int *);
 extern double ldexp(double, int);
 extern double fmod(double, double);
@@ -226,7 +229,7 @@ extern double trunc(double);
 extern double round(double);
 
 
-# 12 "C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c"
+# 12 "C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c"
 #pragma warning disable 350
 
 # 358
@@ -290,31 +293,24 @@ case 'd':
 case 'i':
 break;
 
-# 754
-case 's':
-
-# 760
-cp = (*(const char * *)__va_arg((*(const char * **)ap), (const char *)0));
-
-# 766
-if(!cp)
-cp = "(null)";
-
-# 803
-while(*cp)
-(putch(*cp++) );
-continue;
-
 # 828
 default:
 
 # 839
 continue;
 
-# 848
+
+
+case 'u':
+flag |= 0x40;
+break;
+
+
 }
 
-# 1279
+# 1277
+if((flag & 0x40) == 0x00)
+
 {
 
 # 1285
@@ -325,6 +321,17 @@ flag |= 0x03;
 val = -val;
 }
 
+}
+
+else
+
+
+
+
+{
+
+# 1312
+val = (*(unsigned *)__va_arg((*(unsigned **)ap), (unsigned)0));
 }
 
 # 1331

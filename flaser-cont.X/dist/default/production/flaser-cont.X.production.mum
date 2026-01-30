@@ -1,7 +1,7 @@
 
-Memory Summary:
-    Program space        used   DB9h (  3513) of  2000h words   ( 42.9%)
-    Data space           used   339h (   825) of   400h bytes   ( 80.6%)
+16F1705 Memory Summary:
+    Program space        used   EDCh (  3804) of  2000h words   ( 46.4%)
+    Data space           used   342h (   834) of   400h bytes   ( 81.4%)
     EEPROM space         None available
     Configuration bits   used     2h (     2) of     2h words   (100.0%)
     ID Location space    used     4h (     4) of     4h bytes   (100.0%)
