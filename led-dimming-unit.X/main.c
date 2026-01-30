@@ -38,7 +38,7 @@
     Main application
 */
 
-uint16_t an0;
+uint16_t an0;//
 uint16_t an1;
 uint16_t an2;
 uint16_t an3;
