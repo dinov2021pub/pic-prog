@@ -1,23 +1,159 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"3080 C:\Program Files\Microchip\xc8\v2.50\pic\include\proc\pic16f1705.h
-[v _SPBRG `Vus ~T0 @X0 0 e@411 ]
-"3384
-[v _TXSTA `Vuc ~T0 @X0 0 e@414 ]
-"3204
-[v _RCSTA `Vuc ~T0 @X0 0 e@413 ]
-"14263
-[v _TXIF `Vb ~T0 @X0 0 e@140 ]
-"3030
-[v _TXREG `Vuc ~T0 @X0 0 e@410 ]
-"13819
-[v _RCIF `Vb ~T0 @X0 0 e@141 ]
-"2972
-[v _RCREG `Vuc ~T0 @X0 0 e@409 ]
-[t ~ __deprecated__ ]
-[t T4 __deprecated__ ]
+"3375 C:\Program Files\Microchip\xc8\v2.50\pic\include\proc\pic16f1705.h
+[v _TX1STA `Vuc ~T0 @X0 0 e@414 ]
+"12037
+[v _BRG16 `Vb ~T0 @X0 0 e@3323 ]
+"3195
+[v _RC1STA `Vuc ~T0 @X0 0 e@413 ]
+"3141
+[v _SP1BRGH `Vuc ~T0 @X0 0 e@412 ]
+"3087
+[v _SP1BRGL `Vuc ~T0 @X0 0 e@411 ]
+"1734
+[s S95 :1 `uc 1 :1 `uc 1 :5 `uc 1 ]
+[n S95 . ADON GO_nDONE CHS ]
+"1739
+[s S96 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S96 . . ADGO CHS0 CHS1 CHS2 CHS3 CHS4 ]
+"1748
+[s S97 :1 `uc 1 :1 `uc 1 ]
+[n S97 . . GO ]
+"1733
+[u S94 `S95 1 `S96 1 `S97 1 ]
+[n S94 . . . . ]
+"1753
+[v _ADCON0bits `VS94 ~T0 @X0 0 e@157 ]
+[v F219 `(v ~T0 @X0 1 tf1`ul ]
+"20 C:\Program Files\Microchip\xc8\v2.50\pic\include\builtins.h
+[v __delay `JF219 ~T0 @X0 0 e ]
+[p i __delay ]
+"1708 C:\Program Files\Microchip\xc8\v2.50\pic\include\proc\pic16f1705.h
+[v _ADRESH `Vuc ~T0 @X0 0 e@156 ]
+"1688
+[v _ADRESL `Vuc ~T0 @X0 0 e@155 ]
+"1547
+[v _OSCCON `Vuc ~T0 @X0 0 e@153 ]
+"2681
+[v _ANSELA `Vuc ~T0 @X0 0 e@396 ]
+"2726
+[v _ANSELC `Vuc ~T0 @X0 0 e@398 ]
+"1022
+[v _TRISA `Vuc ~T0 @X0 0 e@140 ]
+"1067
+[v _TRISC `Vuc ~T0 @X0 0 e@142 ]
+"429
+[v _PORTA `Vuc ~T0 @X0 0 e@12 ]
+"479
+[v _PORTC `Vuc ~T0 @X0 0 e@14 ]
+"1728
+[v _ADCON0 `Vuc ~T0 @X0 0 e@157 ]
+"1808
+[v _ADCON1 `Vuc ~T0 @X0 0 e@158 ]
+"2329
+[v _FVRCON `Vuc ~T0 @X0 0 e@279 ]
+[p mainexit ]
+"8301
+[v _RA0PPS `Vuc ~T0 @X0 0 e@3728 ]
+"8181
+[v _RXPPS `Vuc ~T0 @X0 0 e@3620 ]
+"2515
+[v _DAC1CON1 `Vuc ~T0 @X0 0 e@281 ]
+"183 C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdio.h
+[v _gets `(*uc ~T0 @X0 0 ef1`*uc ]
+"195
+[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+"177 main.c
+[c E4276 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 .. ]
+[n E4276 command SA1 SA2 SA3 SF1 SF2 SF3 SF4 SF5 SF6 LEP LDS LPE LDR LON LOF PLS SPO SIN AIN VER  ]
+"45 C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\string.h
+[v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
+"41
+[v _strtok `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
+"67 C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdlib.h
+[v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
+[; ;__size_t.h: 4: typedef unsigned size_t;
+[; ;stdarg.h: 7: typedef void * va_list[1];
+[; ;stdarg.h: 10: extern void * __va_start(void);
+[; ;stdarg.h: 13: extern void * __va_arg(void *, ...);
+[; ;stdio.h: 43: struct __prbuf
+[; ;stdio.h: 44: {
+[; ;stdio.h: 45: char * ptr;
+[; ;stdio.h: 46: void (* func)(char);
+[; ;stdio.h: 47: };
+[; ;errno.h: 29: extern int errno;
+[; ;conio.h: 12: extern void init_uart(void);
+[; ;conio.h: 14: extern char getch(void);
+[; ;conio.h: 15: extern char getche(void) __attribute__((__deprecated__));
+[; ;conio.h: 16: extern void putch(char);
+[; ;conio.h: 17: extern void ungetch(char);
+[; ;conio.h: 19: extern __bit kbhit(void);
+[; ;conio.h: 23: extern char * cgets(char *) __attribute__((__deprecated__));
+[; ;conio.h: 24: extern void cputs(const char *) __attribute__((__deprecated__));
+[; ;stdio.h: 88: extern int cprintf(char *, ...);
+[; ;stdio.h: 93: extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+[; ;stdio.h: 183: extern char * gets(char *);
+[; ;stdio.h: 184: extern int puts(const char *);
+[; ;stdio.h: 185: extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+[; ;stdio.h: 186: extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+[; ;stdio.h: 187: extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+[; ;stdio.h: 188: extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+[; ;stdio.h: 189: extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+[; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+[; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
+[; ;stdio.h: 195: extern int printf(const char *, ...);
+[; ;stdlib.h: 7: typedef unsigned short wchar_t;
+[; ;stdlib.h: 15: typedef struct {
+[; ;stdlib.h: 16: int rem;
+[; ;stdlib.h: 17: int quot;
+[; ;stdlib.h: 18: } div_t;
+[; ;stdlib.h: 19: typedef struct {
+[; ;stdlib.h: 20: unsigned rem;
+[; ;stdlib.h: 21: unsigned quot;
+[; ;stdlib.h: 22: } udiv_t;
+[; ;stdlib.h: 23: typedef struct {
+[; ;stdlib.h: 24: long quot;
+[; ;stdlib.h: 25: long rem;
+[; ;stdlib.h: 26: } ldiv_t;
+[; ;stdlib.h: 27: typedef struct {
+[; ;stdlib.h: 28: unsigned long quot;
+[; ;stdlib.h: 29: unsigned long rem;
+[; ;stdlib.h: 30: } uldiv_t;
+[; ;stdlib.h: 65: extern double atof(const char *);
+[; ;stdlib.h: 66: extern double strtod(const char *, const char **);
+[; ;stdlib.h: 67: extern int atoi(const char *);
+[; ;stdlib.h: 68: extern unsigned xtoi(const char *) __attribute__((__deprecated__));
+[; ;stdlib.h: 69: extern long atol(const char *);
+[; ;stdlib.h: 73: extern long strtol(const char *, char **, int);
+[; ;stdlib.h: 75: extern int rand(void);
+[; ;stdlib.h: 76: extern void srand(unsigned int);
+[; ;stdlib.h: 77: extern void * calloc(size_t, size_t);
+[; ;stdlib.h: 78: extern div_t div(int numer, int denom);
+[; ;stdlib.h: 79: extern udiv_t udiv(unsigned numer, unsigned denom) __attribute__((__deprecated__));
+[; ;stdlib.h: 80: extern ldiv_t ldiv(long numer, long denom);
+[; ;stdlib.h: 81: extern uldiv_t uldiv(unsigned long numer,unsigned long denom) __attribute__((__deprecated__));
+[; ;stdlib.h: 85: extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+[; ;stdlib.h: 86: extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+[; ;stdlib.h: 87: extern unsigned int _rotl(unsigned int value, unsigned int shift);
+[; ;stdlib.h: 88: extern unsigned int _rotr(unsigned int value, unsigned int shift);
+[; ;stdlib.h: 93: extern void * malloc(size_t);
+[; ;stdlib.h: 94: extern void free(void *);
+[; ;stdlib.h: 95: extern void * realloc(void *, size_t);
+[; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
+[; ;stdlib.h: 104: extern int atexit(void (*)(void));
+[; ;stdlib.h: 105: extern char * getenv(const char *);
+[; ;stdlib.h: 106: extern char ** environ;
+[; ;stdlib.h: 107: extern int system(char *);
+[; ;stdlib.h: 108: extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+[; ;stdlib.h: 109: extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+[; ;stdlib.h: 110: extern int abs(int);
+[; ;stdlib.h: 111: extern long labs(long);
+[; ;stdlib.h: 113: extern char * itoa(char * buf, int val, int base) __attribute__((__deprecated__));
+[; ;stdlib.h: 114: extern char * utoa(char * buf, unsigned val, int base) __attribute__((__deprecated__));
+[; ;stdlib.h: 119: extern char * ltoa(char * buf, long val, int base) __attribute__((__deprecated__));
+[; ;stdlib.h: 120: extern char * ultoa(char * buf, unsigned long val, int base);
+[; ;stdlib.h: 122: extern char * ftoa(float f, int * status) __attribute__((__deprecated__));
 [; ;xc.h: 18: extern const char __xc8_OPTIM_SPEED;
 [; ;xc.h: 20: extern double __fpnormalize(double);
-[; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef __int24 int24_t;
@@ -4703,141 +4839,1734 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 118: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 119: extern __bank0 __bit __powerdown;
 [; ;pic.h: 120: extern __bank0 __bit __timeout;
-[; ;__size_t.h: 4: typedef unsigned size_t;
-[; ;stdarg.h: 7: typedef void * va_list[1];
-[; ;stdarg.h: 10: extern void * __va_start(void);
-[; ;stdarg.h: 13: extern void * __va_arg(void *, ...);
-[; ;stdio.h: 43: struct __prbuf
-[; ;stdio.h: 44: {
-[; ;stdio.h: 45: char * ptr;
-[; ;stdio.h: 46: void (* func)(char);
-[; ;stdio.h: 47: };
-[; ;errno.h: 29: extern int errno;
-[; ;conio.h: 12: extern void init_uart(void);
-[; ;conio.h: 14: extern char getch(void);
-[; ;conio.h: 15: extern char getche(void) __attribute__((__deprecated__));
-[; ;conio.h: 16: extern void putch(char);
-[; ;conio.h: 17: extern void ungetch(char);
-[; ;conio.h: 19: extern __bit kbhit(void);
-[; ;conio.h: 23: extern char * cgets(char *) __attribute__((__deprecated__));
-[; ;conio.h: 24: extern void cputs(const char *) __attribute__((__deprecated__));
-[; ;stdio.h: 88: extern int cprintf(char *, ...);
-[; ;stdio.h: 93: extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-[; ;stdio.h: 183: extern char * gets(char *);
-[; ;stdio.h: 184: extern int puts(const char *);
-[; ;stdio.h: 185: extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-[; ;stdio.h: 186: extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-[; ;stdio.h: 187: extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-[; ;stdio.h: 188: extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-[; ;stdio.h: 189: extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-[; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-[; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
-[; ;stdio.h: 195: extern int printf(const char *, ...);
-[; ;uart.h: 27: void initUART();
-[; ;uart.h: 28: void putch(unsigned char byte);
-[; ;uart.h: 29: unsigned char getch();
-[; ;uart.h: 30: unsigned char getche();
-"6 uart.c
-[v _initUART `(v ~T0 @X0 1 ef ]
-"7
+[; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
+[; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
+[; ;string.h: 16: extern void * memset(void *, int, size_t);
+[; ;string.h: 21: extern void * __builtin_memcpy(void *, const void *, size_t);
+[; ;string.h: 36: extern char * strcat(char *, const char *);
+[; ;string.h: 37: extern char * strcpy(char *, const char *);
+[; ;string.h: 38: extern char * strncat(char *, const char *, size_t);
+[; ;string.h: 39: extern char * strncpy(char *, const char *, size_t);
+[; ;string.h: 40: extern char * strdup(const char *);
+[; ;string.h: 41: extern char * strtok(char *, const char *);
+[; ;string.h: 44: extern int memcmp(const void *, const void *, size_t);
+[; ;string.h: 45: extern int strcmp(const char *, const char *);
+[; ;string.h: 46: extern int stricmp(const char *, const char *) __attribute__((__deprecated__));
+[; ;string.h: 47: extern int strncmp(const char *, const char *, size_t);
+[; ;string.h: 48: extern int strnicmp(const char *, const char *, size_t) __attribute__((__deprecated__));
+[; ;string.h: 49: extern void * memchr(const void *, int, size_t);
+[; ;string.h: 50: extern size_t strcspn(const char *, const char *);
+[; ;string.h: 51: extern char * strpbrk(const char *, const char *);
+[; ;string.h: 52: extern size_t strspn(const char *, const char *);
+[; ;string.h: 53: extern char * strstr(const char *, const char *);
+[; ;string.h: 54: extern char * stristr(const char *, const char *) __attribute__((__deprecated__));
+[; ;string.h: 55: extern char * strerror(int);
+[; ;string.h: 56: extern size_t strlen(const char *);
+[; ;string.h: 57: extern char * strchr(const char *, int);
+[; ;string.h: 58: extern char * strichr(const char *, int) __attribute__((__deprecated__));
+[; ;string.h: 59: extern char * strrchr(const char *, int);
+[; ;string.h: 60: extern char * strrichr(const char *, int) __attribute__((__deprecated__));
+"24 main.c
+[p x FOSC=INTOSC ]
+"25
+[p x WDTE=OFF ]
+"26
+[p x PWRTE=ON ]
+"27
+[p x MCLRE=OFF ]
+"28
+[p x CP=OFF ]
+"29
+[p x BOREN=ON ]
+"30
+[p x CLKOUTEN=OFF ]
+"31
+[p x IESO=OFF ]
+"32
+[p x FCMEN=OFF ]
+"35
+[p x WRT=OFF ]
+"36
+[p x PPS1WAY=OFF ]
+"37
+[p x ZCDDIS=ON ]
+"38
+[p x PLLEN=ON ]
+"39
+[p x STVREN=ON ]
+"40
+[p x BORV=HI ]
+"41
+[p x LPBOR=OFF ]
+"42
+[p x LVP=OFF ]
+"47
+[v _serial_init `(v ~T0 @X0 1 ef1`ul ]
 {
-[; ;uart.c: 6: void initUART()
-[; ;uart.c: 7: {
-[e :U _initUART ]
+[; ;main.c: 47: void serial_init(unsigned long BR){
+[e :U _serial_init ]
+[v _BR `ul ~T0 @X0 1 r1 ]
 [f ]
-[; ;uart.c: 8: SPBRG = ((unsigned char)(((4000000 / 16) / 9600) - 1));
-"8
-[e = _SPBRG -> -> - / / -> 4000000 `l -> -> 16 `i `l -> -> 9600 `i `l -> -> 1 `i `l `uc `us ]
-[; ;uart.c: 9: TXSTA = (0x00 | 0x04 | 0x20);
-"9
-[e = _TXSTA -> | | -> 0 `i -> 4 `i -> 32 `i `uc ]
-[; ;uart.c: 10: RCSTA = (0x00 | 0x90);
-"10
-[e = _RCSTA -> | -> 0 `i -> 144 `i `uc ]
-[; ;uart.c: 11: }
-"11
-[e :UE 589 ]
+[; ;main.c: 48: TX1STA = 0x24;
+"48
+[e = _TX1STA -> -> 36 `i `uc ]
+[; ;main.c: 49: BRG16 = 1;
+"49
+[e = _BRG16 -> -> 1 `i `b ]
+[; ;main.c: 50: RC1STA = 0x90;
+"50
+[e = _RC1STA -> -> 144 `i `uc ]
+"51
+[v _X `ui ~T0 @X0 1 a ]
+[; ;main.c: 51: unsigned int X= 32000000/BR/4 - 1;
+[e = _X -> - / / -> -> 32000000 `l `ul _BR -> -> -> 4 `i `l `ul -> -> -> 1 `i `l `ul `ui ]
+[; ;main.c: 52: SP1BRGH = X / 256;
+"52
+[e = _SP1BRGH -> / _X -> -> 256 `i `ui `uc ]
+[; ;main.c: 53: SP1BRGL = X % 256;
+"53
+[e = _SP1BRGL -> % _X -> -> 256 `i `ui `uc ]
+[; ;main.c: 54: }
+"54
+[e :UE 593 ]
 }
-"13
-[v _putch `(v ~T0 @X0 1 ef1`uc ]
-"14
+"57
+[v _AD_convert `(ui ~T0 @X0 1 ef1`uc ]
 {
-[; ;uart.c: 13: void putch(unsigned char byte)
-[; ;uart.c: 14: {
-[e :U _putch ]
-"13
-[v _byte `uc ~T0 @X0 1 r1 ]
-"14
+[; ;main.c: 57: unsigned int AD_convert(unsigned char channel){
+[e :U _AD_convert ]
+[v _channel `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;uart.c: 15: while(!TXIF){
-"15
-[e $U 591  ]
-[e :U 592 ]
-{
-"16
-}
-[e :U 591 ]
-"15
-[e $ ! _TXIF 592  ]
-[e :U 593 ]
-[; ;uart.c: 16: }
-[; ;uart.c: 17: TXREG = byte;
-"17
-[e = _TXREG _byte ]
-[; ;uart.c: 18: }
-"18
-[e :UE 590 ]
-}
-"20
-[v _getch `(uc ~T0 @X0 1 ef ]
-"21
-{
-[; ;uart.c: 20: unsigned char getch()
-[; ;uart.c: 21: {
-[e :U _getch ]
-[f ]
-[; ;uart.c: 22: while(!RCIF){
-"22
+[; ;main.c: 59: ADCON0bits.CHS0 = 0;
+"59
+[e = . . _ADCON0bits 1 2 -> -> 0 `i `uc ]
+[; ;main.c: 60: ADCON0bits.CHS1 = 0;
+"60
+[e = . . _ADCON0bits 1 3 -> -> 0 `i `uc ]
+[; ;main.c: 61: ADCON0bits.CHS2 = 1;
+"61
+[e = . . _ADCON0bits 1 4 -> -> 1 `i `uc ]
+[; ;main.c: 62: ADCON0bits.CHS3 = 0;
+"62
+[e = . . _ADCON0bits 1 5 -> -> 0 `i `uc ]
+[; ;main.c: 63: ADCON0bits.CHS4 = 0;
+"63
+[e = . . _ADCON0bits 1 6 -> -> 0 `i `uc ]
+[; ;main.c: 64: _delay((unsigned long)((20)*(32000000/4000000.0)));
+"64
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 65: ADCON0bits.GO_nDONE = 1;
+"65
+[e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 66: while(ADCON0bits.GO_nDONE){};
+"66
 [e $U 595  ]
 [e :U 596 ]
 {
-"23
 }
 [e :U 595 ]
-"22
-[e $ ! _RCIF 596  ]
+[e $ != -> . . _ADCON0bits 0 1 `i -> -> -> 0 `i `Vuc `i 596  ]
 [e :U 597 ]
-[; ;uart.c: 23: }
-[; ;uart.c: 25: return RCREG;
-"25
-[e ) _RCREG ]
+[; ;main.c: 68: return (ADRESH<<8) + ADRESL;
+"68
+[e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ui ]
 [e $UE 594  ]
-[; ;uart.c: 26: }
-"26
+[; ;main.c: 69: }
+"69
 [e :UE 594 ]
 }
-"28
-[v _getche `(uc ~T4 @X0 1 ef ]
-"29
+"71
+[v _PICinit `(v ~T0 @X0 1 ef ]
 {
-[; ;uart.c: 28: unsigned char getche()
-[; ;uart.c: 29: {
-[e :U _getche ]
+[; ;main.c: 71: void PICinit(){
+[e :U _PICinit ]
 [f ]
-"30
-[v _c `uc ~T0 @X0 1 a ]
-[; ;uart.c: 30: unsigned char c;
-[; ;uart.c: 32: c = getch();
-"32
-[e = _c ( _getch ..  ]
-[; ;uart.c: 33: putch(c);
-"33
-[e ( _putch (1 _c ]
-[; ;uart.c: 35: return c;
-"35
-[e ) _c ]
-[e $UE 598  ]
-[; ;uart.c: 36: }
-"36
+[; ;main.c: 72: OSCCON = 0b01110000 ;
+"72
+[e = _OSCCON -> -> 112 `i `uc ]
+[; ;main.c: 73: ANSELA = 0b00000000 ;
+"73
+[e = _ANSELA -> -> 0 `i `uc ]
+[; ;main.c: 74: ANSELC = 0b00000001 ;
+"74
+[e = _ANSELC -> -> 1 `i `uc ]
+[; ;main.c: 75: TRISA = 0b00000010 ;
+"75
+[e = _TRISA -> -> 2 `i `uc ]
+[; ;main.c: 76: TRISC = 0b00000001 ;
+"76
+[e = _TRISC -> -> 1 `i `uc ]
+[; ;main.c: 77: PORTA = 0b00000000 ;
+"77
+[e = _PORTA -> -> 0 `i `uc ]
+[; ;main.c: 78: PORTC = 0b00000000 ;
+"78
+[e = _PORTC -> -> 0 `i `uc ]
+[; ;main.c: 80: ADCON0 = 0b00010001;
+"80
+[e = _ADCON0 -> -> 17 `i `uc ]
+[; ;main.c: 81: ADCON1 = 0b10100011;
+"81
+[e = _ADCON1 -> -> 163 `i `uc ]
+[; ;main.c: 83: FVRCON = 0b10000010;
+"83
+[e = _FVRCON -> -> 130 `i `uc ]
+[; ;main.c: 85: ADRESL = 0x00;
+"85
+[e = _ADRESL -> -> 0 `i `uc ]
+[; ;main.c: 86: ADRESH = 0x00;
+"86
+[e = _ADRESH -> -> 0 `i `uc ]
+[; ;main.c: 87: ADCON0 = 0x01;
+"87
+[e = _ADCON0 -> -> 1 `i `uc ]
+[; ;main.c: 89: }
+"89
 [e :UE 598 ]
 }
+[; ;main.c: 91: enum command {
+[; ;main.c: 92: SA1,
+[; ;main.c: 93: SA2,
+[; ;main.c: 94: SA3,
+[; ;main.c: 95: SF1,
+[; ;main.c: 96: SF2,
+[; ;main.c: 97: SF3,
+[; ;main.c: 98: SF4,
+[; ;main.c: 99: SF5,
+[; ;main.c: 100: SF6,
+[; ;main.c: 101: LEP,
+[; ;main.c: 102: LDS,
+[; ;main.c: 103: LPE,
+[; ;main.c: 104: LDR,
+[; ;main.c: 105: LON,
+[; ;main.c: 106: LOF,
+[; ;main.c: 107: PLS,
+[; ;main.c: 108: SPO,
+[; ;main.c: 109: SIN,
+[; ;main.c: 110: AIN,
+[; ;main.c: 111: VER
+[; ;main.c: 112: };
+"115
+[v _ap1_dat `i ~T0 @X0 -> 200 `i e ]
+[; ;main.c: 115: int ap1_dat[200];
+"116
+[v _ap2_dat `i ~T0 @X0 -> 2 `i e ]
+[; ;main.c: 116: int ap2_dat[2];
+[v $root$_main `(v ~T0 @X0 0 e ]
+"118
+[v _main `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 118: void main() {
+[e :U _main ]
+[f ]
+"120
+[v F4300 `uc ~T0 @X0 -> 300 `i s tmp ]
+"121
+[v _rcmd `uc ~T0 @X0 -> 4 `i a ]
+"122
+[v _fp1_time `i ~T0 @X0 1 a ]
+"123
+[v _fp1_amp `i ~T0 @X0 1 a ]
+"124
+[v _fp2_time `i ~T0 @X0 1 a ]
+"125
+[v _fp2_amp `i ~T0 @X0 1 a ]
+"126
+[v _fp3_time `i ~T0 @X0 1 a ]
+"127
+[v _fp3_amp `i ~T0 @X0 1 a ]
+"128
+[v _fp4_time `i ~T0 @X0 1 a ]
+"129
+[v _fp4_amp `i ~T0 @X0 1 a ]
+"130
+[v _fp5_time `i ~T0 @X0 1 a ]
+"131
+[v _fp5_amp `i ~T0 @X0 1 a ]
+"132
+[v _fp6_time `i ~T0 @X0 1 a ]
+"133
+[v _fp6_amp `i ~T0 @X0 1 a ]
+"135
+[v _num_ap1 `i ~T0 @X0 1 a ]
+[; ;main.c: 120: static char tmp[300];
+[; ;main.c: 121: char rcmd[4];
+[; ;main.c: 122: int fp1_time;
+[; ;main.c: 123: int fp1_amp;
+[; ;main.c: 124: int fp2_time;
+[; ;main.c: 125: int fp2_amp;
+[; ;main.c: 126: int fp3_time;
+[; ;main.c: 127: int fp3_amp;
+[; ;main.c: 128: int fp4_time;
+[; ;main.c: 129: int fp4_amp;
+[; ;main.c: 130: int fp5_time;
+[; ;main.c: 131: int fp5_amp;
+[; ;main.c: 132: int fp6_time;
+[; ;main.c: 133: int fp6_amp;
+[; ;main.c: 135: int num_ap1 = 300;
+[e = _num_ap1 -> 300 `i ]
+"136
+[v _num_ap2 `i ~T0 @X0 1 a ]
+[; ;main.c: 136: int num_ap2 = 20;
+[e = _num_ap2 -> 20 `i ]
+"137
+[v _num_ap1_cnt `i ~T0 @X0 1 a ]
+[; ;main.c: 137: int num_ap1_cnt = 0;
+[e = _num_ap1_cnt -> 0 `i ]
+"138
+[v _num_ap2_cnt `i ~T0 @X0 1 a ]
+[; ;main.c: 138: int num_ap2_cnt = 0;
+[e = _num_ap2_cnt -> 0 `i ]
+"140
+[v _max_v `i ~T0 @X0 1 a ]
+"142
+[v _val `ui ~T0 @X0 1 a ]
+"144
+[v _ptr `*uc ~T0 @X0 1 a ]
+[; ;main.c: 140: int max_v;
+[; ;main.c: 142: unsigned int val;
+[; ;main.c: 144: char *ptr;
+[; ;main.c: 146: PICinit();
+"146
+[e ( _PICinit ..  ]
+[; ;main.c: 149: RA0PPS = 0x14;
+"149
+[e = _RA0PPS -> -> 20 `i `uc ]
+[; ;main.c: 150: RXPPS = 0x01;
+"150
+[e = _RXPPS -> -> 1 `i `uc ]
+[; ;main.c: 152: serial_init(9600);
+"152
+[e ( _serial_init (1 -> -> -> 9600 `i `l `ul ]
+[; ;main.c: 154: while(1){
+"154
+[e :U 601 ]
+{
+[; ;main.c: 156: DAC1CON1 = 0 ;
+"156
+[e = _DAC1CON1 -> -> 0 `i `uc ]
+[; ;main.c: 158: rcmd[0] = 'Q';
+"158
+[e = *U + &U _rcmd * -> -> -> 0 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 159: rcmd[1] = 'Q';
+"159
+[e = *U + &U _rcmd * -> -> -> 1 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 160: rcmd[2] = 'Q';
+"160
+[e = *U + &U _rcmd * -> -> -> 2 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 161: rcmd[3] = '\0';
+"161
+[e = *U + &U _rcmd * -> -> -> 3 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 0 `ui `uc ]
+[; ;main.c: 163: tmp[0] = 'Q';
+"163
+[e = *U + &U F4300 * -> -> -> 0 `i `ui `ux -> -> # *U &U F4300 `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 164: tmp[1] = 'Q';
+"164
+[e = *U + &U F4300 * -> -> -> 1 `i `ui `ux -> -> # *U &U F4300 `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 165: tmp[2] = 'Q';
+"165
+[e = *U + &U F4300 * -> -> -> 2 `i `ui `ux -> -> # *U &U F4300 `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 166: tmp[3] = '\0';
+"166
+[e = *U + &U F4300 * -> -> -> 3 `i `ui `ux -> -> # *U &U F4300 `ui `ux -> -> 0 `ui `uc ]
+[; ;main.c: 168: gets(tmp);
+"168
+[e ( _gets (1 &U F4300 ]
+[; ;main.c: 169: printf("%s\n", tmp);
+"169
+[e ( _printf , (. :s 1C -> &U F4300 `*Cuc ]
+[; ;main.c: 171: rcmd[0] = tmp[1];
+"171
+[e = *U + &U _rcmd * -> -> -> 0 `i `ui `ux -> -> # *U &U _rcmd `ui `ux *U + &U F4300 * -> -> -> 1 `i `ui `ux -> -> # *U &U F4300 `ui `ux ]
+[; ;main.c: 172: rcmd[1] = tmp[2];
+"172
+[e = *U + &U _rcmd * -> -> -> 1 `i `ui `ux -> -> # *U &U _rcmd `ui `ux *U + &U F4300 * -> -> -> 2 `i `ui `ux -> -> # *U &U F4300 `ui `ux ]
+[; ;main.c: 173: rcmd[2] = tmp[3];
+"173
+[e = *U + &U _rcmd * -> -> -> 2 `i `ui `ux -> -> # *U &U _rcmd `ui `ux *U + &U F4300 * -> -> -> 3 `i `ui `ux -> -> # *U &U F4300 `ui `ux ]
+[; ;main.c: 174: rcmd[3] = '\0';
+"174
+[e = *U + &U _rcmd * -> -> -> 3 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 0 `ui `uc ]
+"177
+[v _cmd `E4276 ~T0 @X0 1 a ]
+[; ;main.c: 177: enum command cmd;
+[; ;main.c: 181: if(strcmp(rcmd,"LDS") == 0) {
+"181
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 2C -> 0 `i 603  ]
+{
+[; ;main.c: 182: cmd = LDS;
+"182
+[e = _cmd . `E4276 10 ]
+"183
+}
+[; ;main.c: 183: }else if(strcmp(rcmd,"SA1") == 0){
+[e $U 604  ]
+[e :U 603 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 3C -> 0 `i 605  ]
+{
+[; ;main.c: 184: cmd = SA1;
+"184
+[e = _cmd . `E4276 0 ]
+"185
+}
+[; ;main.c: 185: }else if(strcmp(rcmd,"SA2") == 0){
+[e $U 606  ]
+[e :U 605 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 4C -> 0 `i 607  ]
+{
+[; ;main.c: 186: cmd = SA2;
+"186
+[e = _cmd . `E4276 1 ]
+"187
+}
+[; ;main.c: 187: }else if(strcmp(rcmd,"SA3") == 0){
+[e $U 608  ]
+[e :U 607 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 5C -> 0 `i 609  ]
+{
+[; ;main.c: 188: cmd = SA3;
+"188
+[e = _cmd . `E4276 2 ]
+"189
+}
+[; ;main.c: 189: }else if(strcmp(rcmd,"SF1") == 0){
+[e $U 610  ]
+[e :U 609 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 6C -> 0 `i 611  ]
+{
+[; ;main.c: 190: cmd = SF1;
+"190
+[e = _cmd . `E4276 3 ]
+"191
+}
+[; ;main.c: 191: }else if(strcmp(rcmd,"SF2") == 0){
+[e $U 612  ]
+[e :U 611 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 7C -> 0 `i 613  ]
+{
+[; ;main.c: 192: cmd = SF2;
+"192
+[e = _cmd . `E4276 4 ]
+"193
+}
+[; ;main.c: 193: }else if(strcmp(rcmd,"SF3") == 0){
+[e $U 614  ]
+[e :U 613 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 8C -> 0 `i 615  ]
+{
+[; ;main.c: 194: cmd = SF3;
+"194
+[e = _cmd . `E4276 5 ]
+"195
+}
+[; ;main.c: 195: }else if(strcmp(rcmd,"SF4") == 0){
+[e $U 616  ]
+[e :U 615 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 9C -> 0 `i 617  ]
+{
+[; ;main.c: 196: cmd = SF4;
+"196
+[e = _cmd . `E4276 6 ]
+"197
+}
+[; ;main.c: 197: }else if(strcmp(rcmd,"SF5") == 0){
+[e $U 618  ]
+[e :U 617 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 10C -> 0 `i 619  ]
+{
+[; ;main.c: 198: cmd = SF5;
+"198
+[e = _cmd . `E4276 7 ]
+"199
+}
+[; ;main.c: 199: }else if(strcmp(rcmd,"SF6") == 0){
+[e $U 620  ]
+[e :U 619 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 11C -> 0 `i 621  ]
+{
+[; ;main.c: 200: cmd = SF6;
+"200
+[e = _cmd . `E4276 8 ]
+"201
+}
+[; ;main.c: 201: }else if(strcmp(rcmd,"LEP") == 0){
+[e $U 622  ]
+[e :U 621 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 12C -> 0 `i 623  ]
+{
+[; ;main.c: 202: cmd = LEP;
+"202
+[e = _cmd . `E4276 9 ]
+"203
+}
+[; ;main.c: 203: }else if(strcmp(rcmd,"LPE") == 0){
+[e $U 624  ]
+[e :U 623 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 13C -> 0 `i 625  ]
+{
+[; ;main.c: 204: cmd = LPE;
+"204
+[e = _cmd . `E4276 11 ]
+"205
+}
+[; ;main.c: 205: }else if(strcmp(rcmd,"LDR") == 0){
+[e $U 626  ]
+[e :U 625 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 14C -> 0 `i 627  ]
+{
+[; ;main.c: 206: cmd = LDR;
+"206
+[e = _cmd . `E4276 12 ]
+"207
+}
+[; ;main.c: 207: }else if(strcmp(rcmd,"LON") == 0){
+[e $U 628  ]
+[e :U 627 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 15C -> 0 `i 629  ]
+{
+[; ;main.c: 208: cmd = LON;
+"208
+[e = _cmd . `E4276 13 ]
+"209
+}
+[; ;main.c: 209: }else if(strcmp(rcmd,"LOF") == 0){
+[e $U 630  ]
+[e :U 629 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 16C -> 0 `i 631  ]
+{
+[; ;main.c: 210: cmd = LOF;
+"210
+[e = _cmd . `E4276 14 ]
+"211
+}
+[; ;main.c: 211: }else if(strcmp(rcmd,"PLS") == 0){
+[e $U 632  ]
+[e :U 631 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 17C -> 0 `i 633  ]
+{
+[; ;main.c: 212: cmd = PLS;
+"212
+[e = _cmd . `E4276 15 ]
+"213
+}
+[; ;main.c: 213: }else if(strcmp(rcmd,"SPO") == 0){
+[e $U 634  ]
+[e :U 633 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 18C -> 0 `i 635  ]
+{
+[; ;main.c: 214: cmd = SPO;
+"214
+[e = _cmd . `E4276 16 ]
+"215
+}
+[; ;main.c: 215: }else if(strcmp(rcmd,"SIN") == 0){
+[e $U 636  ]
+[e :U 635 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 19C -> 0 `i 637  ]
+{
+[; ;main.c: 216: cmd = SIN;
+"216
+[e = _cmd . `E4276 17 ]
+"217
+}
+[; ;main.c: 217: }else if(strcmp(rcmd,"AIN") == 0){
+[e $U 638  ]
+[e :U 637 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 20C -> 0 `i 639  ]
+{
+[; ;main.c: 218: cmd = AIN;
+"218
+[e = _cmd . `E4276 18 ]
+"219
+}
+[; ;main.c: 219: }else if(strcmp(rcmd,"VER") == 0){
+[e $U 640  ]
+[e :U 639 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 21C -> 0 `i 641  ]
+{
+[; ;main.c: 220: cmd = VER;
+"220
+[e = _cmd . `E4276 19 ]
+"221
+}
+[e :U 641 ]
+"222
+[e :U 640 ]
+[e :U 638 ]
+[e :U 636 ]
+[e :U 634 ]
+[e :U 632 ]
+[e :U 630 ]
+[e :U 628 ]
+[e :U 626 ]
+[e :U 624 ]
+[e :U 622 ]
+[e :U 620 ]
+[e :U 618 ]
+[e :U 616 ]
+[e :U 614 ]
+[e :U 612 ]
+[e :U 610 ]
+[e :U 608 ]
+[e :U 606 ]
+[e :U 604 ]
+[; ;main.c: 221: }
+[; ;main.c: 222: ptr = strtok(tmp, "/");
+[e = _ptr ( _strtok (2 , &U F4300 :s 22C ]
+[; ;main.c: 225: switch(cmd){
+"225
+[e $U 643  ]
+{
+[; ;main.c: 227: case SA1 :
+"227
+[e :U 644 ]
+[; ;main.c: 228: for (int i=0 ; i < num_ap1 ; i++){
+"228
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 648  ]
+[e :U 645 ]
+{
+[; ;main.c: 229: ap1_dat[i] = 0;
+"229
+[e = *U + &U _ap1_dat * -> -> _i `ui `ux -> -> # *U &U _ap1_dat `ui `ux -> 0 `i ]
+"230
+}
+"228
+[e ++ _i -> 1 `i ]
+[e :U 648 ]
+[e $ < _i _num_ap1 645  ]
+[e :U 646 ]
+"230
+}
+[; ;main.c: 230: }
+[; ;main.c: 231: for (int i=0 ; i < num_ap1 ; i++){
+"231
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 652  ]
+[e :U 649 ]
+{
+[; ;main.c: 232: ptr = strtok((0), "/");
+"232
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 23C ]
+[; ;main.c: 233: if(ptr != (0)) {
+"233
+[e $ ! != _ptr -> -> 0 `i `*uc 653  ]
+{
+[; ;main.c: 234: ap1_dat[i] = atoi(ptr);
+"234
+[e = *U + &U _ap1_dat * -> -> _i `ui `ux -> -> # *U &U _ap1_dat `ui `ux ( _atoi (1 -> _ptr `*Cuc ]
+[; ;main.c: 235: printf("%d\n", ap1_dat[i]);
+"235
+[e ( _printf , (. :s 24C *U + &U _ap1_dat * -> -> _i `ui `ux -> -> # *U &U _ap1_dat `ui `ux ]
+"236
+}
+[; ;main.c: 236: }else{
+[e $U 654  ]
+[e :U 653 ]
+{
+[; ;main.c: 237: num_ap1_cnt = i;
+"237
+[e = _num_ap1_cnt _i ]
+[; ;main.c: 238: break;
+"238
+[e $U 650  ]
+"239
+}
+[e :U 654 ]
+"240
+}
+"231
+[e ++ _i -> 1 `i ]
+[e :U 652 ]
+[e $ < _i _num_ap1 649  ]
+[e :U 650 ]
+"240
+}
+[; ;main.c: 239: }
+[; ;main.c: 240: }
+[; ;main.c: 241: printf("C\tSA1\r\n");
+"241
+[e ( _printf :s 25C ]
+[; ;main.c: 242: break;
+"242
+[e $U 642  ]
+[; ;main.c: 244: case SA2 :
+"244
+[e :U 655 ]
+[; ;main.c: 245: for (int i=0 ; i < num_ap2 ; i++){
+"245
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 659  ]
+[e :U 656 ]
+{
+[; ;main.c: 246: ap2_dat[i] = 0;
+"246
+[e = *U + &U _ap2_dat * -> -> _i `ui `ux -> -> # *U &U _ap2_dat `ui `ux -> 0 `i ]
+"247
+}
+"245
+[e ++ _i -> 1 `i ]
+[e :U 659 ]
+[e $ < _i _num_ap2 656  ]
+[e :U 657 ]
+"247
+}
+[; ;main.c: 247: }
+[; ;main.c: 248: for (int i=0 ; i < num_ap2 ; i++){
+"248
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 663  ]
+[e :U 660 ]
+{
+[; ;main.c: 249: ptr = strtok((0), "/");
+"249
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 26C ]
+[; ;main.c: 250: if(ptr != (0)) {
+"250
+[e $ ! != _ptr -> -> 0 `i `*uc 664  ]
+{
+[; ;main.c: 251: ap2_dat[i] = atoi(ptr);
+"251
+[e = *U + &U _ap2_dat * -> -> _i `ui `ux -> -> # *U &U _ap2_dat `ui `ux ( _atoi (1 -> _ptr `*Cuc ]
+"252
+}
+[; ;main.c: 252: }else{
+[e $U 665  ]
+[e :U 664 ]
+{
+[; ;main.c: 253: num_ap2_cnt = i;
+"253
+[e = _num_ap2_cnt _i ]
+[; ;main.c: 254: break;
+"254
+[e $U 661  ]
+"255
+}
+[e :U 665 ]
+"256
+}
+"248
+[e ++ _i -> 1 `i ]
+[e :U 663 ]
+[e $ < _i _num_ap2 660  ]
+[e :U 661 ]
+"256
+}
+[; ;main.c: 255: }
+[; ;main.c: 256: }
+[; ;main.c: 257: printf("C\tSA2\r\n");
+"257
+[e ( _printf :s 27C ]
+[; ;main.c: 258: break;
+"258
+[e $U 642  ]
+[; ;main.c: 260: case SA3 :
+"260
+[e :U 666 ]
+[; ;main.c: 267: printf("SA3 OK\n");
+"267
+[e ( _printf :s 28C ]
+[; ;main.c: 268: break;
+"268
+[e $U 642  ]
+[; ;main.c: 270: case SF1 :
+"270
+[e :U 667 ]
+[; ;main.c: 271: ptr = strtok((0), "/");
+"271
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 29C ]
+[; ;main.c: 272: if(ptr != (0)) {
+"272
+[e $ ! != _ptr -> -> 0 `i `*uc 668  ]
+{
+[; ;main.c: 273: fp1_time = atoi(ptr);
+"273
+[e = _fp1_time ( _atoi (1 -> _ptr `*Cuc ]
+"274
+}
+[e :U 668 ]
+[; ;main.c: 274: }
+[; ;main.c: 275: ptr = strtok((0), "/");
+"275
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 30C ]
+[; ;main.c: 276: if(ptr != (0)) {
+"276
+[e $ ! != _ptr -> -> 0 `i `*uc 669  ]
+{
+[; ;main.c: 277: fp1_amp = atoi(ptr);
+"277
+[e = _fp1_amp ( _atoi (1 -> _ptr `*Cuc ]
+"278
+}
+[e :U 669 ]
+[; ;main.c: 278: }
+[; ;main.c: 279: printf("C\tSF1\r\n");
+"279
+[e ( _printf :s 31C ]
+[; ;main.c: 280: break;
+"280
+[e $U 642  ]
+[; ;main.c: 282: case SF2 :
+"282
+[e :U 670 ]
+[; ;main.c: 283: ptr = strtok((0), "/");
+"283
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 32C ]
+[; ;main.c: 284: if(ptr != (0)) {
+"284
+[e $ ! != _ptr -> -> 0 `i `*uc 671  ]
+{
+[; ;main.c: 285: fp2_time = atoi(ptr);
+"285
+[e = _fp2_time ( _atoi (1 -> _ptr `*Cuc ]
+"286
+}
+[e :U 671 ]
+[; ;main.c: 286: }
+[; ;main.c: 287: ptr = strtok((0), "/");
+"287
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 33C ]
+[; ;main.c: 288: if(ptr != (0)) {
+"288
+[e $ ! != _ptr -> -> 0 `i `*uc 672  ]
+{
+[; ;main.c: 289: fp2_amp = atoi(ptr);
+"289
+[e = _fp2_amp ( _atoi (1 -> _ptr `*Cuc ]
+"290
+}
+[e :U 672 ]
+[; ;main.c: 290: }
+[; ;main.c: 291: printf("C\tSF2\r\n");
+"291
+[e ( _printf :s 34C ]
+[; ;main.c: 292: break;
+"292
+[e $U 642  ]
+[; ;main.c: 294: case SF3 :
+"294
+[e :U 673 ]
+[; ;main.c: 295: ptr = strtok((0), "/");
+"295
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 35C ]
+[; ;main.c: 296: if(ptr != (0)) {
+"296
+[e $ ! != _ptr -> -> 0 `i `*uc 674  ]
+{
+[; ;main.c: 297: fp3_time = atoi(ptr);
+"297
+[e = _fp3_time ( _atoi (1 -> _ptr `*Cuc ]
+"298
+}
+[e :U 674 ]
+[; ;main.c: 298: }
+[; ;main.c: 299: ptr = strtok((0), "/");
+"299
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 36C ]
+[; ;main.c: 300: if(ptr != (0)) {
+"300
+[e $ ! != _ptr -> -> 0 `i `*uc 675  ]
+{
+[; ;main.c: 301: fp3_amp = atoi(ptr);
+"301
+[e = _fp3_amp ( _atoi (1 -> _ptr `*Cuc ]
+"302
+}
+[e :U 675 ]
+[; ;main.c: 302: }
+[; ;main.c: 303: printf("C\tSF3\r\n");
+"303
+[e ( _printf :s 37C ]
+[; ;main.c: 304: break;
+"304
+[e $U 642  ]
+[; ;main.c: 306: case SF4 :
+"306
+[e :U 676 ]
+[; ;main.c: 307: ptr = strtok((0), "/");
+"307
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 38C ]
+[; ;main.c: 308: if(ptr != (0)) {
+"308
+[e $ ! != _ptr -> -> 0 `i `*uc 677  ]
+{
+[; ;main.c: 309: fp4_time = atoi(ptr);
+"309
+[e = _fp4_time ( _atoi (1 -> _ptr `*Cuc ]
+"310
+}
+[e :U 677 ]
+[; ;main.c: 310: }
+[; ;main.c: 311: ptr = strtok((0), "/");
+"311
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 39C ]
+[; ;main.c: 312: if(ptr != (0)) {
+"312
+[e $ ! != _ptr -> -> 0 `i `*uc 678  ]
+{
+[; ;main.c: 313: fp4_amp = atoi(ptr);
+"313
+[e = _fp4_amp ( _atoi (1 -> _ptr `*Cuc ]
+"314
+}
+[e :U 678 ]
+[; ;main.c: 314: }
+[; ;main.c: 315: printf("C\tSF4\r\n");
+"315
+[e ( _printf :s 40C ]
+[; ;main.c: 316: break;
+"316
+[e $U 642  ]
+[; ;main.c: 318: case SF5 :
+"318
+[e :U 679 ]
+[; ;main.c: 319: ptr = strtok((0), "/");
+"319
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 41C ]
+[; ;main.c: 320: if(ptr != (0)) {
+"320
+[e $ ! != _ptr -> -> 0 `i `*uc 680  ]
+{
+[; ;main.c: 321: fp5_time = atoi(ptr);
+"321
+[e = _fp5_time ( _atoi (1 -> _ptr `*Cuc ]
+"322
+}
+[e :U 680 ]
+[; ;main.c: 322: }
+[; ;main.c: 323: ptr = strtok((0), "/");
+"323
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 42C ]
+[; ;main.c: 324: if(ptr != (0)) {
+"324
+[e $ ! != _ptr -> -> 0 `i `*uc 681  ]
+{
+[; ;main.c: 325: fp5_amp = atoi(ptr);
+"325
+[e = _fp5_amp ( _atoi (1 -> _ptr `*Cuc ]
+"326
+}
+[e :U 681 ]
+[; ;main.c: 326: }
+[; ;main.c: 327: printf("C\tSF5\r\n");
+"327
+[e ( _printf :s 43C ]
+[; ;main.c: 328: break;
+"328
+[e $U 642  ]
+[; ;main.c: 330: case SF6 :
+"330
+[e :U 682 ]
+[; ;main.c: 331: ptr = strtok((0), "/");
+"331
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 44C ]
+[; ;main.c: 332: if(ptr != (0)) {
+"332
+[e $ ! != _ptr -> -> 0 `i `*uc 683  ]
+{
+[; ;main.c: 333: fp6_time = atoi(ptr);
+"333
+[e = _fp6_time ( _atoi (1 -> _ptr `*Cuc ]
+"334
+}
+[e :U 683 ]
+[; ;main.c: 334: }
+[; ;main.c: 335: ptr = strtok((0), "/");
+"335
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 45C ]
+[; ;main.c: 336: if(ptr != (0)) {
+"336
+[e $ ! != _ptr -> -> 0 `i `*uc 684  ]
+{
+[; ;main.c: 337: fp6_amp = atoi(ptr);
+"337
+[e = _fp6_amp ( _atoi (1 -> _ptr `*Cuc ]
+"338
+}
+[e :U 684 ]
+[; ;main.c: 338: }
+[; ;main.c: 339: printf("C\tSF6\r\n");
+"339
+[e ( _printf :s 46C ]
+[; ;main.c: 340: break;
+"340
+[e $U 642  ]
+[; ;main.c: 342: case LEP :
+"342
+[e :U 685 ]
+[; ;main.c: 344: for (int k=0 ; k < 6 ; k++){
+"344
+{
+[v _k `i ~T0 @X0 1 a ]
+[e = _k -> 0 `i ]
+[e $ < _k -> 6 `i 686  ]
+[e $U 687  ]
+[e :U 686 ]
+{
+[; ;main.c: 345: ptr = strtok((0), "/");
+"345
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 47C ]
+[; ;main.c: 346: if(strcmp(ptr,"A1") == 0) {
+"346
+[e $ ! == ( _strcmp (2 , -> _ptr `*Cuc :s 48C -> 0 `i 689  ]
+{
+[; ;main.c: 347: for (int i=0 ; i < num_ap1_cnt ; i++){
+"347
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 693  ]
+[e :U 690 ]
+{
+[; ;main.c: 348: DAC1CON1 = ap1_dat[i] ;
+"348
+[e = _DAC1CON1 -> *U + &U _ap1_dat * -> -> _i `ui `ux -> -> # *U &U _ap1_dat `ui `ux `uc ]
+[; ;main.c: 349: _delay((unsigned long)((5)*(32000000/4000000.0))) ;
+"349
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"350
+}
+"347
+[e ++ _i -> 1 `i ]
+[e :U 693 ]
+[e $ < _i _num_ap1_cnt 690  ]
+[e :U 691 ]
+"350
+}
+"351
+}
+[; ;main.c: 350: }
+[; ;main.c: 351: }else if(strcmp(ptr,"A2") == 0) {
+[e $U 694  ]
+[e :U 689 ]
+[e $ ! == ( _strcmp (2 , -> _ptr `*Cuc :s 49C -> 0 `i 695  ]
+{
+[; ;main.c: 352: for (int i=0 ; i < num_ap2_cnt ; i++){
+"352
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 699  ]
+[e :U 696 ]
+{
+[; ;main.c: 353: DAC1CON1 = ap2_dat[i] ;
+"353
+[e = _DAC1CON1 -> *U + &U _ap2_dat * -> -> _i `ui `ux -> -> # *U &U _ap2_dat `ui `ux `uc ]
+[; ;main.c: 354: _delay((unsigned long)((5)*(32000000/4000000.0))) ;
+"354
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"355
+}
+"352
+[e ++ _i -> 1 `i ]
+[e :U 699 ]
+[e $ < _i _num_ap2_cnt 696  ]
+[e :U 697 ]
+"355
+}
+"361
+}
+[; ;main.c: 355: }
+[; ;main.c: 361: }else if(strcmp(ptr,"F1") == 0) {
+[e $U 700  ]
+[e :U 695 ]
+[e $ ! == ( _strcmp (2 , -> _ptr `*Cuc :s 50C -> 0 `i 701  ]
+{
+[; ;main.c: 362: DAC1CON1 = fp1_amp ;
+"362
+[e = _DAC1CON1 -> _fp1_amp `uc ]
+[; ;main.c: 363: for (int i=0 ; i < fp1_time ; i++){
+"363
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 705  ]
+[e :U 702 ]
+{
+[; ;main.c: 364: _delay((unsigned long)((20)*(32000000/4000000.0))) ;
+"364
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"365
+}
+"363
+[e ++ _i -> 1 `i ]
+[e :U 705 ]
+[e $ < _i _fp1_time 702  ]
+[e :U 703 ]
+"365
+}
+"366
+}
+[; ;main.c: 365: }
+[; ;main.c: 366: }else if(strcmp(ptr,"F2") == 0) {
+[e $U 706  ]
+[e :U 701 ]
+[e $ ! == ( _strcmp (2 , -> _ptr `*Cuc :s 51C -> 0 `i 707  ]
+{
+[; ;main.c: 367: DAC1CON1 = fp2_amp ;
+"367
+[e = _DAC1CON1 -> _fp2_amp `uc ]
+[; ;main.c: 368: for (int i=0 ; i < fp2_time ; i++){
+"368
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 711  ]
+[e :U 708 ]
+{
+[; ;main.c: 369: _delay((unsigned long)((20)*(32000000/4000000.0))) ;
+"369
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"370
+}
+"368
+[e ++ _i -> 1 `i ]
+[e :U 711 ]
+[e $ < _i _fp2_time 708  ]
+[e :U 709 ]
+"370
+}
+"371
+}
+[; ;main.c: 370: }
+[; ;main.c: 371: }else if(strcmp(ptr,"F3") == 0) {
+[e $U 712  ]
+[e :U 707 ]
+[e $ ! == ( _strcmp (2 , -> _ptr `*Cuc :s 52C -> 0 `i 713  ]
+{
+[; ;main.c: 372: DAC1CON1 = fp3_amp ;
+"372
+[e = _DAC1CON1 -> _fp3_amp `uc ]
+[; ;main.c: 373: for (int i=0 ; i < fp3_time ; i++){
+"373
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 717  ]
+[e :U 714 ]
+{
+[; ;main.c: 374: _delay((unsigned long)((20)*(32000000/4000000.0))) ;
+"374
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"375
+}
+"373
+[e ++ _i -> 1 `i ]
+[e :U 717 ]
+[e $ < _i _fp3_time 714  ]
+[e :U 715 ]
+"375
+}
+"376
+}
+[; ;main.c: 375: }
+[; ;main.c: 376: }else if(strcmp(ptr,"F4") == 0) {
+[e $U 718  ]
+[e :U 713 ]
+[e $ ! == ( _strcmp (2 , -> _ptr `*Cuc :s 53C -> 0 `i 719  ]
+{
+[; ;main.c: 377: DAC1CON1 = fp4_amp ;
+"377
+[e = _DAC1CON1 -> _fp4_amp `uc ]
+[; ;main.c: 378: for (int i=0 ; i < fp4_time ; i++){
+"378
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 723  ]
+[e :U 720 ]
+{
+[; ;main.c: 379: _delay((unsigned long)((20)*(32000000/4000000.0))) ;
+"379
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"380
+}
+"378
+[e ++ _i -> 1 `i ]
+[e :U 723 ]
+[e $ < _i _fp4_time 720  ]
+[e :U 721 ]
+"380
+}
+"381
+}
+[; ;main.c: 380: }
+[; ;main.c: 381: }else if(strcmp(ptr,"F5") == 0) {
+[e $U 724  ]
+[e :U 719 ]
+[e $ ! == ( _strcmp (2 , -> _ptr `*Cuc :s 54C -> 0 `i 725  ]
+{
+[; ;main.c: 382: DAC1CON1 = fp5_amp ;
+"382
+[e = _DAC1CON1 -> _fp5_amp `uc ]
+[; ;main.c: 383: for (int i=0 ; i < fp5_time ; i++){
+"383
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 729  ]
+[e :U 726 ]
+{
+[; ;main.c: 384: _delay((unsigned long)((20)*(32000000/4000000.0))) ;
+"384
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"385
+}
+"383
+[e ++ _i -> 1 `i ]
+[e :U 729 ]
+[e $ < _i _fp5_time 726  ]
+[e :U 727 ]
+"385
+}
+"386
+}
+[; ;main.c: 385: }
+[; ;main.c: 386: }else if(strcmp(ptr,"F6") == 0) {
+[e $U 730  ]
+[e :U 725 ]
+[e $ ! == ( _strcmp (2 , -> _ptr `*Cuc :s 55C -> 0 `i 731  ]
+{
+[; ;main.c: 387: DAC1CON1 = fp6_amp ;
+"387
+[e = _DAC1CON1 -> _fp6_amp `uc ]
+[; ;main.c: 388: for (int i=0 ; i < fp6_time ; i++){
+"388
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 735  ]
+[e :U 732 ]
+{
+[; ;main.c: 389: _delay((unsigned long)((20)*(32000000/4000000.0))) ;
+"389
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"390
+}
+"388
+[e ++ _i -> 1 `i ]
+[e :U 735 ]
+[e $ < _i _fp6_time 732  ]
+[e :U 733 ]
+"390
+}
+"391
+}
+[e :U 731 ]
+"392
+[e :U 730 ]
+[e :U 724 ]
+[e :U 718 ]
+[e :U 712 ]
+[e :U 706 ]
+[e :U 700 ]
+[e :U 694 ]
+}
+"344
+[e ++ _k -> 1 `i ]
+[e $ < _k -> 6 `i 686  ]
+[e :U 687 ]
+"392
+}
+[; ;main.c: 390: }
+[; ;main.c: 391: }
+[; ;main.c: 392: }
+[; ;main.c: 395: printf("C\tLEP\n");
+"395
+[e ( _printf :s 56C ]
+[; ;main.c: 396: break;
+"396
+[e $U 642  ]
+[; ;main.c: 398: case SPO :
+"398
+[e :U 736 ]
+[; ;main.c: 399: DAC1CON1 = fp1_amp ;
+"399
+[e = _DAC1CON1 -> _fp1_amp `uc ]
+[; ;main.c: 400: for (int i=0 ; i < fp1_time ; i++){
+"400
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 740  ]
+[e :U 737 ]
+{
+[; ;main.c: 401: _delay((unsigned long)((15)*(32000000/4000000.0))) ;
+"401
+[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"402
+}
+"400
+[e ++ _i -> 1 `i ]
+[e :U 740 ]
+[e $ < _i _fp1_time 737  ]
+[e :U 738 ]
+"402
+}
+[; ;main.c: 402: }
+[; ;main.c: 403: DAC1CON1 = fp2_amp ;
+"403
+[e = _DAC1CON1 -> _fp2_amp `uc ]
+[; ;main.c: 404: for (int i=0 ; i < fp2_time ; i++){
+"404
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 744  ]
+[e :U 741 ]
+{
+[; ;main.c: 405: _delay((unsigned long)((15)*(32000000/4000000.0))) ;
+"405
+[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"406
+}
+"404
+[e ++ _i -> 1 `i ]
+[e :U 744 ]
+[e $ < _i _fp2_time 741  ]
+[e :U 742 ]
+"406
+}
+[; ;main.c: 406: }
+[; ;main.c: 407: DAC1CON1 = fp3_amp ;
+"407
+[e = _DAC1CON1 -> _fp3_amp `uc ]
+[; ;main.c: 408: for (int i=0 ; i < fp3_time ; i++){
+"408
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 748  ]
+[e :U 745 ]
+{
+[; ;main.c: 409: _delay((unsigned long)((15)*(32000000/4000000.0))) ;
+"409
+[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"410
+}
+"408
+[e ++ _i -> 1 `i ]
+[e :U 748 ]
+[e $ < _i _fp3_time 745  ]
+[e :U 746 ]
+"410
+}
+[; ;main.c: 410: }
+[; ;main.c: 411: DAC1CON1 = fp4_amp ;
+"411
+[e = _DAC1CON1 -> _fp4_amp `uc ]
+[; ;main.c: 412: for (int i=0 ; i < fp4_time ; i++){
+"412
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 752  ]
+[e :U 749 ]
+{
+[; ;main.c: 413: _delay((unsigned long)((15)*(32000000/4000000.0))) ;
+"413
+[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"414
+}
+"412
+[e ++ _i -> 1 `i ]
+[e :U 752 ]
+[e $ < _i _fp4_time 749  ]
+[e :U 750 ]
+"414
+}
+[; ;main.c: 414: }
+[; ;main.c: 415: DAC1CON1 = fp5_amp ;
+"415
+[e = _DAC1CON1 -> _fp5_amp `uc ]
+[; ;main.c: 416: for (int i=0 ; i < fp5_time ; i++){
+"416
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 756  ]
+[e :U 753 ]
+{
+[; ;main.c: 417: _delay((unsigned long)((15)*(32000000/4000000.0))) ;
+"417
+[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"418
+}
+"416
+[e ++ _i -> 1 `i ]
+[e :U 756 ]
+[e $ < _i _fp5_time 753  ]
+[e :U 754 ]
+"418
+}
+[; ;main.c: 418: }
+[; ;main.c: 419: DAC1CON1 = fp6_amp ;
+"419
+[e = _DAC1CON1 -> _fp6_amp `uc ]
+[; ;main.c: 420: for (int i=0 ; i < fp6_time ; i++){
+"420
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 760  ]
+[e :U 757 ]
+{
+[; ;main.c: 421: _delay((unsigned long)((15)*(32000000/4000000.0))) ;
+"421
+[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"422
+}
+"420
+[e ++ _i -> 1 `i ]
+[e :U 760 ]
+[e $ < _i _fp6_time 757  ]
+[e :U 758 ]
+"422
+}
+[; ;main.c: 422: }
+[; ;main.c: 423: DAC1CON1 = 0 ;
+"423
+[e = _DAC1CON1 -> -> 0 `i `uc ]
+[; ;main.c: 425: case LON :
+"425
+[e :U 761 ]
+[; ;main.c: 426: DAC1CON1 = 200 ;
+"426
+[e = _DAC1CON1 -> -> 200 `i `uc ]
+[; ;main.c: 427: break;
+"427
+[e $U 642  ]
+[; ;main.c: 429: case LOF :
+"429
+[e :U 762 ]
+[; ;main.c: 430: DAC1CON1 = 0 ;
+"430
+[e = _DAC1CON1 -> -> 0 `i `uc ]
+[; ;main.c: 431: break;
+"431
+[e $U 642  ]
+[; ;main.c: 433: case LDS :
+"433
+[e :U 763 ]
+[; ;main.c: 434: break;
+"434
+[e $U 642  ]
+[; ;main.c: 436: case LPE :
+"436
+[e :U 764 ]
+[; ;main.c: 437: break;
+"437
+[e $U 642  ]
+[; ;main.c: 439: case PLS :
+"439
+[e :U 765 ]
+[; ;main.c: 440: for (int k = 0; k < 1000 ; k++){
+"440
+{
+[v _k `i ~T0 @X0 1 a ]
+[e = _k -> 0 `i ]
+[e $ < _k -> 1000 `i 766  ]
+[e $U 767  ]
+[e :U 766 ]
+{
+[; ;main.c: 441: DAC1CON1 = 200 ;
+"441
+[e = _DAC1CON1 -> -> 200 `i `uc ]
+[; ;main.c: 442: for (int i=0 ; i < 1 ; i++){
+"442
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 1 `i 769  ]
+[e $U 770  ]
+[e :U 769 ]
+{
+[; ;main.c: 443: _delay((unsigned long)((10)*(32000000/4000000.0))) ;
+"443
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"444
+}
+"442
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 1 `i 769  ]
+[e :U 770 ]
+"444
+}
+[; ;main.c: 444: }
+[; ;main.c: 445: DAC1CON1 = 0 ;
+"445
+[e = _DAC1CON1 -> -> 0 `i `uc ]
+[; ;main.c: 446: for (int i=0 ; i < 1 ; i++){
+"446
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 1 `i 772  ]
+[e $U 773  ]
+[e :U 772 ]
+{
+[; ;main.c: 447: _delay((unsigned long)((10)*(32000000/4000000.0))) ;
+"447
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+"448
+}
+"446
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 1 `i 772  ]
+[e :U 773 ]
+"448
+}
+"449
+}
+"440
+[e ++ _k -> 1 `i ]
+[e $ < _k -> 1000 `i 766  ]
+[e :U 767 ]
+"449
+}
+[; ;main.c: 448: }
+[; ;main.c: 449: }
+[; ;main.c: 450: break;
+"450
+[e $U 642  ]
+[; ;main.c: 452: case SIN :
+"452
+[e :U 775 ]
+[; ;main.c: 453: ptr = strtok((0), "/");
+"453
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 57C ]
+[; ;main.c: 454: if(ptr != (0)) {
+"454
+[e $ ! != _ptr -> -> 0 `i `*uc 776  ]
+{
+[; ;main.c: 455: max_v = atoi(ptr);
+"455
+[e = _max_v ( _atoi (1 -> _ptr `*Cuc ]
+"456
+}
+[e :U 776 ]
+[; ;main.c: 456: }
+[; ;main.c: 457: DAC1CON1 = 0 ;
+"457
+[e = _DAC1CON1 -> -> 0 `i `uc ]
+"458
+[v _v_cnt `i ~T0 @X0 1 a ]
+[; ;main.c: 458: int v_cnt = 0;
+[e = _v_cnt -> 0 `i ]
+[; ;main.c: 459: for (int k = 0; k < max_v ; k++){
+"459
+{
+[v _k `i ~T0 @X0 1 a ]
+[e = _k -> 0 `i ]
+[e $U 780  ]
+[e :U 777 ]
+{
+[; ;main.c: 460: DAC1CON1 = v_cnt ;
+"460
+[e = _DAC1CON1 -> _v_cnt `uc ]
+[; ;main.c: 461: _delay((unsigned long)((250)*(32000000/4000000.0))) ;
+"461
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 462: v_cnt += 1;
+"462
+[e =+ _v_cnt -> 1 `i ]
+"463
+}
+"459
+[e ++ _k -> 1 `i ]
+[e :U 780 ]
+[e $ < _k _max_v 777  ]
+[e :U 778 ]
+"463
+}
+[; ;main.c: 463: }
+[; ;main.c: 464: for (int k = 0; k < max_v ; k++){
+"464
+{
+[v _k `i ~T0 @X0 1 a ]
+[e = _k -> 0 `i ]
+[e $U 784  ]
+[e :U 781 ]
+{
+[; ;main.c: 465: DAC1CON1 = v_cnt ;
+"465
+[e = _DAC1CON1 -> _v_cnt `uc ]
+[; ;main.c: 466: _delay((unsigned long)((250)*(32000000/4000000.0))) ;
+"466
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 467: v_cnt -= 1;
+"467
+[e =- _v_cnt -> 1 `i ]
+"468
+}
+"464
+[e ++ _k -> 1 `i ]
+[e :U 784 ]
+[e $ < _k _max_v 781  ]
+[e :U 782 ]
+"468
+}
+[; ;main.c: 468: }
+[; ;main.c: 469: printf("C\tSIN\n");
+"469
+[e ( _printf :s 58C ]
+[; ;main.c: 471: break;
+"471
+[e $U 642  ]
+[; ;main.c: 473: case AIN :
+"473
+[e :U 785 ]
+[; ;main.c: 475: val = 0;
+"475
+[e = _val -> -> 0 `i `ui ]
+[; ;main.c: 476: for (int k = 0; k < 10 ; k++){
+"476
+{
+[v _k `i ~T0 @X0 1 a ]
+[e = _k -> 0 `i ]
+[e $ < _k -> 10 `i 786  ]
+[e $U 787  ]
+[e :U 786 ]
+{
+[; ;main.c: 478: val = AD_convert(1);
+"478
+[e = _val ( _AD_convert (1 -> -> 1 `i `uc ]
+[; ;main.c: 479: printf("C\tAIN = %u\n", val);
+"479
+[e ( _printf , (. :s 59C _val ]
+[; ;main.c: 480: _delay((unsigned long)((500)*(32000000/4000.0))) ;
+"480
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+"481
+}
+"476
+[e ++ _k -> 1 `i ]
+[e $ < _k -> 10 `i 786  ]
+[e :U 787 ]
+"481
+}
+[; ;main.c: 481: }
+[; ;main.c: 482: break;
+"482
+[e $U 642  ]
+[; ;main.c: 484: case VER :
+"484
+[e :U 789 ]
+[; ;main.c: 485: printf("FLASER-CONT VERSION 1.1");
+"485
+[e ( _printf :s 60C ]
+[; ;main.c: 486: break;
+"486
+[e $U 642  ]
+[; ;main.c: 488: default : break;
+"488
+[e :U 790 ]
+[e $U 642  ]
+"489
+}
+[; ;main.c: 489: }
+[e $U 642  ]
+"225
+[e :U 643 ]
+[e [\ _cmd , $ . `E4276 0 644
+ , $ . `E4276 1 655
+ , $ . `E4276 2 666
+ , $ . `E4276 3 667
+ , $ . `E4276 4 670
+ , $ . `E4276 5 673
+ , $ . `E4276 6 676
+ , $ . `E4276 7 679
+ , $ . `E4276 8 682
+ , $ . `E4276 9 685
+ , $ . `E4276 16 736
+ , $ . `E4276 13 761
+ , $ . `E4276 14 762
+ , $ . `E4276 10 763
+ , $ . `E4276 11 764
+ , $ . `E4276 15 765
+ , $ . `E4276 17 775
+ , $ . `E4276 18 785
+ , $ . `E4276 19 789
+ 790 ]
+"489
+[e :U 642 ]
+"491
+}
+[e :U 600 ]
+"154
+[e $U 601  ]
+[e :U 602 ]
+[; ;main.c: 491: }
+[; ;main.c: 492: }
+"492
+[e :UE 599 ]
+}
+[p f _printf 8651904 ]
+[a 17C 80 76 83 0 ]
+[a 2C 76 68 83 0 ]
+[a 21C 86 69 82 0 ]
+[a 14C 76 68 82 0 ]
+[a 12C 76 69 80 0 ]
+[a 18C 83 80 79 0 ]
+[a 15C 76 79 78 0 ]
+[a 19C 83 73 78 0 ]
+[a 20C 65 73 78 0 ]
+[a 16C 76 79 70 0 ]
+[a 13C 76 80 69 0 ]
+[a 11C 83 70 54 0 ]
+[a 55C 70 54 0 ]
+[a 10C 83 70 53 0 ]
+[a 54C 70 53 0 ]
+[a 9C 83 70 52 0 ]
+[a 53C 70 52 0 ]
+[a 8C 83 70 51 0 ]
+[a 52C 70 51 0 ]
+[a 5C 83 65 51 0 ]
+[a 7C 83 70 50 0 ]
+[a 51C 70 50 0 ]
+[a 4C 83 65 50 0 ]
+[a 49C 65 50 0 ]
+[a 6C 83 70 49 0 ]
+[a 50C 70 49 0 ]
+[a 3C 83 65 49 0 ]
+[a 48C 65 49 0 ]
+[a 60C 70 76 65 83 69 82 45 67 79 78 84 32 86 69 82 83 73 79 78 32 49 46 49 0 ]
+[a 22C 47 0 ]
+[a 23C 47 0 ]
+[a 26C 47 0 ]
+[a 29C 47 0 ]
+[a 30C 47 0 ]
+[a 32C 47 0 ]
+[a 33C 47 0 ]
+[a 35C 47 0 ]
+[a 36C 47 0 ]
+[a 38C 47 0 ]
+[a 39C 47 0 ]
+[a 41C 47 0 ]
+[a 42C 47 0 ]
+[a 44C 47 0 ]
+[a 45C 47 0 ]
+[a 47C 47 0 ]
+[a 57C 47 0 ]
+[a 59C 67 9 65 73 78 32 61 32 37 117 10 0 ]
+[a 1C 37 115 10 0 ]
+[a 24C 37 100 10 0 ]
+[a 56C 67 9 76 69 80 10 0 ]
+[a 58C 67 9 83 73 78 10 0 ]
+[a 28C 83 65 51 32 79 75 10 0 ]
+[a 46C 67 9 83 70 54 13 10 0 ]
+[a 43C 67 9 83 70 53 13 10 0 ]
+[a 40C 67 9 83 70 52 13 10 0 ]
+[a 37C 67 9 83 70 51 13 10 0 ]
+[a 34C 67 9 83 70 50 13 10 0 ]
+[a 27C 67 9 83 65 50 13 10 0 ]
+[a 31C 67 9 83 70 49 13 10 0 ]
+[a 25C 67 9 83 65 49 13 10 0 ]

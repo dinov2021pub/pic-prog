@@ -1,7 +1,7 @@
 
 16F1705 Memory Summary:
-    Program space        used   EDCh (  3804) of  2000h words   ( 46.4%)
-    Data space           used   342h (   834) of   400h bytes   ( 81.4%)
+    Program space        used   F01h (  3841) of  2000h words   ( 46.9%)
+    Data space           used   345h (   837) of   400h bytes   ( 81.7%)
     EEPROM space         None available
     Configuration bits   used     2h (     2) of     2h words   (100.0%)
     ID Location space    used     4h (     4) of     4h bytes   (100.0%)

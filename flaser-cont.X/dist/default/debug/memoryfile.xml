@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\flaser-cont.X.production.hex">
+  <executable name="dist/default/debug\flaser-cont.X.debug.hex">
     <memory name="program">
       <units>words</units>
       <length>8192</length>
-      <used>3804</used>
-      <free>4388</free>
+      <used>3841</used>
+      <free>4351</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>1024</length>
-      <used>834</used>
-      <free>190</free>
+      <used>837</used>
+      <free>187</free>
     </memory>
   </executable>
 </project>

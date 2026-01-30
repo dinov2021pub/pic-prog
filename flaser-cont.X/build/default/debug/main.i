@@ -7377,8 +7377,6 @@ ADRESL = 0x00;
 ADRESH = 0x00;
 ADCON0 = 0x01;
 
-DAC1CON0bits.DAC1EN = 1;
-DAC1CON0bits.DAC1OE2 = 1;
 }
 
 enum command {
@@ -7459,8 +7457,7 @@ tmp[2] = 'Q';
 tmp[3] = '\0';
 
 gets(tmp);
-
-if (strlen(tmp) < 3) continue;
+printf("%s\n", tmp);
 
 rcmd[0] = tmp[1];
 rcmd[1] = tmp[2];
@@ -7553,7 +7550,7 @@ break;
 
 case SA3 :
 
-# 270
+# 267
 printf("SA3 OK\n");
 break;
 
@@ -7644,7 +7641,7 @@ DAC1CON1 = ap2_dat[i] ;
 _delay((unsigned long)((5)*(32000000/4000000.0))) ;
 }
 
-# 364
+# 361
 }else if(strcmp(ptr,"F1") == 0) {
 DAC1CON1 = fp1_amp ;
 for (int i=0 ; i < fp1_time ; i++){
@@ -7708,8 +7705,6 @@ for (int i=0 ; i < fp6_time ; i++){
 _delay((unsigned long)((15)*(32000000/4000000.0))) ;
 }
 DAC1CON1 = 0 ;
-break;
-
 
 case LON :
 DAC1CON1 = 200 ;
@@ -7771,7 +7766,7 @@ _delay((unsigned long)((500)*(32000000/4000.0))) ;
 break;
 
 case VER :
-printf("FLASER-CONT VERSION 1.1\r\n");
+printf("FLASER-CONT VERSION 1.1");
 break;
 
 default : break;
