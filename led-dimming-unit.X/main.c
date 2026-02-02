@@ -80,9 +80,9 @@ int main(void)
         an4 = ADC_ChannelSelectAndConvert(ADC_CHANNEL_ANA5);
         
         // 入力を一度だけ読み取り、変数に保持
-        uint8_t rb0_state = PORTBbits.RB0;
-        uint8_t rb1_state = PORTBbits.RB1;
-        uint8_t rb2_state = PORTBbits.RB2;
+        uint8_t rb0_state = PORTBbits.RB0;//同軸照明 ON/OFF
+        uint8_t rb1_state = PORTBbits.RB1;//リング照明 ON/OFF
+        uint8_t rb2_state = PORTBbits.RB2;//リング照明 同期/非同期
         
         // 同軸照明
         if(rb0_state == 1){
@@ -91,12 +91,13 @@ int main(void)
             CCP1_LoadDutyValue(0);
         }
         
-        // リング照明
+        // リング照明 上下左右独立動作
         if(rb1_state == 1 && rb2_state == 0){
             CCP2_LoadDutyValue(an1);
             CCP7_LoadDutyValue(an2);
             PWM3_LoadDutyValue(an3);
             PWM4_LoadDutyValue(an4); 
+        // リング照明 上下左右をan1に同期
         }else if(rb1_state == 1 && rb2_state == 1){
             CCP2_LoadDutyValue(an1);
             CCP7_LoadDutyValue(an1);
