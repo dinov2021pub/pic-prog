@@ -23,76 +23,51 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define _XTAL_FREQ 4000000      // 4MHz
+#define _XTAL_FREQ 4000000      // ƒVƒXƒeƒ€ƒNƒƒbƒN4MHz
 
-//#define MOTOR_P4 RB7 // MOTOR Phase4
-//#define MOTOR_P3 RB6 // MOTOR Phase3
-#define X_P2 RB5 // None
-#define X_P1 RB4 // None
-#define Y_P2 RA3  
-#define Y_P1 RA2 // LD red pointer ON/OFF
-#define NEEDLE_P2 RA1 // DC fan ON/OFF
-#define NEEDLE_P1 RA0 // Shutter ON/OFF
-//#define M_IN1 RA2 // H-bridge IN1
-//#define M_IN2 RA3 // H-bridge IN2
-#define TR RB3 // Transistor
-#define MAX_VALUE 32767
-#define MIN_VALUE 1
-
+#define S_SHT RA0               //ƒtƒHƒgƒCƒ“ƒ^ƒ‰ƒvƒ^“ü—ÍM†
+#define P_DCF RA1               // DC fan ON/OFF
+#define P_LD RA2                // LD red pointer ON/OFF
+////Version 2.0
+//#define P_SHT_CW RB3            // ƒVƒƒƒbƒ^[ CW
+//#define P_SHT_CCW RA3           // ƒVƒƒƒbƒ^[ CCW
+//Version 3.0
+#define P_SHT_CW RB0            // ƒVƒƒƒbƒ^[ CW
+#define P_SHT_CCW RA3           // ƒVƒƒƒbƒ^[ CCW
 
 enum command {
-  RPS,
-  WTB,
-  OSC,
-  NTD,
-  NDO,
-  DCF,  // Control DC fan
-  LDP,  // Control LD red pointer
-  SHT,  // Shutter Controller
-  VER,
-  STS,
+  VER, 
+  LDP,  //ƒŒ[ƒU[
+  DCF,  //DCƒtƒ@ƒ“
+  SHT,  //ƒVƒƒƒbƒ^[
+  PHO,  //ƒtƒHƒgƒCƒ“ƒ^ƒ‰ƒvƒ^
   NON
 };
 
 void main(void) {
     
-    PORTA = 0x00;           // PORTAã‚’åˆæœŸåŒ–
-    PORTB = 0x00;           // PORTBã‚’åˆæœŸåŒ–
+    PORTA = 0x00;           // PORTA‚ð‰Šú‰»
+    PORTB = 0x00;           // PORTB‚ð‰Šú‰»
+//    //Version 2.0
+//    TRISA = 0b00000001;     // PORTA‚Ì“üo—ÍÝ’è RA0‚ÍƒtƒHƒgƒCƒ“ƒ^ƒ‰ƒvƒ^ARA1‚ÍDCƒtƒ@ƒ“ARA2‚ÍˆÊ’u‡‚í‚¹ƒŒ[ƒU[
+//    TRISB = 0b00000010;     // PORTB‚Ì“üo—ÍÝ’è  RB1‚ÍUARTŽóM(RX)ARB2‚ÍUART‘—M(TX)ARB3‚ÍƒVƒƒƒbƒ^[CWARA3‚ÍƒVƒƒƒbƒ^[CCW
+    //Version 3.0  
+    TRISA = 0b00000001;     // PORTA‚Ì“üo—ÍÝ’è RA0‚ÍƒtƒHƒgƒCƒ“ƒ^ƒ‰ƒvƒ^ARA1‚ÍDCƒtƒ@ƒ“ARA2‚ÍˆÊ’u‡‚í‚¹ƒŒ[ƒU[
+    TRISB = 0b00000010;     // PORTB‚Ì“üo—ÍÝ’è  RB1‚ÍUARTŽóM(RX)ARB2‚ÍUART‘—M(TX)ARB0‚ÍƒVƒƒƒbƒ^[CWARA3‚ÍƒVƒƒƒbƒ^[CCWARB3‚ÍPWMo—Í
+    CMCON = 0b00000111;     // ƒRƒ“ƒpƒŒ[ƒ^‚ÍŽg—p‚µ‚È‚¢(RA0-RA3‚ÍƒfƒWƒ^ƒ‹ƒsƒ“‚ÅŽg—p)
 
-    TRISA = 0b00000000;     // PORTAã®å…¥å‡ºåŠ›è¨­å®š RA0ã¯ãƒ¬ãƒ¼ã‚¶ãƒ¼ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã€RA1ã¯DCãƒ•ã‚¡ãƒ³ã€RA2ã¯ãƒžãƒ¼ã‚«ãƒ¼ãƒ¬ãƒ¼ã‚¶ãƒ¼ã«ä½¿ç”¨
-    TRISB = 0b00000010;     // PORTBã®å…¥å‡ºåŠ›è¨­å®š RB1ã¯UARTå—ä¿¡(RX)ã€RB2ã¯UARTé€ä¿¡(TX) RB1ã®ã¿å…¥åŠ›è¨­å®š
-    CMCON = 0b00000111;     // ã‚³ãƒ³ãƒ‘ãƒ¬ãƒ¼ã‚¿ã¯ä½¿ç”¨ã—ãªã„(RA0-RA4ã¯ãƒ‡ã‚¸ã‚¿ãƒ«ãƒ”ãƒ³ã§ä½¿ç”¨)
-                            // PIC16F628Aã¯å¤ã„ä¸–ä»£ã®PICãƒžã‚¤ã‚³ãƒ³ã§ã€A/Dã‚³ãƒ³ãƒãƒ¼ã‚¿ï¼ˆADCï¼‰ã‚’æ­è¼‰ã—ã¦ã„ãªã„ãŸã‚ã€ã‚¢ãƒŠãƒ­ã‚°å…¥åŠ›ã®åˆ‡ã‚Šæ›¿ãˆãŒä¸è¦
-
-
-    initUART();             // èª¿æ­©åŒæœŸå¼ã‚·ãƒªã‚¢ãƒ«é€šä¿¡è¨­å®š
+    initUART();             // ’²•à“¯ŠúŽ®ƒVƒŠƒAƒ‹’ÊMÝ’è
  
-    
-    
     char tmp[40];
-    int j = 10;
-    int k = 0;
-    int cnt = 10;
-    int dist = 10;
     int axis = 0;
     char rcmd[4];
     char rps_cmd[6];    // For tmp strings of RPS command
     char wtb_cmd[6];    // For tmp strings of WTB command
-    int mx_spd = 20250;
-// parameters for stage speed
-    int intvl_x = 20;
-    int intvl_y = 20;
-    int intvl_z = 20;
-    int set_spd;
-//    char ln[4];
 
-    int ld_on_off;
-    int dcf_on_off;
-    int sht_on_off;
-    
-    NEEDLE_P2 = 0;
-    NEEDLE_P1 = 0;
-    Y_P1 = 0;
+    unsigned char ld_on_off = 0;
+    unsigned char dcf_on_off = 0;
+    unsigned char sht_on_off = 0;
+    unsigned char pho_status = 0;
     
     char *ptr;
     
@@ -109,52 +84,38 @@ void main(void) {
         tmp[4] = '\0';
 
         gets(tmp);
-//        printf("%s\n", tmp);
         
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
         rcmd[2] = tmp[3];
         rcmd[3] = '\0';
 
-        axis = atoi(tmp[4]);
+        axis = atoi(&tmp[4]);
 
-        enum command cmd; // enumåˆ—æŒ™åž‹ã¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å®šç¾©
+        enum command cmd; // enum—ñ‹“Œ^‚ÆƒIƒuƒWƒFƒNƒg‚Ì’è‹`
 
-        cmd = VER;
-        
-        if(strcmp(rcmd,"RPS") == 0) {
-            cmd = RPS;
-        }else if(strcmp(rcmd,"WTB") == 0){
-            cmd = WTB;
-        }else if(strcmp(rcmd,"OSC") == 0){
-            cmd = OSC;
-        }else if(strcmp(rcmd,"NTD") == 0){
-            cmd = NTD;
-        }else if(strcmp(rcmd,"NDO") == 0){
-            cmd = NDO;
+        if(strcmp(rcmd,"VER") == 0) {
+            cmd = VER;
         }else if(strcmp(rcmd,"LDP") == 0){
             cmd = LDP;
         }else if(strcmp(rcmd,"DCF") == 0){
             cmd = DCF;
         }else if(strcmp(rcmd,"SHT") == 0){
             cmd = SHT;
-        }else if(strcmp(rcmd,"VER") == 0){
-            cmd = VER;
-        }else if(strcmp(rcmd,"STS") == 0){
-            cmd = STS;
-        }else{
+        }else if(strcmp(rcmd,"PHO") == 0){
+            cmd = PHO;          
+        }else{   
             cmd = NON;
         }
         
         ptr = strtok(tmp, "/");
-//        rps_cmd = ptr;
-//        printf("axis= %d\r\n", axis); // é€ä¿¡ï½¡
         rps_cmd[0]='\0';
         rps_cmd[1]='\0';
         rps_cmd[2]='\0';
         rps_cmd[3]='\0';
-        //rps_cmd[4]='\0';
+        
         int i;
+        
         for (i = 0; ptr[i] != '\0'; i++) {
             rps_cmd[i] = ptr[i];
         }
@@ -162,327 +123,79 @@ void main(void) {
         for (i = 0; ptr[i] != '\0'; i++) {
             wtb_cmd[i] = ptr[i];
         }
-        
-//        printf("tmp = %s\r\n", rps_cmd); // é€ä¿¡ï½¡
-//        printf("rmd_d= %d\r\n", atoi(tmp[3])); // é€ä¿¡ï½¡
-
-          
-        switch(cmd){
-
-            case RPS : 
-                    ptr = strtok(NULL, "/");
-                    ptr = strtok(NULL, "/");
-                    ptr = strtok(NULL, "/");
-                    ptr = strtok(NULL, "/");
-                    if(ptr != NULL) {
-                        dist = atoi(ptr);
-                    }
-                    
-                    if(strstr(rps_cmd,"RPS1") != NULL){
-                        if (dist > 0){
-                            for(k = 0 ; k < dist ; k++){
-                                X_P1 = 1;
-                                for(j = 0 ; j < intvl_x ; j++){
-                                    __delay_us(1);
-                                }
-                                X_P1 = 0;
-                                for(j = 0 ; j < intvl_x ; j++){
-                                    __delay_us(1);
-                                }
-                            }
-                        } else {
-                            dist *= -1;
-                            for(k = 0 ; k < dist ; k++){
-                                X_P2 = 1;
-                                for(j = 0 ; j < intvl_x ; j++){
-                                    __delay_us(1);
-                                }
-                                X_P2 = 0;
-                                for(j = 0 ; j < intvl_x ; j++){
-                                    __delay_us(1);
-                                }
-                            }
-                        }
-                        printf("C\tRPS1\r\n"); // é€ä¿¡ï½¡
-                        
-                    }
-                    else if(strstr(rps_cmd,"RPS2")  != NULL){
-                        if (dist > 0){
-                            for(k = 0 ; k < dist ; k++){
-                                Y_P1 = 1;
-                                for(j = 0 ; j < intvl_y ; j++){
-                                    __delay_us(1);
-                                }
-                                Y_P1 = 0;
-                                for(j = 0 ; j < intvl_y ; j++){
-                                    __delay_us(1);
-                                }
-                            }
-                        } else {
-                            dist *= -1;
-                            for(k = 0 ; k < dist ; k++){
-                                Y_P2 = 1;
-                                for(j = 0 ; j < intvl_y ; j++){
-                                    __delay_us(1);
-                                }
-                                Y_P2 = 0;
-                                for(j = 0 ; j < intvl_y ; j++){
-                                    __delay_us(1);
-                                }
-                            }
-                        }
-                        printf("C\tRPS2\r\n"); // é€ä¿¡ï½¡
-                        
-                    }
-                    else if(strstr(rps_cmd,"RPS3")  != NULL){
-                        if (dist > 0){
-                            for(k = 0 ; k < dist ; k++){
-                                NEEDLE_P1 = 1;
-                                for(j = 0 ; j < intvl_z ; j++){
-                                    __delay_us(1);
-                                }
-                                NEEDLE_P1 = 0;
-                                for(j = 0 ; j < intvl_z ; j++){
-                                    __delay_us(1);
-                                }
-                            }
-                        } else {
-                            dist *= -1;
-                            for(k = 0 ; k < dist ; k++){
-                                NEEDLE_P2 = 1;
-                                for(j = 0 ; j < intvl_z ; j++){
-                                    __delay_us(1);
-                                }
-                                NEEDLE_P2 = 0;
-                                for(j = 0 ; j < intvl_z ; j++){
-                                    __delay_us(1);
-                                }
-                            }
-                        }
-                        printf("C\tRPS3\r\n"); // é€ä¿¡ï½¡
-                        
-                    }
-
-                    break;
-                        
-            case WTB : 
-                    ptr = strtok(NULL, "/");
-                    ptr = strtok(NULL, "/");
-                    ptr = strtok(NULL, "/");
-                    if(ptr != NULL) {
-                        set_spd = atoi(ptr);
-                    }
-
-                    if(strstr(wtb_cmd,"WTB1") != NULL){
-                        intvl_x = mx_spd / set_spd;
-                        if (intvl_x == 0){
-                            intvl_x = 1;
-                        }                                                
-                        printf("C\tWTB1\r\n"); // é€ä¿¡ï½¡
-                    } else if(strstr(wtb_cmd,"WTB2") != NULL){
-                        intvl_y = mx_spd / set_spd;
-                        if (intvl_y == 0){
-                            intvl_y = 1;
-                        }                                                
-                        printf("C\tWTB2\r\n"); // é€ä¿¡ï½¡                    
-                    } else if(strstr(wtb_cmd,"WTB3") != NULL){
-                        intvl_z = mx_spd / set_spd;
-                        if (intvl_z == 0){
-                            intvl_z = 1;
-                        }                                                
-                        printf("C\tWTB3\r\n"); // é€ä¿¡ï½¡
-                    }
-
-
-                    break;
  
-            case OSC : 
-                    ptr = strtok(NULL, "/");
-                    ptr = strtok(NULL, "/");
-                    ptr = strtok(NULL, "/");
-                    ptr = strtok(NULL, "/");
-                    ptr = strtok(NULL, "/");
-                    if(ptr != NULL) {
-                        dist = atoi(ptr);
-                    }
-//                    printf("dist = %d\n", dist);
-                    
-                    if (dist > 0){
-                        for(k = 0 ; k < dist ; k++){
-                            NEEDLE_P1 = 1;
-                            for(j = 0 ; j < intvl_z ; j++){
-                                __delay_us(1);
-                            }
-                            NEEDLE_P1 = 0;
-                            for(j = 0 ; j < intvl_z ; j++){
-                                __delay_us(1);
-                            }
-                        }
-                        for(k = 0 ; k < dist ; k++){
-                            NEEDLE_P2 = 1;
-                            for(j = 0 ; j < intvl_z ; j++){
-                                __delay_us(1);
-                            }
-                            NEEDLE_P2 = 0;
-                            for(j = 0 ; j < intvl_z ; j++){
-                                __delay_us(1);
-                            }
-                        }
-                    } else {
-                        dist *= -1;
-                        for(k = 0 ; k < dist ; k++){
-                            NEEDLE_P2 = 1;
-                            for(j = 0 ; j < intvl_z ; j++){
-                                __delay_us(1);
-                            }
-                            NEEDLE_P2 = 0;
-                            for(j = 0 ; j < intvl_z ; j++){
-                                __delay_us(1);
-                            }
-                        }
-                        for(k = 0 ; k < dist ; k++){
-                            NEEDLE_P1 = 1;
-                            for(j = 0 ; j < intvl_z ; j++){
-                                __delay_us(1);
-                            }
-                            NEEDLE_P1 = 0;
-                            for(j = 0 ; j < intvl_z ; j++){
-                                __delay_us(1);
-                            }
-                        }
-                    }
-
-//                    puts("C");
-                    printf("C\tOSC\r\n"); // é€ä¿¡ï½¡
-                    //printf("C\r\n"); // é€ä¿¡ï½¡
+        switch(cmd){
+            
+            case VER :
+//                    // Version 2.0
+//                    printf("C\tVERSION 2.0\r\n");
+                    // Version 3.0
+                    printf("C\tVERSION 3.0\r\n");
                     break;
+                
+            case LDP :
+                ptr = strtok(NULL, "/");
+                if(ptr != NULL) {
+                    ld_on_off = atoi(ptr);
+                }
 
-            case NTD : 
-//                    printf("NTD\n");
-                    dist = 10000;
-                    for(k = 0 ; k < dist ; k++){
-                        NEEDLE_P1 = 1;
-                        for(j = 0 ; j < intvl_z ; j++){
-                            __delay_us(1);
-                        }
-                        NEEDLE_P1 = 0;
-                        for(j = 0 ; j < intvl_z ; j++){
-                            __delay_us(1);
-                        }
-
-                        if(RB0 == 0){
-//                            printf("Detected\n");
-                            break;
-                        }
-
-                    }
-//                    puts("C");
-//                    printf("C\r\n"); // é€ä¿¡ï½¡
-                    printf("C\tNTD\r\n"); // é€ä¿¡ï½¡
-
-                    break;
-                        
-            case NDO : 
-//                    printf("NDO\n");
-                    ptr = strtok(NULL, "/");
-                    if(ptr != NULL) {
-                        dist = atoi(ptr);
-                    }
-//                    printf("dist = %d\n", dist);
-                    
-                    for(k = 0 ; k < 10000 ; k++){
-                        NEEDLE_P1 = 1;
-                        for(j = 0 ; j < intvl_z ; j++){
-                            __delay_us(1);
-                        }
-                        NEEDLE_P1 = 0;
-                        for(j = 0 ; j < intvl_z ; j++){
-                            __delay_us(1);
-                        }
-
-                        if(RB0 == 0){
-//                            printf("Detected");
-                            break;
-                        }
-
-                    }
-                    
-                    for(k = 0 ; k < dist ; k++){
-                        NEEDLE_P2 = 1;
-                        for(j = 0 ; j < intvl_z ; j++){
-                            __delay_us(1);
-                        }
-                        NEEDLE_P2 = 0;
-                        for(j = 0 ; j < intvl_z ; j++){
-                            __delay_us(1);
-                        }
-                    }
-
-//                    puts("C");
-//                    printf("C\r\n"); // é€ä¿¡ï½¡
-                    printf("C\tNDO\r\n"); // é€ä¿¡ï½¡
-                    break;
-
-            case LDP : 
-                    ptr = strtok(NULL, "/");
-                    if(ptr != NULL) {
-                        ld_on_off = atoi(ptr);
-                    }
-
-                    if(ld_on_off == 0){
-                        Y_P1 = 0;                
-                    }else if(ld_on_off == 1){
-                        Y_P1 = 1;                
-                    }
-                    printf("C\tLDP\t%d\r\n", ld_on_off);
-                    break;
-
+                if(ld_on_off == 0){
+                    P_LD = 0;                
+                }else if(ld_on_off == 1){
+                    P_LD = 1;                
+                }
+                printf("C\tLDP\t%d\r\n", ld_on_off);
+                break;
                     
             case DCF : 
-                    ptr = strtok(NULL, "/");
-                    if(ptr != NULL) {
-                        dcf_on_off = atoi(ptr);
-                    }
+                ptr = strtok(NULL, "/");
+                if(ptr != NULL) {
+                    dcf_on_off = atoi(ptr);
+                }
 
-                    if(dcf_on_off == 0){
-                        NEEDLE_P2 = 0;                
-                    }else if(dcf_on_off == 1){
-                        NEEDLE_P2 = 1;                
-                    }
-                    printf("C\tDCF\t%d\r\n", dcf_on_off);
-                    break;
-                    
+                if(dcf_on_off == 0){
+                    P_DCF = 0;                
+                }else if(dcf_on_off == 1){
+                    P_DCF = 1;                
+                }
+                printf("C\tDCF\t%d\r\n", dcf_on_off);
+                break;
                     
             case SHT : 
-                    ptr = strtok(NULL, "/");
-                    if(ptr != NULL) {
-                        sht_on_off = atoi(ptr);
-                    }
-
-                    if(sht_on_off == 0){
-                        NEEDLE_P1 = 0;                
-                    }else if(sht_on_off == 1){
-                        NEEDLE_P1 = 1;                
-                    }
-                    printf("C\tSHT\t%d\r\n", sht_on_off);
-                    break;
-
-            case STS : 
-                    printf("C\tREADY\r\n");
-                    break;
-
-            case VER : 
-                    printf("C\tVERSION 1.0\r\n");
-                    break;
-                        
+                // Version 2.0
+                ptr = strtok(NULL, "/");
+                if(ptr != NULL) {
+                    sht_on_off = atoi(ptr);
+                }
+                if(sht_on_off == 0){
+                    P_SHT_CW = 1;
+                    P_SHT_CCW = 0;
+                    __delay_ms(30);
+                    P_SHT_CW = 0;
+                    P_SHT_CCW = 0;
+                    pho_status = S_SHT;
+                }else if(sht_on_off == 1){
+                    P_SHT_CW = 0;
+                    P_SHT_CCW = 1;
+                    __delay_ms(30);
+                    P_SHT_CW = 0;
+                    P_SHT_CCW = 0;
+                    pho_status = S_SHT;
+                }
+                printf("C\tSHT\t%d\tPHO\t%d\r\n", sht_on_off,pho_status);
+                break;
+                // Version 3.0
+                      
+                case PHO :
+                ptr = strtok(NULL, "/");
+                if(ptr != NULL) {
+                    pho_status = atoi(ptr);
+                }
+                printf("C\tPHO\t%d\r\n", pho_status);
+                break;
+                    
             default : break;
         }
-        
-//        if(RB0 == 0){
-//            printf("SW OFF");
-//        }else{
-//            printf("SW ON");
-//        }
     }
 }
 

@@ -1235,15 +1235,13 @@ extern char * strichr(const char *, int) __attribute__((__deprecated__));
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int) __attribute__((__deprecated__));
 
-# 43 "main.c"
+# 38 "main.c"
 enum command {
-RPS,
-WTB,
-OSC,
-NTD,
-NDO,
 VER,
-STS,
+LDP,
+DCF,
+SHT,
+PHO,
 NON
 };
 
@@ -1251,28 +1249,26 @@ void main(void) {
 
 PORTA = 0x00;
 PORTB = 0x00;
-TRISA = 0b00000000;
-TRISB = 0b00000011;
+
+
+
+
+TRISA = 0b00000001;
+TRISB = 0b00000010;
 CMCON = 0b00000111;
 
 initUART();
 
 char tmp[40];
-int j = 10;
-int k = 0;
-int cnt = 10;
-int dist = 10;
 int axis = 0;
 char rcmd[4];
 char rps_cmd[6];
 char wtb_cmd[6];
-int mx_spd = 20250;
 
-int intvl_x = 20;
-int intvl_y = 20;
-int intvl_z = 20;
-int set_spd;
-
+unsigned char ld_on_off = 0;
+unsigned char dcf_on_off = 0;
+unsigned char sht_on_off = 0;
+unsigned char pho_status = 0;
 
 char *ptr;
 
@@ -1290,45 +1286,37 @@ tmp[4] = '\0';
 
 gets(tmp);
 
-
 rcmd[0] = tmp[1];
 rcmd[1] = tmp[2];
 rcmd[2] = tmp[3];
 rcmd[3] = '\0';
 
-axis = atoi(tmp[4]);
+axis = atoi(&tmp[4]);
 
 enum command cmd;
 
+if(strcmp(rcmd,"VER") == 0) {
 cmd = VER;
-
-if(strcmp(rcmd,"RPS") == 0) {
-cmd = RPS;
-}else if(strcmp(rcmd,"WTB") == 0){
-cmd = WTB;
-}else if(strcmp(rcmd,"OSC") == 0){
-cmd = OSC;
-}else if(strcmp(rcmd,"NTD") == 0){
-cmd = NTD;
-}else if(strcmp(rcmd,"NDO") == 0){
-cmd = NDO;
-}else if(strcmp(rcmd,"VER") == 0){
-cmd = VER;
-}else if(strcmp(rcmd,"STS") == 0){
-cmd = STS;
+}else if(strcmp(rcmd,"LDP") == 0){
+cmd = LDP;
+}else if(strcmp(rcmd,"DCF") == 0){
+cmd = DCF;
+}else if(strcmp(rcmd,"SHT") == 0){
+cmd = SHT;
+}else if(strcmp(rcmd,"PHO") == 0){
+cmd = PHO;
 }else{
 cmd = NON;
 }
 
 ptr = strtok(tmp, "/");
-
-
 rps_cmd[0]='\0';
 rps_cmd[1]='\0';
 rps_cmd[2]='\0';
 rps_cmd[3]='\0';
 
 int i;
+
 for (i = 0; ptr[i] != '\0'; i++) {
 rps_cmd[i] = ptr[i];
 }
@@ -1337,275 +1325,73 @@ for (i = 0; ptr[i] != '\0'; i++) {
 wtb_cmd[i] = ptr[i];
 }
 
-# 148
 switch(cmd){
 
-case RPS :
-ptr = strtok((0), "/");
-ptr = strtok((0), "/");
-ptr = strtok((0), "/");
-ptr = strtok((0), "/");
-if(ptr != (0)) {
-dist = atoi(ptr);
-}
-
-if(strstr(rps_cmd,"RPS1") != (0)){
-if (dist > 0){
-for(k = 0 ; k < dist ; k++){
-RB4 = 1;
-for(j = 0 ; j < intvl_x ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RB4 = 0;
-for(j = 0 ; j < intvl_x ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-}
-} else {
-dist *= -1;
-for(k = 0 ; k < dist ; k++){
-RB5 = 1;
-for(j = 0 ; j < intvl_x ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RB5 = 0;
-for(j = 0 ; j < intvl_x ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-}
-}
-printf("C\tRPS1\r\n");
-
-}
-else if(strstr(rps_cmd,"RPS2") != (0)){
-if (dist > 0){
-for(k = 0 ; k < dist ; k++){
-RA2 = 1;
-for(j = 0 ; j < intvl_y ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RA2 = 0;
-for(j = 0 ; j < intvl_y ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-}
-} else {
-dist *= -1;
-for(k = 0 ; k < dist ; k++){
-RA3 = 1;
-for(j = 0 ; j < intvl_y ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RA3 = 0;
-for(j = 0 ; j < intvl_y ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-}
-}
-printf("C\tRPS2\r\n");
-
-}
-else if(strstr(rps_cmd,"RPS3") != (0)){
-if (dist > 0){
-for(k = 0 ; k < dist ; k++){
-RA0 = 1;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RA0 = 0;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-}
-} else {
-dist *= -1;
-for(k = 0 ; k < dist ; k++){
-RA1 = 1;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RA1 = 0;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-}
-}
-printf("C\tRPS3\r\n");
-
-}
-
-break;
-
-case WTB :
-ptr = strtok((0), "/");
-ptr = strtok((0), "/");
-ptr = strtok((0), "/");
-if(ptr != (0)) {
-set_spd = atoi(ptr);
-}
-
-if(strstr(wtb_cmd,"WTB1") != (0)){
-intvl_x = mx_spd / set_spd;
-if (intvl_x == 0){
-intvl_x = 1;
-}
-printf("C\tWTB1\r\n");
-} else if(strstr(wtb_cmd,"WTB2") != (0)){
-intvl_y = mx_spd / set_spd;
-if (intvl_y == 0){
-intvl_y = 1;
-}
-printf("C\tWTB2\r\n");
-} else if(strstr(wtb_cmd,"WTB3") != (0)){
-intvl_z = mx_spd / set_spd;
-if (intvl_z == 0){
-intvl_z = 1;
-}
-printf("C\tWTB3\r\n");
-}
-
-
-break;
-
-case OSC :
-ptr = strtok((0), "/");
-ptr = strtok((0), "/");
-ptr = strtok((0), "/");
-ptr = strtok((0), "/");
-ptr = strtok((0), "/");
-if(ptr != (0)) {
-dist = atoi(ptr);
-}
-
-
-if (dist > 0){
-for(k = 0 ; k < dist ; k++){
-RA0 = 1;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RA0 = 0;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-}
-for(k = 0 ; k < dist ; k++){
-RA1 = 1;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RA1 = 0;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-}
-} else {
-dist *= -1;
-for(k = 0 ; k < dist ; k++){
-RA1 = 1;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RA1 = 0;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-}
-for(k = 0 ; k < dist ; k++){
-RA0 = 1;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RA0 = 0;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-}
-}
-
-
-printf("C\tOSC\r\n");
-
-break;
-
-case NTD :
-
-dist = 10000;
-for(k = 0 ; k < dist ; k++){
-RA0 = 1;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RA0 = 0;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-
-if(RB0 == 0){
-
-break;
-}
-
-}
-
-
-printf("C\tNTD\r\n");
-
-break;
-
-case NDO :
-
-ptr = strtok((0), "/");
-if(ptr != (0)) {
-dist = atoi(ptr);
-}
-
-
-for(k = 0 ; k < 10000 ; k++){
-RA0 = 1;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RA0 = 0;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-
-if(RB0 == 0){
-
-break;
-}
-
-}
-
-for(k = 0 ; k < dist ; k++){
-RA1 = 1;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-RA1 = 0;
-for(j = 0 ; j < intvl_z ; j++){
-_delay((unsigned long)((1)*(4000000/4000000.0)));
-}
-}
-
-
-
-printf("C\tNDO\r\n");
-break;
-
-case STS :
-printf("C\tREADY\r\n");
-break;
-
 case VER :
-printf("C\tVERSION 1.0\r\n");
+
+
+
+printf("C\tVERSION 3.0\r\n");
+break;
+
+case LDP :
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+ld_on_off = atoi(ptr);
+}
+
+if(ld_on_off == 0){
+RA2 = 0;
+}else if(ld_on_off == 1){
+RA2 = 1;
+}
+printf("C\tLDP\t%d\r\n", ld_on_off);
+break;
+
+case DCF :
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+dcf_on_off = atoi(ptr);
+}
+
+if(dcf_on_off == 0){
+RA1 = 0;
+}else if(dcf_on_off == 1){
+RA1 = 1;
+}
+printf("C\tDCF\t%d\r\n", dcf_on_off);
+break;
+
+case SHT :
+
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+sht_on_off = atoi(ptr);
+}
+if(sht_on_off == 0){
+RB0 = 1;
+RA3 = 0;
+_delay((unsigned long)((30)*(4000000/4000.0)));
+RB0 = 0;
+RA3 = 0;
+pho_status = RA0;
+}else if(sht_on_off == 1){
+RB0 = 0;
+RA3 = 1;
+_delay((unsigned long)((30)*(4000000/4000.0)));
+RB0 = 0;
+RA3 = 0;
+pho_status = RA0;
+}
+printf("C\tSHT\t%d\r\n", pho_status);
+break;
+
+case PHO :
+printf("C\tPHO\t%d\r\n", pho_status);
 break;
 
 default : break;
 }
-
-# 420
 }
 }
 
