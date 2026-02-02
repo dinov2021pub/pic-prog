@@ -6,10 +6,10 @@ Linker command line:
   --edf=C:\Program Files\Microchip\xc8\v2.50\pic\dat\20240725155939_en.msgs \
   -cn -h+dist/default/debug\led-dimming-unit.X.debug.sym \
   --cmf=dist/default/debug\led-dimming-unit.X.debug.cmf -z -Q16F1778 \
-  -oC:\Users\user\AppData\Local\Temp\xcAsm14.\driver_tmp_3.o \
+  -oC:\Users\shimi\AppData\Local\Temp\xcAshm4.\driver_tmp_3.o \
   --defsym=__MPLAB_BUILD=1 --fixupoverflow=error \
   -Mdist/default/debug/led-dimming-unit.X.debug.map \
-  --md=C:\Users\user\AppData\Local\Temp\xcAsm14.\driver_tmp_0.dat -E1 \
+  --md=C:\Users\shimi\AppData\Local\Temp\xcAshm4.\driver_tmp_0.dat -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ACODE=00h-07FFhx8 -ASTRCODE=00h-03FFFh \
   -ASTRING=00h-0FFhx64 -ACONST=00h-0FFhx64 -AENTRY=00h-0FFhx64 \
   -ACOMMON=070h-07Fh -ABANK0=020h-06Fh -ABANK1=0A0h-0EFh \
@@ -38,7 +38,7 @@ Linker command line:
   -AIDLOC=08000h-08003h -DIDLOC=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
   -DENTRY=2 -preset_vec=00h,intentry=04h,sivt,init,end_init -ppowerup=CODE \
   -pcinit=CODE -pfunctab=ENTRY -k \
-  C:\Users\user\AppData\Local\Temp\xcAsm14.\driver_tmp_12.o \
+  C:\Users\shimi\AppData\Local\Temp\xcAshm4.\driver_tmp_12.o \
   dist/default/debug\led-dimming-unit.X.debug.o 
 
 Object code version is 3.11
@@ -48,9 +48,9 @@ Machine type is 16F1778
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\user\AppData\Local\Temp\xcAsm14.\driver_tmp_12.o
+C:\Users\shimi\AppData\Local\Temp\xcAshm4.\driver_tmp_12.o
                 end_init                             19       19        2        8       0
-                reset_vec                             0        0        2        0       0
+                reset_vec                             0        0        3        0       0
                 config                             8007     8007        2        0       4
 dist/default/debug\led-dimming-unit.X.debug.o
                 cinit                                1B       1B        6        8       0
@@ -86,7 +86,7 @@ TOTAL           Name                               Link     Load   Length     Sp
                 end_init                             19       19        2         0
                 cinit                                1B       1B        6         0
                 intentry                              4        4       15         0
-                reset_vec                             0        0        2         0
+                reset_vec                             0        0        3         0
                 text20                              254      254        3         0
                 text18                              15B      15B       1A         0
                 text17                              1A3      1A3       17         0
@@ -272,7 +272,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
-                reset_vec                      000000  000002  000002         0       0  CODE        2
+                reset_vec                      000000  000003  000003         0       0  CODE        2
                 intentry                       000004  000253  000257         8       0  CODE        2
                 nvBANK0                        000020  00000A  00002A        20       1  BANK0       1
                 cstackCOMMON                   000070  00000D  00007D        70       1  COMMON      1
@@ -309,12 +309,12 @@ UNUSED ADDRESS RANGES
         BANK9            004A0-004EF              50           1
         BIGRAM           02000-023EF             3F0           1
                          02410-027EF             3E0
-        CODE             00002-00003               2           2
+        CODE             00003-00003               1           2
                          00257-03FFF             800
         COMMON           0007D-0007D               1           1
-        CONST            00002-00003               2           2
+        CONST            00003-00003               1           2
                          00257-03FFF             100
-        ENTRY            00002-00003               2           2
+        ENTRY            00003-00003               1           2
                          00257-03FFF             100
         IDLOC            08000-08003               4           2
         RAM              0002A-0006F              46           1
@@ -375,9 +375,9 @@ UNUSED ADDRESS RANGES
         SFR7             00380-0039F              20           1
         SFR8             00400-0041F              20           1
         SFR9             00480-0049F              20           1
-        STRCODE          00002-00003               2           2
+        STRCODE          00003-00003               1           2
                          00257-03FFF            3DA9
-        STRING           00002-00003               2           2
+        STRING           00003-00003               1           2
                          00257-03FFF             100
 
                                   Symbol Table
@@ -555,7 +555,7 @@ __HnvBANK0                               nvBANK0      00000
 __HnvCOMMON                              nvCOMMON     00000
 __Hpowerup                               powerup      00000
 __Hram                                   ram          00000
-__Hreset_vec                             reset_vec    00002
+__Hreset_vec                             reset_vec    00003
 __Hsfr0                                  sfr0         00000
 __Hsfr1                                  sfr1         00000
 __Hsfr10                                 sfr10        00000
