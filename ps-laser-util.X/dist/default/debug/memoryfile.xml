@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/default/debug\ps-laser-util.X.debug.hex">
+    <memory name="program">
+      <units>words</units>
+      <length>4096</length>
+      <used>1350</used>
+      <free>2746</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>256</length>
+      <used>94</used>
+      <free>162</free>
+    </memory>
+  </executable>
+</project>
