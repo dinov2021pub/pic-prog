@@ -10402,7 +10402,7 @@ void CLOCK_Initialize(void);
 # 40 "mcc_generated_files/system/src/../../system/config_bits.h" 2
 # 43 "mcc_generated_files/system/src/../../system/system.h" 2
 # 1 "mcc_generated_files/system/src/../../system/../system/pins.h" 1
-# 324 "mcc_generated_files/system/src/../../system/../system/pins.h"
+# 343 "mcc_generated_files/system/src/../../system/../system/pins.h"
 void PIN_MANAGER_Initialize (void);
 
 
@@ -10851,7 +10851,122 @@ int getch(void);
 
 void putch(char txData);
 # 45 "mcc_generated_files/system/src/../../system/system.h" 2
-# 55 "mcc_generated_files/system/src/../../system/system.h"
+
+
+# 1 "mcc_generated_files/system/src/../../system/../compare/ccp1.h" 1
+# 54 "mcc_generated_files/system/src/../../system/../compare/ccp1.h"
+typedef union CCPR1Reg_tag
+{
+   struct
+   {
+      uint8_t ccpr1l;
+      uint8_t ccpr1h;
+   };
+   struct
+   {
+      uint16_t ccpr1_16Bit;
+   };
+} CCPR1_PERIOD_REG_T ;
+# 77 "mcc_generated_files/system/src/../../system/../compare/ccp1.h"
+void CCP1_Initialize(void);
+# 86 "mcc_generated_files/system/src/../../system/../compare/ccp1.h"
+void CCP1_SetCompareCount(uint16_t compareCount);
+# 97 "mcc_generated_files/system/src/../../system/../compare/ccp1.h"
+_Bool CCP1_IsCompareComplete(void);
+# 48 "mcc_generated_files/system/src/../../system/system.h" 2
+# 1 "mcc_generated_files/system/src/../../system/../timer/tmr1.h" 1
+# 41 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+# 1 "mcc_generated_files/system/src/../../system/../timer/tmr1_deprecated.h" 1
+# 42 "mcc_generated_files/system/src/../../system/../timer/tmr1.h" 2
+# 185 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+void TMR1_Initialize(void);
+
+
+
+
+
+
+
+void TMR1_Deinitialize(void);
+# 202 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+void TMR1_Start(void);
+# 211 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+void TMR1_Stop(void);
+# 220 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+uint16_t TMR1_CounterGet(void);
+# 229 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+void TMR1_CounterSet(uint16_t timerVal);
+# 238 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+void TMR1_PeriodSet(uint16_t periodVal);
+# 247 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+uint16_t TMR1_PeriodGet(void);
+# 256 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+void TMR1_Reload(void);
+
+
+
+
+
+
+
+uint16_t TMR1_MaxCountGet(void);
+# 273 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+void TMR1_SinglePulseAcquisitionStart(void);
+# 282 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+uint8_t TMR1_GateStateGet(void);
+# 291 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+_Bool TMR1_OverflowStatusGet(void);
+
+
+
+
+
+
+
+void TMR1_OverflowStatusClear(void);
+# 308 "mcc_generated_files/system/src/../../system/../timer/tmr1.h"
+_Bool TMR1_GateEventStatusGet(void);
+
+
+
+
+
+
+
+void TMR1_GateEventStatusClear(void);
+
+
+
+
+
+
+
+void TMR1_GateCallbackRegister(void (* CallbackHandler)(void));
+
+
+
+
+
+
+
+void TMR1_OverflowCallbackRegister(void (* CallbackHandler)(void));
+
+
+
+
+
+
+
+void TMR1_Tasks(void);
+# 49 "mcc_generated_files/system/src/../../system/system.h" 2
+
+
+
+
+
+
+
+
 void SYSTEM_Initialize(void);
 # 36 "mcc_generated_files/system/src/interrupt.c" 2
 
