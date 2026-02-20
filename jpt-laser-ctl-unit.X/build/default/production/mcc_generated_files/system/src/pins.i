@@ -10377,7 +10377,7 @@ extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 2 3
 # 39 "mcc_generated_files/system/src/../pins.h" 2
-# 324 "mcc_generated_files/system/src/../pins.h"
+# 343 "mcc_generated_files/system/src/../pins.h"
 void PIN_MANAGER_Initialize (void);
 
 
@@ -10397,13 +10397,13 @@ void PIN_MANAGER_Initialize(void)
 
     LATA = 0x0;
     LATB = 0x0;
-    LATC = 0x0;
+    LATC = 0x40;
 
 
 
 
     TRISA = 0x0;
-    TRISB = 0xDF;
+    TRISB = 0xCF;
     TRISC = 0xB8;
     TRISE = 0x8;
 
@@ -10411,15 +10411,15 @@ void PIN_MANAGER_Initialize(void)
 
 
     ANSELA = 0x0;
-    ANSELB = 0x5F;
+    ANSELB = 0x4F;
     ANSELC = 0x38;
 
 
 
 
-    WPUA = 0x0;
-    WPUB = 0xDF;
-    WPUC = 0x38;
+    WPUA = 0xFF;
+    WPUB = 0xFF;
+    WPUC = 0xFF;
     WPUE = 0x8;
     OPTION_REGbits.nWPUEN = 0x0;
 
@@ -10441,7 +10441,7 @@ void PIN_MANAGER_Initialize(void)
 
     INLVLA = 0x0;
     INLVLB = 0x0;
-    INLVLC = 0x38;
+    INLVLC = 0xFF;
     INLVLE = 0x8;
 # 99 "mcc_generated_files/system/src/pins.c"
     APFCON1 = 0x0;
