@@ -77,7 +77,7 @@ void jpt_laser_init(void);
 void emission_on(void);
 void emission_off(void);
 bool get_emission_status(void);
-//void Start_Latch_Pulse(void);
+void Start_Latch_Pulse(void);
 void my_gets(char *buffer, uint16_t max_len);
 unsigned char getche(void);
 
@@ -93,8 +93,8 @@ int main(void)
 {
     SYSTEM_Initialize();
     EUSART_Initialize();
-//    TMR1_Initialize();
-//    CCP1_Initialize();
+    TMR1_Initialize();
+    CCP1_Initialize();
     // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts 
     // If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global and Peripheral Interrupts 
     // Use the following macros to: 
@@ -264,44 +264,50 @@ int main(void)
             case SPO :
                 if(get_emission_status() == 1){
                     L_AMP = fp1_amp;
-                    L_LATCH = 1;
-                    __delay_us(DELAY_LATCH);
-                    L_LATCH = 0;
+                    Start_Latch_Pulse();
+//                    L_LATCH = 1;
+//                    __delay_us(DELAY_LATCH);
+//                    L_LATCH = 0;
                     for (int i=0 ; i < fp1_time ; i++){
                         __delay_us(15) ;
                     }
                     L_AMP = fp2_amp;
-                    L_LATCH = 1;
-                    __delay_us(DELAY_LATCH);
-                    L_LATCH = 0;
+                    Start_Latch_Pulse();
+//                    L_LATCH = 1;
+//                    __delay_us(DELAY_LATCH);
+//                    L_LATCH = 0;
                     for (int i=0 ; i < fp2_time ; i++){
                         __delay_us(15) ;
                     }
                     L_AMP = fp3_amp;
-                    L_LATCH = 1;
-                    __delay_us(DELAY_LATCH);
-                    L_LATCH = 0;
+                    Start_Latch_Pulse();
+//                    L_LATCH = 1;
+//                    __delay_us(DELAY_LATCH);
+//                    L_LATCH = 0;
                     for (int i=0 ; i < fp3_time ; i++){
                         __delay_us(15) ;
                     }
                     L_AMP = fp4_amp;
-                    L_LATCH = 1;
-                    __delay_us(DELAY_LATCH);
-                    L_LATCH = 0;
+                    Start_Latch_Pulse();
+//                    L_LATCH = 1;
+//                    __delay_us(DELAY_LATCH);
+//                    L_LATCH = 0;
                     for (int i=0 ; i < fp4_time ; i++){
                         __delay_us(15) ;
                     }
                     L_AMP = fp5_amp;
-                    L_LATCH = 1;
-                    __delay_us(DELAY_LATCH);
-                    L_LATCH = 0;
+                    Start_Latch_Pulse();
+//                    L_LATCH = 1;
+//                    __delay_us(DELAY_LATCH);
+//                    L_LATCH = 0;
                     for (int i=0 ; i < fp5_time ; i++){
                         __delay_us(15) ;
                     }
                     L_AMP = fp6_amp;
-                    L_LATCH = 1;
-                    __delay_us(DELAY_LATCH);
-                    L_LATCH = 0;
+                    Start_Latch_Pulse();
+//                    L_LATCH = 1;
+//                    __delay_us(DELAY_LATCH);
+//                    L_LATCH = 0;
                     for (int i=0 ; i < fp6_time ; i++){
                         __delay_us(15) ;
                     }
@@ -375,7 +381,7 @@ bool get_emission_status(void){
     return emission_status;
 }
 
-//void Start_Latch_Pulse(void){
+void Start_Latch_Pulse(void){
 //    // Timer1リセット
 //    TMR1_CounterSet(0);
 //    
@@ -385,7 +391,24 @@ bool get_emission_status(void){
 //    // パルス開始
 //    L_LATCH = 1;
 //    TMR1_Start();
-//}
+    
+    
+    
+    
+    
+    TMR1_Stop();  // 一度停止
+    TMR1_CounterSet(0);  // リセット
+    CCP1_SetCompareCount(320);  // 比較値設定
+    
+    L_LATCH = 1;  // High
+    __delay_us(1);  // 少し待つ
+    
+    TMR1_Start();  // タイマースタート
+    
+    // デバッグ: 50μsec後に確認
+    __delay_us(50);
+    // ここでL_LATCHが0になっている
+}
 
 void my_gets(char *buffer, uint16_t max_len){
     uint16_t idx = 0;
