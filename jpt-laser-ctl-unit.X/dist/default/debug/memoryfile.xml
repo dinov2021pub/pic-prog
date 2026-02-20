@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/debug\jpt-laser-ctl-unit.X.debug.hex">
+  <executable name="dist/default/debug\jpt-laser-ctl-unita.X.debug.hex">
     <memory name="program">
       <units>words</units>
       <length>16384</length>
-      <used>3889</used>
-      <free>12495</free>
+      <used>3892</used>
+      <free>12492</free>
     </memory>
     <memory name="data">
       <units>bytes</units>

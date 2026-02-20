@@ -10388,7 +10388,7 @@ void CLOCK_Initialize(void);
 # 40 "./mcc_generated_files/system/config_bits.h" 2
 # 43 "./mcc_generated_files/system/system.h" 2
 # 1 "./mcc_generated_files/system/../system/pins.h" 1
-# 324 "./mcc_generated_files/system/../system/pins.h"
+# 343 "./mcc_generated_files/system/../system/pins.h"
 void PIN_MANAGER_Initialize (void);
 
 
@@ -10851,7 +10851,121 @@ extern void (*INT_InterruptHandler)(void);
 # 175 "./mcc_generated_files/system/../system/interrupt.h"
 void INT_DefaultInterruptHandler(void);
 # 46 "./mcc_generated_files/system/system.h" 2
-# 55 "./mcc_generated_files/system/system.h"
+
+# 1 "./mcc_generated_files/system/../compare/ccp1.h" 1
+# 54 "./mcc_generated_files/system/../compare/ccp1.h"
+typedef union CCPR1Reg_tag
+{
+   struct
+   {
+      uint8_t ccpr1l;
+      uint8_t ccpr1h;
+   };
+   struct
+   {
+      uint16_t ccpr1_16Bit;
+   };
+} CCPR1_PERIOD_REG_T ;
+# 77 "./mcc_generated_files/system/../compare/ccp1.h"
+void CCP1_Initialize(void);
+# 86 "./mcc_generated_files/system/../compare/ccp1.h"
+void CCP1_SetCompareCount(uint16_t compareCount);
+# 97 "./mcc_generated_files/system/../compare/ccp1.h"
+_Bool CCP1_IsCompareComplete(void);
+# 48 "./mcc_generated_files/system/system.h" 2
+# 1 "./mcc_generated_files/system/../timer/tmr1.h" 1
+# 41 "./mcc_generated_files/system/../timer/tmr1.h"
+# 1 "./mcc_generated_files/system/../timer/tmr1_deprecated.h" 1
+# 42 "./mcc_generated_files/system/../timer/tmr1.h" 2
+# 185 "./mcc_generated_files/system/../timer/tmr1.h"
+void TMR1_Initialize(void);
+
+
+
+
+
+
+
+void TMR1_Deinitialize(void);
+# 202 "./mcc_generated_files/system/../timer/tmr1.h"
+void TMR1_Start(void);
+# 211 "./mcc_generated_files/system/../timer/tmr1.h"
+void TMR1_Stop(void);
+# 220 "./mcc_generated_files/system/../timer/tmr1.h"
+uint16_t TMR1_CounterGet(void);
+# 229 "./mcc_generated_files/system/../timer/tmr1.h"
+void TMR1_CounterSet(uint16_t timerVal);
+# 238 "./mcc_generated_files/system/../timer/tmr1.h"
+void TMR1_PeriodSet(uint16_t periodVal);
+# 247 "./mcc_generated_files/system/../timer/tmr1.h"
+uint16_t TMR1_PeriodGet(void);
+# 256 "./mcc_generated_files/system/../timer/tmr1.h"
+void TMR1_Reload(void);
+
+
+
+
+
+
+
+uint16_t TMR1_MaxCountGet(void);
+# 273 "./mcc_generated_files/system/../timer/tmr1.h"
+void TMR1_SinglePulseAcquisitionStart(void);
+# 282 "./mcc_generated_files/system/../timer/tmr1.h"
+uint8_t TMR1_GateStateGet(void);
+# 291 "./mcc_generated_files/system/../timer/tmr1.h"
+_Bool TMR1_OverflowStatusGet(void);
+
+
+
+
+
+
+
+void TMR1_OverflowStatusClear(void);
+# 308 "./mcc_generated_files/system/../timer/tmr1.h"
+_Bool TMR1_GateEventStatusGet(void);
+
+
+
+
+
+
+
+void TMR1_GateEventStatusClear(void);
+
+
+
+
+
+
+
+void TMR1_GateCallbackRegister(void (* CallbackHandler)(void));
+
+
+
+
+
+
+
+void TMR1_OverflowCallbackRegister(void (* CallbackHandler)(void));
+
+
+
+
+
+
+
+void TMR1_Tasks(void);
+# 49 "./mcc_generated_files/system/system.h" 2
+
+
+
+
+
+
+
+
 void SYSTEM_Initialize(void);
 # 36 "main.c" 2
 
@@ -10914,7 +11028,7 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 39 "main.c" 2
-# 60 "main.c"
+# 59 "main.c"
 enum command {
   SF1,
   SF2,
@@ -10936,6 +11050,7 @@ void jpt_laser_init(void);
 void emission_on(void);
 void emission_off(void);
 _Bool get_emission_status(void);
+
 void my_gets(char *buffer, uint16_t max_len);
 unsigned char getche(void);
 
@@ -10943,11 +11058,16 @@ unsigned char getche(void);
 
 
 volatile _Bool emission_status = 0;
-# 106 "main.c"
+
+
+
+
 int main(void)
 {
     SYSTEM_Initialize();
     EUSART_Initialize();
+    TMR1_Initialize();
+    CCP1_Initialize();
 
 
 
@@ -11117,48 +11237,48 @@ int main(void)
             case SPO :
                 if(get_emission_status() == 1){
                     LATA = fp1_amp;
-                    LATCbits.LATC0 = 1;
+                    LATCbits.LATC2 = 1;
                     _delay((unsigned long)((40)*(16000000/4000000.0)));
-                    LATCbits.LATC0 = 0;
+                    LATCbits.LATC2 = 0;
                     for (int i=0 ; i < fp1_time ; i++){
                         _delay((unsigned long)((15)*(16000000/4000000.0))) ;
                     }
                     LATA = fp2_amp;
-                    LATCbits.LATC0 = 1;
+                    LATCbits.LATC2 = 1;
                     _delay((unsigned long)((40)*(16000000/4000000.0)));
-                    LATCbits.LATC0 = 0;
+                    LATCbits.LATC2 = 0;
                     for (int i=0 ; i < fp2_time ; i++){
                         _delay((unsigned long)((15)*(16000000/4000000.0))) ;
                     }
                     LATA = fp3_amp;
-                    LATCbits.LATC0 = 1;
+                    LATCbits.LATC2 = 1;
                     _delay((unsigned long)((40)*(16000000/4000000.0)));
-                    LATCbits.LATC0 = 0;
+                    LATCbits.LATC2 = 0;
                     for (int i=0 ; i < fp3_time ; i++){
                         _delay((unsigned long)((15)*(16000000/4000000.0))) ;
                     }
                     LATA = fp4_amp;
-                    LATCbits.LATC0 = 1;
+                    LATCbits.LATC2 = 1;
                     _delay((unsigned long)((40)*(16000000/4000000.0)));
-                    LATCbits.LATC0 = 0;
+                    LATCbits.LATC2 = 0;
                     for (int i=0 ; i < fp4_time ; i++){
                         _delay((unsigned long)((15)*(16000000/4000000.0))) ;
                     }
                     LATA = fp5_amp;
-                    LATCbits.LATC0 = 1;
+                    LATCbits.LATC2 = 1;
                     _delay((unsigned long)((40)*(16000000/4000000.0)));
-                    LATCbits.LATC0 = 0;
+                    LATCbits.LATC2 = 0;
                     for (int i=0 ; i < fp5_time ; i++){
                         _delay((unsigned long)((15)*(16000000/4000000.0))) ;
                     }
                     LATA = fp6_amp;
-                    LATCbits.LATC0 = 1;
+                    LATCbits.LATC2 = 1;
                     _delay((unsigned long)((40)*(16000000/4000000.0)));
-                    LATCbits.LATC0 = 0;
+                    LATCbits.LATC2 = 0;
                     for (int i=0 ; i < fp6_time ; i++){
                         _delay((unsigned long)((15)*(16000000/4000000.0))) ;
                     }
-
+                    LATA = 0x00;
                     printf("C\tSPO\r\n");
                     }else if(get_emission_status() == 0){
                         printf("C\tEmission is already disabled.!!\n");
@@ -11195,7 +11315,7 @@ int main(void)
 }
 
 void jpt_laser_init(void){
-    LATCbits.LATC2 = 0;
+    LATCbits.LATC0 = 0;
     LATCbits.LATC1 = 0;
     LATA = 0x00;
     LATBbits.LATB5 = 0;
@@ -11210,13 +11330,13 @@ void jpt_laser_init(void){
 void emission_on(void){
     LATCbits.LATC1 = 1;
     _delay((unsigned long)((1000)*(16000000/4000000.0)));
-    LATCbits.LATC2 = 1;
+    LATCbits.LATC0 = 1;
     _delay((unsigned long)((4000)*(16000000/4000000.0)));
     emission_status = 1;
 }
 
 void emission_off(void){
-    LATCbits.LATC2 = 0;
+    LATCbits.LATC0 = 0;
     _delay((unsigned long)((1000)*(16000000/4000000.0)));
     LATCbits.LATC1 = 0;
     _delay((unsigned long)((1000)*(16000000/4000000.0)));
@@ -11227,7 +11347,7 @@ void emission_off(void){
 _Bool get_emission_status(void){
     return emission_status;
 }
-
+# 390 "main.c"
 void my_gets(char *buffer, uint16_t max_len){
     uint16_t idx = 0;
     char c;

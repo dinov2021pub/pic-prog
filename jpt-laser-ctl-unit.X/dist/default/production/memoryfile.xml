@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\jpt-laser-ctl-unit.X.production.hex">
+  <executable name="dist/default/production\jpt-laser-ctl-unita.X.production.hex">
     <memory name="program">
       <units>words</units>
       <length>16384</length>
-      <used>3888</used>
-      <free>12496</free>
+      <used>3851</used>
+      <free>12533</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>2048</length>
-      <used>523</used>
-      <free>1525</free>
+      <used>517</used>
+      <free>1531</free>
     </memory>
   </executable>
 </project>

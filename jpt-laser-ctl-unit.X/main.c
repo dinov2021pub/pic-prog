@@ -93,7 +93,7 @@ int main(void)
 {
     SYSTEM_Initialize();
     EUSART_Initialize();
-    TMR1_Initialize();
+//    TMR1_Initialize();
 //    CCP1_Initialize();
     // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts 
     // If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global and Peripheral Interrupts 
@@ -305,7 +305,7 @@ int main(void)
                     for (int i=0 ; i < fp6_time ; i++){
                         __delay_us(15) ;
                     }
-                    //L_AMP = 0x00;
+                    L_AMP = 0x00;
                     printf("C\tSPO\r\n");      
                     }else if(get_emission_status() == 0){
                         printf("C\tEmission is already disabled.!!\n");
@@ -414,7 +414,3 @@ unsigned char getche(void){
     putch(c);      // 受信した文字をそのまま送り返す（エコー）
     return c;
 }
-
-
-
-
