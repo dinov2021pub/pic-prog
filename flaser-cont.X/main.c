@@ -8,9 +8,11 @@
  *
  * Created at 2023/11/19
  * Modified at 2026/01/30
+ * Used for MJC
  * 
  * Analog output controller with RS-232C comunication
  * PIC16F1705 - FT234X USBシリアル変換モジュール
+ * TEST
  * 
  * 
  *  */
