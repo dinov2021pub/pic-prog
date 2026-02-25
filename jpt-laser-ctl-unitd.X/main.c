@@ -38,7 +38,7 @@
 #include <string.h>
 
 /* ===========================
- * ãƒã‚¯ãƒ­ã®å®£è¨€
+ * ƒ}ƒNƒ‚ÌéŒ¾
  * =========================== */
 #define LED1 LATBbits.LATB5
 #define LED2 LATBbits.LATB4
@@ -47,14 +47,13 @@
 #define L_PA LATCbits.LATC0
 #define L_AMP LATA
 
-#define DELAY_LATCH 40
 #define DELAY_PA_START 4000
 #define DELAY_MOD_START 1000
 #define DELAY_PA_END 1000
 #define DELAY_MOD_END 1000
 
 /* ===========================
- * å‹ã®å®£è¨€
+ * Œ^‚ÌéŒ¾
  * =========================== */
 enum command {
   SF1,
@@ -71,30 +70,29 @@ enum command {
 };
 
 /* ===========================
- * ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã®å®£è¨€
+ * ƒvƒƒgƒ^ƒCƒv‚ÌéŒ¾
  * =========================== */
 void jpt_laser_init(void);
 void emission_on(void);
 void emission_off(void);
 bool get_emission_status(void);
-void Start_Latch_Pulse(void);
+void Output_With_Latch(uint8_t amp, uint8_t time);
 void my_gets(char *buffer, uint16_t max_len);
 unsigned char getche(void);
 
 /* ===========================
- * ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®šç¾©
+ * ƒOƒ[ƒoƒ‹•Ï”’è‹`
  * =========================== */
 volatile bool emission_status = 0;  // 0: OFF, 1: ON
+static volatile bool tmr2_done = false;
 
 /* ===========================
- * ãƒ¡ã‚¤ãƒ³å‡¦ç†
+ * ƒƒCƒ“ˆ—
  * =========================== */
 int main(void)
 {
     SYSTEM_Initialize();
     EUSART_Initialize();
-//    TMR1_Initialize();
-//    CCP1_Initialize();
     // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts 
     // If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global and Peripheral Interrupts 
     // Use the following macros to: 
@@ -112,7 +110,7 @@ int main(void)
     //INTERRUPT_PeripheralInterruptDisable(); 
     
     /* ===========================
-     * ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+     * ƒ[ƒJƒ‹•Ï”
      * =========================== */
     static char tmp[300];
     char rcmd[4];
@@ -136,7 +134,7 @@ int main(void)
     while(1)
     {
        /* ===========================
-        * ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°
+        * ƒuƒƒbƒNƒ[ƒJƒ‹•Ï”
         * =========================== */
         rcmd[0] = 'Q'; 
         rcmd[1] = 'Q'; 
@@ -158,7 +156,7 @@ int main(void)
         rcmd[2] = tmp[3];
         rcmd[3] = '\0';       
         
-        enum command cmd; // enumåˆ—æŒ™å‹ã¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å®šç¾©
+        enum command cmd; // enum—ñ‹“Œ^‚ÆƒIƒuƒWƒFƒNƒg‚Ì’è‹`
         
         if(strcmp(rcmd,"SF1") == 0){
             cmd = SF1;
@@ -263,54 +261,12 @@ int main(void)
 
             case SPO :
                 if(get_emission_status() == 1){
-                    L_AMP = fp1_amp;
-                    Start_Latch_Pulse();
-//                    L_LATCH = 1;
-//                    __delay_us(DELAY_LATCH);
-//                    L_LATCH = 0;
-                    for (int i=0 ; i < fp1_time ; i++){
-                        __delay_us(15) ;
-                    }
-                    L_AMP = fp2_amp;
-                    Start_Latch_Pulse();
-//                    L_LATCH = 1;
-//                    __delay_us(DELAY_LATCH);
-//                    L_LATCH = 0;
-                    for (int i=0 ; i < fp2_time ; i++){
-                        __delay_us(15) ;
-                    }
-                    L_AMP = fp3_amp;
-                    Start_Latch_Pulse();
-//                    L_LATCH = 1;
-//                    __delay_us(DELAY_LATCH);
-//                    L_LATCH = 0;
-                    for (int i=0 ; i < fp3_time ; i++){
-                        __delay_us(15) ;
-                    }
-                    L_AMP = fp4_amp;
-                    Start_Latch_Pulse();
-//                    L_LATCH = 1;
-//                    __delay_us(DELAY_LATCH);
-//                    L_LATCH = 0;
-                    for (int i=0 ; i < fp4_time ; i++){
-                        __delay_us(15) ;
-                    }
-                    L_AMP = fp5_amp;
-                    Start_Latch_Pulse();
-//                    L_LATCH = 1;
-//                    __delay_us(DELAY_LATCH);
-//                    L_LATCH = 0;
-                    for (int i=0 ; i < fp5_time ; i++){
-                        __delay_us(15) ;
-                    }
-                    L_AMP = fp6_amp;
-                    Start_Latch_Pulse();
-//                    L_LATCH = 1;
-//                    __delay_us(DELAY_LATCH);
-//                    L_LATCH = 0;
-                    for (int i=0 ; i < fp6_time ; i++){
-                        __delay_us(15) ;
-                    }
+                    Output_With_Latch(fp1_amp, fp1_time);
+                    Output_With_Latch(fp2_amp, fp2_time);
+                    Output_With_Latch(fp3_amp, fp3_time);
+                    Output_With_Latch(fp4_amp, fp4_time);
+                    Output_With_Latch(fp5_amp, fp5_time);
+                    Output_With_Latch(fp6_amp, fp6_time);
                     L_AMP = 0x00;
                     printf("C\tSPO\r\n");      
                     }else if(get_emission_status() == 0){
@@ -381,33 +337,31 @@ bool get_emission_status(void){
     return emission_status;
 }
 
-void Start_Latch_Pulse(void){
-//    // Timer1ãƒªã‚»ãƒƒãƒˆ
-//    TMR1_CounterSet(0);
-//    
-//    // 40Î¼secå¾Œã«L_LATCHã‚’Lowã«ã™ã‚‹æ¯”è¼ƒå€¤è¨­å®š
-//    CCP1_SetCompareCount(320);  // 32MHzæ™‚
-//    
-//    // ãƒ‘ãƒ«ã‚¹é–‹å§‹
-//    L_LATCH = 1;
-//    TMR1_Start();
+void Output_With_Latch(uint8_t amp, uint8_t time)
+{
+    if (time == 0) {
+        L_AMP = 0;
+        L_LATCH = 0;
+        return;
+    }
     
+    // AMP ‚Æ LATCH ‚ğ“¯‚É—§‚¿ã‚°
+    L_AMP = amp;
+    L_LATCH = 1;
     
+    // 5ƒÊs’PˆÊ‚Ìforƒ‹[ƒvitime ~ 2‰ñ = time ~ 10ƒÊsj
+    uint16_t total = (uint16_t)time * 2;
     
+    for (uint16_t i = 0; i < total; i++) {
+        __delay_us(1);
+        
+        // 1‰ñ–Ú‚Ì5ƒÊsŒo‰ßŒãi= 5ƒÊs“_j‚ÅLATCH OFF
+        if (i == 0) {
+            L_LATCH = 0;
+        }
+    }
     
-    
-    TMR1_Stop();  // ä¸€åº¦åœæ­¢
-    TMR1_CounterSet(0);  // ãƒªã‚»ãƒƒãƒˆ
-    CCP1_SetCompareCount(320);  // æ¯”è¼ƒå€¤è¨­å®š
-    
-    L_LATCH = 1;  // High
-    __delay_us(1);  // å°‘ã—å¾…ã¤
-    
-    TMR1_Start();  // ã‚¿ã‚¤ãƒãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
-    
-    // ãƒ‡ãƒãƒƒã‚°: 50Î¼secå¾Œã«ç¢ºèª
-    __delay_us(50);
-    // ã“ã“ã§L_LATCHãŒ0ã«ãªã£ã¦ã„ã‚‹
+    L_AMP = 0;
 }
 
 void my_gets(char *buffer, uint16_t max_len){
@@ -433,7 +387,7 @@ void my_gets(char *buffer, uint16_t max_len){
 
 unsigned char getche(void){
     unsigned char c;
-    c = getch();   // 1æ–‡å­—å—ä¿¡
-    putch(c);      // å—ä¿¡ã—ãŸæ–‡å­—ã‚’ãã®ã¾ã¾é€ã‚Šè¿”ã™ï¼ˆã‚¨ã‚³ãƒ¼ï¼‰
+    c = getch();   // 1•¶šóM
+    putch(c);      // óM‚µ‚½•¶š‚ğ‚»‚Ì‚Ü‚Ü‘—‚è•Ô‚·iƒGƒR[j
     return c;
 }
