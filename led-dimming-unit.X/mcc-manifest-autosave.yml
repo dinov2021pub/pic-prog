@@ -2,12 +2,12 @@
 
 manifest_file_version: 1.0.0
 project: led-dimming-unit
-creation_date: 2026-01-28T17:23:52.691+09:00[Asia/Tokyo]
+creation_date: 2026-03-16T17:02:20.692+09:00[Asia/Tokyo]
 operating_system: Windows 11
 mcc_mode: IDE
 mcc_mode_version: v6.25
 device_name: PIC16F1778
-compiler: XC8 3.10
+compiler: XC8 2.50
 mcc_version: 5.6.3
 mcc_core_version: 5.8.3
 content_manager_version: 6.0.3
