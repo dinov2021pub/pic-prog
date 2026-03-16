@@ -29,12 +29,12 @@ CND_CONF=default
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 IMAGE_TYPE=debug
 OUTPUT_SUFFIX=elf
-DEBUGGABLE_SUFFIX=null
+DEBUGGABLE_SUFFIX=elf
 FINAL_IMAGE=${DISTDIR}/led-dimming-unit.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 else
 IMAGE_TYPE=production
 OUTPUT_SUFFIX=hex
-DEBUGGABLE_SUFFIX=null
+DEBUGGABLE_SUFFIX=elf
 FINAL_IMAGE=${DISTDIR}/led-dimming-unit.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 endif
 
@@ -54,11 +54,11 @@ DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 SOURCEFILES_QUOTED_IF_SPACED=mcc_generated_files/adc/src/adc.c mcc_generated_files/pwm/src/pwm4.c mcc_generated_files/pwm/src/pwm3.c mcc_generated_files/pwm/src/ccp7.c mcc_generated_files/pwm/src/ccp2.c mcc_generated_files/pwm/src/ccp1.c mcc_generated_files/system/src/clock.c mcc_generated_files/system/src/interrupt.c mcc_generated_files/system/src/config_bits.c mcc_generated_files/system/src/system.c mcc_generated_files/system/src/pins.c mcc_generated_files/timer/src/tmr2.c main.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/mcc_generated_files/adc/src/adc.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/system/src/clock.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/system/src/system.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/system/src/pins.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/main.${OUTPUT_EXTENSION_C}
-POSSIBLE_DEPFILES=${OBJECTDIR}/mcc_generated_files/adc/src/adc.${OUTPUT_EXTENSION_C}.d ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.${OUTPUT_EXTENSION_C}.d ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.${OUTPUT_EXTENSION_C}.d ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.${OUTPUT_EXTENSION_C}.d ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.${OUTPUT_EXTENSION_C}.d ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.${OUTPUT_EXTENSION_C}.d ${OBJECTDIR}/mcc_generated_files/system/src/clock.${OUTPUT_EXTENSION_C}.d ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.${OUTPUT_EXTENSION_C}.d ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.${OUTPUT_EXTENSION_C}.d ${OBJECTDIR}/mcc_generated_files/system/src/system.${OUTPUT_EXTENSION_C}.d ${OBJECTDIR}/mcc_generated_files/system/src/pins.${OUTPUT_EXTENSION_C}.d ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.${OUTPUT_EXTENSION_C}.d ${OBJECTDIR}/main.${OUTPUT_EXTENSION_C}.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1 ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1 ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1 ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1 ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1 ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1 ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1 ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1 ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1 ${OBJECTDIR}/mcc_generated_files/system/src/system.p1 ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1 ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1 ${OBJECTDIR}/main.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1.d ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1.d ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1.d ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1.d ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1.d ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1.d ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1.d ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1.d ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1.d ${OBJECTDIR}/mcc_generated_files/system/src/system.p1.d ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1.d ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1.d ${OBJECTDIR}/main.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/mcc_generated_files/adc/src/adc.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/system/src/clock.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/system/src/system.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/system/src/pins.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.${OUTPUT_EXTENSION_C} ${OBJECTDIR}/main.${OUTPUT_EXTENSION_C}
+OBJECTFILES=${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1 ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1 ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1 ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1 ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1 ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1 ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1 ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1 ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1 ${OBJECTDIR}/mcc_generated_files/system/src/system.p1 ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1 ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1 ${OBJECTDIR}/main.p1
 
 # Source Files
 SOURCEFILES=mcc_generated_files/adc/src/adc.c mcc_generated_files/pwm/src/pwm4.c mcc_generated_files/pwm/src/pwm3.c mcc_generated_files/pwm/src/ccp7.c mcc_generated_files/pwm/src/ccp2.c mcc_generated_files/pwm/src/ccp1.c mcc_generated_files/system/src/clock.c mcc_generated_files/system/src/interrupt.c mcc_generated_files/system/src/config_bits.c mcc_generated_files/system/src/system.c mcc_generated_files/system/src/pins.c mcc_generated_files/timer/src/tmr2.c main.c
@@ -84,166 +84,218 @@ ifneq ($(INFORMATION_MESSAGE), )
 endif
 	${MAKE}  -f nbproject/Makefile-default.mk ${DISTDIR}/led-dimming-unit.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 
-MP_PROCESSOR_OPTION=
+MP_PROCESSOR_OPTION=16F1778
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/mcc_generated_files/adc/src/adc.${OUTPUT_EXTENSION_C}: mcc_generated_files/adc/src/adc.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1: mcc_generated_files/adc/src/adc.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/adc/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/adc/src/adc.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/adc/src/adc.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/adc/src/adc.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1 mcc_generated_files/adc/src/adc.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/adc/src/adc.d ${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.${OUTPUT_EXTENSION_C}: mcc_generated_files/pwm/src/pwm4.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1: mcc_generated_files/pwm/src/pwm4.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/pwm/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/pwm/src/pwm4.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1 mcc_generated_files/pwm/src/pwm4.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.d ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.${OUTPUT_EXTENSION_C}: mcc_generated_files/pwm/src/pwm3.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1: mcc_generated_files/pwm/src/pwm3.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/pwm/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/pwm/src/pwm3.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1 mcc_generated_files/pwm/src/pwm3.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.d ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.${OUTPUT_EXTENSION_C}: mcc_generated_files/pwm/src/ccp7.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1: mcc_generated_files/pwm/src/ccp7.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/pwm/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/pwm/src/ccp7.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1 mcc_generated_files/pwm/src/ccp7.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.d ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.${OUTPUT_EXTENSION_C}: mcc_generated_files/pwm/src/ccp2.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1: mcc_generated_files/pwm/src/ccp2.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/pwm/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/pwm/src/ccp2.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1 mcc_generated_files/pwm/src/ccp2.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.d ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.${OUTPUT_EXTENSION_C}: mcc_generated_files/pwm/src/ccp1.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1: mcc_generated_files/pwm/src/ccp1.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/pwm/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/pwm/src/ccp1.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1 mcc_generated_files/pwm/src/ccp1.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.d ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/system/src/clock.${OUTPUT_EXTENSION_C}: mcc_generated_files/system/src/clock.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/system/src/clock.p1: mcc_generated_files/system/src/clock.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/system/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/clock.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/clock.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/system/src/clock.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1 mcc_generated_files/system/src/clock.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/system/src/clock.d ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/system/src/interrupt.${OUTPUT_EXTENSION_C}: mcc_generated_files/system/src/interrupt.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1: mcc_generated_files/system/src/interrupt.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/system/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/system/src/interrupt.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1 mcc_generated_files/system/src/interrupt.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.d ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/system/src/config_bits.${OUTPUT_EXTENSION_C}: mcc_generated_files/system/src/config_bits.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1: mcc_generated_files/system/src/config_bits.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/system/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/system/src/config_bits.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1 mcc_generated_files/system/src/config_bits.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.d ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/system/src/system.${OUTPUT_EXTENSION_C}: mcc_generated_files/system/src/system.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/system/src/system.p1: mcc_generated_files/system/src/system.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/system/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/system.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/system.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/system/src/system.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/system.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/system.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/system/src/system.p1 mcc_generated_files/system/src/system.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/system/src/system.d ${OBJECTDIR}/mcc_generated_files/system/src/system.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/system/src/system.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/system/src/pins.${OUTPUT_EXTENSION_C}: mcc_generated_files/system/src/pins.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/system/src/pins.p1: mcc_generated_files/system/src/pins.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/system/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/pins.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/pins.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/system/src/pins.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1 mcc_generated_files/system/src/pins.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/system/src/pins.d ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.${OUTPUT_EXTENSION_C}: mcc_generated_files/timer/src/tmr2.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1: mcc_generated_files/timer/src/tmr2.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/timer/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/timer/src/tmr2.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1 mcc_generated_files/timer/src/tmr2.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.d ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/main.${OUTPUT_EXTENSION_C}: main.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/main.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/main.${OUTPUT_EXTENSION_C} 
-	 -D__DEBUG=1    -D=$(CND_CONF)  $(COMPARISON_BUILD)     main.c 
+	@${RM} ${OBJECTDIR}/main.p1.d 
+	@${RM} ${OBJECTDIR}/main.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/main.p1 main.c 
+	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
-${OBJECTDIR}/mcc_generated_files/adc/src/adc.${OUTPUT_EXTENSION_C}: mcc_generated_files/adc/src/adc.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1: mcc_generated_files/adc/src/adc.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/adc/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/adc/src/adc.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/adc/src/adc.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/adc/src/adc.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1 mcc_generated_files/adc/src/adc.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/adc/src/adc.d ${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/adc/src/adc.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.${OUTPUT_EXTENSION_C}: mcc_generated_files/pwm/src/pwm4.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1: mcc_generated_files/pwm/src/pwm4.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/pwm/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/pwm/src/pwm4.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1 mcc_generated_files/pwm/src/pwm4.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.d ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm4.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.${OUTPUT_EXTENSION_C}: mcc_generated_files/pwm/src/pwm3.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1: mcc_generated_files/pwm/src/pwm3.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/pwm/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/pwm/src/pwm3.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1 mcc_generated_files/pwm/src/pwm3.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.d ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/pwm/src/pwm3.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.${OUTPUT_EXTENSION_C}: mcc_generated_files/pwm/src/ccp7.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1: mcc_generated_files/pwm/src/ccp7.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/pwm/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/pwm/src/ccp7.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1 mcc_generated_files/pwm/src/ccp7.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.d ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp7.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.${OUTPUT_EXTENSION_C}: mcc_generated_files/pwm/src/ccp2.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1: mcc_generated_files/pwm/src/ccp2.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/pwm/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/pwm/src/ccp2.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1 mcc_generated_files/pwm/src/ccp2.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.d ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp2.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.${OUTPUT_EXTENSION_C}: mcc_generated_files/pwm/src/ccp1.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1: mcc_generated_files/pwm/src/ccp1.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/pwm/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/pwm/src/ccp1.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1 mcc_generated_files/pwm/src/ccp1.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.d ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/pwm/src/ccp1.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/system/src/clock.${OUTPUT_EXTENSION_C}: mcc_generated_files/system/src/clock.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/system/src/clock.p1: mcc_generated_files/system/src/clock.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/system/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/clock.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/clock.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/system/src/clock.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1 mcc_generated_files/system/src/clock.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/system/src/clock.d ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/system/src/clock.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/system/src/interrupt.${OUTPUT_EXTENSION_C}: mcc_generated_files/system/src/interrupt.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1: mcc_generated_files/system/src/interrupt.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/system/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/system/src/interrupt.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1 mcc_generated_files/system/src/interrupt.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.d ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/system/src/interrupt.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/system/src/config_bits.${OUTPUT_EXTENSION_C}: mcc_generated_files/system/src/config_bits.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1: mcc_generated_files/system/src/config_bits.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/system/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/system/src/config_bits.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1 mcc_generated_files/system/src/config_bits.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.d ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/system/src/config_bits.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/system/src/system.${OUTPUT_EXTENSION_C}: mcc_generated_files/system/src/system.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/system/src/system.p1: mcc_generated_files/system/src/system.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/system/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/system.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/system.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/system/src/system.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/system.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/system.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/system/src/system.p1 mcc_generated_files/system/src/system.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/system/src/system.d ${OBJECTDIR}/mcc_generated_files/system/src/system.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/system/src/system.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/system/src/pins.${OUTPUT_EXTENSION_C}: mcc_generated_files/system/src/pins.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/system/src/pins.p1: mcc_generated_files/system/src/pins.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/system/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/pins.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/pins.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/system/src/pins.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1 mcc_generated_files/system/src/pins.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/system/src/pins.d ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/system/src/pins.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.${OUTPUT_EXTENSION_C}: mcc_generated_files/timer/src/tmr2.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1: mcc_generated_files/timer/src/tmr2.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/timer/src" 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     mcc_generated_files/timer/src/tmr2.c 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1 mcc_generated_files/timer/src/tmr2.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.d ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/timer/src/tmr2.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/main.${OUTPUT_EXTENSION_C}: main.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/main.${OUTPUT_EXTENSION_C}.d 
-	@${RM} ${OBJECTDIR}/main.${OUTPUT_EXTENSION_C} 
-	   -D=$(CND_CONF)  $(COMPARISON_BUILD)     main.c 
+	@${RM} ${OBJECTDIR}/main.p1.d 
+	@${RM} ${OBJECTDIR}/main.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)      -o ${OBJECTDIR}/main.p1 main.c 
+	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
@@ -251,6 +303,29 @@ endif
 # Rules for buildStep: assemble
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 else
+endif
+
+# ------------------------------------------------------------------------------------
+# Rules for buildStep: assembleWithPreprocess
+ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+else
+endif
+
+# ------------------------------------------------------------------------------------
+# Rules for buildStep: link
+ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+${DISTDIR}/led-dimming-unit.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
+	@${MKDIR} ${DISTDIR} 
+	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=${DISTDIR}/led-dimming-unit.X.${IMAGE_TYPE}.map  -D__DEBUG=1  -mdebugger=pickit4  -DXPRJ_default=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1   -mdfp="${DFP_DIR}/xc8"        $(COMPARISON_BUILD) -Wl,--memorysummary,${DISTDIR}/memoryfile.xml -o ${DISTDIR}/led-dimming-unit.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
+	@${RM} ${DISTDIR}/led-dimming-unit.X.${IMAGE_TYPE}.hex 
+	
+	
+else
+${DISTDIR}/led-dimming-unit.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
+	@${MKDIR} ${DISTDIR} 
+	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=${DISTDIR}/led-dimming-unit.X.${IMAGE_TYPE}.map  -DXPRJ_default=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1   -mdfp="${DFP_DIR}/xc8"      $(COMPARISON_BUILD) -Wl,--memorysummary,${DISTDIR}/memoryfile.xml -o ${DISTDIR}/led-dimming-unit.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
+	
+	
 endif
 
 
