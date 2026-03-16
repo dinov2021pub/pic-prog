@@ -69,6 +69,8 @@ int main(void)
 
     // Disable the Peripheral Interrupts 
     //INTERRUPT_PeripheralInterruptDisable(); 
+    
+    LATBbits.LATB5 = 1;
 
     while(1)
     {
@@ -86,7 +88,7 @@ int main(void)
         
         // “¯Ž²Æ–¾
         if(rb0_state == 1){
-            CCP1_LoadDutyValue(an0);
+            CCP1_LoadDutyValue(an0 >> 1);
         }else{
             CCP1_LoadDutyValue(0);
         }

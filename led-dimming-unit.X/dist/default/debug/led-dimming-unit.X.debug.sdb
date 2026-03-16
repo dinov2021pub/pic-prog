@@ -112,7 +112,7 @@ TMR2_LC2_OUT 27
 TMR2_LC3_OUT 28
 TMR2_LC4_OUT 29
 ]
-"76 C:\Users\shimi\MPLABXProjects\pic-prog\led-dimming-unit.X\main.c
+"78 C:\Users\shimi\MPLABXProjects\pic-prog\led-dimming-unit.X\main.c
 [e E12082 . `uc
 ADC_CHANNEL_FVRBUFFER1 63
 ADC_CHANNEL_DAC7_OUTPUT 55
@@ -198,7 +198,7 @@ ADC_CHANNEL_AN0 0
 ]
 [u S526 . 1 `S512 1 . 1 0 `S521 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES526  1 e 1 @11 ]
-[s S1059 . 1 `uc 1 RB0 1 0 :1:0 
+[s S1080 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -208,8 +208,8 @@ ADC_CHANNEL_AN0 0
 `uc 1 RB7 1 0 :1:7 
 ]
 "508
-[u S1068 . 1 `S1059 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES1068  1 e 1 @13 ]
+[u S1089 . 1 `S1080 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES1089  1 e 1 @13 ]
 [s S40 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -275,6 +275,18 @@ ADC_CHANNEL_AN0 0
 [v _LATA LATA `VEuc  1 e 1 @268 ]
 "2735
 [v _LATB LATB `VEuc  1 e 1 @269 ]
+[s S1043 . 1 `uc 1 LATB0 1 0 :1:0 
+`uc 1 LATB1 1 0 :1:1 
+`uc 1 LATB2 1 0 :1:2 
+`uc 1 LATB3 1 0 :1:3 
+`uc 1 LATB4 1 0 :1:4 
+`uc 1 LATB5 1 0 :1:5 
+`uc 1 LATB6 1 0 :1:6 
+`uc 1 LATB7 1 0 :1:7 
+]
+"2752
+[u S1052 . 1 `S1043 1 . 1 0 ]
+[v _LATBbits LATBbits `VES1052  1 e 1 @269 ]
 "2797
 [v _LATC LATC `VEuc  1 e 1 @270 ]
 "3707
@@ -576,13 +588,13 @@ ADC_CHANNEL_AN0 0
 "47 C:\Users\shimi\MPLABXProjects\pic-prog\led-dimming-unit.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
+"87
+[v main@rb2_state rb2_state `uc  1 a 1 8 ]
+"86
+[v main@rb1_state rb1_state `uc  1 a 1 7 ]
 "85
-[v main@rb2_state rb2_state `uc  1 a 1 6 ]
-"84
-[v main@rb1_state rb1_state `uc  1 a 1 5 ]
-"83
-[v main@rb0_state rb0_state `uc  1 a 1 4 ]
-"113
+[v main@rb0_state rb0_state `uc  1 a 1 6 ]
+"115
 } 0
 "39 C:\Users\shimi\MPLABXProjects\pic-prog\led-dimming-unit.X\mcc_generated_files/system/src/system.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]

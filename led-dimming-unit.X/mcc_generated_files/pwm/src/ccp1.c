@@ -42,7 +42,7 @@
 */
 
 /* cppcheck-suppress misra-c2012-2.5 */
-#define PWM1_INITIALIZE_DUTY_VALUE    511
+#define PWM1_INITIALIZE_DUTY_VALUE    159
 
 /**
   Section: PWM1 Module APIs
@@ -55,11 +55,11 @@ void CCP1_Initialize(void)
     // CCPM PWM; EN enabled; FMT right_aligned; 
     CCP1CON = 0x8F;
     
-    // CCPRH 1; 
-    CCPR1H = 0x1;
+    // CCPRH 0; 
+    CCPR1H = 0x0;
     
-    // CCPRL 255; 
-    CCPR1L = 0xFF;
+    // CCPRL 159; 
+    CCPR1L = 0x9F;
     
     // Selecting Timer 2
     CCPTMRS1bits.C1TSEL = 0x0;

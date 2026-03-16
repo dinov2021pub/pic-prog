@@ -58,7 +58,7 @@ void TMR2_Initialize(void)
 
     T2RST = (0 << _T2RST_T2RSEL_POSN);  // T2RSEL T2CKIPPS pin
 
-    T2PR = 0xFF;    // Period 0.008192s; Timer Prescaled Frequency 250000Hz; Count 255; Postscaler 1:8; 
+    T2PR = 0x4F;    // Period 0.00004s; Timer Prescaled Frequency 4000000Hz; Count 79; Postscaler 1:2; 
 
     T2TMR = 0x0;
 
@@ -66,9 +66,9 @@ void TMR2_Initialize(void)
     
     PIR1bits.TMR2IF = 0;
 
-    T2CON = (4 << _T2CON_T2CKPS_POSN)   // T2CKPS 1:16
+    T2CON = (0 << _T2CON_T2CKPS_POSN)   // T2CKPS 1:1
         | (1 << _T2CON_TMR2ON_POSN)   // TMR2ON on
-        | (7 << _T2CON_T2OUTPS_POSN);  // T2OUTPS 1:8
+        | (1 << _T2CON_T2OUTPS_POSN);  // T2OUTPS 1:2
 }
 
 void TMR2_Deinitialize(void)
