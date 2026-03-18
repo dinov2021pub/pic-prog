@@ -1,0 +1,7 @@
+ build/default/production/uart.d  \
+ build/default/production/uart.p1:  \
+ uart.c  \
+C:/Users/user/.mchp_packs/Microchip/PIC12-16F1xxx_DFP/1.6.241/xc8/pic/include/pic.h  \
+uart.h  \
+C:/Users/user/.mchp_packs/Microchip/PIC12-16F1xxx_DFP/1.6.241/xc8/pic/include/pic_chip_select.h  \
+C:/Users/user/.mchp_packs/Microchip/PIC12-16F1xxx_DFP/1.6.241/xc8/pic/include/proc/pic16f1788.h 
