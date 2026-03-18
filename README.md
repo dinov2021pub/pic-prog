@@ -71,14 +71,18 @@ Repository of PIC micon program
 - PCとの接続は、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を使用した。
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ６４８Ａ－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g100466/)。[データシート](https://akizukidenshi.com/goodsaffix/pic16f627a_628a_648a.pdf)
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
-- 開発環境のバージョンを以下に示す。
->- MPLAB X バージョン：v6.25
->- XC8 バージョン：v2.50
->- teraterm バージョン：v5.4.1
-- ファームウェア バージョンを以下に示す。
+- 回路図は以下に保存(https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP24-001E-001.pdf)
+
+- 開発環境
+>- MPLAB X v6.25
+>- XC8 v2.50
+- 通信ソフト
+>- teraterm v5.4.1
+- ファームウェア バージョン
 >- ＊－V1, 位置合わせレーザー、DCファンを制御
 >- ＊－V2,V1に追加でシャッター制御機能を追加してVersion 2.0とした(2026年1月9日現在)
->- ＊－V3,シャッターを再設計しなおしてVersion 3.0とした 
+>- ＊－V3,シャッター再設計、led-dimming-unit.Xを統合して Version 3.0とした
+
 - teratermでの動作確認
 >- コマンドのフォーマット
 >>- スペース、コマンド、/、1または0
@@ -101,6 +105,8 @@ Repository of PIC micon program
 - PIC 16F1778 を用い、同軸照明、リング照明の制御をする。
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ１７７８－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g113552/)。[データシート](https://akizukidenshi.com/goodsaffix/pic16f1778.pdf)
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
+- 回路図は以下に保存(https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-001E-003.pdf)
+
 - 開発環境
 >- MPLAB X バージョン：v6.25
 >- XC8 バージョン：v2.50
@@ -108,4 +114,20 @@ Repository of PIC micon program
 - 通信ソフト
 >- teraterm バージョン：v5.4.1
 - ファームウェア バージョン
->- ＊－V1 同軸照明 リング照明上下左右を調光
+>- ＊－V1 同軸照明 リング照明上下左右を調光 PWM周波数40kHz
+
+## jpt-ctl-unit.X
+
+
+
+
+
+## uv-ps-laser-ctl-unit.X
+
+
+
+
+
+
+
+
