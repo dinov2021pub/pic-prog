@@ -115,7 +115,7 @@ int main(void)
     static char tmp[300];
     char rcmd[4];
     
-    uint8_t fp1_amp;//
+    uint8_t fp1_amp;////
     uint8_t fp2_amp;
     uint8_t fp3_amp;
     uint8_t fp4_amp;
