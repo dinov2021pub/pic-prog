@@ -61,11 +61,19 @@ Repository of PIC micon program
 
 ## ps-laser-util.X
 - ピコ秒グリーンレーザーの周辺機器の制御を行うコントロール基板のプログラム。
+Version 2.0まで
 - PIC 16F648A を用い、冷却ファン、レッドレーザー、メカニカルシャッターの制御をする。
 - PCとの接続は、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を使用した。
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ６４８Ａ－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g100466/)。[データシート](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/40044G.pdf)
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
 - 回路図は以下に保存(https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP24-001E-001.pdf)
+
+Version 3.0
+- PIC 16F1778 を用い、冷却ファン、レッドレーザー、メカニカルシャッター、同軸・リング照明の制御をする。
+- PCとの接続は、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を接続する。
+- PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ１７７８－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g113552/)。[データシート](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/PIC16%28L%29F1777_8_9_Family_Data_Sheet_40001819D.pdf)
+- 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
+- 回路図は以下に保存()
 
 - 開発環境
 >- MPLAB X バージョン：v6.25
@@ -87,19 +95,19 @@ Repository of PIC micon program
 
 - teratermでの動作確認
 >- ファームウェアバージョン確認
->>- ␣VER<Enter>
+>>- ␣VER
 >- レッドレーザーON/OFF
->>- ␣LDP/1(ON)or0(OFF)<Enter>
+>>- ␣LDP/1(ON)or0(OFF)
 >- DCファンON/OFF
->>- ␣DCF/1(ON)or0(OFF)<Enter>
+>>- ␣DCF/1(ON)or0(OFF)
 >- シャッター閉/開とフォトインタラプタの状態
->>- ␣SHT/1(シャッター閉)or0(シャッター開)<Enter>
+>>- ␣SHT/1(シャッター閉)or0(シャッター開)
 >>- //return: 0=フォトインタラプタ開, 1=フォトインタラプタ閉
 >- フォトインタラプタ状態確認
->>- ␣PHO<Enter>
+>>- ␣PHO
 >>- //return: 0=フォトインタラプタ開, 1=フォトインタラプタ閉
 >- 何もしない
->>- ␣NON<Enter>
+>>- ␣NON
 <img width="822" height="546" alt="スクリーンショット 2026-01-13 120324" src="https://github.com/user-attachments/assets/9dc75af9-0613-4c93-9f67-4e3112fea1a2" />
 
 ## led-dimming-unit.X
@@ -140,9 +148,9 @@ Repository of PIC micon program
 
 - teratermでの動作確認
 >- ファームウェアバージョン確認
->>- ␣VER<Enter>
+>>- ␣VER
 >- 変数にTIME(16bit)とAMP(8bit)を代入
->>- ␣SF*/TIME/AMP<Enter>
+>>- ␣SF*/TIME/AMP
 >>- SF1:変数1
 >>- SF2:変数2
 >>- SF3:変数3
@@ -150,13 +158,13 @@ Repository of PIC micon program
 >>- SF5:変数5
 >>- SF6:変数6
 >- SF1～SF6までの代入した値を確認
->>- ␣VEW<Enter>
+>>- ␣VEW
 >- MO&PA ON
->>- ␣TON<Enter>
+>>- ␣TON
 >- レーザー照射
->>- ␣SPO<Enter>
+>>- ␣SPO
 >- MO&PA OFF
->>- ␣TOF<Enter>
+>>- ␣TOF
 
 ## uv-ps-laser-ctl-unit.X
 - ピコ秒UVレーザーのMEP制御BOXを行うコントロール基板のプログラム。
@@ -181,12 +189,28 @@ Repository of PIC micon program
 >>- ストップビット：１
 - ファームウェア バージョン
 >- ＊－V1
+
 - teratermでの動作確認
-
-
-
-
-
+>- ファームウェアバージョン確認
+>>- ␣VER
+>- レッドレーザーON/OFF
+>>- ␣LDP/1(ON)or0(OFF)
+>- シャッター閉/開とホールセンサーの状態
+>>- ␣SHT/1(シャッター閉)or0(シャッター開)
+>>- //return: 0=ホールセンサー開, 1=ホールセンサー閉
+>- ホールセンサー状態確認
+>>- ␣HAL
+>>- //return: 0=ホールセンサー開, 1=ホールセンサー閉
+>- 同軸照明 Duty値入力
+>>- ␣COA/Duty値(0～1023)
+>- リング照明1 Duty値入力
+>>- ␣RG1/Duty値(0～1023)
+>- リング照明2 Duty値入力
+>>- ␣RG2/Duty値(0～1023)
+>- リング照明3 Duty値入力
+>>- ␣RG3/Duty値(0～1023)
+>- リング照明4 Duty値入力
+>>- ␣RG4/Duty値(0～1023)
 
 
 
