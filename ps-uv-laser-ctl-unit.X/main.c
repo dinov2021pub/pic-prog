@@ -332,6 +332,10 @@ bool get_hall_status(void){
     return hall_status;
 }
 
+
+
+
+
 void my_gets(char *buffer, uint16_t max_len){
     uint16_t idx = 0;
     char c;
