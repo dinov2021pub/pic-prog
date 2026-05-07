@@ -44,11 +44,25 @@
 #define SHT_CCW LATBbits.LATB0
 #define HALL PORTBbits.RB2
 #define P_LD LATBbits.LATB3
-#define P_LED LATBbits.LATB5
+#define P_LED LATBbits.LATB4
 
-#define SHT_LOW 10
-#define SHT_MIDDLE 100
-#define SHT_HIGH 1000
+#define SHT_DUTY_OFF 0
+
+#define OPEN_INIT_DUTY 800
+#define OPEN_STG1_DUTY 640
+#define OPEN_STG2_DUTY 320
+#define OPEN_INIT_TIME 17
+#define OPEN_STG1_TIME 6
+#define OPEN_STG2_TIME 6
+#define OPEN_HALL_DELAY 11
+
+#define CLOSE_INIT_DUTY 800
+#define CLOSE_STG1_DUTY 480
+#define CLOSE_STG2_DUTY 240
+#define CLOSE_INIT_TIME 14
+#define CLOSE_STG1_TIME 4
+#define CLOSE_STG2_TIME 4
+#define CLOSE_HALL_DELAY 15
 
 /* ===========================
  * 型の宣言
@@ -71,16 +85,14 @@ enum command {
 void ctl_unit_init(void);
 void shutter_on(void);
 void shutter_off(void);
-bool get_hall_status(void);
 void my_gets(char *buffer, uint16_t max_len);
 unsigned char getche(void);
 
 /* ===========================
  * グローバル変数定義
  * =========================== */
-volatile bool hall_status = 0;  // 0: OFF, 1: ON
+volatile bool hall_status = 0;  // 0: OPEN, 1: CLOSE
 
-//static volatile bool tmr2_done = false;
 unsigned char ld_on_off = 0;
 unsigned char sht_on_off = 0;
 
@@ -127,7 +139,7 @@ int main(void)
     uint8_t ring2_val;
     uint8_t ring3_val;
     uint8_t ring4_val;
-    uint8_t sht_spped;
+//    uint8_t sht_spped;
     
     char *ptr;
     
@@ -197,36 +209,60 @@ int main(void)
                 }
                 printf("C\tLDP\t%d\r\n", ld_on_off);
                 break;
-
+                
+            /* ===========================
+             * シャッター(SHB1HT)の動作
+             * SHT 1: sutter open, SHT 0: sutter close
+             * OPEN : HAL 0,      CLOSE : HAL 1
+             * LED  : OFF,          LED : ON
+             * PWM周波数は SHB1H(T) の推奨周波数より
+             * 20kHz 9bit PWM 
+             * Duty 0?100 ⇒ 0?800
+             * =========================== */
             case SHT :
                 ptr = strtok(NULL, "/");
                 if(ptr != NULL) {
                     sht_on_off = atoi(ptr);
                 }
                 if(sht_on_off == 0){
+                    PWM9_LoadDutyValue(SHT_DUTY_OFF);
+                    __delay_ms(10);
                     SHT_CW = 1;
                     SHT_CCW = 0;
-                    PWM9_LoadDutyValue(60);
-//                    SHT_CW = 0;
-//                    SHT_CCW = 0;
+                    PWM9_LoadDutyValue(CLOSE_INIT_DUTY);
+                    __delay_ms(CLOSE_INIT_TIME);
+                    PWM9_LoadDutyValue(CLOSE_STG1_DUTY);
+                    __delay_ms(CLOSE_STG1_TIME);
+                    PWM9_LoadDutyValue(CLOSE_STG2_DUTY);
+                    __delay_ms(CLOSE_HALL_DELAY);
+                    hall_status = HALL;
                 }else if(sht_on_off == 1){
+                    PWM9_LoadDutyValue(SHT_DUTY_OFF);
+                    __delay_ms(10);
                     SHT_CW = 0;
                     SHT_CCW = 1;
-                    PWM9_LoadDutyValue(60);
-//                    SHT_CW = 0;
-//                    SHT_CCW = 0;
+                    PWM9_LoadDutyValue(OPEN_INIT_DUTY);
+                    __delay_ms(OPEN_INIT_TIME);
+                    PWM9_LoadDutyValue(OPEN_STG1_DUTY);
+                    __delay_ms(OPEN_STG1_TIME);
+                    PWM9_LoadDutyValue(OPEN_STG2_DUTY);
+                    __delay_ms(OPEN_HALL_DELAY);
+                    hall_status = HALL;
                 }
                 printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
                 break;
 
             case HAL :
-                ptr = strtok(NULL, "/");
-                if(ptr != NULL) {
-                    hall_status = atoi(ptr);
-                }
+                hall_status = HALL;
                 printf("C\tHAL\t%d\r\n", hall_status);
                 break;
-
+                
+            /* ===========================
+             * 照明関係 PWM
+             * フリッカをなくす為に 動作周波数を速くした
+             * 50kHz 8bit PWM 
+             * Duty 0?100% ⇒ 0?320
+             * =========================== */
             case COA :
                 ptr = strtok(NULL, "/");
                 if(ptr != NULL) {
@@ -289,47 +325,12 @@ int main(void)
 }
 
 void ctl_unit_init(void){
-    for(int i=0 ; i < 20 ; i++){
+    for(int i=0 ; i < 50 ; i++){
         __delay_ms(50);
         P_LED ^= 1;
     }
     P_LED = 1;
     printf("System initialization has been completed.!!\r\n");
-}
-
-//void shutter_on(void){
-//    SHT_CW = 1;
-//    SHT_CCW = 0;
-//    sht_spped = atoi(ptr);
-//    PWM9_LoadDutyValue(sht_spped);
-//    SHT_CW = 0;
-//    SHT_CCW = 0;
-//    //hall_status = HAL;
-//}
-//
-//void shutter_off(void){
-//    SHT_CW = 0;
-//    SHT_CCW = 1;
-//    sht_spped = atoi(ptr);
-//    PWM9_LoadDutyValue(sht_spped);
-//    SHT_CW = 0;
-//    SHT_CCW = 0;
-//    //hall_status = HAL;
-//}
-
-//// 初期化（MCCが生成するPWM5_Initialize()で済む部分もある）
-//PWM5_PeriodSet(65535);
-//PWM5_DutyCycleSet(49151);   // 75% = 65535 * 0.75 ? 49151
-//PWM5_LoadBufferSet();        // バッファ転送
-//PWM5_Start();                // PWM開始
-//
-//// 動作中に値を変えるとき
-//PWM5_DutyCycleSet(32767);   // 50%に変更
-//PWM5_LoadBufferSet();        // ← これを忘れると反映されない
-
-
-bool get_hall_status(void){
-    return hall_status;
 }
 
 void my_gets(char *buffer, uint16_t max_len){
