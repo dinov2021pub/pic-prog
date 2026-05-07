@@ -45,17 +45,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "374
 [; ;C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc/pic16f1778.h: 374: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
 [v _INTCONbits `VS30 ~T0 @X0 0 e@11 ]
-"71 main.c
-[; ;main.c: 71: void ctl_unit_init(void);
+"85 main.c
+[; ;main.c: 85: void ctl_unit_init(void);
 [v _ctl_unit_init `(v ~T0 @X0 0 ef ]
-"75
-[; ;main.c: 75: void my_gets(char *buffer, uint16_t max_len);
+"89
+[; ;main.c: 89: void my_gets(char *buffer, uint16_t max_len);
 [v _my_gets `(v ~T0 @X0 0 ef2`*uc`us ]
 "54 C:\Program Files\Microchip\xc8\v3.10\pic\include\c99/string.h
 [; ;C:\Program Files\Microchip\xc8\v3.10\pic\include\c99/string.h: 54: size_t strlen (const char *);
 [v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
-"162 main.c
-[; ;main.c: 162:         enum command cmd;
+"175 main.c
+[; ;main.c: 175:         enum command cmd;
 [c E12873 0 1 2 3 4 5 6 7 8 .. ]
 [n E12873 command LDP SHT HAL COA RG1 RG2 RG3 RG4 VER  ]
 "39 C:\Program Files\Microchip\xc8\v3.10\pic\include\c99/string.h
@@ -84,6 +84,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "65 ./mcc_generated_files/system/../pwm/pwm9.h
 [; ;./mcc_generated_files/system/../pwm/pwm9.h: 65:  void PWM9_LoadDutyValue(uint16_t dutyValue);
 [v _PWM9_LoadDutyValue `(v ~T0 @X0 0 ef1`us ]
+[v F202 `(v ~T0 @X0 1 tf1`ul ]
+"20 C:\Program Files\Microchip\xc8\v3.10\pic\include/builtins.h
+[v __delay `JF202 ~T0 @X0 0 e ]
+[p i __delay ]
+"497 C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc/pic16f1778.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc/pic16f1778.h: 497:     struct {
+[s S36 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S36 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+"496
+[; ;C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc/pic16f1778.h: 496: typedef union {
+[u S35 `S36 1 ]
+[n S35 . . ]
+"508
+[; ;C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc/pic16f1778.h: 508: extern volatile PORTBbits_t PORTBbits __attribute__((address(0x00D)));
+[v _PORTBbits `VS35 ~T0 @X0 0 e@13 ]
 "59 ./mcc_generated_files/system/../pwm/ccp1.h
 [; ;./mcc_generated_files/system/../pwm/ccp1.h: 59: void CCP1_LoadDutyValue(uint16_t dutyValue);
 [v _CCP1_LoadDutyValue `(v ~T0 @X0 0 ef1`us ]
@@ -99,10 +114,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "65 ./mcc_generated_files/system/../pwm/pwm4.h
 [; ;./mcc_generated_files/system/../pwm/pwm4.h: 65:  void PWM4_LoadDutyValue(uint16_t dutyValue);
 [v _PWM4_LoadDutyValue `(v ~T0 @X0 0 ef1`us ]
-[v F202 `(v ~T0 @X0 1 tf1`ul ]
-"20 C:\Program Files\Microchip\xc8\v3.10\pic\include/builtins.h
-[v __delay `JF202 ~T0 @X0 0 e ]
-[p i __delay ]
 "29 C:\Program Files\Microchip\xc8\v3.10\pic\include\c99/string.h
 [; ;C:\Program Files\Microchip\xc8\v3.10\pic\include\c99/string.h: 29: void *memset (void *, int, size_t);
 [v _memset `(*v ~T0 @X0 0 ef3`*v`i`ui ]
@@ -1798,241 +1809,238 @@ Version 4.0 HI-TECH Software Intermediate Code
 "37809
 [; ;C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc/pic16f1778.h: 37809: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"81 main.c
-[; ;main.c: 81: volatile _Bool hall_status = 0;
+"95 main.c
+[; ;main.c: 95: volatile _Bool hall_status = 0;
 [v _hall_status `Va ~T0 @X0 1 e ]
 [i _hall_status
 -> -> 0 `i `a
 ]
-"84
-[; ;main.c: 84: unsigned char ld_on_off = 0;
+"98
+[; ;main.c: 98: unsigned char ld_on_off = 0;
 [v _ld_on_off `uc ~T0 @X0 1 e ]
 [i _ld_on_off
 -> -> 0 `i `uc
 ]
-"85
-[; ;main.c: 85: unsigned char sht_on_off = 0;
+"99
+[; ;main.c: 99: unsigned char sht_on_off = 0;
 [v _sht_on_off `uc ~T0 @X0 1 e ]
 [i _sht_on_off
 -> -> 0 `i `uc
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"92
-[; ;main.c: 92: int main(void)
+"105
+[; ;main.c: 105: int main(void)
 [v _main `(i ~T0 @X0 1 ef ]
-"93
-[; ;main.c: 93: {
+"106
+[; ;main.c: 106: {
 {
 [e :U _main ]
 [f ]
-"94
-[; ;main.c: 94:     SYSTEM_Initialize();
+"107
+[; ;main.c: 107:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"95
-[; ;main.c: 95:     EUSART_Initialize();
+"108
+[; ;main.c: 108:     EUSART_Initialize();
 [e ( _EUSART_Initialize ..  ]
-"96
-[; ;main.c: 96:     TMR2_Initialize();
-[e ( _TMR2_Initialize ..  ]
-"97
-[; ;main.c: 97:     TMR4_Initialize();
-[e ( _TMR4_Initialize ..  ]
-"98
-[; ;main.c: 98:     CCP1_Initialize();
-[e ( _CCP1_Initialize ..  ]
-"99
-[; ;main.c: 99:     CCP2_Initialize();
-[e ( _CCP2_Initialize ..  ]
-"100
-[; ;main.c: 100:     CCP7_Initialize();
-[e ( _CCP7_Initialize ..  ]
-"101
-[; ;main.c: 101:     PWM3_Initialize();
-[e ( _PWM3_Initialize ..  ]
-"102
-[; ;main.c: 102:     PWM4_Initialize();
-[e ( _PWM4_Initialize ..  ]
-"103
-[; ;main.c: 103:     PWM9_Initialize();
-[e ( _PWM9_Initialize ..  ]
 "109
-[; ;main.c: 109:     (INTCONbits.GIE = 1);
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[; ;main.c: 109:     TMR2_Initialize();
+[e ( _TMR2_Initialize ..  ]
+"110
+[; ;main.c: 110:     TMR4_Initialize();
+[e ( _TMR4_Initialize ..  ]
+"111
+[; ;main.c: 111:     CCP1_Initialize();
+[e ( _CCP1_Initialize ..  ]
+"112
+[; ;main.c: 112:     CCP2_Initialize();
+[e ( _CCP2_Initialize ..  ]
+"113
+[; ;main.c: 113:     CCP7_Initialize();
+[e ( _CCP7_Initialize ..  ]
+"114
+[; ;main.c: 114:     PWM3_Initialize();
+[e ( _PWM3_Initialize ..  ]
 "115
-[; ;main.c: 115:     (INTCONbits.PEIE = 1);
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"123
-[; ;main.c: 123:     static char tmp[300];
-[v F12895 `uc ~T0 @X0 -> 300 `i s tmp ]
-"124
-[; ;main.c: 124:     char rcmd[4];
-[v _rcmd `uc ~T0 @X0 -> 4 `i a ]
-"126
-[; ;main.c: 126:     uint32_t coa_val;
-[v _coa_val `ul ~T0 @X0 1 a ]
-"127
-[; ;main.c: 127:     uint8_t ring1_val;
-[v _ring1_val `uc ~T0 @X0 1 a ]
+[; ;main.c: 115:     PWM4_Initialize();
+[e ( _PWM4_Initialize ..  ]
+"116
+[; ;main.c: 116:     PWM9_Initialize();
+[e ( _PWM9_Initialize ..  ]
+"122
+[; ;main.c: 122:     (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
 "128
-[; ;main.c: 128:     uint8_t ring2_val;
-[v _ring2_val `uc ~T0 @X0 1 a ]
-"129
-[; ;main.c: 129:     uint8_t ring3_val;
-[v _ring3_val `uc ~T0 @X0 1 a ]
-"130
-[; ;main.c: 130:     uint8_t ring4_val;
-[v _ring4_val `uc ~T0 @X0 1 a ]
-"131
-[; ;main.c: 131:     uint8_t sht_spped;
-[v _sht_spped `uc ~T0 @X0 1 a ]
-"133
-[; ;main.c: 133:     char *ptr;
-[v _ptr `*uc ~T0 @X0 1 a ]
-"135
-[; ;main.c: 135:     ctl_unit_init();
-[e ( _ctl_unit_init ..  ]
+[; ;main.c: 128:     (INTCONbits.PEIE = 1);
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+"136
+[; ;main.c: 136:     static char tmp[300];
+[v F12895 `uc ~T0 @X0 -> 300 `i s tmp ]
 "137
-[; ;main.c: 137:     while(1)
-[e :U 1748 ]
-"138
-[; ;main.c: 138:     {
-{
+[; ;main.c: 137:     char rcmd[4];
+[v _rcmd `uc ~T0 @X0 -> 4 `i a ]
+"139
+[; ;main.c: 139:     uint32_t coa_val;
+[v _coa_val `ul ~T0 @X0 1 a ]
+"140
+[; ;main.c: 140:     uint8_t ring1_val;
+[v _ring1_val `uc ~T0 @X0 1 a ]
+"141
+[; ;main.c: 141:     uint8_t ring2_val;
+[v _ring2_val `uc ~T0 @X0 1 a ]
 "142
-[; ;main.c: 142:         rcmd[0] = 'Q';
-[e = *U + &U _rcmd * -> -> -> 0 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 142:     uint8_t ring3_val;
+[v _ring3_val `uc ~T0 @X0 1 a ]
 "143
-[; ;main.c: 143:         rcmd[1] = 'Q';
-[e = *U + &U _rcmd * -> -> -> 1 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 81 `ui `uc ]
-"144
-[; ;main.c: 144:         rcmd[2] = 'Q';
-[e = *U + &U _rcmd * -> -> -> 2 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 81 `ui `uc ]
-"145
-[; ;main.c: 145:         rcmd[3] = '\0';
-[e = *U + &U _rcmd * -> -> -> 3 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 0 `ui `uc ]
-"147
-[; ;main.c: 147:         tmp[0] = 'Q';
-[e = *U + &U F12895 * -> -> -> 0 `i `ui `ux -> -> # *U &U F12895 `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 143:     uint8_t ring4_val;
+[v _ring4_val `uc ~T0 @X0 1 a ]
+"146
+[; ;main.c: 146:     char *ptr;
+[v _ptr `*uc ~T0 @X0 1 a ]
 "148
-[; ;main.c: 148:         tmp[1] = 'Q';
-[e = *U + &U F12895 * -> -> -> 1 `i `ui `ux -> -> # *U &U F12895 `ui `ux -> -> 81 `ui `uc ]
-"149
-[; ;main.c: 149:         tmp[2] = 'Q';
-[e = *U + &U F12895 * -> -> -> 2 `i `ui `ux -> -> # *U &U F12895 `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 148:     ctl_unit_init();
+[e ( _ctl_unit_init ..  ]
 "150
-[; ;main.c: 150:         tmp[3] = '\0';
-[e = *U + &U F12895 * -> -> -> 3 `i `ui `ux -> -> # *U &U F12895 `ui `ux -> -> 0 `ui `uc ]
-"153
-[; ;main.c: 153:         my_gets(tmp, sizeof(tmp));
-[e ( _my_gets (2 , &U F12895 -> -> # F12895 `ui `us ]
+[; ;main.c: 150:     while(1)
+[e :U 1748 ]
+"151
+[; ;main.c: 151:     {
+{
 "155
-[; ;main.c: 155:         if (strlen(tmp) < 3) continue;
+[; ;main.c: 155:         rcmd[0] = 'Q';
+[e = *U + &U _rcmd * -> -> -> 0 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 81 `ui `uc ]
+"156
+[; ;main.c: 156:         rcmd[1] = 'Q';
+[e = *U + &U _rcmd * -> -> -> 1 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 81 `ui `uc ]
+"157
+[; ;main.c: 157:         rcmd[2] = 'Q';
+[e = *U + &U _rcmd * -> -> -> 2 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 81 `ui `uc ]
+"158
+[; ;main.c: 158:         rcmd[3] = '\0';
+[e = *U + &U _rcmd * -> -> -> 3 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 0 `ui `uc ]
+"160
+[; ;main.c: 160:         tmp[0] = 'Q';
+[e = *U + &U F12895 * -> -> -> 0 `i `ui `ux -> -> # *U &U F12895 `ui `ux -> -> 81 `ui `uc ]
+"161
+[; ;main.c: 161:         tmp[1] = 'Q';
+[e = *U + &U F12895 * -> -> -> 1 `i `ui `ux -> -> # *U &U F12895 `ui `ux -> -> 81 `ui `uc ]
+"162
+[; ;main.c: 162:         tmp[2] = 'Q';
+[e = *U + &U F12895 * -> -> -> 2 `i `ui `ux -> -> # *U &U F12895 `ui `ux -> -> 81 `ui `uc ]
+"163
+[; ;main.c: 163:         tmp[3] = '\0';
+[e = *U + &U F12895 * -> -> -> 3 `i `ui `ux -> -> # *U &U F12895 `ui `ux -> -> 0 `ui `uc ]
+"166
+[; ;main.c: 166:         my_gets(tmp, sizeof(tmp));
+[e ( _my_gets (2 , &U F12895 -> -> # F12895 `ui `us ]
+"168
+[; ;main.c: 168:         if (strlen(tmp) < 3) continue;
 [e $ ! < ( _strlen (1 -> &U F12895 `*Cuc -> -> 3 `i `ui 1750  ]
 [e $U 1747  ]
 [e :U 1750 ]
-"157
-[; ;main.c: 157:         rcmd[0] = tmp[1];
+"170
+[; ;main.c: 170:         rcmd[0] = tmp[1];
 [e = *U + &U _rcmd * -> -> -> 0 `i `ui `ux -> -> # *U &U _rcmd `ui `ux *U + &U F12895 * -> -> -> 1 `i `ui `ux -> -> # *U &U F12895 `ui `ux ]
-"158
-[; ;main.c: 158:         rcmd[1] = tmp[2];
+"171
+[; ;main.c: 171:         rcmd[1] = tmp[2];
 [e = *U + &U _rcmd * -> -> -> 1 `i `ui `ux -> -> # *U &U _rcmd `ui `ux *U + &U F12895 * -> -> -> 2 `i `ui `ux -> -> # *U &U F12895 `ui `ux ]
-"159
-[; ;main.c: 159:         rcmd[2] = tmp[3];
+"172
+[; ;main.c: 172:         rcmd[2] = tmp[3];
 [e = *U + &U _rcmd * -> -> -> 2 `i `ui `ux -> -> # *U &U _rcmd `ui `ux *U + &U F12895 * -> -> -> 3 `i `ui `ux -> -> # *U &U F12895 `ui `ux ]
-"160
-[; ;main.c: 160:         rcmd[3] = '\0';
+"173
+[; ;main.c: 173:         rcmd[3] = '\0';
 [e = *U + &U _rcmd * -> -> -> 3 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 0 `ui `uc ]
-"162
-[; ;main.c: 162:         enum command cmd;
+"175
+[; ;main.c: 175:         enum command cmd;
 [v _cmd `E12873 ~T0 @X0 1 a ]
-"164
-[; ;main.c: 164:         if(strcmp(rcmd,"LDP") == 0){
+"177
+[; ;main.c: 177:         if(strcmp(rcmd,"LDP") == 0){
 [e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 1C -> 0 `i 1751  ]
 {
-"165
-[; ;main.c: 165:             cmd = LDP;
+"178
+[; ;main.c: 178:             cmd = LDP;
 [e = _cmd . `E12873 0 ]
-"166
-[; ;main.c: 166:         }else if(strcmp(rcmd,"SHT") == 0){
+"179
+[; ;main.c: 179:         }else if(strcmp(rcmd,"SHT") == 0){
 }
 [e $U 1752  ]
 [e :U 1751 ]
 [e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 2C -> 0 `i 1753  ]
 {
-"167
-[; ;main.c: 167:             cmd = SHT;
+"180
+[; ;main.c: 180:             cmd = SHT;
 [e = _cmd . `E12873 1 ]
-"168
-[; ;main.c: 168:         }else if(strcmp(rcmd,"HAL") == 0){
+"181
+[; ;main.c: 181:         }else if(strcmp(rcmd,"HAL") == 0){
 }
 [e $U 1754  ]
 [e :U 1753 ]
 [e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 3C -> 0 `i 1755  ]
 {
-"169
-[; ;main.c: 169:             cmd = HAL;
+"182
+[; ;main.c: 182:             cmd = HAL;
 [e = _cmd . `E12873 2 ]
-"170
-[; ;main.c: 170:         }else if(strcmp(rcmd,"COA") == 0){
+"183
+[; ;main.c: 183:         }else if(strcmp(rcmd,"COA") == 0){
 }
 [e $U 1756  ]
 [e :U 1755 ]
 [e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 4C -> 0 `i 1757  ]
 {
-"171
-[; ;main.c: 171:             cmd = COA;
+"184
+[; ;main.c: 184:             cmd = COA;
 [e = _cmd . `E12873 3 ]
-"172
-[; ;main.c: 172:         }else if(strcmp(rcmd,"RG1") == 0){
+"185
+[; ;main.c: 185:         }else if(strcmp(rcmd,"RG1") == 0){
 }
 [e $U 1758  ]
 [e :U 1757 ]
 [e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 5C -> 0 `i 1759  ]
 {
-"173
-[; ;main.c: 173:             cmd = RG1;
+"186
+[; ;main.c: 186:             cmd = RG1;
 [e = _cmd . `E12873 4 ]
-"174
-[; ;main.c: 174:         }else if(strcmp(rcmd,"RG2") == 0){
+"187
+[; ;main.c: 187:         }else if(strcmp(rcmd,"RG2") == 0){
 }
 [e $U 1760  ]
 [e :U 1759 ]
 [e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 6C -> 0 `i 1761  ]
 {
-"175
-[; ;main.c: 175:             cmd = RG2;
+"188
+[; ;main.c: 188:             cmd = RG2;
 [e = _cmd . `E12873 5 ]
-"176
-[; ;main.c: 176:         }else if(strcmp(rcmd,"RG3") == 0){
+"189
+[; ;main.c: 189:         }else if(strcmp(rcmd,"RG3") == 0){
 }
 [e $U 1762  ]
 [e :U 1761 ]
 [e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 7C -> 0 `i 1763  ]
 {
-"177
-[; ;main.c: 177:             cmd = RG3;
+"190
+[; ;main.c: 190:             cmd = RG3;
 [e = _cmd . `E12873 6 ]
-"178
-[; ;main.c: 178:         }else if(strcmp(rcmd,"RG4") == 0){
+"191
+[; ;main.c: 191:         }else if(strcmp(rcmd,"RG4") == 0){
 }
 [e $U 1764  ]
 [e :U 1763 ]
 [e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 8C -> 0 `i 1765  ]
 {
-"179
-[; ;main.c: 179:             cmd = RG4;
+"192
+[; ;main.c: 192:             cmd = RG4;
 [e = _cmd . `E12873 7 ]
-"180
-[; ;main.c: 180:         }else if(strcmp(rcmd,"VER") == 0){
+"193
+[; ;main.c: 193:         }else if(strcmp(rcmd,"VER") == 0){
 }
 [e $U 1766  ]
 [e :U 1765 ]
 [e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 9C -> 0 `i 1767  ]
 {
-"181
-[; ;main.c: 181:             cmd = VER;
+"194
+[; ;main.c: 194:             cmd = VER;
 [e = _cmd . `E12873 8 ]
-"182
-[; ;main.c: 182:         }
+"195
+[; ;main.c: 195:         }
 }
 [e :U 1767 ]
 [e :U 1766 ]
@@ -2043,467 +2051,504 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 1756 ]
 [e :U 1754 ]
 [e :U 1752 ]
-"183
-[; ;main.c: 183:         ptr = strtok(tmp, "/");
+"196
+[; ;main.c: 196:         ptr = strtok(tmp, "/");
 [e = _ptr ( _strtok (2 , &U F12895 :s 10C ]
-"187
-[; ;main.c: 187:         switch(cmd){
+"200
+[; ;main.c: 200:         switch(cmd){
 [e $U 1769  ]
 {
-"189
-[; ;main.c: 189:             case LDP :
+"202
+[; ;main.c: 202:             case LDP :
 [e :U 1770 ]
-"190
-[; ;main.c: 190:                 ptr = strtok(((void*)0), "/");
+"203
+[; ;main.c: 203:                 ptr = strtok(((void*)0), "/");
 [e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 11C ]
-"191
-[; ;main.c: 191:                 if(ptr != ((void*)0)) {
+"204
+[; ;main.c: 204:                 if(ptr != ((void*)0)) {
 [e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1771  ]
 {
-"192
-[; ;main.c: 192:                     ld_on_off = atoi(ptr);
+"205
+[; ;main.c: 205:                     ld_on_off = atoi(ptr);
 [e = _ld_on_off -> ( _atoi (1 -> _ptr `*Cuc `uc ]
-"193
-[; ;main.c: 193:                 }
+"206
+[; ;main.c: 206:                 }
 }
 [e :U 1771 ]
-"194
-[; ;main.c: 194:                 if(ld_on_off == 0){
+"207
+[; ;main.c: 207:                 if(ld_on_off == 0){
 [e $ ! == -> _ld_on_off `i -> 0 `i 1772  ]
 {
-"195
-[; ;main.c: 195:                     LATBbits.LATB3 = 0;
+"208
+[; ;main.c: 208:                     LATBbits.LATB3 = 0;
 [e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
-"196
-[; ;main.c: 196:                 }else if(ld_on_off == 1){
+"209
+[; ;main.c: 209:                 }else if(ld_on_off == 1){
 }
 [e $U 1773  ]
 [e :U 1772 ]
 [e $ ! == -> _ld_on_off `i -> 1 `i 1774  ]
 {
-"197
-[; ;main.c: 197:                     LATBbits.LATB3 = 1;
+"210
+[; ;main.c: 210:                     LATBbits.LATB3 = 1;
 [e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
-"198
-[; ;main.c: 198:                 }
+"211
+[; ;main.c: 211:                 }
 }
 [e :U 1774 ]
 [e :U 1773 ]
-"199
-[; ;main.c: 199:                 printf("C\tLDP\t%d\r\n", ld_on_off);
+"212
+[; ;main.c: 212:                 printf("C\tLDP\t%d\r\n", ld_on_off);
 [e ( _printf , (. :s 12C -> _ld_on_off `i ]
-"200
-[; ;main.c: 200:                 break;
+"213
+[; ;main.c: 213:                 break;
 [e $U 1768  ]
-"202
-[; ;main.c: 202:             case SHT :
+"215
+[; ;main.c: 215:             case SHT :
 [e :U 1775 ]
-"203
-[; ;main.c: 203:                 ptr = strtok(((void*)0), "/");
+"216
+[; ;main.c: 216:                 ptr = strtok(((void*)0), "/");
 [e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 13C ]
-"204
-[; ;main.c: 204:                 if(ptr != ((void*)0)) {
+"217
+[; ;main.c: 217:                 if(ptr != ((void*)0)) {
 [e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1776  ]
 {
-"205
-[; ;main.c: 205:                     sht_on_off = atoi(ptr);
+"218
+[; ;main.c: 218:                     sht_on_off = atoi(ptr);
 [e = _sht_on_off -> ( _atoi (1 -> _ptr `*Cuc `uc ]
-"206
-[; ;main.c: 206:                 }
+"219
+[; ;main.c: 219:                 }
 }
 [e :U 1776 ]
-"207
-[; ;main.c: 207:                 if(sht_on_off == 0){
+"220
+[; ;main.c: 220:                 if(sht_on_off == 0){
 [e $ ! == -> _sht_on_off `i -> 0 `i 1777  ]
 {
-"208
-[; ;main.c: 208:                     LATBbits.LATB1 = 1;
+"221
+[; ;main.c: 221:                     PWM9_LoadDutyValue(0);
+[e ( _PWM9_LoadDutyValue (1 -> -> 0 `i `us ]
+"222
+[; ;main.c: 222:                     _delay((unsigned long)((10)*(16000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"223
+[; ;main.c: 223:                     LATBbits.LATB1 = 1;
 [e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
-"209
-[; ;main.c: 209:                     LATBbits.LATB0 = 0;
+"224
+[; ;main.c: 224:                     LATBbits.LATB0 = 0;
 [e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
-"210
-[; ;main.c: 210:                     PWM9_LoadDutyValue(60);
-[e ( _PWM9_LoadDutyValue (1 -> -> 60 `i `us ]
-"213
-[; ;main.c: 213:                 }else if(sht_on_off == 1){
+"225
+[; ;main.c: 225:                     PWM9_LoadDutyValue(800);
+[e ( _PWM9_LoadDutyValue (1 -> -> 800 `i `us ]
+"226
+[; ;main.c: 226:                     _delay((unsigned long)((14)*(16000000/4000.0)));
+[e ( __delay (1 -> * -> -> 14 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"227
+[; ;main.c: 227:                     PWM9_LoadDutyValue(480);
+[e ( _PWM9_LoadDutyValue (1 -> -> 480 `i `us ]
+"228
+[; ;main.c: 228:                     _delay((unsigned long)((4)*(16000000/4000.0)));
+[e ( __delay (1 -> * -> -> 4 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"229
+[; ;main.c: 229:                     PWM9_LoadDutyValue(240);
+[e ( _PWM9_LoadDutyValue (1 -> -> 240 `i `us ]
+"230
+[; ;main.c: 230:                     _delay((unsigned long)((15)*(16000000/4000.0)));
+[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"231
+[; ;main.c: 231:                     hall_status = PORTBbits.RB2;
+[e = _hall_status -> . . _PORTBbits 0 2 `a ]
+"232
+[; ;main.c: 232:                 }else if(sht_on_off == 1){
 }
 [e $U 1778  ]
 [e :U 1777 ]
 [e $ ! == -> _sht_on_off `i -> 1 `i 1779  ]
 {
-"214
-[; ;main.c: 214:                     LATBbits.LATB1 = 0;
+"233
+[; ;main.c: 233:                     PWM9_LoadDutyValue(0);
+[e ( _PWM9_LoadDutyValue (1 -> -> 0 `i `us ]
+"234
+[; ;main.c: 234:                     _delay((unsigned long)((10)*(16000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"235
+[; ;main.c: 235:                     LATBbits.LATB1 = 0;
 [e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
-"215
-[; ;main.c: 215:                     LATBbits.LATB0 = 1;
+"236
+[; ;main.c: 236:                     LATBbits.LATB0 = 1;
 [e = . . _LATBbits 0 0 -> -> 1 `i `uc ]
-"216
-[; ;main.c: 216:                     PWM9_LoadDutyValue(60);
-[e ( _PWM9_LoadDutyValue (1 -> -> 60 `i `us ]
-"219
-[; ;main.c: 219:                 }
+"237
+[; ;main.c: 237:                     PWM9_LoadDutyValue(800);
+[e ( _PWM9_LoadDutyValue (1 -> -> 800 `i `us ]
+"238
+[; ;main.c: 238:                     _delay((unsigned long)((17)*(16000000/4000.0)));
+[e ( __delay (1 -> * -> -> 17 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"239
+[; ;main.c: 239:                     PWM9_LoadDutyValue(640);
+[e ( _PWM9_LoadDutyValue (1 -> -> 640 `i `us ]
+"240
+[; ;main.c: 240:                     _delay((unsigned long)((6)*(16000000/4000.0)));
+[e ( __delay (1 -> * -> -> 6 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"241
+[; ;main.c: 241:                     PWM9_LoadDutyValue(320);
+[e ( _PWM9_LoadDutyValue (1 -> -> 320 `i `us ]
+"242
+[; ;main.c: 242:                     _delay((unsigned long)((11)*(16000000/4000.0)));
+[e ( __delay (1 -> * -> -> 11 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"243
+[; ;main.c: 243:                     hall_status = PORTBbits.RB2;
+[e = _hall_status -> . . _PORTBbits 0 2 `a ]
+"244
+[; ;main.c: 244:                 }
 }
 [e :U 1779 ]
 [e :U 1778 ]
-"220
-[; ;main.c: 220:                 printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
-[e ( _printf , , (. :s 14C -> _sht_on_off `i -> _hall_status `i ]
-"221
-[; ;main.c: 221:                 break;
-[e $U 1768  ]
-"223
-[; ;main.c: 223:             case HAL :
-[e :U 1780 ]
-"224
-[; ;main.c: 224:                 ptr = strtok(((void*)0), "/");
-[e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 15C ]
-"225
-[; ;main.c: 225:                 if(ptr != ((void*)0)) {
-[e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1781  ]
-{
-"226
-[; ;main.c: 226:                     hall_status = atoi(ptr);
-[e = _hall_status -> ( _atoi (1 -> _ptr `*Cuc `a ]
-"227
-[; ;main.c: 227:                 }
-}
-[e :U 1781 ]
-"228
-[; ;main.c: 228:                 printf("C\tHAL\t%d\r\n", hall_status);
-[e ( _printf , (. :s 16C -> _hall_status `i ]
-"229
-[; ;main.c: 229:                 break;
-[e $U 1768  ]
-"231
-[; ;main.c: 231:             case COA :
-[e :U 1782 ]
-"232
-[; ;main.c: 232:                 ptr = strtok(((void*)0), "/");
-[e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 17C ]
-"233
-[; ;main.c: 233:                 if(ptr != ((void*)0)) {
-[e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1783  ]
-{
-"234
-[; ;main.c: 234:                     coa_val = atoi(ptr);
-[e = _coa_val -> -> ( _atoi (1 -> _ptr `*Cuc `l `ul ]
-"235
-[; ;main.c: 235:                     if(coa_val > 255)
-[e $ ! > _coa_val -> -> -> 255 `i `l `ul 1784  ]
-"236
-[; ;main.c: 236:                         coa_val = 255;
-[e = _coa_val -> -> -> 255 `i `l `ul ]
-[e :U 1784 ]
-"237
-[; ;main.c: 237:                     coa_val = ((coa_val*290)>>8)+30;
-[e = _coa_val + >> * _coa_val -> -> -> 290 `i `l `ul -> 8 `i -> -> -> 30 `i `l `ul ]
-"238
-[; ;main.c: 238:                     CCP1_LoadDutyValue(coa_val);
-[e ( _CCP1_LoadDutyValue (1 -> _coa_val `us ]
-"239
-[; ;main.c: 239:                 }
-}
-[e :U 1783 ]
-"240
-[; ;main.c: 240:                 printf("C\tCOA\t%d\r\n", coa_val);
-[e ( _printf , (. :s 18C _coa_val ]
-"241
-[; ;main.c: 241:                 break;
-[e $U 1768  ]
-"243
-[; ;main.c: 243:             case RG1 :
-[e :U 1785 ]
-"244
-[; ;main.c: 244:                 ptr = strtok(((void*)0), "/");
-[e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 19C ]
 "245
-[; ;main.c: 245:                 if(ptr != ((void*)0)) {
-[e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1786  ]
-{
+[; ;main.c: 245:                 printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
+[e ( _printf , , (. :s 14C -> _sht_on_off `i -> _hall_status `i ]
 "246
-[; ;main.c: 246:                     ring1_val = atoi(ptr);
-[e = _ring1_val -> ( _atoi (1 -> _ptr `*Cuc `uc ]
-"247
-[; ;main.c: 247:                     ring1_val = (ring1_val*200)>>8;
-[e = _ring1_val -> >> * -> _ring1_val `i -> 200 `i -> 8 `i `uc ]
+[; ;main.c: 246:                 break;
+[e $U 1768  ]
 "248
-[; ;main.c: 248:                     CCP2_LoadDutyValue(ring1_val);
-[e ( _CCP2_LoadDutyValue (1 -> _ring1_val `us ]
+[; ;main.c: 248:             case HAL :
+[e :U 1780 ]
 "249
-[; ;main.c: 249:                 }
-}
-[e :U 1786 ]
+[; ;main.c: 249:                 hall_status = PORTBbits.RB2;
+[e = _hall_status -> . . _PORTBbits 0 2 `a ]
 "250
-[; ;main.c: 250:                 printf("C\tRG1\t%d\r\n", ring1_val);
-[e ( _printf , (. :s 20C -> _ring1_val `i ]
+[; ;main.c: 250:                 printf("C\tHAL\t%d\r\n", hall_status);
+[e ( _printf , (. :s 15C -> _hall_status `i ]
 "251
 [; ;main.c: 251:                 break;
 [e $U 1768  ]
 "253
-[; ;main.c: 253:             case RG2 :
-[e :U 1787 ]
+[; ;main.c: 253:             case COA :
+[e :U 1781 ]
 "254
 [; ;main.c: 254:                 ptr = strtok(((void*)0), "/");
-[e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 21C ]
+[e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 16C ]
 "255
 [; ;main.c: 255:                 if(ptr != ((void*)0)) {
-[e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1788  ]
+[e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1782  ]
 {
 "256
-[; ;main.c: 256:                     ring2_val = atoi(ptr);
-[e = _ring2_val -> ( _atoi (1 -> _ptr `*Cuc `uc ]
+[; ;main.c: 256:                     coa_val = atoi(ptr);
+[e = _coa_val -> -> ( _atoi (1 -> _ptr `*Cuc `l `ul ]
 "257
-[; ;main.c: 257:                     ring2_val = (ring2_val*200)>>8;
-[e = _ring2_val -> >> * -> _ring2_val `i -> 200 `i -> 8 `i `uc ]
+[; ;main.c: 257:                     if(coa_val > 255)
+[e $ ! > _coa_val -> -> -> 255 `i `l `ul 1783  ]
 "258
-[; ;main.c: 258:                     CCP7_LoadDutyValue(ring2_val);
-[e ( _CCP7_LoadDutyValue (1 -> _ring2_val `us ]
+[; ;main.c: 258:                         coa_val = 255;
+[e = _coa_val -> -> -> 255 `i `l `ul ]
+[e :U 1783 ]
 "259
-[; ;main.c: 259:                 }
-}
-[e :U 1788 ]
+[; ;main.c: 259:                     coa_val = ((coa_val*290)>>8)+30;
+[e = _coa_val + >> * _coa_val -> -> -> 290 `i `l `ul -> 8 `i -> -> -> 30 `i `l `ul ]
 "260
-[; ;main.c: 260:                 printf("C\tRG2\t%d\r\n", ring2_val);
-[e ( _printf , (. :s 22C -> _ring2_val `i ]
+[; ;main.c: 260:                     CCP1_LoadDutyValue(coa_val);
+[e ( _CCP1_LoadDutyValue (1 -> _coa_val `us ]
 "261
-[; ;main.c: 261:                 break;
-[e $U 1768  ]
+[; ;main.c: 261:                 }
+}
+[e :U 1782 ]
+"262
+[; ;main.c: 262:                 printf("C\tCOA\t%d\r\n", coa_val);
+[e ( _printf , (. :s 17C _coa_val ]
 "263
-[; ;main.c: 263:             case RG3 :
-[e :U 1789 ]
-"264
-[; ;main.c: 264:                 ptr = strtok(((void*)0), "/");
-[e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 23C ]
+[; ;main.c: 263:                 break;
+[e $U 1768  ]
 "265
-[; ;main.c: 265:                 if(ptr != ((void*)0)) {
-[e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1790  ]
-{
+[; ;main.c: 265:             case RG1 :
+[e :U 1784 ]
 "266
-[; ;main.c: 266:                     ring3_val = atoi(ptr);
-[e = _ring3_val -> ( _atoi (1 -> _ptr `*Cuc `uc ]
+[; ;main.c: 266:                 ptr = strtok(((void*)0), "/");
+[e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 18C ]
 "267
-[; ;main.c: 267:                     ring3_val = (ring3_val*200)>>8;
-[e = _ring3_val -> >> * -> _ring3_val `i -> 200 `i -> 8 `i `uc ]
-"268
-[; ;main.c: 268:                     PWM3_LoadDutyValue(ring3_val);
-[e ( _PWM3_LoadDutyValue (1 -> _ring3_val `us ]
-"269
-[; ;main.c: 269:                 }
-}
-[e :U 1790 ]
-"270
-[; ;main.c: 270:                 printf("C\tRG3\t%d\r\n", ring3_val);
-[e ( _printf , (. :s 24C -> _ring3_val `i ]
-"271
-[; ;main.c: 271:                 break;
-[e $U 1768  ]
-"273
-[; ;main.c: 273:             case RG4 :
-[e :U 1791 ]
-"274
-[; ;main.c: 274:                 ptr = strtok(((void*)0), "/");
-[e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 25C ]
-"275
-[; ;main.c: 275:                 if(ptr != ((void*)0)) {
-[e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1792  ]
+[; ;main.c: 267:                 if(ptr != ((void*)0)) {
+[e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1785  ]
 {
-"276
-[; ;main.c: 276:                     ring4_val = atoi(ptr);
-[e = _ring4_val -> ( _atoi (1 -> _ptr `*Cuc `uc ]
-"277
-[; ;main.c: 277:                     ring4_val = (ring4_val*200)>>8;
-[e = _ring4_val -> >> * -> _ring4_val `i -> 200 `i -> 8 `i `uc ]
-"278
-[; ;main.c: 278:                     PWM4_LoadDutyValue(ring4_val);
-[e ( _PWM4_LoadDutyValue (1 -> _ring4_val `us ]
-"279
-[; ;main.c: 279:                 }
+"268
+[; ;main.c: 268:                     ring1_val = atoi(ptr);
+[e = _ring1_val -> ( _atoi (1 -> _ptr `*Cuc `uc ]
+"269
+[; ;main.c: 269:                     ring1_val = (ring1_val*200)>>8;
+[e = _ring1_val -> >> * -> _ring1_val `i -> 200 `i -> 8 `i `uc ]
+"270
+[; ;main.c: 270:                     CCP2_LoadDutyValue(ring1_val);
+[e ( _CCP2_LoadDutyValue (1 -> _ring1_val `us ]
+"271
+[; ;main.c: 271:                 }
 }
-[e :U 1792 ]
+[e :U 1785 ]
+"272
+[; ;main.c: 272:                 printf("C\tRG1\t%d\r\n", ring1_val);
+[e ( _printf , (. :s 19C -> _ring1_val `i ]
+"273
+[; ;main.c: 273:                 break;
+[e $U 1768  ]
+"275
+[; ;main.c: 275:             case RG2 :
+[e :U 1786 ]
+"276
+[; ;main.c: 276:                 ptr = strtok(((void*)0), "/");
+[e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 20C ]
+"277
+[; ;main.c: 277:                 if(ptr != ((void*)0)) {
+[e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1787  ]
+{
+"278
+[; ;main.c: 278:                     ring2_val = atoi(ptr);
+[e = _ring2_val -> ( _atoi (1 -> _ptr `*Cuc `uc ]
+"279
+[; ;main.c: 279:                     ring2_val = (ring2_val*200)>>8;
+[e = _ring2_val -> >> * -> _ring2_val `i -> 200 `i -> 8 `i `uc ]
 "280
-[; ;main.c: 280:                 printf("C\tRG4\t%d\r\n", ring4_val);
-[e ( _printf , (. :s 26C -> _ring4_val `i ]
+[; ;main.c: 280:                     CCP7_LoadDutyValue(ring2_val);
+[e ( _CCP7_LoadDutyValue (1 -> _ring2_val `us ]
 "281
-[; ;main.c: 281:                 break;
-[e $U 1768  ]
+[; ;main.c: 281:                 }
+}
+[e :U 1787 ]
+"282
+[; ;main.c: 282:                 printf("C\tRG2\t%d\r\n", ring2_val);
+[e ( _printf , (. :s 21C -> _ring2_val `i ]
 "283
-[; ;main.c: 283:             case VER :
-[e :U 1793 ]
-"284
-[; ;main.c: 284:                 printf("C\tVERSION 1.0\r\n");
-[e ( _printf :s 27C ]
+[; ;main.c: 283:                 break;
+[e $U 1768  ]
 "285
-[; ;main.c: 285:                 break;
-[e $U 1768  ]
+[; ;main.c: 285:             case RG3 :
+[e :U 1788 ]
+"286
+[; ;main.c: 286:                 ptr = strtok(((void*)0), "/");
+[e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 22C ]
 "287
-[; ;main.c: 287:             default : break;
-[e :U 1794 ]
-[e $U 1768  ]
+[; ;main.c: 287:                 if(ptr != ((void*)0)) {
+[e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1789  ]
+{
 "288
-[; ;main.c: 288:         }
+[; ;main.c: 288:                     ring3_val = atoi(ptr);
+[e = _ring3_val -> ( _atoi (1 -> _ptr `*Cuc `uc ]
+"289
+[; ;main.c: 289:                     ring3_val = (ring3_val*200)>>8;
+[e = _ring3_val -> >> * -> _ring3_val `i -> 200 `i -> 8 `i `uc ]
+"290
+[; ;main.c: 290:                     PWM3_LoadDutyValue(ring3_val);
+[e ( _PWM3_LoadDutyValue (1 -> _ring3_val `us ]
+"291
+[; ;main.c: 291:                 }
+}
+[e :U 1789 ]
+"292
+[; ;main.c: 292:                 printf("C\tRG3\t%d\r\n", ring3_val);
+[e ( _printf , (. :s 23C -> _ring3_val `i ]
+"293
+[; ;main.c: 293:                 break;
+[e $U 1768  ]
+"295
+[; ;main.c: 295:             case RG4 :
+[e :U 1790 ]
+"296
+[; ;main.c: 296:                 ptr = strtok(((void*)0), "/");
+[e = _ptr ( _strtok (2 , -> -> -> 0 `i `*v `*uc :s 24C ]
+"297
+[; ;main.c: 297:                 if(ptr != ((void*)0)) {
+[e $ ! != _ptr -> -> -> 0 `i `*v `*uc 1791  ]
+{
+"298
+[; ;main.c: 298:                     ring4_val = atoi(ptr);
+[e = _ring4_val -> ( _atoi (1 -> _ptr `*Cuc `uc ]
+"299
+[; ;main.c: 299:                     ring4_val = (ring4_val*200)>>8;
+[e = _ring4_val -> >> * -> _ring4_val `i -> 200 `i -> 8 `i `uc ]
+"300
+[; ;main.c: 300:                     PWM4_LoadDutyValue(ring4_val);
+[e ( _PWM4_LoadDutyValue (1 -> _ring4_val `us ]
+"301
+[; ;main.c: 301:                 }
+}
+[e :U 1791 ]
+"302
+[; ;main.c: 302:                 printf("C\tRG4\t%d\r\n", ring4_val);
+[e ( _printf , (. :s 25C -> _ring4_val `i ]
+"303
+[; ;main.c: 303:                 break;
+[e $U 1768  ]
+"305
+[; ;main.c: 305:             case VER :
+[e :U 1792 ]
+"306
+[; ;main.c: 306:                 printf("C\tVERSION 1.0\r\n");
+[e ( _printf :s 26C ]
+"307
+[; ;main.c: 307:                 break;
+[e $U 1768  ]
+"309
+[; ;main.c: 309:             default : break;
+[e :U 1793 ]
+[e $U 1768  ]
+"310
+[; ;main.c: 310:         }
 }
 [e $U 1768  ]
 [e :U 1769 ]
 [e [\ -> _cmd `ui , $ -> . `E12873 0 `ui 1770
  , $ -> . `E12873 1 `ui 1775
  , $ -> . `E12873 2 `ui 1780
- , $ -> . `E12873 3 `ui 1782
- , $ -> . `E12873 4 `ui 1785
- , $ -> . `E12873 5 `ui 1787
- , $ -> . `E12873 6 `ui 1789
- , $ -> . `E12873 7 `ui 1791
- , $ -> . `E12873 8 `ui 1793
- 1794 ]
+ , $ -> . `E12873 3 `ui 1781
+ , $ -> . `E12873 4 `ui 1784
+ , $ -> . `E12873 5 `ui 1786
+ , $ -> . `E12873 6 `ui 1788
+ , $ -> . `E12873 7 `ui 1790
+ , $ -> . `E12873 8 `ui 1792
+ 1793 ]
 [e :U 1768 ]
-"289
-[; ;main.c: 289:     }
+"311
+[; ;main.c: 311:     }
 }
 [e :U 1747 ]
 [e $U 1748  ]
 [e :U 1749 ]
-"290
-[; ;main.c: 290: }
+"312
+[; ;main.c: 312: }
 [e :UE 1746 ]
 }
-"292
-[; ;main.c: 292: void ctl_unit_init(void){
+"314
+[; ;main.c: 314: void ctl_unit_init(void){
 [v _ctl_unit_init `(v ~T0 @X0 1 ef ]
 {
 [e :U _ctl_unit_init ]
 [f ]
-"293
-[; ;main.c: 293:     for(int i=0 ; i < 20 ; i++){
+"315
+[; ;main.c: 315:     for(int i=0 ; i < 20 ; i++){
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 20 `i 1796  ]
-[e $U 1797  ]
-[e :U 1796 ]
+[e $ < _i -> 20 `i 1795  ]
+[e $U 1796  ]
+[e :U 1795 ]
 {
-"294
-[; ;main.c: 294:         _delay((unsigned long)((50)*(16000000/4000.0)));
+"316
+[; ;main.c: 316:         _delay((unsigned long)((50)*(16000000/4000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-"295
-[; ;main.c: 295:         LATBbits.LATB5 ^= 1;
-[e =^ . . _LATBbits 0 5 -> -> 1 `i `Vuc ]
-"296
-[; ;main.c: 296:     }
+"317
+[; ;main.c: 317:         LATBbits.LATB4 ^= 1;
+[e =^ . . _LATBbits 0 4 -> -> 1 `i `Vuc ]
+"318
+[; ;main.c: 318:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 20 `i 1796  ]
-[e :U 1797 ]
+[e $ < _i -> 20 `i 1795  ]
+[e :U 1796 ]
 }
-"297
-[; ;main.c: 297:     LATBbits.LATB5 = 1;
-[e = . . _LATBbits 0 5 -> -> 1 `i `uc ]
-"298
-[; ;main.c: 298:     printf("System initialization has been completed.!!\r\n");
-[e ( _printf :s 28C ]
-"299
-[; ;main.c: 299: }
-[e :UE 1795 ]
+"319
+[; ;main.c: 319:     LATBbits.LATB4 = 1;
+[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
+"320
+[; ;main.c: 320:     printf("System initialization has been completed.!!\r\n");
+[e ( _printf :s 27C ]
+"321
+[; ;main.c: 321: }
+[e :UE 1794 ]
 }
-"332
-[; ;main.c: 332: _Bool get_hall_status(void){
+"354
+[; ;main.c: 354: _Bool get_hall_status(void){
 [v _get_hall_status `(a ~T0 @X0 1 ef ]
 {
 [e :U _get_hall_status ]
 [f ]
-"333
-[; ;main.c: 333:     return hall_status;
+"355
+[; ;main.c: 355:     return hall_status;
 [e ) _hall_status ]
-[e $UE 1799  ]
-"334
-[; ;main.c: 334: }
-[e :UE 1799 ]
+[e $UE 1798  ]
+"356
+[; ;main.c: 356: }
+[e :UE 1798 ]
 }
-"336
-[; ;main.c: 336: void my_gets(char *buffer, uint16_t max_len){
+"358
+[; ;main.c: 358: void my_gets(char *buffer, uint16_t max_len){
 [v _my_gets `(v ~T0 @X0 1 ef2`*uc`us ]
 {
 [e :U _my_gets ]
 [v _buffer `*uc ~T0 @X0 1 r1 ]
 [v _max_len `us ~T0 @X0 1 r2 ]
 [f ]
-"337
-[; ;main.c: 337:     uint16_t idx = 0;
+"359
+[; ;main.c: 359:     uint16_t idx = 0;
 [v _idx `us ~T0 @X0 1 a ]
 [e = _idx -> -> 0 `i `us ]
-"338
-[; ;main.c: 338:     char c;
+"360
+[; ;main.c: 360:     char c;
 [v _c `uc ~T0 @X0 1 a ]
-"340
-[; ;main.c: 340:     memset(buffer, 0, max_len);
+"362
+[; ;main.c: 362:     memset(buffer, 0, max_len);
 [e ( _memset (3 , , -> _buffer `*v -> 0 `i -> _max_len `ui ]
-"342
-[; ;main.c: 342:     while(idx < max_len - 1) {
-[e $U 1801  ]
-[e :U 1802 ]
-{
-"343
-[; ;main.c: 343:         c = getch();
-[e = _c -> ( _getch ..  `uc ]
-"344
-[; ;main.c: 344:         putch(c);
-[e ( _putch (1 _c ]
-"346
-[; ;main.c: 346:         if(c == '\r' || c == '\n') {
-[e $ ! || == -> _c `ui -> 13 `ui == -> _c `ui -> 10 `ui 1804  ]
-{
-"347
-[; ;main.c: 347:             buffer[idx] = '\0';
-[e = *U + _buffer * -> _idx `ux -> -> # *U _buffer `ui `ux -> -> 0 `ui `uc ]
-"348
-[; ;main.c: 348:             putch('\n');
-[e ( _putch (1 -> -> 10 `ui `uc ]
-"349
-[; ;main.c: 349:             return;
-[e $UE 1800  ]
-"350
-[; ;main.c: 350:         }
-}
-[e :U 1804 ]
-"352
-[; ;main.c: 352:         buffer[idx++] = c;
-[e = *U + _buffer * -> ++ _idx -> -> 1 `i `us `ux -> -> # *U _buffer `ui `ux _c ]
-"353
-[; ;main.c: 353:     }
-}
+"364
+[; ;main.c: 364:     while(idx < max_len - 1) {
+[e $U 1800  ]
 [e :U 1801 ]
-"342
-[; ;main.c: 342:     while(idx < max_len - 1) {
-[e $ < -> _idx `ui - -> _max_len `ui -> -> 1 `i `ui 1802  ]
-[e :U 1803 ]
-"354
-[; ;main.c: 354:     buffer[idx] = '\0';
+{
+"365
+[; ;main.c: 365:         c = getch();
+[e = _c -> ( _getch ..  `uc ]
+"366
+[; ;main.c: 366:         putch(c);
+[e ( _putch (1 _c ]
+"368
+[; ;main.c: 368:         if(c == '\r' || c == '\n') {
+[e $ ! || == -> _c `ui -> 13 `ui == -> _c `ui -> 10 `ui 1803  ]
+{
+"369
+[; ;main.c: 369:             buffer[idx] = '\0';
 [e = *U + _buffer * -> _idx `ux -> -> # *U _buffer `ui `ux -> -> 0 `ui `uc ]
-"355
-[; ;main.c: 355: }
-[e :UE 1800 ]
+"370
+[; ;main.c: 370:             putch('\n');
+[e ( _putch (1 -> -> 10 `ui `uc ]
+"371
+[; ;main.c: 371:             return;
+[e $UE 1799  ]
+"372
+[; ;main.c: 372:         }
 }
-"357
-[; ;main.c: 357: unsigned char getche(void){
+[e :U 1803 ]
+"374
+[; ;main.c: 374:         buffer[idx++] = c;
+[e = *U + _buffer * -> ++ _idx -> -> 1 `i `us `ux -> -> # *U _buffer `ui `ux _c ]
+"375
+[; ;main.c: 375:     }
+}
+[e :U 1800 ]
+"364
+[; ;main.c: 364:     while(idx < max_len - 1) {
+[e $ < -> _idx `ui - -> _max_len `ui -> -> 1 `i `ui 1801  ]
+[e :U 1802 ]
+"376
+[; ;main.c: 376:     buffer[idx] = '\0';
+[e = *U + _buffer * -> _idx `ux -> -> # *U _buffer `ui `ux -> -> 0 `ui `uc ]
+"377
+[; ;main.c: 377: }
+[e :UE 1799 ]
+}
+"379
+[; ;main.c: 379: unsigned char getche(void){
 [v _getche `(uc ~T0 @X0 1 ef ]
 {
 [e :U _getche ]
 [f ]
-"358
-[; ;main.c: 358:     unsigned char c;
+"380
+[; ;main.c: 380:     unsigned char c;
 [v _c `uc ~T0 @X0 1 a ]
-"359
-[; ;main.c: 359:     c = getch();
+"381
+[; ;main.c: 381:     c = getch();
 [e = _c -> ( _getch ..  `uc ]
-"360
-[; ;main.c: 360:     putch(c);
+"382
+[; ;main.c: 382:     putch(c);
 [e ( _putch (1 -> _c `uc ]
-"361
-[; ;main.c: 361:     return c;
+"383
+[; ;main.c: 383:     return c;
 [e ) _c ]
-[e $UE 1805  ]
-"362
-[; ;main.c: 362: }
-[e :UE 1805 ]
+[e $UE 1804  ]
+"384
+[; ;main.c: 384: }
+[e :UE 1804 ]
 }
 [p f _printf 8388736 ]
 [a 2C 83 72 84 0 ]
@@ -2518,19 +2563,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 10C 47 0 ]
 [a 11C 47 0 ]
 [a 13C 47 0 ]
-[a 15C 47 0 ]
-[a 17C 47 0 ]
-[a 19C 47 0 ]
-[a 21C 47 0 ]
-[a 23C 47 0 ]
-[a 25C 47 0 ]
+[a 16C 47 0 ]
+[a 18C 47 0 ]
+[a 20C 47 0 ]
+[a 22C 47 0 ]
+[a 24C 47 0 ]
 [a 12C 67 9 76 68 80 9 37 100 13 10 0 ]
 [a 14C 67 9 83 72 84 9 37 100 9 72 65 76 9 37 100 13 10 0 ]
-[a 16C 67 9 72 65 76 9 37 100 13 10 0 ]
-[a 18C 67 9 67 79 65 9 37 100 13 10 0 ]
-[a 26C 67 9 82 71 52 9 37 100 13 10 0 ]
-[a 24C 67 9 82 71 51 9 37 100 13 10 0 ]
-[a 22C 67 9 82 71 50 9 37 100 13 10 0 ]
-[a 20C 67 9 82 71 49 9 37 100 13 10 0 ]
-[a 27C 67 9 86 69 82 83 73 79 78 32 49 46 48 13 10 0 ]
-[a 28C 83 121 115 116 101 109 32 105 110 105 116 105 97 108 105 122 97 116 105 111 110 32 104 97 115 32 98 101 101 110 32 99 111 109 112 108 101 116 101 100 46 33 33 13 10 0 ]
+[a 15C 67 9 72 65 76 9 37 100 13 10 0 ]
+[a 17C 67 9 67 79 65 9 37 100 13 10 0 ]
+[a 25C 67 9 82 71 52 9 37 100 13 10 0 ]
+[a 23C 67 9 82 71 51 9 37 100 13 10 0 ]
+[a 21C 67 9 82 71 50 9 37 100 13 10 0 ]
+[a 19C 67 9 82 71 49 9 37 100 13 10 0 ]
+[a 26C 67 9 86 69 82 83 73 79 78 32 49 46 48 13 10 0 ]
+[a 27C 83 121 115 116 101 109 32 105 110 105 116 105 97 108 105 122 97 116 105 111 110 32 104 97 115 32 98 101 101 110 32 99 111 109 112 108 101 116 101 100 46 33 33 13 10 0 ]

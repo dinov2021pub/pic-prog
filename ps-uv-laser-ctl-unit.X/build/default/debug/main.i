@@ -20701,7 +20701,7 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 39 "main.c" 2
-# 56 "main.c"
+# 70 "main.c"
 enum command {
     LDP,
     SHT,
@@ -20720,7 +20720,6 @@ enum command {
 void ctl_unit_init(void);
 void shutter_on(void);
 void shutter_off(void);
-_Bool get_hall_status(void);
 void my_gets(char *buffer, uint16_t max_len);
 unsigned char getche(void);
 
@@ -20728,7 +20727,6 @@ unsigned char getche(void);
 
 
 volatile _Bool hall_status = 0;
-
 
 unsigned char ld_on_off = 0;
 unsigned char sht_on_off = 0;
@@ -20776,7 +20774,7 @@ int main(void)
     uint8_t ring2_val;
     uint8_t ring3_val;
     uint8_t ring4_val;
-    uint8_t sht_spped;
+
 
     char *ptr;
 
@@ -20846,35 +20844,50 @@ int main(void)
                 }
                 printf("C\tLDP\t%d\r\n", ld_on_off);
                 break;
-
+# 222 "main.c"
             case SHT :
                 ptr = strtok(((void*)0), "/");
                 if(ptr != ((void*)0)) {
                     sht_on_off = atoi(ptr);
                 }
                 if(sht_on_off == 0){
+                    PWM9_LoadDutyValue(0);
+                    _delay((unsigned long)((10)*(16000000/4000.0)));
                     LATBbits.LATB1 = 1;
                     LATBbits.LATB0 = 0;
-                    PWM9_LoadDutyValue(60);
-
-
+                    PWM9_LoadDutyValue(800);
+                    _delay((unsigned long)((14)*(16000000/4000.0)));
+                    PWM9_LoadDutyValue(480);
+                    _delay((unsigned long)((4)*(16000000/4000.0)));
+                    PWM9_LoadDutyValue(240);
+                    _delay((unsigned long)((15)*(16000000/4000.0)));
+                    hall_status = PORTBbits.RB2;
                 }else if(sht_on_off == 1){
+                    PWM9_LoadDutyValue(0);
+                    _delay((unsigned long)((10)*(16000000/4000.0)));
                     LATBbits.LATB1 = 0;
                     LATBbits.LATB0 = 1;
-                    PWM9_LoadDutyValue(60);
-
-
+                    PWM9_LoadDutyValue(800);
+                    _delay((unsigned long)((17)*(16000000/4000.0)));
+                    PWM9_LoadDutyValue(640);
+                    _delay((unsigned long)((6)*(16000000/4000.0)));
+                    PWM9_LoadDutyValue(320);
+                    _delay((unsigned long)((11)*(16000000/4000.0)));
+                    hall_status = PORTBbits.RB2;
                 }
                 printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
                 break;
 
             case HAL :
-                ptr = strtok(((void*)0), "/");
-                if(ptr != ((void*)0)) {
-                    hall_status = atoi(ptr);
-                }
+                hall_status = PORTBbits.RB2;
                 printf("C\tHAL\t%d\r\n", hall_status);
                 break;
+
+
+
+
+
+
 
             case COA :
                 ptr = strtok(((void*)0), "/");
@@ -20938,16 +20951,12 @@ int main(void)
 }
 
 void ctl_unit_init(void){
-    for(int i=0 ; i < 20 ; i++){
+    for(int i=0 ; i < 50 ; i++){
         _delay((unsigned long)((50)*(16000000/4000.0)));
-        LATBbits.LATB5 ^= 1;
+        LATBbits.LATB4 ^= 1;
     }
-    LATBbits.LATB5 = 1;
+    LATBbits.LATB4 = 1;
     printf("System initialization has been completed.!!\r\n");
-}
-# 331 "main.c"
-_Bool get_hall_status(void){
-    return hall_status;
 }
 
 void my_gets(char *buffer, uint16_t max_len){
