@@ -105,7 +105,7 @@ TMR4_LC2_OUT 27
 TMR4_LC3_OUT 28
 TMR4_LC4_OUT 29
 ]
-"173 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+"170 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [e E12873 command `uc
 LDP 0
 SHT 1
@@ -157,11 +157,11 @@ VER 8
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "4 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
-"103 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+"101 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [v _main main `(i  1 e 2 0 ]
-"327
+"340
 [v _ctl_unit_init ctl_unit_init `(v  1 e 1 0 ]
-"336
+"354
 [v _my_gets my_gets `(v  1 e 1 0 ]
 "51 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/pwm/src/ccp1.c
 [v _CCP1_Initialize CCP1_Initialize `(v  1 e 1 0 ]
@@ -772,9 +772,9 @@ VER 8
 [v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
 "94 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [v _hall_status hall_status `VEa  1 e 1 0 ]
-"96
+"95
 [v _ld_on_off ld_on_off `uc  1 e 1 0 ]
-"97
+"96
 [v _sht_on_off sht_on_off `uc  1 e 1 0 ]
 "38 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/system/src/interrupt.c
 [v _INT_InterruptHandler INT_InterruptHandler `*.37(v  1 e 2 0 ]
@@ -820,28 +820,28 @@ VER 8
 [v _EUSART_FramingErrorHandler EUSART_FramingErrorHandler `*.37(v  1 s 2 EUSART_FramingErrorHandler ]
 "118
 [v _EUSART_OverrunErrorHandler EUSART_OverrunErrorHandler `*.37(v  1 s 2 EUSART_OverrunErrorHandler ]
-"103 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+"101 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"173
+"170
 [v main@cmd cmd `E12873  1 a 1 48 ]
-"135
+"133
 [v main@rcmd rcmd `[4]uc  1 a 4 53 ]
-"137
+"135
 [v main@coa_val coa_val `ul  1 a 4 49 ]
-"144
-[v main@ptr ptr `*.39uc  1 a 2 57 ]
 "141
-[v main@ring4_val ring4_val `uc  1 a 1 47 ]
-"140
-[v main@ring3_val ring3_val `uc  1 a 1 46 ]
+[v main@ptr ptr `*.39uc  1 a 2 57 ]
 "139
-[v main@ring2_val ring2_val `uc  1 a 1 45 ]
+[v main@ring4_val ring4_val `uc  1 a 1 47 ]
 "138
+[v main@ring3_val ring3_val `uc  1 a 1 46 ]
+"137
+[v main@ring2_val ring2_val `uc  1 a 1 45 ]
+"136
 [v main@ring1_val ring1_val `uc  1 a 1 44 ]
-"134
+"132
 [v main@tmp tmp `[300]uc  1 s 300 tmp ]
-"325
+"338
 } 0
 "3 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\strtok.c
 [v _strtok strtok `(*.39uc  1 e 2 0 ]
@@ -895,17 +895,17 @@ VER 8
 [v strcmp@r r `*.25DCuc  1 p 2 3 ]
 "7
 } 0
-"336 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+"354 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [v _my_gets my_gets `(v  1 e 1 0 ]
 {
-"337
+"355
 [v my_gets@idx idx `us  1 a 2 7 ]
-"338
+"356
 [v my_gets@c c `uc  1 a 1 6 ]
-"336
+"354
 [v my_gets@buffer buffer `*.39uc  1 p 2 0 ]
 [v my_gets@max_len max_len `us  1 p 2 2 ]
-"355
+"373
 } 0
 "3 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\memset.c
 [v _memset memset `(*.39v  1 e 2 0 ]
@@ -937,12 +937,12 @@ VER 8
 {
 "270
 } 0
-"327 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+"340 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [v _ctl_unit_init ctl_unit_init `(v  1 e 1 0 ]
 {
-"328
+"341
 [v ctl_unit_init@i i `i  1 a 2 38 ]
-"334
+"352
 } 0
 "5 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\printf.c
 [v _printf printf `(i  1 e 2 0 ]
@@ -1043,6 +1043,12 @@ VER 8
 [v ___awdiv@divisor divisor `i  1 p 2 2 ]
 [v ___awdiv@dividend dividend `i  1 p 2 4 ]
 "41
+} 0
+"63 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/pwm/src/pwm9.c
+[v _PWM9_LoadDutyValue PWM9_LoadDutyValue `(v  1 e 1 0 ]
+{
+[v PWM9_LoadDutyValue@dutyValue dutyValue `us  1 p 2 2 ]
+"70
 } 0
 "5 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\atoi.c
 [v _atoi atoi `(i  1 e 2 0 ]
@@ -1157,12 +1163,6 @@ VER 8
 [v _CCP1_Initialize CCP1_Initialize `(v  1 e 1 0 ]
 {
 "66
-} 0
-"63 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/pwm/src/pwm9.c
-[v _PWM9_LoadDutyValue PWM9_LoadDutyValue `(v  1 e 1 0 ]
-{
-[v PWM9_LoadDutyValue@dutyValue dutyValue `us  1 p 2 2 ]
-"70
 } 0
 "63 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/pwm/src/pwm4.c
 [v _PWM4_LoadDutyValue PWM4_LoadDutyValue `(v  1 e 1 0 ]

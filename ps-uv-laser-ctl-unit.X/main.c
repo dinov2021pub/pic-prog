@@ -1,4 +1,4 @@
- /*
+/*
  * MAIN Generated Driver File
  * 
  * @file main.c
@@ -92,14 +92,12 @@ unsigned char getche(void);
  * グローバル変数定義
  * =========================== */
 volatile bool hall_status = 0;  // 0: OPEN, 1: CLOSE
-
 unsigned char ld_on_off = 0;
 unsigned char sht_on_off = 0;
 
 /* ===========================
  * メイン処理
  * =========================== */
-
 int main(void)
 {
     SYSTEM_Initialize();
@@ -139,7 +137,6 @@ int main(void)
     uint8_t ring2_val;
     uint8_t ring3_val;
     uint8_t ring4_val;
-//    uint8_t sht_spped;
     
     char *ptr;
     
@@ -212,12 +209,13 @@ int main(void)
                 
             /* ===========================
              * シャッター(SHB1HT)の動作
-             * SHT 1: sutter open, SHT 0: sutter close
-             * OPEN : HAL 0,      CLOSE : HAL 1
-             * LED  : OFF,          LED : ON
-             * PWM周波数は SHB1H(T) の推奨周波数より
-             * 20kHz 9bit PWM 
-             * Duty 0?100 ⇒ 0?800
+             * SHT 1: sutter open,  SHT 0 : sutter close
+             * OPEN : HAL 0,        CLOSE : HAL 1
+             * LED  : OFF,          LED   : ON
+             * PWM周波数、Duty比、delayは SHB1H(T) の推奨値より換算
+             * TMR4を使用
+             * PWM周波数 : 20kHz 9bit PWM 
+             * MCC PWM入力範囲(val) : 0~800
              * =========================== */
             case SHT :
                 ptr = strtok(NULL, "/");
@@ -229,6 +227,7 @@ int main(void)
                     __delay_ms(10);
                     SHT_CW = 1;
                     SHT_CCW = 0;
+                    __delay_ms(10);
                     PWM9_LoadDutyValue(CLOSE_INIT_DUTY);
                     __delay_ms(CLOSE_INIT_TIME);
                     PWM9_LoadDutyValue(CLOSE_STG1_DUTY);
@@ -236,11 +235,12 @@ int main(void)
                     PWM9_LoadDutyValue(CLOSE_STG2_DUTY);
                     __delay_ms(CLOSE_HALL_DELAY);
                     hall_status = HALL;
-                }else if(sht_on_off == 1){
+                }else if(sht_on_off == 1){//
                     PWM9_LoadDutyValue(SHT_DUTY_OFF);
                     __delay_ms(10);
                     SHT_CW = 0;
                     SHT_CCW = 1;
+                    __delay_ms(10);
                     PWM9_LoadDutyValue(OPEN_INIT_DUTY);
                     __delay_ms(OPEN_INIT_TIME);
                     PWM9_LoadDutyValue(OPEN_STG1_DUTY);
@@ -258,10 +258,14 @@ int main(void)
                 break;
                 
             /* ===========================
-             * 照明関係 PWM
-             * フリッカをなくす為に 動作周波数を速くした
-             * 50kHz 8bit PWM 
-             * Duty 0?100% ⇒ 0?320
+             * 同軸照明(COA) PWM
+             * フリッカをなくす為に 動作周波数を50kHzとした
+             * リング照明との明るさを調整するためにPWM値を30~318とした
+             * TMR2を使用
+             * PWM周波数(Hz) : 50kHz 8bit
+             * MCC PWM入力範囲(val) : 0~320
+             * FW入力値(val) : 0~255
+             * FW換算値(val) : 30~318
              * =========================== */
             case COA :
                 ptr = strtok(NULL, "/");
@@ -274,7 +278,16 @@ int main(void)
                 }
                 printf("C\tCOA\t%d\r\n", coa_val);
                 break;
-
+            /* ===========================
+             * リング照明(RG1~RG4) PWM
+             * フリッカをなくす為に 動作周波数を50kHzとした
+             * リング照明の発熱を抑えるためにPWM値を0~199とした
+             * TMR2を使用
+             * PWM周波数(Hz) : 50kHz 8bit
+             * MCC PWM入力範囲(val) : 0~320
+             * FW入力値(val) : 0~255
+             * FW換算値(val) : 0~199
+             * =========================== */
             case RG1 :
                 ptr = strtok(NULL, "/");
                 if(ptr != NULL) {
@@ -325,10 +338,22 @@ int main(void)
 }
 
 void ctl_unit_init(void){
+    PWM9_LoadDutyValue(SHT_DUTY_OFF);
+    __delay_ms(10);
+    SHT_CW = 0;
+    SHT_CCW = 1;
+    __delay_ms(10);
+    PWM9_LoadDutyValue(OPEN_INIT_DUTY);
+    __delay_ms(OPEN_INIT_TIME);
+    PWM9_LoadDutyValue(OPEN_STG1_DUTY);
+    __delay_ms(OPEN_STG1_TIME);
+    PWM9_LoadDutyValue(OPEN_STG2_DUTY);
+    __delay_ms(OPEN_HALL_DELAY);
     for(int i=0 ; i < 50 ; i++){
         __delay_ms(50);
         P_LED ^= 1;
     }
+    PWM9_LoadDutyValue(SHT_DUTY_OFF);
     P_LED = 1;
     printf("System initialization has been completed.!!\r\n");
 }
