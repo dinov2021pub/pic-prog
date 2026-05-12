@@ -159,9 +159,9 @@ VER 8
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
 "101 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [v _main main `(i  1 e 2 0 ]
-"340
+"343
 [v _ctl_unit_init ctl_unit_init `(v  1 e 1 0 ]
-"354
+"363
 [v _my_gets my_gets `(v  1 e 1 0 ]
 "51 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/pwm/src/ccp1.c
 [v _CCP1_Initialize CCP1_Initialize `(v  1 e 1 0 ]
@@ -824,24 +824,24 @@ VER 8
 [v _main main `(i  1 e 2 0 ]
 {
 "170
-[v main@cmd cmd `E12873  1 a 1 48 ]
+[v main@cmd cmd `E12873  1 a 1 44 ]
 "133
-[v main@rcmd rcmd `[4]uc  1 a 4 53 ]
+[v main@rcmd rcmd `[4]uc  1 a 4 49 ]
 "135
-[v main@coa_val coa_val `ul  1 a 4 49 ]
+[v main@coa_val coa_val `ul  1 a 4 45 ]
 "141
-[v main@ptr ptr `*.39uc  1 a 2 57 ]
+[v main@ptr ptr `*.39uc  1 a 2 53 ]
 "139
-[v main@ring4_val ring4_val `uc  1 a 1 47 ]
+[v main@ring4_val ring4_val `uc  1 a 1 43 ]
 "138
-[v main@ring3_val ring3_val `uc  1 a 1 46 ]
+[v main@ring3_val ring3_val `uc  1 a 1 42 ]
 "137
-[v main@ring2_val ring2_val `uc  1 a 1 45 ]
+[v main@ring2_val ring2_val `uc  1 a 1 41 ]
 "136
-[v main@ring1_val ring1_val `uc  1 a 1 44 ]
+[v main@ring1_val ring1_val `uc  1 a 1 40 ]
 "132
 [v main@tmp tmp `[300]uc  1 s 300 tmp ]
-"338
+"341
 } 0
 "3 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\strtok.c
 [v _strtok strtok `(*.39uc  1 e 2 0 ]
@@ -895,55 +895,6 @@ VER 8
 [v strcmp@r r `*.25DCuc  1 p 2 3 ]
 "7
 } 0
-"354 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
-[v _my_gets my_gets `(v  1 e 1 0 ]
-{
-"355
-[v my_gets@idx idx `us  1 a 2 7 ]
-"356
-[v my_gets@c c `uc  1 a 1 6 ]
-"354
-[v my_gets@buffer buffer `*.39uc  1 p 2 0 ]
-[v my_gets@max_len max_len `us  1 p 2 2 ]
-"373
-} 0
-"3 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\memset.c
-[v _memset memset `(*.39v  1 e 2 0 ]
-{
-"5
-[v memset@p p `*.39uc  1 a 2 8 ]
-"3
-[v memset@dest dest `*.39v  1 p 2 2 ]
-[v memset@c c `i  1 p 2 4 ]
-[v memset@n n `ui  1 p 2 6 ]
-"10
-} 0
-"400 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/uart/src/eusart.c
-[v _getch getch `(i  1 e 2 0 ]
-{
-"407
-} 0
-"288
-[v _EUSART_Read EUSART_Read `(uc  1 e 1 0 ]
-{
-"290
-[v EUSART_Read@readValue readValue `uc  1 a 1 3 ]
-"291
-[v EUSART_Read@tempRxTail tempRxTail `uc  1 a 1 2 ]
-"306
-} 0
-"267
-[v _EUSART_IsRxReady EUSART_IsRxReady `(a  1 e 1 0 ]
-{
-"270
-} 0
-"340 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
-[v _ctl_unit_init ctl_unit_init `(v  1 e 1 0 ]
-{
-"341
-[v ctl_unit_init@i i `i  1 a 2 38 ]
-"352
-} 0
 "5 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\printf.c
 [v _printf printf `(i  1 e 2 0 ]
 {
@@ -958,9 +909,9 @@ VER 8
 {
 "1820
 [v vfprintf@cfmt cfmt `*.25uc  1 a 2 27 ]
-[s S2186 _IO_FILE 0 ]
+[s S2185 _IO_FILE 0 ]
 "1817
-[v vfprintf@fp fp `*.2S2186  1 p 2 21 ]
+[v vfprintf@fp fp `*.2S2185  1 p 2 21 ]
 [v vfprintf@fmt fmt `*.25DCuc  1 p 2 23 ]
 [v vfprintf@ap ap `*.4*.4v  1 p 1 25 ]
 "1840
@@ -968,17 +919,17 @@ VER 8
 "1177
 [v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
 {
-[u S2199 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `d 1 f 4 0 ]
+[u S2198 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `d 1 f 4 0 ]
 "1188
-[v vfpfcnvrt@convarg convarg `S2199  1 a 4 16 ]
+[v vfpfcnvrt@convarg convarg `S2198  1 a 4 16 ]
 "1179
 [v vfpfcnvrt@cp cp `*.25uc  1 a 2 14 ]
 [v vfpfcnvrt@c c `uc  1 a 1 20 ]
 "1180
 [v vfpfcnvrt@done done `a  1 a 1 13 ]
-[s S2186 _IO_FILE 0 ]
+[s S2185 _IO_FILE 0 ]
 "1177
-[v vfpfcnvrt@fp fp `*.2S2186  1 p 2 5 ]
+[v vfpfcnvrt@fp fp `*.2S2185  1 p 2 5 ]
 [v vfpfcnvrt@fmt fmt `*.4*.25uc  1 p 1 7 ]
 [v vfpfcnvrt@ap ap `*.4*.4v  1 p 1 8 ]
 "1814
@@ -987,9 +938,9 @@ VER 8
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 5 ]
-[u S2165 . 2 `*.2uc 1 buffer 2 0 `*.2DCuc 1 source 2 0 ]
-[s S2168 _IO_FILE 11 `S2165 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v fputc@fp fp `*.2S2168  1 p 2 7 ]
+[u S2164 . 2 `*.2uc 1 buffer 2 0 `*.2DCuc 1 source 2 0 ]
+[s S2167 _IO_FILE 11 `S2164 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputc@fp fp `*.2S2167  1 p 2 7 ]
 "24
 } 0
 "409 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/uart/src/eusart.c
@@ -1043,6 +994,55 @@ VER 8
 [v ___awdiv@divisor divisor `i  1 p 2 2 ]
 [v ___awdiv@dividend dividend `i  1 p 2 4 ]
 "41
+} 0
+"363 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+[v _my_gets my_gets `(v  1 e 1 0 ]
+{
+"364
+[v my_gets@idx idx `us  1 a 2 7 ]
+"365
+[v my_gets@c c `uc  1 a 1 6 ]
+"363
+[v my_gets@buffer buffer `*.39uc  1 p 2 0 ]
+[v my_gets@max_len max_len `us  1 p 2 2 ]
+"380
+} 0
+"3 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\memset.c
+[v _memset memset `(*.39v  1 e 2 0 ]
+{
+"5
+[v memset@p p `*.39uc  1 a 2 8 ]
+"3
+[v memset@dest dest `*.39v  1 p 2 2 ]
+[v memset@c c `i  1 p 2 4 ]
+[v memset@n n `ui  1 p 2 6 ]
+"10
+} 0
+"400 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/uart/src/eusart.c
+[v _getch getch `(i  1 e 2 0 ]
+{
+"407
+} 0
+"288
+[v _EUSART_Read EUSART_Read `(uc  1 e 1 0 ]
+{
+"290
+[v EUSART_Read@readValue readValue `uc  1 a 1 3 ]
+"291
+[v EUSART_Read@tempRxTail tempRxTail `uc  1 a 1 2 ]
+"306
+} 0
+"267
+[v _EUSART_IsRxReady EUSART_IsRxReady `(a  1 e 1 0 ]
+{
+"270
+} 0
+"343 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+[v _ctl_unit_init ctl_unit_init `(v  1 e 1 0 ]
+{
+"355
+[v ctl_unit_init@i i `i  1 a 2 8 ]
+"361
 } 0
 "63 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/pwm/src/pwm9.c
 [v _PWM9_LoadDutyValue PWM9_LoadDutyValue `(v  1 e 1 0 ]
