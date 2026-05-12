@@ -20727,10 +20727,8 @@ unsigned char getche(void);
 
 
 volatile _Bool hall_status = 0;
-
 unsigned char ld_on_off = 0;
 unsigned char sht_on_off = 0;
-
 
 
 
@@ -20775,7 +20773,6 @@ int main(void)
     uint8_t ring3_val;
     uint8_t ring4_val;
 
-
     char *ptr;
 
     ctl_unit_init();
@@ -20800,9 +20797,9 @@ int main(void)
 
         if (strlen(tmp) < 3) continue;
 
-        rcmd[0] = tmp[1];
-        rcmd[1] = tmp[2];
-        rcmd[2] = tmp[3];
+        rcmd[0] = tmp[0];
+        rcmd[1] = tmp[1];
+        rcmd[2] = tmp[2];
         rcmd[3] = '\0';
 
         enum command cmd;
@@ -20825,6 +20822,8 @@ int main(void)
             cmd = RG4;
         }else if(strcmp(rcmd,"VER") == 0){
             cmd = VER;
+        }else {
+            continue;
         }
         ptr = strtok(tmp, "/");
 
@@ -20844,7 +20843,7 @@ int main(void)
                 }
                 printf("C\tLDP\t%d\r\n", ld_on_off);
                 break;
-# 222 "main.c"
+# 223 "main.c"
             case SHT :
                 ptr = strtok(((void*)0), "/");
                 if(ptr != ((void*)0)) {
@@ -20855,6 +20854,7 @@ int main(void)
                     _delay((unsigned long)((10)*(16000000/4000.0)));
                     LATBbits.LATB1 = 1;
                     LATBbits.LATB0 = 0;
+                    _delay((unsigned long)((10)*(16000000/4000.0)));
                     PWM9_LoadDutyValue(800);
                     _delay((unsigned long)((14)*(16000000/4000.0)));
                     PWM9_LoadDutyValue(480);
@@ -20867,6 +20867,7 @@ int main(void)
                     _delay((unsigned long)((10)*(16000000/4000.0)));
                     LATBbits.LATB1 = 0;
                     LATBbits.LATB0 = 1;
+                    _delay((unsigned long)((10)*(16000000/4000.0)));
                     PWM9_LoadDutyValue(800);
                     _delay((unsigned long)((17)*(16000000/4000.0)));
                     PWM9_LoadDutyValue(640);
@@ -20882,13 +20883,7 @@ int main(void)
                 hall_status = PORTBbits.RB2;
                 printf("C\tHAL\t%d\r\n", hall_status);
                 break;
-
-
-
-
-
-
-
+# 273 "main.c"
             case COA :
                 ptr = strtok(((void*)0), "/");
                 if(ptr != ((void*)0)) {
@@ -20900,7 +20895,7 @@ int main(void)
                 }
                 printf("C\tCOA\t%d\r\n", coa_val);
                 break;
-
+# 294 "main.c"
             case RG1 :
                 ptr = strtok(((void*)0), "/");
                 if(ptr != ((void*)0)) {
@@ -20951,12 +20946,23 @@ int main(void)
 }
 
 void ctl_unit_init(void){
+    PWM9_LoadDutyValue(0);
+    _delay((unsigned long)((10)*(16000000/4000.0)));
+    LATBbits.LATB1 = 1;
+    LATBbits.LATB0 = 0;
+    _delay((unsigned long)((10)*(16000000/4000.0)));
+    PWM9_LoadDutyValue(800);
+    _delay((unsigned long)((14)*(16000000/4000.0)));
+    PWM9_LoadDutyValue(480);
+    _delay((unsigned long)((4)*(16000000/4000.0)));
+    PWM9_LoadDutyValue(240);
+    _delay((unsigned long)((15)*(16000000/4000.0)));
     for(int i=0 ; i < 50 ; i++){
         _delay((unsigned long)((50)*(16000000/4000.0)));
         LATBbits.LATB4 ^= 1;
     }
     LATBbits.LATB4 = 1;
-    printf("System initialization has been completed.!!\r\n");
+
 }
 
 void my_gets(char *buffer, uint16_t max_len){
@@ -20967,11 +20973,9 @@ void my_gets(char *buffer, uint16_t max_len){
 
     while(idx < max_len - 1) {
         c = getch();
-        putch(c);
 
         if(c == '\r' || c == '\n') {
             buffer[idx] = '\0';
-            putch('\n');
             return;
         }
 

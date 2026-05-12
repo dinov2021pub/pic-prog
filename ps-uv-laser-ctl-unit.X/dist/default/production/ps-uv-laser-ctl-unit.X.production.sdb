@@ -105,7 +105,7 @@ TMR4_LC2_OUT 27
 TMR4_LC3_OUT 28
 TMR4_LC4_OUT 29
 ]
-"175 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+"170 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [e E12873 command `uc
 LDP 0
 SHT 1
@@ -157,11 +157,11 @@ VER 8
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "4 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
-"105 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+"101 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [v _main main `(i  1 e 2 0 ]
-"314
+"342
 [v _ctl_unit_init ctl_unit_init `(v  1 e 1 0 ]
-"358
+"363
 [v _my_gets my_gets `(v  1 e 1 0 ]
 "51 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/pwm/src/ccp1.c
 [v _CCP1_Initialize CCP1_Initialize `(v  1 e 1 0 ]
@@ -770,11 +770,11 @@ VER 8
 [v _flags flags `uc  1 s 1 flags ]
 "185
 [v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
-"95 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+"94 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [v _hall_status hall_status `VEa  1 e 1 0 ]
-"98
+"95
 [v _ld_on_off ld_on_off `uc  1 e 1 0 ]
-"99
+"96
 [v _sht_on_off sht_on_off `uc  1 e 1 0 ]
 "38 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/system/src/interrupt.c
 [v _INT_InterruptHandler INT_InterruptHandler `*.37(v  1 e 2 0 ]
@@ -820,28 +820,28 @@ VER 8
 [v _EUSART_FramingErrorHandler EUSART_FramingErrorHandler `*.37(v  1 s 2 EUSART_FramingErrorHandler ]
 "118
 [v _EUSART_OverrunErrorHandler EUSART_OverrunErrorHandler `*.37(v  1 s 2 EUSART_OverrunErrorHandler ]
-"105 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+"101 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"175
+"170
 [v main@cmd cmd `E12873  1 a 1 48 ]
-"137
+"133
 [v main@rcmd rcmd `[4]uc  1 a 4 53 ]
-"139
+"135
 [v main@coa_val coa_val `ul  1 a 4 49 ]
-"146
-[v main@ptr ptr `*.39uc  1 a 2 57 ]
-"143
-[v main@ring4_val ring4_val `uc  1 a 1 47 ]
-"142
-[v main@ring3_val ring3_val `uc  1 a 1 46 ]
 "141
+[v main@ptr ptr `*.39uc  1 a 2 57 ]
+"139
+[v main@ring4_val ring4_val `uc  1 a 1 47 ]
+"138
+[v main@ring3_val ring3_val `uc  1 a 1 46 ]
+"137
 [v main@ring2_val ring2_val `uc  1 a 1 45 ]
-"140
-[v main@ring1_val ring1_val `uc  1 a 1 44 ]
 "136
+[v main@ring1_val ring1_val `uc  1 a 1 44 ]
+"132
 [v main@tmp tmp `[300]uc  1 s 300 tmp ]
-"312
+"340
 } 0
 "3 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\strtok.c
 [v _strtok strtok `(*.39uc  1 e 2 0 ]
@@ -895,17 +895,17 @@ VER 8
 [v strcmp@r r `*.25DCuc  1 p 2 3 ]
 "7
 } 0
-"358 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+"363 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [v _my_gets my_gets `(v  1 e 1 0 ]
 {
-"359
+"364
 [v my_gets@idx idx `us  1 a 2 7 ]
-"360
+"365
 [v my_gets@c c `uc  1 a 1 6 ]
-"358
+"363
 [v my_gets@buffer buffer `*.39uc  1 p 2 0 ]
 [v my_gets@max_len max_len `us  1 p 2 2 ]
-"377
+"382
 } 0
 "3 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\memset.c
 [v _memset memset `(*.39v  1 e 2 0 ]
@@ -937,12 +937,12 @@ VER 8
 {
 "270
 } 0
-"314 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
+"342 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\main.c
 [v _ctl_unit_init ctl_unit_init `(v  1 e 1 0 ]
 {
-"315
+"354
 [v ctl_unit_init@i i `i  1 a 2 38 ]
-"321
+"361
 } 0
 "5 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\printf.c
 [v _printf printf `(i  1 e 2 0 ]
@@ -958,9 +958,9 @@ VER 8
 {
 "1820
 [v vfprintf@cfmt cfmt `*.25uc  1 a 2 27 ]
-[s S2187 _IO_FILE 0 ]
+[s S2186 _IO_FILE 0 ]
 "1817
-[v vfprintf@fp fp `*.2S2187  1 p 2 21 ]
+[v vfprintf@fp fp `*.2S2186  1 p 2 21 ]
 [v vfprintf@fmt fmt `*.25DCuc  1 p 2 23 ]
 [v vfprintf@ap ap `*.4*.4v  1 p 1 25 ]
 "1840
@@ -968,17 +968,17 @@ VER 8
 "1177
 [v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
 {
-[u S2200 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `d 1 f 4 0 ]
+[u S2199 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `d 1 f 4 0 ]
 "1188
-[v vfpfcnvrt@convarg convarg `S2200  1 a 4 16 ]
+[v vfpfcnvrt@convarg convarg `S2199  1 a 4 16 ]
 "1179
 [v vfpfcnvrt@cp cp `*.25uc  1 a 2 14 ]
 [v vfpfcnvrt@c c `uc  1 a 1 20 ]
 "1180
 [v vfpfcnvrt@done done `a  1 a 1 13 ]
-[s S2187 _IO_FILE 0 ]
+[s S2186 _IO_FILE 0 ]
 "1177
-[v vfpfcnvrt@fp fp `*.2S2187  1 p 2 5 ]
+[v vfpfcnvrt@fp fp `*.2S2186  1 p 2 5 ]
 [v vfpfcnvrt@fmt fmt `*.4*.25uc  1 p 1 7 ]
 [v vfpfcnvrt@ap ap `*.4*.4v  1 p 1 8 ]
 "1814
@@ -987,9 +987,9 @@ VER 8
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 5 ]
-[u S2166 . 2 `*.2uc 1 buffer 2 0 `*.2DCuc 1 source 2 0 ]
-[s S2169 _IO_FILE 11 `S2166 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v fputc@fp fp `*.2S2169  1 p 2 7 ]
+[u S2165 . 2 `*.2uc 1 buffer 2 0 `*.2DCuc 1 source 2 0 ]
+[s S2168 _IO_FILE 11 `S2165 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputc@fp fp `*.2S2168  1 p 2 7 ]
 "24
 } 0
 "409 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/uart/src/eusart.c
@@ -1043,6 +1043,12 @@ VER 8
 [v ___awdiv@divisor divisor `i  1 p 2 2 ]
 [v ___awdiv@dividend dividend `i  1 p 2 4 ]
 "41
+} 0
+"63 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/pwm/src/pwm9.c
+[v _PWM9_LoadDutyValue PWM9_LoadDutyValue `(v  1 e 1 0 ]
+{
+[v PWM9_LoadDutyValue@dutyValue dutyValue `us  1 p 2 2 ]
+"70
 } 0
 "5 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\atoi.c
 [v _atoi atoi `(i  1 e 2 0 ]
@@ -1157,12 +1163,6 @@ VER 8
 [v _CCP1_Initialize CCP1_Initialize `(v  1 e 1 0 ]
 {
 "66
-} 0
-"63 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/pwm/src/pwm9.c
-[v _PWM9_LoadDutyValue PWM9_LoadDutyValue `(v  1 e 1 0 ]
-{
-[v PWM9_LoadDutyValue@dutyValue dutyValue `us  1 p 2 2 ]
-"70
 } 0
 "63 C:\Users\shimi\MPLABXProjects\pic-prog\ps-uv-laser-ctl-unit.X\mcc_generated_files/pwm/src/pwm4.c
 [v _PWM4_LoadDutyValue PWM4_LoadDutyValue `(v  1 e 1 0 ]
