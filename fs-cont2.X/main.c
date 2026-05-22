@@ -1214,7 +1214,7 @@ void main(void) {
                     val = 0;
                     for (int k = 0; k < 10 ; k++){     
                         val = AD_convert(1);
-                        printf("C\tAIN = %u\n", val);                    
+                        printf("C\tAIN = %u\r\n", val);                    
                         __delay_ms(500) ;
                     }                    
                     break;
@@ -1243,7 +1243,7 @@ void main(void) {
 void __interrupt() isr(void) {
     if (PIE1bits.RCIE && PIR1bits.RCIF) {
         char c = RCREG;
-        uart_write(c);
+        //uart_write(c);
         
         // 受信バッファオーバーランの処理
         if (RCSTAbits.OERR) {
