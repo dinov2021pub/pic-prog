@@ -61,37 +61,86 @@ Repository of PIC micon program
 
 ## ps-laser-util.X
 - ピコ秒グリーンレーザーの周辺機器の制御を行うコントロール基板のプログラム。
-Version 2.0まで
 - PIC 16F648A を用い、冷却ファン、レッドレーザー、メカニカルシャッターの制御をする。
 - PCとの接続は、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を使用した。
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ６４８Ａ－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g100466/)。[データシート](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/40044G.pdf)
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
-- 回路図は以下に保存(https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP24-001E-001.pdf)
+- ＊－V1, レッドレーザー、DCファンを制御
+- ＊－V2, V1に追加でシャッター制御機能を追加してVersion 2.0とした(2026年1月9日現在)
+- ＊－V2, シャッター破損によりシャッター回路を再検討
+- [回路図 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-001E-001.pdf)
 
-Version 3.0
-- PIC 16F1778 を用い、冷却ファン、レッドレーザー、メカニカルシャッター、同軸・リング照明の制御をする。
-- PCとの接続は、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を接続する。
-- PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ１７７８－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g113552/)。[データシート](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/PIC16%28L%29F1777_8_9_Family_Data_Sheet_40001819D.pdf)
-- 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
-- 回路図は以下に保存()
+<details>
+<summary>ファームウェア詳細はクリックして開く</summary>
 
-- 開発環境
->- MPLAB X バージョン：v6.25
->- XC8 バージョン：v2.50
->- MCC melody バージョン：v5.6.3.11
-- 通信環境
->- PC側
->>- teraterm バージョン：v5.4.1
->- マイコン側　
->>- USART により通信
->>- ボーレート：9600bps
->>- データ：8bit
->>- パリティ：none
->>- ストップビット：１
-- ファームウェア バージョン
->- ＊－V1, 位置合わせレーザー、DCファンを制御
->- ＊－V2,V1に追加でシャッター制御機能を追加してVersion 2.0とした(2026年1月9日現在)
->- ＊－V3,シャッター再設計、led-dimming-unit.Xを統合して Version 3.0とした
+# 開発環境
+
+| MPLAB X | XC8 | MCC |
+|---|---|---|
+| v6.25 | v2.50 | 使用しない |
+
+# 通信環境
+
+teratermを使用した。通信環境を以下に示す。
+
+| バージョン | ボーレート | データ長 | パリティビット | ストップビット |
+|---|---|---|---|---|
+| v5.4.1 | 9600bps | 8bit | none | 1 |
+
+# ファームウェアバージョン
+
+| バージョン | 
+|---|
+| V2.0 |
+
+# MEP制御BOX コマンド仕様
+
+## 通信概要
+
+PCからPICマイコンへコマンドを送信し、PICマイコンからPCへ実行結果または状態を返します。
+
+### 制御文字
+
+| 表記 | 16進数 | 意味 |
+|---|---:|---|
+| `<HT>` | `0x09` | 水平タブ |
+| `<LF>` | `0x0A` | ラインフィード |
+| `<CR>` | `0x0D` | キャリッジリターン |
+| `<SPC>` | `0x20` | スペース |
+
+## 共通フォーマット
+
+### PC → PIC
+
+- ヘッダー: `<SPC>`
+- フッター: `<CR>`
+
+```text
+COMMAND<CR>
+```
+
+数値パラメータを持つコマンドは、コマンド名と値を `/` で区切ります。
+
+```text
+COMMAND/VALUE<CR>
+```
+
+### PIC → PC
+
+- ヘッダー: `C<HT>`
+- フッター: `<CR><LF>`
+
+```text
+C<HT>RESPONSE<CR><LF>
+```
+
+
+
+
+
+
+
+
 
 - teratermでの動作確認
 >- ファームウェアバージョン確認
@@ -110,18 +159,39 @@ Version 3.0
 >>- ␣NON
 <img width="822" height="546" alt="スクリーンショット 2026-01-13 120324" src="https://github.com/user-attachments/assets/9dc75af9-0613-4c93-9f67-4e3112fea1a2" />
 
+</details>
+
 ## led-dimming-unit.X
 - ピコ秒グリーンレーザーの照明の制御を行うコントロール基板のプログラム。
 - PIC 16F1778 を用い、同軸・リング照明の制御をする。
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ１７７８－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g113552/)。[データシート](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/PIC16%28L%29F1777_8_9_Family_Data_Sheet_40001819D.pdf)
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
-- 回路図は以下に保存(https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-001E-003.pdf)
-- 開発環境
->- MPLAB X バージョン：v6.25
->- XC8 バージョン：v3.10
->- MCC melody バージョン：v5.6.3.11
-- ファームウェア バージョン
->- ＊－V1 同軸照明 リング照明上下左右を調光 PWM周波数40kHz
+- [回路図 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-001E-003.pdf)
+
+<details>
+<summary>ファームウェア詳細はクリックして開く</summary>
+
+# 開発環境
+
+| MPLAB X | XC8 | MCC |
+|---|---|---|
+| v6.25 | v3.10 | melody v5.6.3.11 |
+
+# 通信環境
+
+teratermを使用した。通信環境を以下に示す。
+
+| バージョン | ボーレート | データ長 | パリティビット | ストップビット |
+|---|---|---|---|---|
+| v5.4.1 | 9600bps | 8bit | none | 1 |
+
+# ファームウェアバージョン
+
+| バージョン | 
+|---|
+| V1.0 |
+
+</details>
 
 ## jpt-ctl-unit.X
 - JPTレーザーの制御を行うコントロール基板のプログラム。
@@ -129,52 +199,77 @@ Version 3.0
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ１７８８－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g111885/)。[データシート](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/40001675C.pdf)
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
 - 回路図は以下に保存(https://www.dinov.tokyo/DD-DB/public/Data/Parts/1773195408_MP26-002E-001.pdf)
+- [回路図 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP26-002E-001.pdf)
 
-- 開発環境
->- MPLAB X バージョン：v6.25
->- XC8 バージョン：v3.10
->- MCC melody バージョン：v5.6.3.11
-- 通信環境
->- PC側
->>- teraterm バージョン：v5.4.1
->- マイコン側　
->>- USART により通信
->>- ボーレート：9600bps
->>- データ：8bit
->>- パリティ：none
->>- ストップビット：１
-- ファームウェア バージョン
->- ＊－V1
+<details>
+<summary>ファームウェア詳細はクリックして開く</summary>
 
-- teratermでの動作確認
->- ファームウェアバージョン確認
->>- ␣VER
->- 変数にTIME(16bit)とAMP(8bit)を代入
->>- ␣SF*/TIME/AMP
->>- SF1:変数1
->>- SF2:変数2
->>- SF3:変数3
->>- SF4:変数4
->>- SF5:変数5
->>- SF6:変数6
->- SF1～SF6までの代入した値を確認
->>- ␣VEW
->- MO&PA ON
->>- ␣TON
->- レーザー照射
->>- ␣SPO
->- MO&PA OFF
->>- ␣TOF
+# 開発環境
+
+| MPLAB X | XC8 | MCC |
+|---|---|---|
+| v6.25 | v3.10 | melody v5.6.3.11 |
+
+# 通信環境
+
+teratermを使用した。通信環境を以下に示す。
+
+| バージョン | ボーレート | データ長 | パリティビット | ストップビット |
+|---|---|---|---|---|
+| v5.4.1 | 9600bps | 8bit | none | 1 |
+
+# ファームウェアバージョン
+
+| バージョン | 
+|---|
+| V1.0 |
+
+# MEP制御BOX コマンド仕様
+
+## 通信概要
+
+PCからPICマイコンへコマンドを送信し、PICマイコンからPCへ実行結果または状態を返します。
+
+### 制御文字
+
+| 表記 | 16進数 | 意味 |
+|---|---:|---|
+| `<HT>` | `0x09` | 水平タブ |
+| `<LF>` | `0x0A` | ラインフィード |
+| `<CR>` | `0x0D` | キャリッジリターン |
+| `<SPC>` | `0x20` | スペース |
+
+## 共通フォーマット
+
+### PC → PIC
+
+- ヘッダー: `<SPC>`
+- フッター: `<CR>`
+
+```text
+COMMAND<CR>
+```
+
+数値パラメータを持つコマンドは、コマンド名と値を `/` で区切ります。
+
+```text
+COMMAND/VALUE<CR>
+```
+
+### PIC → PC
+
+- ヘッダー: `C<HT>`
+- フッター: `<CR><LF>`
+
+```text
+C<HT>RESPONSE<CR><LF>
+```
 
 
 
 
 
-
-
-
-
-
+</details>
 
 ## uv-ps-laser-ctl-unit.X
 - ピコ秒UVレーザーのMEP制御BOXを行うコントロール基板のプログラム。
@@ -182,30 +277,34 @@ Version 3.0
 - PCとの接続は、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を使用した。
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ１７７８－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g113552/)。[データシート](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/PIC16%28L%29F1777_8_9_Family_Data_Sheet_40001819D.pdf)
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
-- 回路図は以下に保存()
+- [リング照明基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-001.pdf) |
+- [マイコン基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-002.pdf) |
+- [LEDドライブ基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-003.pdf) |
+- [シャッター基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-004.pdf) |
 
-- 開発環境
->- MPLAB X バージョン：v6.25
->- XC8 バージョン：v3.10
->- MCC melody バージョン：v5.6.3.11
-- 通信環境
->- PC側
->>- teraterm バージョン：v5.4.1
->- マイコン側　
->>- USART により通信
->>- ボーレート：9600bps
->>- データ：8bit
->>- パリティ：none
->>- ストップビット：１
-- ファームウェア バージョン
->- ＊－V1.0
+<details>
+<summary>ファームウェア詳細はクリックして開く</summary>
 
-## Teraterm
+# 開発環境
 
-| ボーレート | データ長 | パリティ | ストップビット |
-|---|---|---|---|
-| 9600bps | 8bit | none | 1 |
+| MPLAB X | XC8 | MCC |
+|---|---|---|
+| v6.25 | v3.10 | melody v5.6.3.11 |
 
+# 通信環境
+
+teratermを使用した。通信環境を以下に示す。
+
+| バージョン | ボーレート | データ長 | パリティビット | ストップビット |
+|---|---|---|---|---|
+| v5.4.1 | 9600bps | 8bit | none | 1 |
+
+
+# ファームウェアバージョン
+
+| バージョン | 
+|---|
+| V1.0 |
 
 # MEP制御BOX コマンド仕様
 
@@ -393,11 +492,5 @@ LDP/X<CR>
 C<HT>LDP<HT>X<CR><LF>
 ```
 
-
-
-
-
-
-
-
+</details>
 
