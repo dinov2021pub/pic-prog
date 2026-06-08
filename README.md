@@ -66,9 +66,9 @@ Repository of PIC micon program
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
 - ＊－V1, レッドレーザー、DCファンを制御
 - ＊－V2, V1に追加でシャッター制御機能を追加してVersion 2.0とした(2026年1月9日現在)
-- ＊－V2, シャッター破損によりシャッター回路を再検討
+- ＊－V2, シャッター破損によりシャッター回路を再検討(2026年6月6日現在)
 - [回路図 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-001E-001.pdf)
-- [ファームウェア仕様]()
+- [ファームウェア仕様](https://github.com/dinov2021pub/pic-prog/tree/main/ps-laser-util.X)
 
 ## led-dimming-unit.X
 - ピコ秒グリーンレーザーの照明の制御を行うコントロール基板のプログラム。
@@ -84,7 +84,7 @@ Repository of PIC micon program
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
 - 回路図は以下に保存(https://www.dinov.tokyo/DD-DB/public/Data/Parts/1773195408_MP26-002E-001.pdf)
 - [回路図 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP26-002E-001.pdf)
-- [ファームウェア仕様]()
+- [ファームウェア仕様](https://github.com/dinov2021pub/pic-prog/tree/main/jpt-laser-ctl-unit.X)
 
 ## uv-ps-laser-ctl-unit.X
 - ピコ秒UVレーザーのMEP制御BOXを行うコントロール基板のプログラム。
@@ -96,4 +96,4 @@ Repository of PIC micon program
 - [マイコン基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-002.pdf) |
 - [LEDドライブ基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-003.pdf) |
 - [シャッター基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-004.pdf) |
-- [ファームウェア仕様]()
+- [ファームウェア仕様](https://github.com/dinov2021pub/pic-prog/tree/main/ps-uv-laser-ctl-unit.X)
