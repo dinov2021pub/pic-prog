@@ -1,4 +1,6 @@
 /* 
+ * IPG-CONT
+ * 
  * File:   main.c
  *
  * Author: Shuichi Dejima
@@ -1266,7 +1268,7 @@ void main(void) {
                     break;
 
             case VER : 
-                    printf("C\tFS-CONT VERSION 2.2.4\r\n");
+                    printf("C\tIPG-CONT VERSION 1.0.0\r\n");
                     break;
 
             case ERR : 
