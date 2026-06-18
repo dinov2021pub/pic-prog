@@ -92,8 +92,8 @@ Repository of PIC micon program
 - PCとの接続は、秋月電子の [ＦＴ２３４Ｘ　超小型ＵＳＢシリアル変換モジュール](https://akizukidenshi.com/catalog/g/gM-08461/)を使用した。
 - PICは、[ＰＩＣマイコン　ＰＩＣ１６Ｆ１７７８－Ｉ／ＳＰ](https://akizukidenshi.com/catalog/g/g113552/)。[データシート](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/PIC16%28L%29F1777_8_9_Family_Data_Sheet_40001819D.pdf)
 - 開発は、Microchip Technology の[MPLAB® X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)と[MPLAB® XC Compilers](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)。両方をインストールして使う。C言語にて開発
-- [リング照明基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-001.pdf) |
-- [マイコン基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-002.pdf) |
-- [LEDドライブ基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-003.pdf) |
-- [シャッター基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-004.pdf) |
+- [リング照明基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-001.pdf)
+- [マイコン基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-002.pdf)
+- [LEDドライブ基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-003.pdf)
+- [シャッター基板 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-003E-004.pdf)
 - [ファームウェア仕様](https://github.com/dinov2021pub/pic-prog/tree/main/ps-uv-laser-ctl-unit.X)
