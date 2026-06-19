@@ -67,6 +67,7 @@ Repository of PIC micon program
 - ＊－V1, レッドレーザー、DCファンを制御
 - ＊－V2, V1に追加でシャッター制御機能を追加してVersion 2.0とした(2026年1月9日現在)
 - ＊－V2, シャッター破損によりシャッター回路を再検討(2026年6月6日現在)
+- ＊－V3, ソーラボシャッター SHBH1に対応
 - [回路図 🔗](https://www.dinov.tokyo/DD-DB/public/Data/Parts/MP25-001E-001.pdf)
 - [ファームウェア仕様](https://github.com/dinov2021pub/pic-prog/tree/main/ps-laser-util.X)
 
