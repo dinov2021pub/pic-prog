@@ -387,8 +387,7 @@ void main(void) {
         N_READY = 1;
   
         switch(cmd){
-
-            
+        
             case RPS : 
                     ptr = strtok(NULL, "/");    
                     ptr = strtok(NULL, "/");
