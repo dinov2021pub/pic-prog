@@ -3,13 +3,14 @@
 [d edition pro ]
 [d chip 16F648A ]
 [d frameptr 0 ]
-"144 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+"131 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
 [e E776 command `uc
 VER 0
 LDP 1
 DCF 2
 SHT 3
 HAL 4
+SAF 5
 ]
 "5 C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
 [v _atoi atoi `(i  1 e 2 0 ]
@@ -41,17 +42,17 @@ HAL 4
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"90 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+"92 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"237
+"226
 [v _ps_laser_util_init ps_laser_util_init `(v  1 e 1 0 ]
-"249
+"247
 [v _shutter_open shutter_open `(v  1 e 1 0 ]
-"261
+"259
 [v _shutter_close shutter_close `(v  1 e 1 0 ]
-"273
+"271
 [v _get_hall_status get_hall_status `(uc  1 e 1 0 ]
-"280
+"275
 [v _shutter_safe shutter_safe `(uc  1 e 1 0 ]
 "6 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
 [v _pwm_init pwm_init `(v  1 e 1 0 ]
@@ -67,7 +68,7 @@ HAL 4
 [v _uart_gets uart_gets `(v  1 e 1 0 ]
 "166 C:\Program Files\Microchip\xc8\v2.50\pic\include\proc\pic16f648a.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
-[s S109 . 1 `uc 1 RA0 1 0 :1:0 
+[s S110 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -77,11 +78,11 @@ HAL 4
 `uc 1 RA7 1 0 :1:7 
 ]
 "183
-[u S118 . 1 `S109 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES118  1 e 1 @5 ]
+[u S119 . 1 `S110 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES119  1 e 1 @5 ]
 "228
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
-[s S153 . 1 `uc 1 RB0 1 0 :1:0 
+[s S154 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -91,8 +92,8 @@ HAL 4
 `uc 1 RB7 1 0 :1:7 
 ]
 "245
-[u S162 . 1 `S153 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES162  1 e 1 @6 ]
+[u S163 . 1 `S154 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES163  1 e 1 @6 ]
 "532
 [v _T2CON T2CON `VEuc  1 e 1 @18 ]
 [s S25 . 1 `uc 1 T2CKPS 1 0 :2:0 
@@ -116,7 +117,7 @@ HAL 4
 [v _CCP1CON CCP1CON `VEuc  1 e 1 @23 ]
 "682
 [v _RCSTA RCSTA `VEuc  1 e 1 @24 ]
-[s S240 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S246 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADEN 1 0 :1:3 
@@ -126,11 +127,11 @@ HAL 4
 `uc 1 SPEN 1 0 :1:7 
 ]
 "703
-[s S249 . 1 `uc 1 . 1 0 :3:0 
+[s S255 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 ADDEN 1 0 :1:3 
 ]
-[u S252 . 1 `S240 1 . 1 0 `S249 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES252  1 e 1 @24 ]
+[u S258 . 1 `S246 1 . 1 0 `S255 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES258  1 e 1 @24 ]
 "753
 [v _TXREG TXREG `VEuc  1 e 1 @25 ]
 "760
@@ -153,26 +154,28 @@ HAL 4
 [v _TXIF TXIF `VEb  1 e 0 @100 ]
 "358 C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
 [v _dpowers dpowers `DC[5]ui  1 s 10 dpowers ]
-"81 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+"82 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
 [v _ld_on_off ld_on_off `uc  1 s 1 ld_on_off ]
-"82
-[v _dcf_on_off dcf_on_off `uc  1 s 1 dcf_on_off ]
 "83
-[v _sht_on_off sht_on_off `uc  1 s 1 sht_on_off ]
+[v _dcf_on_off dcf_on_off `uc  1 s 1 dcf_on_off ]
 "84
+[v _sht_on_off sht_on_off `uc  1 s 1 sht_on_off ]
+"85
 [v _hall_status hall_status `uc  1 s 1 hall_status ]
-"90
+"87
+[v _safe_status safe_status `uc  1 s 1 safe_status ]
+"92
 [v _main main `(v  1 e 1 0 ]
 {
-"144
+"131
 [v main@cmd cmd `E776  1 a 1 69 ]
-"105
+"100
 [v main@tmp tmp `[40]uc  1 a 40 29 ]
-"107
+"102
 [v main@rcmd rcmd `[4]uc  1 a 4 70 ]
-"116
+"103
 [v main@ptr ptr `*.4uc  1 a 1 74 ]
-"235
+"224
 } 0
 "7 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
 [v _uart_init uart_init `(v  1 e 1 0 ]
@@ -242,15 +245,37 @@ HAL 4
 [v strcmp@s2 s2 `*.24DCuc  1 p 1 1 ]
 "42
 } 0
-"249 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-[v _shutter_open shutter_open `(v  1 e 1 0 ]
-{
-"259
-} 0
-"261
+"259 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
 [v _shutter_close shutter_close `(v  1 e 1 0 ]
 {
+"269
+} 0
+"6 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+[v _pwm_init pwm_init `(v  1 e 1 0 ]
+{
+"12
+} 0
+"226 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+[v _ps_laser_util_init ps_laser_util_init `(v  1 e 1 0 ]
+{
+"229
+[v ps_laser_util_init@i i `i  1 a 2 23 ]
+"245
+} 0
+"275
+[v _shutter_safe shutter_safe `(uc  1 e 1 0 ]
+{
+"288
+} 0
 "271
+[v _get_hall_status get_hall_status `(uc  1 e 1 0 ]
+{
+"273
+} 0
+"247
+[v _shutter_open shutter_open `(v  1 e 1 0 ]
+{
+"257
 } 0
 "14 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
 [v _pwm_percent pwm_percent `(v  1 e 1 0 ]
@@ -263,27 +288,6 @@ HAL 4
 "17
 [v pwm_percent@percent percent `uc  1 p 1 4 ]
 "28
-} 0
-"6
-[v _pwm_init pwm_init `(v  1 e 1 0 ]
-{
-"12
-} 0
-"237 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-[v _ps_laser_util_init ps_laser_util_init `(v  1 e 1 0 ]
-{
-"239
-[v ps_laser_util_init@i i `i  1 a 2 23 ]
-"238
-[v ps_laser_util_init@a a `uc  1 a 1 22 ]
-"247
-} 0
-"280
-[v _shutter_safe shutter_safe `(uc  1 e 1 0 ]
-{
-"282
-[v shutter_safe@sht_alarm sht_alarm `uc  1 a 1 19 ]
-"298
 } 0
 "477 C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
 [v _printf printf `(i  1 e 2 0 ]
@@ -331,11 +335,6 @@ HAL 4
 [v ___lwdiv@divisor divisor `ui  1 p 2 6 ]
 [v ___lwdiv@dividend dividend `ui  1 p 2 8 ]
 "30
-} 0
-"273 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-[v _get_hall_status get_hall_status `(uc  1 e 1 0 ]
-{
-"275
 } 0
 "5 C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
 [v _atoi atoi `(i  1 e 2 0 ]

@@ -1249,30 +1249,31 @@ VER,
 LDP,
 DCF,
 SHT,
-HAL
+HAL,
+SAF
 };
 
-# 69
+# 70
 void uart_init(void);
 void pwm_init(void);
 void tmr0_init(void);
 void ps_laser_util_init(void);
 void shutter_open(void);
 void shutter_close(void);
-bool get_hall_status(void);
-bool shutter_safe(void);
+uint8_t get_hall_status(void);
+uint8_t shutter_safe(void);
 
-# 81
+# 82
 static uint8_t ld_on_off = 0;
 static uint8_t dcf_on_off = 0;
 static uint8_t sht_on_off = 0;
 static uint8_t hall_status = 0;
 static uint8_t sht_status = 0;
+static uint8_t safe_status = 0;
 
-# 90
+# 92
 void main(void) {
 
-# 99
 CMCON = 0b00000111;
 TRISA = 0b00001000;
 TRISB = 0b00000010;
@@ -1282,8 +1283,6 @@ PORTB = 0x00;
 char tmp[40];
 int axis = 0;
 char rcmd[4];
-
-# 116
 char *ptr;
 
 uart_init();
@@ -1324,13 +1323,14 @@ cmd = DCF;
 cmd = SHT;
 }else if(strcmp(rcmd,"HAL") == 0){
 cmd = HAL;
+}else if(strcmp(rcmd,"SAF") == 0){
+cmd = SAF;
 }else {
 continue;
 }
 
 ptr = strtok(tmp, "/");
 
-# 176
 switch(cmd){
 
 case VER :
@@ -1374,7 +1374,6 @@ shutter_close();
 shutter_open();
 }
 hall_status = get_hall_status();
-shutter_safe();
 printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
 break;
 
@@ -1387,20 +1386,44 @@ hall_status = get_hall_status();
 printf("C\tHAL\t%d\r\n", hall_status);
 break;
 
+case SAF :
+safe_status = shutter_safe();
+if(safe_status == 1){
+
+printf("C\tShutter error. Do NOT fire the laser.\r\n");
+printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
+PORTAbits.RA0 = 0;
+}else{
+
+printf("C\tThe shutter is operating normally.\r\n");
+printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
+PORTAbits.RA0 = 1;
+}
+break;
+
 default : break;
 }
 }
 }
 
 void ps_laser_util_init(void){
-unsigned char a = 0;
+sht_on_off = 1;
+shutter_open();
 for(int i=0 ; i < 50 ; i++){
 _delay((unsigned long)((50)*(4000000/4000.0)));
 PORTAbits.RA0 ^= 1;
 }
-a = shutter_safe();
-if(a == 0){
+safe_status = shutter_safe();
+if(safe_status == 1){
+
+printf("Shutter error. Do NOT fire the laser.\r\n");
+printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
+PORTAbits.RA0 = 0;
+}else{
+
 printf("System initialization has been completed!!\r\n");
+printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
+PORTAbits.RA0 = 1;
 }
 }
 
@@ -1428,27 +1451,19 @@ _delay((unsigned long)((3)*(4000000/4000.0)));
 pwm_percent(30);
 }
 
-bool get_hall_status(void){
+uint8_t get_hall_status(void){
 return PORTAbits.RA3;
 }
 
+uint8_t shutter_safe(void) {
+
 # 280
-bool shutter_safe(void) {
 hall_status = get_hall_status();
-bool sht_alarm = hall_status ^ sht_on_off;
-if (sht_alarm == 0) {
+if (hall_status ^ sht_on_off == 0) {
 
-printf("ALARM!! Shutter abnormality detected!!\r\n");
-
-
-
-printf("DO NOT OPERATE LASER!!\r\n");
-
-PORTAbits.RA0 = 1;
-return 0;
+return 1;
 } else {
 
-PORTAbits.RA0 = 0;
-return 1;
+return 0;
 }
 }

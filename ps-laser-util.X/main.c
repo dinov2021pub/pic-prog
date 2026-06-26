@@ -60,7 +60,8 @@ enum command {
   LDP,
   DCF,
   SHT,
-  HAL
+  HAL,
+  SAF
 };
 
 /* ===========================
@@ -72,8 +73,8 @@ void tmr0_init(void);
 void ps_laser_util_init(void);
 void shutter_open(void);
 void shutter_close(void);
-bool get_hall_status(void);
-bool shutter_safe(void);
+uint8_t get_hall_status(void);
+uint8_t shutter_safe(void);
 
 /* ===========================
  * グローバル変数定義
@@ -83,18 +84,12 @@ static uint8_t dcf_on_off = 0;
 static uint8_t sht_on_off = 0;
 static uint8_t hall_status = 0;  // 0: OPEN, 1: CLOSE
 static uint8_t sht_status = 0;
+static uint8_t safe_status = 0;
 
 /* ===========================
  * メイン処理
  * =========================== */
 void main(void) {
-    /*
-     * FW改善案
-     * unsigned charとuint8_tどちらかに統一したほうがいいかもしれない
-     * 結論：MPLAB（XC8）では unsigned char でも uint8_t でも動くが、
-     * 長期的には uint8_t に統一した方が “絶対に得” になる。
-     * 理由は、可読性・移植性・型の明確さが段違いだから。
-     */
     
     CMCON = 0b00000111;     // RA0-RA3はデジタルピン設定、コンパレータは使用しない
     TRISA = 0b00001000;     // PORTAの入出力設定 RA3はホール素子、RA0はLED、RA1はDCファン、RA2はレッドレーザー
@@ -105,14 +100,6 @@ void main(void) {
     char tmp[40];
     int axis = 0;
     char rcmd[4];
-//    char rps_cmd[6];    // For tmp strings of RPS command
-//    char wtb_cmd[6];    // For tmp strings of WTB command
-    
-//    unsigned char ld_on_off = 0;
-//    unsigned char dcf_on_off = 0;
-//    unsigned char sht_on_off = 0;
-//    unsigned char hall_status = 0;
-    
     char *ptr;
     
     uart_init();
@@ -152,27 +139,15 @@ void main(void) {
         }else if(strcmp(rcmd,"SHT") == 0){
             cmd = SHT;
         }else if(strcmp(rcmd,"HAL") == 0){
-            cmd = HAL;          
+            cmd = HAL; 
+        }else if(strcmp(rcmd,"SAF") == 0){
+            cmd = SAF;
         }else {
             continue;// 一致する文字がないならwhileの先頭に戻る
         }
         
         ptr = strtok(tmp, "/");
-//        rps_cmd[0]='\0';
-//        rps_cmd[1]='\0';
-//        rps_cmd[2]='\0';
-//        rps_cmd[3]='\0';
-        
-//        int i;
-//        
-//        for (i = 0; ptr[i] != '\0'; i++) {
-//            rps_cmd[i] = ptr[i];
-//        }
-//
-//        for (i = 0; ptr[i] != '\0'; i++) {
-//            wtb_cmd[i] = ptr[i];
-//        }
- 
+
         switch(cmd){
             
             case VER :
@@ -215,9 +190,7 @@ void main(void) {
                 }else if(sht_on_off == 1){
                     shutter_open();//シャッター開
                 }
-                shutter_safe();
                 hall_status = get_hall_status();
-                //shutter_safe();
                 printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
                 break;
    
@@ -230,20 +203,44 @@ void main(void) {
                 printf("C\tHAL\t%d\r\n", hall_status);
                 break;
                 
+            case SAF :
+                safe_status = shutter_safe();
+                if(safe_status == 1){
+                    // シャッター異常動作
+                    printf("C\tShutter error. Do NOT fire the laser.\r\n");
+                    printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
+                    P_LED = 0;
+                }else{
+                    // シャッター正常動作
+                    printf("C\tThe shutter is operating normally.\r\n");
+                    printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
+                    P_LED = 1;
+                }
+                break;
+                
             default : break;
         }
     }
 }
 
 void ps_laser_util_init(void){
-    unsigned char a = 0;
+    sht_on_off = 1;
+    shutter_open();
     for(int i=0 ; i < 50 ; i++){
         __delay_ms(50);
         P_LED ^= 1;
     }
-    a = shutter_safe();
-    if(a == 0){
+    safe_status = shutter_safe();
+    if(safe_status == 1){
+        // シャッター異常動作
+        printf("Shutter error. Do NOT fire the laser.\r\n");
+        printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
+        P_LED = 0;
+    }else{
+        // シャッター正常動作
         printf("System initialization has been completed!!\r\n");
+        printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
+        P_LED = 1;
     }
 }
 
@@ -271,29 +268,21 @@ void shutter_close(void){
     pwm_percent(CLOSE_DUTY_STG2);
 }
 
-bool get_hall_status(void){
+uint8_t get_hall_status(void){
     return S_HAL;
 }
 
-/*
- * シャッターとホール素子の状態を監視する関数を実装
- */
-bool shutter_safe(void) {
+uint8_t shutter_safe(void) {
+    /*
+     * シャッター開(SHT/1)のときホール素子L、LED消灯
+     * シャッター閉(SHT/0)のときホール素子H、LED点灯
+     */
     hall_status = get_hall_status();
-    bool sht_alarm = hall_status ^ sht_on_off;
-    if (sht_alarm == 0) {
-        // 異常検出時の警告出力
-        printf("ALARM!! Shutter abnormality detected!!\r\n");
-//        printf("Hall sensor: %s, Shutter: %s\r\n",
-//               hall_status ? "DETECTED" : "NOT DETECTED",
-//               shutter_status ? "OPEN" : "CLOSED");
-        printf("DO NOT OPERATE LASER!!\r\n");
-        // LED点灯などの視覚的警告
-        P_LED = 1;
-        return false;  // 異常
+    if (hall_status ^ sht_on_off == 0) {
+        // シャッター異常動作
+        return 1;
     } else {
-        // 正常時
-        P_LED = 0;
-        return true;   // 正常
+        // シャッター正常動作
+        return 0;
     }
 }

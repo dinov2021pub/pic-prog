@@ -14,36 +14,37 @@
 $dist/default/debug\ps-laser-util.X.debug.o
 cinit CODE 0 7F3 7F3 D 2 1
 idloc IDLOC 5 2000 2000 4 2 1
-text1 CODE 0 1F6 1F6 B 2 1
-text2 CODE 0 537 537 80 2 1
-text3 CODE 0 220 220 13 2 1
-text4 CODE 0 442 442 43 2 1
-text5 CODE 0 2E5 2E5 2B 2 1
-text6 CODE 0 2BA 2BA 2B 2 1
-text7 CODE 0 233 233 1B 2 1
-text8 CODE 0 295 295 25 2 1
-text9 CODE 0 385 385 3D 2 1
-text10 CODE 0 34A 34A 3B 2 1
-text11 CODE 0 485 485 44 2 1
-text12 CODE 0 201 201 D 2 1
-text13 CODE 0 3C2 3C2 3E 2 1
-text14 CODE 0 24E 24E 22 2 1
-text15 CODE 0 5B7 5B7 AE 2 1
-text16 CODE 0 1EC 1EC A 2 1
-text17 CODE 0 310 310 3A 2 1
-text18 CODE 0 400 400 42 2 1
-text19 CODE 0 1E4 1E4 8 2 1
-text20 CODE 0 4C9 4C9 6E 2 1
-text21 CODE 0 20E 20E 12 2 1
-text22 CODE 0 270 270 25 2 1
-maintext CODE 0 665 665 18E 2 1
+text1 CODE 0 15E 15E B 2 1
+text2 CODE 0 4DC 4DC 80 2 1
+text3 CODE 0 188 188 13 2 1
+text4 CODE 0 368 368 43 2 1
+text5 CODE 0 249 249 2B 2 1
+text6 CODE 0 21E 21E 2B 2 1
+text7 CODE 0 19B 19B 1B 2 1
+text8 CODE 0 1F9 1F9 25 2 1
+text9 CODE 0 2AE 2AE 3B 2 1
+text10 CODE 0 169 169 D 2 1
+text11 CODE 0 45D 45D 7F 2 1
+text12 CODE 0 1B6 1B6 1E 2 1
+text13 CODE 0 14C 14C 8 2 1
+text14 CODE 0 2E9 2E9 3D 2 1
+text15 CODE 0 3AB 3AB 44 2 1
+text16 CODE 0 55C 55C AE 2 1
+text17 CODE 0 154 154 A 2 1
+text18 CODE 0 274 274 3A 2 1
+text19 CODE 0 326 326 42 2 1
+text20 CODE 0 3EF 3EF 6E 2 1
+text21 CODE 0 176 176 12 2 1
+text22 CODE 0 1D4 1D4 25 2 1
+nvBANK0 BANK0 1 6F 6F 1 1 1
+maintext CODE 0 60A 60A 1E9 2 1
 cstackCOMMON COMMON 1 71 71 D 1 1
 cstackBANK0 BANK0 1 20 20 4B 1 1
-bssBANK0 BANK0 1 6B 6B 5 1 1
-bssBANK1 BANK1 1 A0 A0 1 1 1
-strings STRING 0 3 3 D8 2 1
+bssBANK0 BANK0 1 6B 6B 4 1 1
+bssBANK1 BANK1 1 A0 A0 2 1 1
+strings STRING 0 3 3 EB 2 1
 config CONFIG 4 2007 2007 1 2 1
-$C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
+$C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
 idloc IDLOC 5 2000 2000 4 2 1
 reset_vec CODE 0 0 0 1 2 1
 end_init CODE 0 1 1 2 2 1
@@ -54,24 +55,24 @@ config CONFIG 4 2007 2007 1 2 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM A1-EF 1
+RAM A2-EF 1
 RAM 120-164 1
-BANK1 A1-EF 1
+BANK1 A2-EF 1
 BANK2 120-164 1
-CONST DB-1E3 2
+CONST EE-14B 2
 CONST 800-FFF 2
-ENTRY DB-1E3 2
+ENTRY EE-14B 2
 ENTRY 800-FFF 2
-CODE DB-1E3 2
+CODE EE-14B 2
 CODE 800-FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-11F 1
 SFR3 180-1F0 1
 EEDATA 2100-21FF 2
-STRCODE DB-1E3 2
+STRCODE EE-14B 2
 STRCODE 800-FFF 2
-STRING DB-1E3 2
+STRING EE-14B 2
 STRING 800-FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
@@ -87,378 +88,390 @@ STRING 800-FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/debug\ps-laser-util.X.debug.o
-7F3 cinit CODE >767:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7F3 cinit CODE >770:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7F3 cinit CODE >799:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7F4 cinit CODE >800:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7F5 cinit CODE >801:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7F6 cinit CODE >802:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7F7 cinit CODE >803:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7F8 cinit CODE >804:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7F9 cinit CODE >805:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7FA cinit CODE >808:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7FB cinit CODE >809:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7FC cinit CODE >810:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7FD cinit CODE >816:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7FD cinit CODE >818:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-7FE cinit CODE >819:C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_1.s
-270 text22 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-270 text22 CODE >43:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-272 text22 CODE >45:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-276 text22 CODE >46:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-278 text22 CODE >46:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-27C text22 CODE >47:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-27D text22 CODE >47:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-281 text22 CODE >47:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-283 text22 CODE >48:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-284 text22 CODE >48:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-288 text22 CODE >48:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-28A text22 CODE >49:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-290 text22 CODE >52:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-294 text22 CODE >53:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
-20E text21 CODE >8:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\isdigit.c
-20F text21 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\isdigit.c
-212 text21 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\isdigit.c
-218 text21 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\isdigit.c
-21F text21 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\isdigit.c
-4C9 text20 CODE >5:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-4C9 text20 CODE >10:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-4CA text20 CODE >11:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-4CC text20 CODE >10:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-4DD text20 CODE >12:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-4DF text20 CODE >13:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-4E0 text20 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-4E8 text20 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-4EA text20 CODE >16:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-4EC text20 CODE >17:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-4F5 text20 CODE >18:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-4F8 text20 CODE >20:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-50A text20 CODE >20:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-512 text20 CODE >20:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-517 text20 CODE >19:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-521 text20 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-526 text20 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-52B text20 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-532 text20 CODE >23:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-536 text20 CODE >24:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
-1E4 text19 CODE >273:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-1E4 text19 CODE >274:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-1EB text19 CODE >275:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-400 text18 CODE >5:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-400 text18 CODE >13:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-402 text18 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-408 text18 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-40A text18 CODE >16:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-40B text18 CODE >17:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-40C text18 CODE >17:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-410 text18 CODE >17:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-412 text18 CODE >18:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-414 text18 CODE >16:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-418 text18 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-419 text18 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-41D text18 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-41F text18 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-421 text18 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-425 text18 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-429 text18 CODE >23:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-42C text18 CODE >23:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-42F text18 CODE >24:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-430 text18 CODE >26:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-431 text18 CODE >26:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-435 text18 CODE >26:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-437 text18 CODE >27:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-43D text18 CODE >29:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-441 text18 CODE >30:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
-310 text17 CODE >5:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-310 text17 CODE >12:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-318 text17 CODE >13:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-31A text17 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-31B text17 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-31C text17 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-320 text17 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-322 text17 CODE >16:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-324 text17 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-328 text17 CODE >19:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-32A text17 CODE >19:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-32E text17 CODE >19:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-332 text17 CODE >20:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-335 text17 CODE >20:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-338 text17 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-339 text17 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-33D text17 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-33F text17 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-345 text17 CODE >24:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-349 text17 CODE >25:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
-1EC text16 CODE >14:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-1ED text16 CODE >16:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-1F3 text16 CODE >17:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-1F5 text16 CODE >18:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-5B7 text15 CODE >477:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5B7 text15 CODE >550:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5BB text15 CODE >553:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5BC text15 CODE >555:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5C2 text15 CODE >558:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5C6 text15 CODE >559:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5C7 text15 CODE >565:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5C8 text15 CODE >661:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5D2 text15 CODE >661:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5D5 text15 CODE >661:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5D8 text15 CODE >661:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5DB text15 CODE >1285:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5E5 text15 CODE >1287:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5E9 text15 CODE >1288:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5EB text15 CODE >1289:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5EE text15 CODE >1289:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5F0 text15 CODE >1331:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-5F2 text15 CODE >1332:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-601 text15 CODE >1332:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-605 text15 CODE >1332:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-60A text15 CODE >1331:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-612 text15 CODE >1464:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-618 text15 CODE >1465:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-61C text15 CODE >1498:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-620 text15 CODE >1500:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-621 text15 CODE >1515:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-647 text15 CODE >1550:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-64B text15 CODE >1500:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-654 text15 CODE >553:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-664 text15 CODE >1567:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
-24E text14 CODE >280:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-24E text14 CODE >281:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-254 text14 CODE >282:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-257 text14 CODE >283:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-25C text14 CODE >285:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-261 text14 CODE >289:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-268 text14 CODE >291:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-26B text14 CODE >292:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-26D text14 CODE >293:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-26D text14 CODE >295:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-26E text14 CODE >296:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-26F text14 CODE >298:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3C2 text13 CODE >237:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3C2 text13 CODE >238:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3C2 text13 CODE >239:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3C6 text13 CODE >240:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3D0 text13 CODE >241:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3DC text13 CODE >239:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3DE text13 CODE >239:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3E7 text13 CODE >239:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3EB text13 CODE >239:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3EF text13 CODE >243:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3F5 text13 CODE >244:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3FA text13 CODE >245:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3FF text13 CODE >247:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-201 text12 CODE >6:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-201 text12 CODE >8:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-205 text12 CODE >9:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-206 text12 CODE >10:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-20A text12 CODE >11:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-20D text12 CODE >12:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-485 text11 CODE >14:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-488 text11 CODE >17:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-48A text11 CODE >17:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-48E text11 CODE >18:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-490 text11 CODE >23:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-4AF text11 CODE >26:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-4B3 text11 CODE >26:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-4B6 text11 CODE >26:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-4BB text11 CODE >27:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-4BF text11 CODE >27:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-4C2 text11 CODE >27:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-4C8 text11 CODE >28:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
-34A text10 CODE >261:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-34A text10 CODE >262:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-34E text10 CODE >263:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-359 text10 CODE >264:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-35C text10 CODE >265:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-35D text10 CODE >266:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-368 text10 CODE >267:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-372 text10 CODE >268:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-376 text10 CODE >269:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-380 text10 CODE >270:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-384 text10 CODE >271:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-385 text9 CODE >249:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-385 text9 CODE >250:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-389 text9 CODE >251:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-394 text9 CODE >252:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-397 text9 CODE >253:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-398 text9 CODE >254:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3A3 text9 CODE >255:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3AE text9 CODE >256:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3B2 text9 CODE >257:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3BD text9 CODE >258:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-3C1 text9 CODE >259:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-295 text8 CODE >33:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
-295 text8 CODE >37:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
-296 text8 CODE >38:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
-298 text8 CODE >39:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
-29A text8 CODE >37:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
-2B4 text8 CODE >41:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
-2B9 text8 CODE >42:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
-233 text7 CODE >4:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
-233 text7 CODE >6:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
-233 text7 CODE >7:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
-239 text7 CODE >7:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
-23D text7 CODE >8:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
-23F text7 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
-248 text7 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
-24C text7 CODE >10:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
-24D text7 CODE >11:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
-2BA text6 CODE >4:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
-2BA text6 CODE >8:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
-2BC text6 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
-2BD text6 CODE >10:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
-2BF text6 CODE >11:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
-2C1 text6 CODE >11:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
-2C5 text6 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
-2DC text6 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
-2E0 text6 CODE >13:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
-2E4 text6 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
-2E5 text5 CODE >4:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
-2E5 text5 CODE >8:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
-2E7 text5 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
-2E8 text5 CODE >10:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
-2EA text5 CODE >11:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
-2EC text5 CODE >11:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
-2F0 text5 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
-307 text5 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
-30B text5 CODE >13:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
-30F text5 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
-442 text4 CODE >8:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-442 text4 CODE >18:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-447 text4 CODE >19:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-44B text4 CODE >20:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-450 text4 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-452 text4 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-45B text4 CODE >23:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-463 text4 CODE >24:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-468 text4 CODE >25:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-474 text4 CODE >26:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-47C text4 CODE >27:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-482 text4 CODE >29:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-483 text4 CODE >30:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-484 text4 CODE >31:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
-220 text3 CODE >20:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-220 text3 CODE >22:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-220 text3 CODE >25:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-226 text3 CODE >28:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-22A text3 CODE >29:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-22B text3 CODE >30:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-22C text3 CODE >31:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-22C text3 CODE >34:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-230 text3 CODE >35:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-231 text3 CODE >37:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-231 text3 CODE >39:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-232 text3 CODE >40:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-537 text2 CODE >49:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-537 text2 CODE >51:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-539 text2 CODE >55:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-545 text2 CODE >60:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-549 text2 CODE >62:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-555 text2 CODE >63:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-559 text2 CODE >64:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-55D text2 CODE >65:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-565 text2 CODE >69:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-577 text2 CODE >70:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-57A text2 CODE >70:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-57D text2 CODE >71:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-581 text2 CODE >72:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-585 text2 CODE >73:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-589 text2 CODE >74:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-58A text2 CODE >77:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-58C text2 CODE >77:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-591 text2 CODE >79:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-59B text2 CODE >79:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-59F text2 CODE >80:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-5A3 text2 CODE >59:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-5A7 text2 CODE >59:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-5AD text2 CODE >59:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-5B1 text2 CODE >59:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-5B6 text2 CODE >84:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-1F6 text1 CODE >7:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-1F6 text1 CODE >9:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-1FA text1 CODE >10:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-1FC text1 CODE >11:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-200 text1 CODE >12:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
-665 maintext CODE >90:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-665 maintext CODE >99:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-669 maintext CODE >100:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-66D maintext CODE >101:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-66F maintext CODE >102:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-672 maintext CODE >103:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-673 maintext CODE >118:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-676 maintext CODE >119:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-679 maintext CODE >120:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-67C maintext CODE >123:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-680 maintext CODE >124:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-682 maintext CODE >125:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-684 maintext CODE >126:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-685 maintext CODE >128:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-687 maintext CODE >129:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-689 maintext CODE >130:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-68B maintext CODE >131:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-68D maintext CODE >132:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-68E maintext CODE >135:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-697 maintext CODE >137:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-69B maintext CODE >138:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-69D maintext CODE >139:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-69F maintext CODE >140:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-6A0 maintext CODE >142:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-6A5 maintext CODE >146:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-6B2 maintext CODE >147:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-6B5 maintext CODE >148:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-6C3 maintext CODE >149:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-6C7 maintext CODE >150:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-6D5 maintext CODE >151:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-6D9 maintext CODE >152:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-6E7 maintext CODE >153:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-6EB maintext CODE >154:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-6F9 maintext CODE >155:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-6FD maintext CODE >160:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-704 maintext CODE >176:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-705 maintext CODE >179:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-70A maintext CODE >180:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-70B maintext CODE >183:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-714 maintext CODE >184:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-719 maintext CODE >185:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-722 maintext CODE >187:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-727 maintext CODE >188:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-728 maintext CODE >189:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-72E maintext CODE >190:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-72F maintext CODE >192:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-73B maintext CODE >193:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-73C maintext CODE >196:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-745 maintext CODE >197:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-74A maintext CODE >198:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-753 maintext CODE >200:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-758 maintext CODE >201:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-759 maintext CODE >202:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-75F maintext CODE >203:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-760 maintext CODE >205:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-76C maintext CODE >206:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-76D maintext CODE >209:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-776 maintext CODE >210:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-77B maintext CODE >211:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-784 maintext CODE >213:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-789 maintext CODE >214:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-78C maintext CODE >215:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-792 maintext CODE >216:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-795 maintext CODE >218:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-79B maintext CODE >219:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-79E maintext CODE >220:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7B3 maintext CODE >221:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7B4 maintext CODE >224:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7BD maintext CODE >225:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7C2 maintext CODE >226:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7CB maintext CODE >228:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7D1 maintext CODE >229:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7DD maintext CODE >230:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7DE maintext CODE >176:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7E2 maintext CODE >176:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7E5 maintext CODE >176:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7E8 maintext CODE >176:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7EB maintext CODE >176:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
-7EE maintext CODE >176:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7F3 cinit CODE >802:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7F3 cinit CODE >805:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7F3 cinit CODE >834:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7F4 cinit CODE >835:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7F5 cinit CODE >836:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7F6 cinit CODE >837:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7F7 cinit CODE >838:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7F8 cinit CODE >839:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7F9 cinit CODE >842:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7FA cinit CODE >843:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7FB cinit CODE >844:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7FC cinit CODE >845:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7FD cinit CODE >851:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7FD cinit CODE >853:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+7FE cinit CODE >854:C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_1.s
+1D4 text22 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1D4 text22 CODE >43:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1D6 text22 CODE >45:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1DA text22 CODE >46:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1DC text22 CODE >46:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1E0 text22 CODE >47:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1E1 text22 CODE >47:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1E5 text22 CODE >47:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1E7 text22 CODE >48:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1E8 text22 CODE >48:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1EC text22 CODE >48:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1EE text22 CODE >49:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1F4 text22 CODE >52:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+1F8 text22 CODE >53:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\Umul16.c
+176 text21 CODE >8:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\isdigit.c
+177 text21 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\isdigit.c
+17A text21 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\isdigit.c
+180 text21 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\isdigit.c
+187 text21 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\isdigit.c
+3EF text20 CODE >5:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+3EF text20 CODE >10:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+3F0 text20 CODE >11:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+3F2 text20 CODE >10:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+403 text20 CODE >12:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+405 text20 CODE >13:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+406 text20 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+40E text20 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+410 text20 CODE >16:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+412 text20 CODE >17:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+41B text20 CODE >18:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+41E text20 CODE >20:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+430 text20 CODE >20:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+438 text20 CODE >20:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+43D text20 CODE >19:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+447 text20 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+44C text20 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+451 text20 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+458 text20 CODE >23:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+45C text20 CODE >24:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
+326 text19 CODE >5:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+326 text19 CODE >13:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+328 text19 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+32E text19 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+330 text19 CODE >16:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+331 text19 CODE >17:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+332 text19 CODE >17:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+336 text19 CODE >17:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+338 text19 CODE >18:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+33A text19 CODE >16:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+33E text19 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+33F text19 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+343 text19 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+345 text19 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+347 text19 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+34B text19 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+34F text19 CODE >23:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+352 text19 CODE >23:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+355 text19 CODE >24:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+356 text19 CODE >26:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+357 text19 CODE >26:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+35B text19 CODE >26:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+35D text19 CODE >27:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+363 text19 CODE >29:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+367 text19 CODE >30:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwdiv.c
+274 text18 CODE >5:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+274 text18 CODE >12:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+27C text18 CODE >13:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+27E text18 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+27F text18 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+280 text18 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+284 text18 CODE >15:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+286 text18 CODE >16:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+288 text18 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+28C text18 CODE >19:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+28E text18 CODE >19:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+292 text18 CODE >19:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+296 text18 CODE >20:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+299 text18 CODE >20:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+29C text18 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+29D text18 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+2A1 text18 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+2A3 text18 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+2A9 text18 CODE >24:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+2AD text18 CODE >25:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\lwmod.c
+154 text17 CODE >14:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+155 text17 CODE >16:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+15B text17 CODE >17:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+15D text17 CODE >18:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+55C text16 CODE >477:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+55C text16 CODE >550:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+560 text16 CODE >553:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+561 text16 CODE >555:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+567 text16 CODE >558:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+56B text16 CODE >559:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+56C text16 CODE >565:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+56D text16 CODE >661:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+577 text16 CODE >661:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+57A text16 CODE >661:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+57D text16 CODE >661:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+580 text16 CODE >1285:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+58A text16 CODE >1287:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+58E text16 CODE >1288:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+590 text16 CODE >1289:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+593 text16 CODE >1289:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+595 text16 CODE >1331:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+597 text16 CODE >1332:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+5A6 text16 CODE >1332:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+5AA text16 CODE >1332:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+5AF text16 CODE >1331:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+5B7 text16 CODE >1464:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+5BD text16 CODE >1465:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+5C1 text16 CODE >1498:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+5C5 text16 CODE >1500:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+5C6 text16 CODE >1515:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+5EC text16 CODE >1550:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+5F0 text16 CODE >1500:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+5F9 text16 CODE >553:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+609 text16 CODE >1567:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
+3AB text15 CODE >14:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+3AE text15 CODE >17:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+3B0 text15 CODE >17:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+3B4 text15 CODE >18:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+3B6 text15 CODE >23:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+3D5 text15 CODE >26:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+3D9 text15 CODE >26:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+3DC text15 CODE >26:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+3E1 text15 CODE >27:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+3E5 text15 CODE >27:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+3E8 text15 CODE >27:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+3EE text15 CODE >28:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+2E9 text14 CODE >247:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2E9 text14 CODE >248:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2ED text14 CODE >249:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2F8 text14 CODE >250:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2FB text14 CODE >251:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2FC text14 CODE >252:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+307 text14 CODE >253:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+312 text14 CODE >254:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+316 text14 CODE >255:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+321 text14 CODE >256:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+325 text14 CODE >257:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+14C text13 CODE >271:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+14C text13 CODE >272:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+153 text13 CODE >273:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+1B6 text12 CODE >275:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+1B6 text12 CODE >280:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+1BC text12 CODE >281:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+1D0 text12 CODE >283:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+1D2 text12 CODE >286:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+1D3 text12 CODE >288:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+45D text11 CODE >226:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+45D text11 CODE >227:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+461 text11 CODE >228:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+464 text11 CODE >229:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+468 text11 CODE >230:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+472 text11 CODE >231:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+47E text11 CODE >229:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+480 text11 CODE >229:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+489 text11 CODE >229:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+48D text11 CODE >229:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+491 text11 CODE >233:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+497 text11 CODE >234:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+49C text11 CODE >236:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+4A3 text11 CODE >237:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+4B8 text11 CODE >238:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+4BB text11 CODE >239:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+4BC text11 CODE >241:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+4C3 text11 CODE >242:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+4D8 text11 CODE >243:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+4DB text11 CODE >245:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+169 text10 CODE >6:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+169 text10 CODE >8:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+16D text10 CODE >9:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+16E text10 CODE >10:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+172 text10 CODE >11:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+175 text10 CODE >12:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
+2AE text9 CODE >259:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2AE text9 CODE >260:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2B2 text9 CODE >261:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2BD text9 CODE >262:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2C0 text9 CODE >263:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2C1 text9 CODE >264:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2CC text9 CODE >265:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2D6 text9 CODE >266:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2DA text9 CODE >267:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2E4 text9 CODE >268:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+2E8 text9 CODE >269:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+1F9 text8 CODE >33:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
+1F9 text8 CODE >37:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
+1FA text8 CODE >38:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
+1FC text8 CODE >39:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
+1FE text8 CODE >37:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
+218 text8 CODE >41:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
+21D text8 CODE >42:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcmp.c
+19B text7 CODE >4:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
+19B text7 CODE >6:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
+19B text7 CODE >7:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
+1A1 text7 CODE >7:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
+1A5 text7 CODE >8:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
+1A7 text7 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
+1B0 text7 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
+1B4 text7 CODE >10:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
+1B5 text7 CODE >11:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strchr.c
+21E text6 CODE >4:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
+21E text6 CODE >8:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
+220 text6 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
+221 text6 CODE >10:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
+223 text6 CODE >11:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
+225 text6 CODE >11:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
+229 text6 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
+240 text6 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
+244 text6 CODE >13:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
+248 text6 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strcspn.c
+249 text5 CODE >4:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
+249 text5 CODE >8:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
+24B text5 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
+24C text5 CODE >10:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
+24E text5 CODE >11:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
+250 text5 CODE >11:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
+254 text5 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
+26B text5 CODE >9:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
+26F text5 CODE >13:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
+273 text5 CODE >14:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strspn.c
+368 text4 CODE >8:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+368 text4 CODE >18:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+36D text4 CODE >19:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+371 text4 CODE >20:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+376 text4 CODE >21:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+378 text4 CODE >22:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+381 text4 CODE >23:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+389 text4 CODE >24:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+38E text4 CODE >25:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+39A text4 CODE >26:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+3A2 text4 CODE >27:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+3A8 text4 CODE >29:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+3A9 text4 CODE >30:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+3AA text4 CODE >31:C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\strtok.c
+188 text3 CODE >20:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+188 text3 CODE >22:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+188 text3 CODE >25:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+18E text3 CODE >28:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+192 text3 CODE >29:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+193 text3 CODE >30:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+194 text3 CODE >31:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+194 text3 CODE >34:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+198 text3 CODE >35:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+199 text3 CODE >37:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+199 text3 CODE >39:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+19A text3 CODE >40:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+4DC text2 CODE >49:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+4DC text2 CODE >51:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+4DE text2 CODE >55:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+4EA text2 CODE >60:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+4EE text2 CODE >62:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+4FA text2 CODE >63:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+4FE text2 CODE >64:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+502 text2 CODE >65:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+50A text2 CODE >69:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+51C text2 CODE >70:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+51F text2 CODE >70:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+522 text2 CODE >71:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+526 text2 CODE >72:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+52A text2 CODE >73:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+52E text2 CODE >74:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+52F text2 CODE >77:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+531 text2 CODE >77:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+536 text2 CODE >79:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+540 text2 CODE >79:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+544 text2 CODE >80:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+548 text2 CODE >59:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+54C text2 CODE >59:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+552 text2 CODE >59:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+556 text2 CODE >59:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+55B text2 CODE >84:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+15E text1 CODE >7:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+15E text1 CODE >9:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+162 text1 CODE >10:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+164 text1 CODE >11:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+168 text1 CODE >12:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
+60A maintext CODE >92:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+60A maintext CODE >94:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+60E maintext CODE >95:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+612 maintext CODE >96:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+614 maintext CODE >97:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+617 maintext CODE >98:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+618 maintext CODE >105:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+61B maintext CODE >106:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+61E maintext CODE >107:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+621 maintext CODE >110:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+625 maintext CODE >111:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+627 maintext CODE >112:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+629 maintext CODE >113:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+62A maintext CODE >115:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+62C maintext CODE >116:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+62E maintext CODE >117:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+630 maintext CODE >118:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+632 maintext CODE >119:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+633 maintext CODE >122:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+63C maintext CODE >124:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+640 maintext CODE >125:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+642 maintext CODE >126:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+644 maintext CODE >127:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+645 maintext CODE >129:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+64A maintext CODE >133:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+657 maintext CODE >134:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+65A maintext CODE >135:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+668 maintext CODE >136:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+66C maintext CODE >137:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+67A maintext CODE >138:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+67E maintext CODE >139:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+68C maintext CODE >140:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+690 maintext CODE >141:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+69E maintext CODE >142:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6A2 maintext CODE >143:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6B0 maintext CODE >144:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6B4 maintext CODE >149:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6BB maintext CODE >151:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6BC maintext CODE >154:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6C1 maintext CODE >155:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6C2 maintext CODE >158:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6CB maintext CODE >159:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6D0 maintext CODE >160:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6D9 maintext CODE >162:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6DE maintext CODE >163:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6DF maintext CODE >164:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6E5 maintext CODE >165:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6E6 maintext CODE >167:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6F2 maintext CODE >168:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6F3 maintext CODE >171:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+6FC maintext CODE >172:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+701 maintext CODE >173:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+70A maintext CODE >175:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+70F maintext CODE >176:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+710 maintext CODE >177:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+716 maintext CODE >178:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+717 maintext CODE >180:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+723 maintext CODE >181:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+724 maintext CODE >184:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+72D maintext CODE >185:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+732 maintext CODE >186:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+73B maintext CODE >188:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+740 maintext CODE >189:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+743 maintext CODE >190:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+749 maintext CODE >191:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+74C maintext CODE >193:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+752 maintext CODE >194:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+765 maintext CODE >195:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+766 maintext CODE >198:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+76F maintext CODE >199:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+774 maintext CODE >200:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+77D maintext CODE >202:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+783 maintext CODE >203:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+78F maintext CODE >204:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+790 maintext CODE >207:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+796 maintext CODE >208:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+79B maintext CODE >210:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7A2 maintext CODE >211:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7B7 maintext CODE >212:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7BA maintext CODE >213:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7BB maintext CODE >215:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7C2 maintext CODE >216:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7D7 maintext CODE >217:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7DB maintext CODE >151:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7DF maintext CODE >151:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7E2 maintext CODE >151:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7E5 maintext CODE >151:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7E8 maintext CODE >151:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7EB maintext CODE >151:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+7EE maintext CODE >151:C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -475,83 +488,84 @@ ___latbits 1 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
 putch@byte 71 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 ___lwmod@counter 24 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
 __Hspace_0 800 0 ABS 0 - -
-__Hspace_1 A1 0 ABS 0 - -
+__Hspace_1 A2 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 400F 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
-__end_of_pwm_percent 992 0 CODE 0 text11 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_pwm_percent 7DE 0 CODE 0 text15 dist/default/debug\ps-laser-util.X.debug.o
 uart_gets@buffer 72 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 __L__absolute__ 0 0 ABS 0 __absolute__ -
 __Hstrings 0 0 ABS 0 strings -
 _RCIF 65 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
 _TXIF 64 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
-___sp 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
-_atoi 992 0 CODE 0 text20 dist/default/debug\ps-laser-util.X.debug.o
-_main CCA 0 CODE 0 maintext dist/default/debug\ps-laser-util.X.debug.o
+___sp 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
+_atoi 7DE 0 CODE 0 text20 dist/default/debug\ps-laser-util.X.debug.o
+_main C14 0 CODE 0 maintext dist/default/debug\ps-laser-util.X.debug.o
 btemp 7E 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
-___stack_hi 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
-___stack_lo 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
-start 2 0 CODE 0 init C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
+___stack_hi 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
+___stack_lo 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
+start 2 0 CODE 0 init C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
 ?___wmul 71 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 __Hpowerup 0 0 CODE 0 powerup -
 pwm_percent@hw_value 22 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
 printf@c 32 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
 printf@f 25 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
 wtemp0 7E 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
 __Hfunctab 0 0 ENTRY 0 functab -
-_shutter_open 70A 0 CODE 0 text9 dist/default/debug\ps-laser-util.X.debug.o
-_shutter_safe 49C 0 CODE 0 text14 dist/default/debug\ps-laser-util.X.debug.o
+_shutter_open 5D2 0 CODE 0 text14 dist/default/debug\ps-laser-util.X.debug.o
+_shutter_safe 36C 0 CODE 0 text12 dist/default/debug\ps-laser-util.X.debug.o
 __Hclrtext 0 0 ABS 0 clrtext -
 ___wmul@multiplicand 73 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 printf@flag 2E 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
 printf@prec 2F 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
-_sht_on_off 6D 0 BANK0 1 bssBANK0 dist/default/debug\ps-laser-util.X.debug.o
+_sht_on_off 6F 0 BANK0 1 nvBANK0 dist/default/debug\ps-laser-util.X.debug.o
 _CCPR1L 15 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
 uart_gets@idx 77 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 pwm_percent@percent 24 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
-__end_of___wmul 52A 0 CODE 0 text22 dist/default/debug\ps-laser-util.X.debug.o
+__end_of___wmul 3F2 0 CODE 0 text22 dist/default/debug\ps-laser-util.X.debug.o
+_safe_status A0 0 BANK1 1 bssBANK1 dist/default/debug\ps-laser-util.X.debug.o
 main@cmd 65 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
 main@ptr 6A 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
 main@tmp 3D 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
 __Lmaintext 0 0 ABS 0 maintext -
 ?_printf 25 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
+__LnvBANK0 0 0 ABS 0 nvBANK0 -
 ___lwmod@divisor 20 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
-__end_of___lwdiv 884 0 CODE 0 text18 dist/default/debug\ps-laser-util.X.debug.o
-__end_of___lwmod 694 0 CODE 0 text17 dist/default/debug\ps-laser-util.X.debug.o
+__end_of___lwdiv 6D0 0 CODE 0 text19 dist/default/debug\ps-laser-util.X.debug.o
+__end_of___lwmod 55C 0 CODE 0 text18 dist/default/debug\ps-laser-util.X.debug.o
 ?_strcmp 71 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 ?_strspn 74 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
-___stackhi 0 0 ABS 0 - C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
-___stacklo 0 0 ABS 0 - C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
+___stackhi 0 0 ABS 0 - C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
+___stacklo 0 0 ABS 0 - C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
 _dpowers 12 0 STRING 0 strings dist/default/debug\ps-laser-util.X.debug.o
 ___lwdiv@quotient 7B 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 ___lwmod@dividend 22 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
 start_initialization FE6 0 CODE 0 cinit dist/default/debug\ps-laser-util.X.debug.o
-__end_of_shutter_open 784 0 CODE 0 text9 dist/default/debug\ps-laser-util.X.debug.o
-__end_of_shutter_safe 4E0 0 CODE 0 text14 dist/default/debug\ps-laser-util.X.debug.o
-_pwm_init 402 0 CODE 0 text12 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_shutter_open 64C 0 CODE 0 text14 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_shutter_safe 3A8 0 CODE 0 text12 dist/default/debug\ps-laser-util.X.debug.o
+_pwm_init 2D2 0 CODE 0 text10 dist/default/debug\ps-laser-util.X.debug.o
 __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
-ps_laser_util_init@a 36 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
 ps_laser_util_init@i 37 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
-__end_of_pwm_init 41C 0 CODE 0 text12 dist/default/debug\ps-laser-util.X.debug.o
-__end_of_printf CCA 0 CODE 0 text15 dist/default/debug\ps-laser-util.X.debug.o
-_isdigit$763 71 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
-___int_sp 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
+__end_of_pwm_init 2EC 0 CODE 0 text10 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_printf C14 0 CODE 0 text16 dist/default/debug\ps-laser-util.X.debug.o
+_isdigit$769 71 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
+___int_sp 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
 __Hbank3 0 0 BANK3 1 bank3 -
 __Hcinit 1000 0 CODE 0 cinit -
-__end_of_strchr 49C 0 CODE 0 text7 dist/default/debug\ps-laser-util.X.debug.o
-__end_of_strcmp 574 0 CODE 0 text8 dist/default/debug\ps-laser-util.X.debug.o
-__end_of_strspn 620 0 CODE 0 text5 dist/default/debug\ps-laser-util.X.debug.o
-__end_of_strtok 90A 0 CODE 0 text4 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_strchr 36C 0 CODE 0 text7 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_strcmp 43C 0 CODE 0 text8 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_strspn 4E8 0 CODE 0 text5 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_strtok 756 0 CODE 0 text4 dist/default/debug\ps-laser-util.X.debug.o
 __Hidloc 4008 0 IDLOC 5 idloc -
 __Hstack 0 0 STACK 2 stack -
 __stringbase 10 0 STRING 0 strings dist/default/debug\ps-laser-util.X.debug.o
@@ -563,14 +577,14 @@ __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
 __Lbank3 0 0 BANK3 1 bank3 -
-__end_of_isdigit 440 0 CODE 0 text21 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_isdigit 310 0 CODE 0 text21 dist/default/debug\ps-laser-util.X.debug.o
 __Lcinit FE6 0 CODE 0 cinit -
 __Lidloc 0 0 IDLOC 5 idloc -
 uart_gets@max_len 73 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 __Lstack 0 0 STACK 2 stack -
 _PORTAbits 5 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
 _PORTBbits 6 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
-__end_of_strcspn 5CA 0 CODE 0 text6 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_strcspn 492 0 CODE 0 text6 dist/default/debug\ps-laser-util.X.debug.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
 __Hheap 0 0 HEAP 7 heap -
@@ -591,58 +605,60 @@ __Lsfr2 0 0 ABS 0 sfr2 -
 __Lsfr3 0 0 ABS 0 sfr3 -
 __Lsivt 2 0 CODE 0 sivt -
 __Ltext 0 0 ABS 0 text -
-__end_of_ps_laser_util_init 800 0 CODE 0 text13 dist/default/debug\ps-laser-util.X.debug.o
-___wmul 4E0 0 CODE 0 text22 dist/default/debug\ps-laser-util.X.debug.o
+__pnvBANK0 6F 0 BANK0 1 nvBANK0 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_ps_laser_util_init 9B8 0 CODE 0 text11 dist/default/debug\ps-laser-util.X.debug.o
+___wmul 3A8 0 CODE 0 text22 dist/default/debug\ps-laser-util.X.debug.o
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _PR2 92 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
 __S0 800 0 ABS 0 - -
-__S1 A1 0 ABS 0 - -
+__S1 A2 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 atoi@sign 7B 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
-_shutter_close 694 0 CODE 0 text10 dist/default/debug\ps-laser-util.X.debug.o
-__end_of_get_hall_status 3D8 0 CODE 0 text19 dist/default/debug\ps-laser-util.X.debug.o
+_shutter_close 55C 0 CODE 0 text9 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_get_hall_status 2A8 0 CODE 0 text13 dist/default/debug\ps-laser-util.X.debug.o
 strcmp@s1 71 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 strcmp@s2 72 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 strcspn@i 78 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
+__HnvBANK0 0 0 ABS 0 nvBANK0 -
 __Lintentry 2 0 CODE 0 intentry -
-_ps_laser_util_init 784 0 CODE 0 text13 dist/default/debug\ps-laser-util.X.debug.o
+_ps_laser_util_init 8BA 0 CODE 0 text11 dist/default/debug\ps-laser-util.X.debug.o
 __stringtab 6 0 STRING 0 strings dist/default/debug\ps-laser-util.X.debug.o
 strcmp@r 75 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
 strspn@i 78 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 __LbssBANK1 0 0 ABS 0 bssBANK1 -
 _RCSTAbits 18 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
-__ptext10 694 0 CODE 0 text10 dist/default/debug\ps-laser-util.X.debug.o
-__ptext11 90A 0 CODE 0 text11 dist/default/debug\ps-laser-util.X.debug.o
-__ptext12 402 0 CODE 0 text12 dist/default/debug\ps-laser-util.X.debug.o
-__ptext13 784 0 CODE 0 text13 dist/default/debug\ps-laser-util.X.debug.o
-__ptext14 49C 0 CODE 0 text14 dist/default/debug\ps-laser-util.X.debug.o
-__ptext15 B6E 0 CODE 0 text15 dist/default/debug\ps-laser-util.X.debug.o
-__ptext16 3D8 0 CODE 0 text16 dist/default/debug\ps-laser-util.X.debug.o
-__ptext17 620 0 CODE 0 text17 dist/default/debug\ps-laser-util.X.debug.o
-__ptext18 800 0 CODE 0 text18 dist/default/debug\ps-laser-util.X.debug.o
-__ptext19 3C8 0 CODE 0 text19 dist/default/debug\ps-laser-util.X.debug.o
-__ptext20 992 0 CODE 0 text20 dist/default/debug\ps-laser-util.X.debug.o
-__ptext21 41C 0 CODE 0 text21 dist/default/debug\ps-laser-util.X.debug.o
-__ptext22 4E0 0 CODE 0 text22 dist/default/debug\ps-laser-util.X.debug.o
-___lwdiv 800 0 CODE 0 text18 dist/default/debug\ps-laser-util.X.debug.o
-___lwmod 620 0 CODE 0 text17 dist/default/debug\ps-laser-util.X.debug.o
-__pmaintext CCA 0 CODE 0 maintext dist/default/debug\ps-laser-util.X.debug.o
+__ptext10 2D2 0 CODE 0 text10 dist/default/debug\ps-laser-util.X.debug.o
+__ptext11 8BA 0 CODE 0 text11 dist/default/debug\ps-laser-util.X.debug.o
+__ptext12 36C 0 CODE 0 text12 dist/default/debug\ps-laser-util.X.debug.o
+__ptext13 298 0 CODE 0 text13 dist/default/debug\ps-laser-util.X.debug.o
+__ptext14 5D2 0 CODE 0 text14 dist/default/debug\ps-laser-util.X.debug.o
+__ptext15 756 0 CODE 0 text15 dist/default/debug\ps-laser-util.X.debug.o
+__ptext16 AB8 0 CODE 0 text16 dist/default/debug\ps-laser-util.X.debug.o
+__ptext17 2A8 0 CODE 0 text17 dist/default/debug\ps-laser-util.X.debug.o
+__ptext18 4E8 0 CODE 0 text18 dist/default/debug\ps-laser-util.X.debug.o
+__ptext19 64C 0 CODE 0 text19 dist/default/debug\ps-laser-util.X.debug.o
+__ptext20 7DE 0 CODE 0 text20 dist/default/debug\ps-laser-util.X.debug.o
+__ptext21 2EC 0 CODE 0 text21 dist/default/debug\ps-laser-util.X.debug.o
+__ptext22 3A8 0 CODE 0 text22 dist/default/debug\ps-laser-util.X.debug.o
+___lwdiv 64C 0 CODE 0 text19 dist/default/debug\ps-laser-util.X.debug.o
+___lwmod 4E8 0 CODE 0 text18 dist/default/debug\ps-laser-util.X.debug.o
+__pmaintext C14 0 CODE 0 maintext dist/default/debug\ps-laser-util.X.debug.o
 ?_atoi 77 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
-_printf B6E 0 CODE 0 text15 dist/default/debug\ps-laser-util.X.debug.o
-_pwm_percent 90A 0 CODE 0 text11 dist/default/debug\ps-laser-util.X.debug.o
+_printf AB8 0 CODE 0 text16 dist/default/debug\ps-laser-util.X.debug.o
+_pwm_percent 756 0 CODE 0 text15 dist/default/debug\ps-laser-util.X.debug.o
 ___wmul@multiplier 71 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
-_get_hall_status 3C8 0 CODE 0 text19 dist/default/debug\ps-laser-util.X.debug.o
+_get_hall_status 298 0 CODE 0 text13 dist/default/debug\ps-laser-util.X.debug.o
 main@rcmd 66 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
 ___lwdiv@divisor 77 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
-_strchr 466 0 CODE 0 text7 dist/default/debug\ps-laser-util.X.debug.o
-_strcmp 52A 0 CODE 0 text8 dist/default/debug\ps-laser-util.X.debug.o
-_strspn 5CA 0 CODE 0 text5 dist/default/debug\ps-laser-util.X.debug.o
-_strtok 884 0 CODE 0 text4 dist/default/debug\ps-laser-util.X.debug.o
+_strchr 336 0 CODE 0 text7 dist/default/debug\ps-laser-util.X.debug.o
+_strcmp 3F2 0 CODE 0 text8 dist/default/debug\ps-laser-util.X.debug.o
+_strspn 492 0 CODE 0 text5 dist/default/debug\ps-laser-util.X.debug.o
+_strtok 6D0 0 CODE 0 text4 dist/default/debug\ps-laser-util.X.debug.o
 _hall_status 6C 0 BANK0 1 bssBANK0 dist/default/debug\ps-laser-util.X.debug.o
 strspn@s1 74 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 strspn@s2 75 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
@@ -665,35 +681,35 @@ __Lstrings 0 0 ABS 0 strings -
 ___lwdiv@dividend 79 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 ?___lwdiv 77 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 ?___lwmod 20 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
-_ld_on_off 6F 0 BANK0 1 bssBANK0 dist/default/debug\ps-laser-util.X.debug.o
+_ld_on_off 6E 0 BANK0 1 bssBANK0 dist/default/debug\ps-laser-util.X.debug.o
 __Hreset_vec 2 0 CODE 0 reset_vec -
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
 __HbssBANK1 0 0 ABS 0 bssBANK1 -
 strchr@chr 72 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 strchr@ptr 71 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
-__end_of_uart_gets B6E 0 CODE 0 text2 dist/default/debug\ps-laser-util.X.debug.o
-__end_of_uart_init 402 0 CODE 0 text1 dist/default/debug\ps-laser-util.X.debug.o
-__ptext1 3EC 0 CODE 0 text1 dist/default/debug\ps-laser-util.X.debug.o
-__ptext2 A6E 0 CODE 0 text2 dist/default/debug\ps-laser-util.X.debug.o
-__ptext3 440 0 CODE 0 text3 dist/default/debug\ps-laser-util.X.debug.o
-__ptext4 884 0 CODE 0 text4 dist/default/debug\ps-laser-util.X.debug.o
-__ptext5 5CA 0 CODE 0 text5 dist/default/debug\ps-laser-util.X.debug.o
-__ptext6 574 0 CODE 0 text6 dist/default/debug\ps-laser-util.X.debug.o
-__ptext7 466 0 CODE 0 text7 dist/default/debug\ps-laser-util.X.debug.o
-__ptext8 52A 0 CODE 0 text8 dist/default/debug\ps-laser-util.X.debug.o
-__ptext9 70A 0 CODE 0 text9 dist/default/debug\ps-laser-util.X.debug.o
-_dcf_on_off 6E 0 BANK0 1 bssBANK0 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_uart_gets AB8 0 CODE 0 text2 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_uart_init 2D2 0 CODE 0 text1 dist/default/debug\ps-laser-util.X.debug.o
+__ptext1 2BC 0 CODE 0 text1 dist/default/debug\ps-laser-util.X.debug.o
+__ptext2 9B8 0 CODE 0 text2 dist/default/debug\ps-laser-util.X.debug.o
+__ptext3 310 0 CODE 0 text3 dist/default/debug\ps-laser-util.X.debug.o
+__ptext4 6D0 0 CODE 0 text4 dist/default/debug\ps-laser-util.X.debug.o
+__ptext5 492 0 CODE 0 text5 dist/default/debug\ps-laser-util.X.debug.o
+__ptext6 43C 0 CODE 0 text6 dist/default/debug\ps-laser-util.X.debug.o
+__ptext7 336 0 CODE 0 text7 dist/default/debug\ps-laser-util.X.debug.o
+__ptext8 3F2 0 CODE 0 text8 dist/default/debug\ps-laser-util.X.debug.o
+__ptext9 55C 0 CODE 0 text9 dist/default/debug\ps-laser-util.X.debug.o
+_dcf_on_off 6D 0 BANK0 1 bssBANK0 dist/default/debug\ps-laser-util.X.debug.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-__end_of_shutter_close 70A 0 CODE 0 text10 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_shutter_close 5D2 0 CODE 0 text9 dist/default/debug\ps-laser-util.X.debug.o
 __H__absolute__ 0 0 ABS 0 __absolute__ -
-_isdigit 41C 0 CODE 0 text21 dist/default/debug\ps-laser-util.X.debug.o
+_isdigit 2EC 0 CODE 0 text21 dist/default/debug\ps-laser-util.X.debug.o
 __Lreset_vec 0 0 CODE 0 reset_vec -
-_strcspn 574 0 CODE 0 text6 dist/default/debug\ps-laser-util.X.debug.o
-_uart_gets A6E 0 CODE 0 text2 dist/default/debug\ps-laser-util.X.debug.o
-_uart_init 3EC 0 CODE 0 text1 dist/default/debug\ps-laser-util.X.debug.o
-___heap_hi 0 0 ABS 0 - C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
-___heap_lo 0 0 ABS 0 - C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
+_strcspn 43C 0 CODE 0 text6 dist/default/debug\ps-laser-util.X.debug.o
+_uart_gets 9B8 0 CODE 0 text2 dist/default/debug\ps-laser-util.X.debug.o
+_uart_init 2BC 0 CODE 0 text1 dist/default/debug\ps-laser-util.X.debug.o
+___heap_hi 0 0 ABS 0 - C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
+___heap_lo 0 0 ABS 0 - C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
 __end_of__initialization FFA 0 CODE 0 cinit dist/default/debug\ps-laser-util.X.debug.o
 __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
@@ -702,13 +718,13 @@ strcspn@s1 74 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 strcspn@s2 75 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 __pcstackCOMMON 71 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 __Hend_init 6 0 CODE 0 end_init -
-__end_of_atoi A6E 0 CODE 0 text20 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_atoi 8BA 0 CODE 0 text20 dist/default/debug\ps-laser-util.X.debug.o
 __end_of_main FE6 0 CODE 0 maintext dist/default/debug\ps-laser-util.X.debug.o
 isdigit@c 72 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 printf@val 30 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
 __end_of_dpowers 26 0 STRING 0 strings dist/default/debug\ps-laser-util.X.debug.o
 _CMCON 1F 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
-__end_of_getch 466 0 CODE 0 text3 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_getch 336 0 CODE 0 text3 dist/default/debug\ps-laser-util.X.debug.o
 _PORTA 5 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
 _PORTB 6 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
 _RCREG 1A 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
@@ -719,13 +735,12 @@ _TRISA 85 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
 _TRISB 86 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
 _TXREG 19 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
 _TXSTA 98 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
-__end_of_putch 3EC 0 CODE 0 text16 dist/default/debug\ps-laser-util.X.debug.o
+__end_of_putch 2BC 0 CODE 0 text17 dist/default/debug\ps-laser-util.X.debug.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-_getch 440 0 CODE 0 text3 dist/default/debug\ps-laser-util.X.debug.o
-_putch 3D8 0 CODE 0 text16 dist/default/debug\ps-laser-util.X.debug.o
+_getch 310 0 CODE 0 text3 dist/default/debug\ps-laser-util.X.debug.o
+_putch 2A8 0 CODE 0 text17 dist/default/debug\ps-laser-util.X.debug.o
 _CCP1CON 17 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
-shutter_safe@sht_alarm 33 0 BANK0 1 cstackBANK0 dist/default/debug\ps-laser-util.X.debug.o
 atoi@a 7C 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 atoi@s 77 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
 ?_strcspn 74 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
@@ -735,8 +750,8 @@ __pbssBANK1 A0 0 BANK1 1 bssBANK1 dist/default/debug\ps-laser-util.X.debug.o
 _T2CONbits 12 0 ABS 0 - dist/default/debug\ps-laser-util.X.debug.o
 __pstrings 6 0 STRING 0 strings dist/default/debug\ps-laser-util.X.debug.o
 ___wmul@product 75 0 COMMON 1 cstackCOMMON dist/default/debug\ps-laser-util.X.debug.o
-___int_stack_hi 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
-___int_stack_lo 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\driver_tmp_19.o
+___int_stack_hi 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
+___int_stack_lo 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAs15kk.\driver_tmp_19.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -763,34 +778,34 @@ ___int_stack_lo 0 0 STACK 2 stack C:\Users\shimi\AppData\Local\Temp\xcAsjg0.\dri
 # All other numeric quantities are in decimal.
 %SEGMENTS
 cinit 0 7F3 FE6 D 2
-text1 0 1F6 3EC B 2
-text2 0 537 A6E 80 2
-text3 0 220 440 13 2
-text4 0 442 884 43 2
-text5 0 2E5 5CA 2B 2
-text6 0 2BA 574 2B 2
-text7 0 233 466 1B 2
-text8 0 295 52A 25 2
-text9 0 385 70A 3D 2
-text10 0 34A 694 3B 2
-text11 0 485 90A 44 2
-text12 0 201 402 D 2
-text13 0 3C2 784 3E 2
-text14 0 24E 49C 22 2
-text15 0 5B7 B6E AE 2
-text16 0 1EC 3D8 A 2
-text17 0 310 620 3A 2
-text18 0 400 800 42 2
-text19 0 1E4 3C8 8 2
-text20 0 4C9 992 6E 2
-text21 0 20E 41C 12 2
-text22 0 270 4E0 25 2
-maintext 0 665 CCA 18E 2
+text1 0 15E 2BC B 2
+text2 0 4DC 9B8 80 2
+text3 0 188 310 13 2
+text4 0 368 6D0 43 2
+text5 0 249 492 2B 2
+text6 0 21E 43C 2B 2
+text7 0 19B 336 1B 2
+text8 0 1F9 3F2 25 2
+text9 0 2AE 55C 3B 2
+text10 0 169 2D2 D 2
+text11 0 45D 8BA 7F 2
+text12 0 1B6 36C 1E 2
+text13 0 14C 298 8 2
+text14 0 2E9 5D2 3D 2
+text15 0 3AB 756 44 2
+text16 0 55C AB8 AE 2
+text17 0 154 2A8 A 2
+text18 0 274 4E8 3A 2
+text19 0 326 64C 42 2
+text20 0 3EF 7DE 6E 2
+text21 0 176 2EC 12 2
+text22 0 1D4 3A8 25 2
+maintext 0 60A C14 1E9 2
 cstackCOMMON 1 71 71 D 1
 cstackBANK0 1 20 20 50 1
 reset_vec 0 0 0 3 2
-bssBANK1 1 A0 A0 1 1
-strings 0 3 6 D8 2
+bssBANK1 1 A0 A0 2 1
+strings 0 3 6 EB 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal
