@@ -1,5 +1,5 @@
 
-# 1 "uart.c"
+# 1 "pwm.c"
 
 # 18 "C:\Program Files\Microchip\xc8\v2.50\pic\include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -1050,184 +1050,31 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 4 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\__size_t.h"
-typedef unsigned size_t;
+# 24 "pwm.h"
+void pwm_init(void);
+void pwm_percent(uint8_t percent);
 
-# 14 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\string.h"
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
-
-# 36
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
-
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *) __attribute__((__deprecated__));
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t) __attribute__((__deprecated__));
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *) __attribute__((__deprecated__));
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int) __attribute__((__deprecated__));
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int) __attribute__((__deprecated__));
-
-# 7 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 43 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdio.h"
-struct __prbuf
+# 6 "pwm.c"
+void pwm_init(void)
 {
-char * ptr;
-void (* func)(char);
-};
-
-# 29 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\errno.h"
-extern int errno;
-
-# 12 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\conio.h"
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void) __attribute__((__deprecated__));
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 23
-extern char * cgets(char *) __attribute__((__deprecated__));
-extern void cputs(const char *) __attribute__((__deprecated__));
-
-# 88 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 180
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
-# 55 "uart.h"
-void init_uart(void);
-void putch(unsigned char byte);
-unsigned char getch(void);
-unsigned char uart_getche(void);
-void uart_gets(char *buffer, uint16_t max_len);
-
-# 7 "uart.c"
-void uart_init()
-{
-SPBRG = ((unsigned char)(((4000000 / 16) / 9600) - 1));
-TXSTA = (0x00 | 0x04 | 0x20);
-RCSTA = (0x00 | 0x90);
+CCP1CON = 0x0C;
+T2CON = 0x00;
+PR2 = 49;
+T2CONbits.TMR2ON = 1;
 }
 
-void putch(unsigned char byte)
-{
-while(!TXIF);
-TXREG = byte;
-}
-
-unsigned char getch(void)
-{
-while(!RCIF)
+void pwm_percent(uint8_t percent)
 {
 
+if (percent > 100) {
+percent = 100;
 }
 
 
-if(RCSTAbits.OERR) {
-RCSTAbits.CREN = 0;
-RCSTAbits.CREN = 1;
-}
+
+uint16_t hw_value = ((uint16_t)percent * 199) / 100U;
 
 
-if(RCSTAbits.FERR) {
-unsigned char dummy = RCREG;
-(void)dummy;
-}
-
-return RCREG;
-}
-
-unsigned char uart_getche(void){
-unsigned char c;
-c = getch();
-putch(c);
-return c;
-}
-
-void uart_gets(char *buffer, uint16_t max_len)
-{
-uint16_t idx = 0;
-char c;
-
-
-if(buffer == (0) || max_len == 0) {
-return;
-}
-
-while(idx < max_len - 1) {
-c = getch();
-
-if(c == '\r' || c == '\n') {
-putch('\r');
-putch('\n');
-buffer[idx] = '\0';
-return;
-}
-
-if((c == '\b' || c == 0x7F) && idx > 0) {
-idx--;
-putch('\b');
-putch(' ');
-putch('\b');
-continue;
-}
-
-if(c < 0x20) continue;
-
-buffer[idx++] = c;
-putch(c);
-}
-
-buffer[idx] = '\0';
+CCPR1L = hw_value >> 2;
+CCP1CON = (CCP1CON & 0xCF) | ((hw_value & 0x03) << 4);
 }
