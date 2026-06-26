@@ -207,7 +207,7 @@ void main(void) {
                 safe_status = shutter_safe();
                 if(safe_status == 1){
                     // シャッター異常動作
-                    printf("C\tShutter error. Do NOT fire the laser.\r\n");
+                    printf("C\tShutter error. Do NOT emmition the laser.\r\n");
                     printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
                     P_LED = 0;
                 }else{
@@ -233,7 +233,7 @@ void ps_laser_util_init(void){
     safe_status = shutter_safe();
     if(safe_status == 1){
         // シャッター異常動作
-        printf("Shutter error. Do NOT fire the laser.\r\n");
+        printf("Shutter error. Do NOT emmition the laser.\r\n");
         printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
         P_LED = 0;
     }else{
