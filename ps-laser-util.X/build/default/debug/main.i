@@ -1,17 +1,6 @@
 
 # 1 "main.c"
 
-
-# 11
-#pragma config FOSC = INTOSCIO
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = ON
-#pragma config BOREN = ON
-#pragma config LVP = OFF
-#pragma config CPD = OFF
-#pragma config CP = OFF
-
 # 18 "C:\Program Files\Microchip\xc8\v2.50\pic\include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
 
@@ -1061,8 +1050,43 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
+# 15 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdbool.h"
+typedef unsigned char bool;
+
 # 4 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\__size_t.h"
 typedef unsigned size_t;
+
+# 14 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+# 36
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *) __attribute__((__deprecated__));
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t) __attribute__((__deprecated__));
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *) __attribute__((__deprecated__));
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int) __attribute__((__deprecated__));
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int) __attribute__((__deprecated__));
 
 # 7 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdarg.h"
 typedef void * va_list[1];
@@ -1123,12 +1147,6 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-
-# 27 "uart.h"
-void initUART();
-void putch(unsigned char byte);
-unsigned char getch();
-unsigned char getche();
 
 # 7 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdlib.h"
 typedef unsigned short wchar_t;
@@ -1203,74 +1221,74 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status) __attribute__((__deprecated__));
 
-# 14 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\string.h"
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
 
-# 36
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
+# 20 "main.c"
+#pragma config FOSC = INTOSCIO
+#pragma config WDTE = OFF
+#pragma config PWRTE = OFF
+#pragma config MCLRE = ON
+#pragma config BOREN = ON
+#pragma config LVP = OFF
+#pragma config CPD = OFF
+#pragma config CP = OFF
 
+# 55 "uart.h"
+void init_uart(void);
+void putch(unsigned char byte);
+unsigned char getch(void);
+unsigned char uart_getche(void);
+void uart_gets(char *buffer, uint16_t max_len);
 
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *) __attribute__((__deprecated__));
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t) __attribute__((__deprecated__));
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *) __attribute__((__deprecated__));
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int) __attribute__((__deprecated__));
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int) __attribute__((__deprecated__));
+# 24 "pwm.h"
+void pwm_init(void);
+void pwm_percent(uint8_t percent);
 
-# 38 "main.c"
+# 58 "main.c"
 enum command {
 VER,
 LDP,
 DCF,
 SHT,
-PHO,
-NON
+HAL
 };
 
+# 69
+void uart_init(void);
+void pwm_init(void);
+void tmr0_init(void);
+void ps_laser_util_init(void);
+void shutter_open(void);
+void shutter_close(void);
+bool get_hall_status(void);
+bool shutter_safe(void);
+
+# 81
+static uint8_t ld_on_off = 0;
+static uint8_t dcf_on_off = 0;
+static uint8_t sht_on_off = 0;
+static uint8_t hall_status = 0;
+static uint8_t sht_status = 0;
+
+# 90
 void main(void) {
 
+# 99
+CMCON = 0b00000111;
+TRISA = 0b00001000;
+TRISB = 0b00000010;
 PORTA = 0x00;
 PORTB = 0x00;
-
-
-
-
-TRISA = 0b00000001;
-TRISB = 0b00000010;
-CMCON = 0b00000111;
-
-initUART();
 
 char tmp[40];
 int axis = 0;
 char rcmd[4];
-char rps_cmd[6];
-char wtb_cmd[6];
 
-unsigned char ld_on_off = 0;
-unsigned char dcf_on_off = 0;
-unsigned char sht_on_off = 0;
-unsigned char pho_status = 0;
-
+# 116
 char *ptr;
+
+uart_init();
+pwm_init();
+ps_laser_util_init();
 
 while(1){
 rcmd[0] = 'Q';
@@ -1284,7 +1302,8 @@ tmp[2] = 'Q';
 tmp[3] = 'Q';
 tmp[4] = '\0';
 
-gets(tmp);
+
+uart_gets(tmp, sizeof(tmp));
 
 rcmd[0] = tmp[1];
 rcmd[1] = tmp[2];
@@ -1303,34 +1322,18 @@ cmd = LDP;
 cmd = DCF;
 }else if(strcmp(rcmd,"SHT") == 0){
 cmd = SHT;
-}else if(strcmp(rcmd,"PHO") == 0){
-cmd = PHO;
-}else{
-cmd = NON;
+}else if(strcmp(rcmd,"HAL") == 0){
+cmd = HAL;
+}else {
+continue;
 }
 
 ptr = strtok(tmp, "/");
-rps_cmd[0]='\0';
-rps_cmd[1]='\0';
-rps_cmd[2]='\0';
-rps_cmd[3]='\0';
 
-int i;
-
-for (i = 0; ptr[i] != '\0'; i++) {
-rps_cmd[i] = ptr[i];
-}
-
-for (i = 0; ptr[i] != '\0'; i++) {
-wtb_cmd[i] = ptr[i];
-}
-
+# 176
 switch(cmd){
 
 case VER :
-
-
-
 printf("C\tVERSION 3.0\r\n");
 break;
 
@@ -1339,11 +1342,10 @@ ptr = strtok((0), "/");
 if(ptr != (0)) {
 ld_on_off = atoi(ptr);
 }
-
 if(ld_on_off == 0){
-RA2 = 0;
+PORTAbits.RA2 = 0;
 }else if(ld_on_off == 1){
-RA2 = 1;
+PORTAbits.RA2 = 1;
 }
 printf("C\tLDP\t%d\r\n", ld_on_off);
 break;
@@ -1353,41 +1355,36 @@ ptr = strtok((0), "/");
 if(ptr != (0)) {
 dcf_on_off = atoi(ptr);
 }
-
 if(dcf_on_off == 0){
-RA1 = 0;
+PORTAbits.RA1 = 0;
 }else if(dcf_on_off == 1){
-RA1 = 1;
+PORTAbits.RA1 = 1;
 }
 printf("C\tDCF\t%d\r\n", dcf_on_off);
 break;
 
 case SHT :
-
 ptr = strtok((0), "/");
 if(ptr != (0)) {
 sht_on_off = atoi(ptr);
 }
 if(sht_on_off == 0){
-RB0 = 1;
-RA3 = 0;
-_delay((unsigned long)((30)*(4000000/4000.0)));
-RB0 = 0;
-RA3 = 0;
-pho_status = RA0;
+shutter_close();
 }else if(sht_on_off == 1){
-RB0 = 0;
-RA3 = 1;
-_delay((unsigned long)((30)*(4000000/4000.0)));
-RB0 = 0;
-RA3 = 0;
-pho_status = RA0;
+shutter_open();
 }
-printf("C\tSHT\t%d\r\n", pho_status);
+hall_status = get_hall_status();
+shutter_safe();
+printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
 break;
 
-case PHO :
-printf("C\tPHO\t%d\r\n", pho_status);
+case HAL :
+ptr = strtok((0), "/");
+if(ptr != (0)) {
+hall_status = atoi(ptr);
+}
+hall_status = get_hall_status();
+printf("C\tHAL\t%d\r\n", hall_status);
 break;
 
 default : break;
@@ -1395,3 +1392,63 @@ default : break;
 }
 }
 
+void ps_laser_util_init(void){
+unsigned char a = 0;
+for(int i=0 ; i < 50 ; i++){
+_delay((unsigned long)((50)*(4000000/4000.0)));
+PORTAbits.RA0 ^= 1;
+}
+a = shutter_safe();
+if(a == 0){
+printf("System initialization has been completed!!\r\n");
+}
+}
+
+void shutter_open(void){
+pwm_percent(0);
+_delay((unsigned long)((10)*(4000000/4000.0)));
+PORTBbits.RB0 = 1;
+PORTBbits.RB5 = 0;
+_delay((unsigned long)((10)*(4000000/4000.0)));
+_delay((unsigned long)((18)*(4000000/4000.0)));
+pwm_percent(80);
+_delay((unsigned long)((5)*(4000000/4000.0)));
+pwm_percent(40);
+}
+
+void shutter_close(void){
+pwm_percent(0);
+_delay((unsigned long)((10)*(4000000/4000.0)));
+PORTBbits.RB0 = 0;
+PORTBbits.RB5 = 1;
+_delay((unsigned long)((10)*(4000000/4000.0)));
+_delay((unsigned long)((17)*(4000000/4000.0)));
+pwm_percent(50);
+_delay((unsigned long)((3)*(4000000/4000.0)));
+pwm_percent(30);
+}
+
+bool get_hall_status(void){
+return PORTAbits.RA3;
+}
+
+# 280
+bool shutter_safe(void) {
+hall_status = get_hall_status();
+bool sht_alarm = hall_status ^ sht_on_off;
+if (sht_alarm == 0) {
+
+printf("ALARM!! Shutter abnormality detected!!\r\n");
+
+
+
+printf("DO NOT OPERATE LASER!!\r\n");
+
+PORTAbits.RA0 = 1;
+return 0;
+} else {
+
+PORTAbits.RA0 = 0;
+return 1;
+}
+}

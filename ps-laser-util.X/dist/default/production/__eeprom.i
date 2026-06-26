@@ -1,5 +1,5 @@
 
-# 1 "uart.c"
+# 1 "C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\pic\__eeprom.c"
 
 # 18 "C:\Program Files\Microchip\xc8\v2.50\pic\include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -1050,184 +1050,175 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 4 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\__size_t.h"
-typedef unsigned size_t;
+# 5 "C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\pic\__eeprom.c"
+void
+__eecpymem(volatile unsigned char *to, __eeprom unsigned char * from, unsigned char size)
+{
+volatile unsigned char *cp = to;
 
-# 14 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\string.h"
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
+while (EECON1bits.WR) continue;
+EEADR = (unsigned char)from;
+while(size--) {
+while (EECON1bits.WR) continue;
+
+EECON1 &= 0x7F;
+
+EECON1bits.RD = 1;
+*cp++ = EEDATA;
+++EEADR;
+}
 
 # 36
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
+}
 
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *) __attribute__((__deprecated__));
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t) __attribute__((__deprecated__));
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *) __attribute__((__deprecated__));
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int) __attribute__((__deprecated__));
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int) __attribute__((__deprecated__));
-
-# 7 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 43 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdio.h"
-struct __prbuf
+void
+__memcpyee(__eeprom unsigned char * to, const unsigned char *from, unsigned char size)
 {
-char * ptr;
-void (* func)(char);
-};
+const unsigned char *ptr =from;
 
-# 29 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\errno.h"
-extern int errno;
+while (EECON1bits.WR) continue;
+EEADR = (unsigned char)to - 1U;
 
-# 12 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\conio.h"
-extern void init_uart(void);
+EECON1 &= 0x7F;
 
-extern char getch(void);
-extern char getche(void) __attribute__((__deprecated__));
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 23
-extern char * cgets(char *) __attribute__((__deprecated__));
-extern void cputs(const char *) __attribute__((__deprecated__));
-
-# 88 "C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 180
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
-# 55 "uart.h"
-void init_uart(void);
-void putch(unsigned char byte);
-unsigned char getch(void);
-unsigned char uart_getche(void);
-void uart_gets(char *buffer, uint16_t max_len);
-
-# 7 "uart.c"
-void uart_init()
-{
-SPBRG = ((unsigned char)(((4000000 / 16) / 9600) - 1));
-TXSTA = (0x00 | 0x04 | 0x20);
-RCSTA = (0x00 | 0x90);
-}
-
-void putch(unsigned char byte)
-{
-while(!TXIF);
-TXREG = byte;
-}
-
-unsigned char getch(void)
-{
-while(!RCIF)
-{
-
-}
-
-
-if(RCSTAbits.OERR) {
-RCSTAbits.CREN = 0;
-RCSTAbits.CREN = 1;
-}
-
-
-if(RCSTAbits.FERR) {
-unsigned char dummy = RCREG;
-(void)dummy;
-}
-
-return RCREG;
-}
-
-unsigned char uart_getche(void){
-unsigned char c;
-c = getch();
-putch(c);
-return c;
-}
-
-void uart_gets(char *buffer, uint16_t max_len)
-{
-uint16_t idx = 0;
-char c;
-
-
-if(buffer == (0) || max_len == 0) {
-return;
-}
-
-while(idx < max_len - 1) {
-c = getch();
-
-if(c == '\r' || c == '\n') {
-putch('\r');
-putch('\n');
-buffer[idx] = '\0';
-return;
-}
-
-if((c == '\b' || c == 0x7F) && idx > 0) {
-idx--;
-putch('\b');
-putch(' ');
-putch('\b');
+while(size--) {
+while (EECON1bits.WR) {
 continue;
 }
-
-if(c < 0x20) continue;
-
-buffer[idx++] = c;
-putch(c);
+EEDATA = *ptr++;
+++EEADR;
+STATUSbits.CARRY = 0;
+if (INTCONbits.GIE) {
+STATUSbits.CARRY = 1;
+}
+INTCONbits.GIE = 0;
+EECON1bits.WREN = 1;
+EECON2 = 0x55;
+EECON2 = 0xAA;
+EECON1bits.WR = 1;
+EECON1bits.WREN = 0;
+if (STATUSbits.CARRY) {
+INTCONbits.GIE = 1;
+}
 }
 
-buffer[idx] = '\0';
+# 101
 }
+
+unsigned char
+__eetoc(__eeprom void *addr)
+{
+unsigned char data;
+__eecpymem((unsigned char *) &data,addr,1);
+return data;
+}
+
+unsigned int
+__eetoi(__eeprom void *addr)
+{
+unsigned int data;
+__eecpymem((unsigned char *) &data,addr,2);
+return data;
+}
+
+#pragma warning push
+#pragma warning disable 2040
+__uint24
+__eetom(__eeprom void *addr)
+{
+__uint24 data;
+__eecpymem((unsigned char *) &data,addr,3);
+return data;
+}
+#pragma warning pop
+
+unsigned long
+__eetol(__eeprom void *addr)
+{
+unsigned long data;
+__eecpymem((unsigned char *) &data,addr,4);
+return data;
+}
+
+#pragma warning push
+#pragma warning disable 1516
+unsigned long long
+__eetoo(__eeprom void *addr)
+{
+unsigned long long data;
+__eecpymem((unsigned char *) &data,addr,8);
+return data;
+}
+#pragma warning pop
+
+unsigned char
+__ctoee(__eeprom void *addr, unsigned char data)
+{
+__memcpyee(addr,(unsigned char *) &data,1);
+return data;
+}
+
+unsigned int
+__itoee(__eeprom void *addr, unsigned int data)
+{
+__memcpyee(addr,(unsigned char *) &data,2);
+return data;
+}
+
+#pragma warning push
+#pragma warning disable 2040
+__uint24
+__mtoee(__eeprom void *addr, __uint24 data)
+{
+__memcpyee(addr,(unsigned char *) &data,3);
+return data;
+}
+#pragma warning pop
+
+unsigned long
+__ltoee(__eeprom void *addr, unsigned long data)
+{
+__memcpyee(addr,(unsigned char *) &data,4);
+return data;
+}
+
+#pragma warning push
+#pragma warning disable 1516
+unsigned long long
+__otoee(__eeprom void *addr, unsigned long long data)
+{
+__memcpyee(addr,(unsigned char *) &data,8);
+return data;
+}
+#pragma warning pop
+
+float
+__eetoft(__eeprom void *addr)
+{
+float data;
+__eecpymem((unsigned char *) &data,addr,3);
+return data;
+}
+
+double
+__eetofl(__eeprom void *addr)
+{
+double data;
+__eecpymem((unsigned char *) &data,addr,4);
+return data;
+}
+
+float
+__fttoee(__eeprom void *addr, float data)
+{
+__memcpyee(addr,(unsigned char *) &data,3);
+return data;
+}
+
+double
+__fltoee(__eeprom void *addr, double data)
+{
+__memcpyee(addr,(unsigned char *) &data,4);
+return data;
+}
+

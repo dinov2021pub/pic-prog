@@ -43,15 +43,15 @@ HAL 4
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "90 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"237
+"238
 [v _ps_laser_util_init ps_laser_util_init `(v  1 e 1 0 ]
-"249
+"250
 [v _shutter_open shutter_open `(v  1 e 1 0 ]
-"261
+"262
 [v _shutter_close shutter_close `(v  1 e 1 0 ]
-"273
+"274
 [v _get_hall_status get_hall_status `(uc  1 e 1 0 ]
-"280
+"281
 [v _shutter_safe shutter_safe `(uc  1 e 1 0 ]
 "6 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
 [v _pwm_init pwm_init `(v  1 e 1 0 ]
@@ -165,14 +165,14 @@ HAL 4
 [v _main main `(v  1 e 1 0 ]
 {
 "144
-[v main@cmd cmd `E776  1 a 1 69 ]
+[v main@cmd cmd `E776  1 a 1 68 ]
 "105
-[v main@tmp tmp `[40]uc  1 a 40 29 ]
+[v main@tmp tmp `[40]uc  1 a 40 28 ]
 "107
-[v main@rcmd rcmd `[4]uc  1 a 4 70 ]
+[v main@rcmd rcmd `[4]uc  1 a 4 69 ]
 "116
-[v main@ptr ptr `*.4uc  1 a 1 74 ]
-"235
+[v main@ptr ptr `*.4uc  1 a 1 73 ]
+"236
 } 0
 "7 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
 [v _uart_init uart_init `(v  1 e 1 0 ]
@@ -242,15 +242,15 @@ HAL 4
 [v strcmp@s2 s2 `*.24DCuc  1 p 1 1 ]
 "42
 } 0
-"249 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+"250 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
 [v _shutter_open shutter_open `(v  1 e 1 0 ]
 {
-"259
+"260
 } 0
-"261
+"262
 [v _shutter_close shutter_close `(v  1 e 1 0 ]
 {
-"271
+"272
 } 0
 "14 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\pwm.c
 [v _pwm_percent pwm_percent `(v  1 e 1 0 ]
@@ -269,37 +269,37 @@ HAL 4
 {
 "12
 } 0
-"237 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+"238 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
 [v _ps_laser_util_init ps_laser_util_init `(v  1 e 1 0 ]
 {
+"240
+[v ps_laser_util_init@i i `i  1 a 2 22 ]
 "239
-[v ps_laser_util_init@i i `i  1 a 2 23 ]
-"238
-[v ps_laser_util_init@a a `uc  1 a 1 22 ]
-"247
+[v ps_laser_util_init@a a `uc  1 a 1 21 ]
+"248
 } 0
-"280
+"281
 [v _shutter_safe shutter_safe `(uc  1 e 1 0 ]
 {
-"282
-[v shutter_safe@sht_alarm sht_alarm `uc  1 a 1 19 ]
-"298
+"283
+[v shutter_safe@sht_alarm sht_alarm `uc  1 a 1 18 ]
+"299
 } 0
 "477 C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\doprnt.c
 [v _printf printf `(i  1 e 2 0 ]
 {
 "545
-[v printf@val val `ui  1 a 2 16 ]
+[v printf@val val `ui  1 a 2 15 ]
 "512
-[v printf@c c `uc  1 a 1 18 ]
+[v printf@c c `uc  1 a 1 17 ]
 "521
-[v printf@prec prec `c  1 a 1 15 ]
+[v printf@prec prec `c  1 a 1 14 ]
 "525
-[v printf@flag flag `uc  1 a 1 14 ]
+[v printf@flag flag `uc  1 a 1 13 ]
 "479
-[v printf@ap ap `[1]*.4v  1 a 1 13 ]
+[v printf@ap ap `[1]*.4v  1 a 1 12 ]
 "477
-[v printf@f f `*.24DCuc  1 p 1 5 ]
+[v printf@f f `*.24DCuc  1 p 1 4 ]
 "1567
 } 0
 "14 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\uart.c
@@ -314,7 +314,7 @@ HAL 4
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
 {
 "10
-[v ___lwmod@counter counter `uc  1 a 1 4 ]
+[v ___lwmod@counter counter `uc  1 a 1 13 ]
 "5
 [v ___lwmod@divisor divisor `ui  1 p 2 0 ]
 [v ___lwmod@dividend dividend `ui  1 p 2 2 ]
@@ -332,10 +332,10 @@ HAL 4
 [v ___lwdiv@dividend dividend `ui  1 p 2 8 ]
 "30
 } 0
-"273 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
+"274 C:\Users\shimi\MPLABXProjects\pic-prog\ps-laser-util.X\main.c
 [v _get_hall_status get_hall_status `(uc  1 e 1 0 ]
 {
-"275
+"276
 } 0
 "5 C:\Program Files\Microchip\xc8\v2.50\pic\sources\c90\common\atoi.c
 [v _atoi atoi `(i  1 e 2 0 ]

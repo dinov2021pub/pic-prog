@@ -7,6 +7,15 @@
  * Controller for Suruga seiki motor driver 
  *  */
 
+#define _XTAL_FREQ 4000000      // システムクロック4MHz
+
+#include <xc.h>        // 1. デバイス固有（最優先）
+#include <stdint.h>    // 2. 型定義
+#include <stdbool.h>   // 3. bool型
+#include <string.h>    // 4. 文字列操作
+#include <stdio.h>     // 5. 標準I/O
+#include <stdlib.h>    // 6. 標準ライブラリ
+
 // CONFIG1
 #pragma config FOSC = INTOSCIO  // Oscillator Selection bits (INTRC oscillator; port I/O function on both RA6/OSC2/CLKO pin and RA7/OSC1/CLKI pin)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled)
@@ -17,59 +26,98 @@
 #pragma config CPD = OFF        // Data EE Memory Code Protection bit (Code protection off)
 #pragma config CP = OFF         // Flash Program Memory Code Protection bit (Code protection off)
 
-#include <xc.h>
-#include <stdio.h>
 #include "uart.h"
-#include <stdlib.h>
-#include <string.h>
+#include "pwm.h"
 
-#define _XTAL_FREQ 4000000      // システムクロック4MHz
+/* ===========================
+ * マクロの宣言
+ * =========================== */
+#define P_LED PORTAbits.RA0              
+#define P_DCF PORTAbits.RA1               
+#define P_LD PORTAbits.RA2                
+#define S_HAL PORTAbits.RA3
+#define P_SHT_CW PORTBbits.RB0
+#define P_SHT_CCW PORTBbits.RB5
 
-#define S_SHT RA0               //フォトインタラプタ入力信号
-#define P_DCF RA1               // DC fan ON/OFF
-#define P_LD RA2                // LD red pointer ON/OFF
-////Version 2.0
-//#define P_SHT_CW RB3            // シャッター CW
-//#define P_SHT_CCW RA3           // シャッター CCW
-//Version 3.0
-#define P_SHT_CW RB0            // シャッター CW
-#define P_SHT_CCW RA3           // シャッター CCW
+#define CLOSE_DUTY_STG1 50
+#define CLOSE_DUTY_STG2 30
+#define OPEN_DUTY_STG1 80
+#define OPEN_DUTY_STG2 40
+#define SHT_DUTY_OFF 0
 
+#define CLOSE_TIME_INIT 17
+#define CLOSE_TIME_STG1 3
+//#define CLOSE_TIME_STG2 3
+#define OPEN_TIME_INIT 18
+#define OPEN_TIME_STG1 5
+//#define OPEN_TIME_STG2 5
+
+/* ===========================
+ * 型の宣言
+ * =========================== */
 enum command {
   VER, 
-  LDP,  //レーザー
-  DCF,  //DCファン
-  SHT,  //シャッター
-  PHO,  //フォトインタラプタ
-  NON
+  LDP,
+  DCF,
+  SHT,
+  HAL
 };
 
+/* ===========================
+ * プロトタイプの宣言
+ * =========================== */
+void uart_init(void);
+void pwm_init(void);
+void tmr0_init(void);
+void ps_laser_util_init(void);
+void shutter_open(void);
+void shutter_close(void);
+bool get_hall_status(void);
+bool shutter_safe(void);
+
+/* ===========================
+ * グローバル変数定義
+ * =========================== */
+static uint8_t ld_on_off = 0;
+static uint8_t dcf_on_off = 0;
+static uint8_t sht_on_off = 0;
+static uint8_t hall_status = 0;  // 0: OPEN, 1: CLOSE
+static uint8_t sht_status = 0;
+
+/* ===========================
+ * メイン処理
+ * =========================== */
 void main(void) {
+    /*
+     * FW改善案
+     * unsigned charとuint8_tどちらかに統一したほうがいいかもしれない
+     * 結論：MPLAB（XC8）では unsigned char でも uint8_t でも動くが、
+     * 長期的には uint8_t に統一した方が “絶対に得” になる。
+     * 理由は、可読性・移植性・型の明確さが段違いだから。
+     */
     
+    CMCON = 0b00000111;     // RA0-RA3はデジタルピン設定、コンパレータは使用しない
+    TRISA = 0b00001000;     // PORTAの入出力設定 RA3はホール素子、RA0はLED、RA1はDCファン、RA2はレッドレーザー
+    TRISB = 0b00000010;     // PORTBの入出力設定  RB1はUART受信(RX)、RB2はUART送信(TX)、RB0はシャッターCW、RB5はシャッターCCW、RB3はPWM出力
     PORTA = 0x00;           // PORTAを初期化
     PORTB = 0x00;           // PORTBを初期化
-//    //Version 2.0
-//    TRISA = 0b00000001;     // PORTAの入出力設定 RA0はフォトインタラプタ、RA1はDCファン、RA2は位置合わせレーザー
-//    TRISB = 0b00000010;     // PORTBの入出力設定  RB1はUART受信(RX)、RB2はUART送信(TX)、RB3はシャッターCW、RA3はシャッターCCW
-    //Version 3.0  
-    TRISA = 0b00000001;     // PORTAの入出力設定 RA0はフォトインタラプタ、RA1はDCファン、RA2は位置合わせレーザー
-    TRISB = 0b00000010;     // PORTBの入出力設定  RB1はUART受信(RX)、RB2はUART送信(TX)、RB0はシャッターCW、RA3はシャッターCCW、RB3はPWM出力
-    CMCON = 0b00000111;     // コンパレータは使用しない(RA0-RA3はデジタルピンで使用)
-
-    initUART();             // 調歩同期式シリアル通信設定
  
     char tmp[40];
     int axis = 0;
     char rcmd[4];
-    char rps_cmd[6];    // For tmp strings of RPS command
-    char wtb_cmd[6];    // For tmp strings of WTB command
-
-    unsigned char ld_on_off = 0;
-    unsigned char dcf_on_off = 0;
-    unsigned char sht_on_off = 0;
-    unsigned char pho_status = 0;
+//    char rps_cmd[6];    // For tmp strings of RPS command
+//    char wtb_cmd[6];    // For tmp strings of WTB command
+    
+//    unsigned char ld_on_off = 0;
+//    unsigned char dcf_on_off = 0;
+//    unsigned char sht_on_off = 0;
+//    unsigned char hall_status = 0;
     
     char *ptr;
+    
+    uart_init();
+    pwm_init();
+    ps_laser_util_init();
     
     while(1){
         rcmd[0] = 'Q'; 
@@ -83,7 +131,8 @@ void main(void) {
         tmp[3] = 'Q';
         tmp[4] = '\0';
 
-        gets(tmp);
+        //gets(tmp);
+        uart_gets(tmp, sizeof(tmp));
         
         rcmd[0] = tmp[1];
         rcmd[1] = tmp[2];
@@ -102,43 +151,39 @@ void main(void) {
             cmd = DCF;
         }else if(strcmp(rcmd,"SHT") == 0){
             cmd = SHT;
-        }else if(strcmp(rcmd,"PHO") == 0){
-            cmd = PHO;          
-        }else{   
-            cmd = NON;
+        }else if(strcmp(rcmd,"HAL") == 0){
+            cmd = HAL;          
+        }else {
+            continue;// 一致する文字がないならwhileの先頭に戻る
         }
         
         ptr = strtok(tmp, "/");
-        rps_cmd[0]='\0';
-        rps_cmd[1]='\0';
-        rps_cmd[2]='\0';
-        rps_cmd[3]='\0';
+//        rps_cmd[0]='\0';
+//        rps_cmd[1]='\0';
+//        rps_cmd[2]='\0';
+//        rps_cmd[3]='\0';
         
-        int i;
-        
-        for (i = 0; ptr[i] != '\0'; i++) {
-            rps_cmd[i] = ptr[i];
-        }
-
-        for (i = 0; ptr[i] != '\0'; i++) {
-            wtb_cmd[i] = ptr[i];
-        }
+//        int i;
+//        
+//        for (i = 0; ptr[i] != '\0'; i++) {
+//            rps_cmd[i] = ptr[i];
+//        }
+//
+//        for (i = 0; ptr[i] != '\0'; i++) {
+//            wtb_cmd[i] = ptr[i];
+//        }
  
         switch(cmd){
             
             case VER :
-//                    // Version 2.0
-//                    printf("C\tVERSION 2.0\r\n");
-                    // Version 3.0
-                    printf("C\tVERSION 3.0\r\n");
-                    break;
+                printf("C\tVERSION 3.0\r\n");
+                break;
                 
             case LDP :
                 ptr = strtok(NULL, "/");
                 if(ptr != NULL) {
                     ld_on_off = atoi(ptr);
                 }
-
                 if(ld_on_off == 0){
                     P_LD = 0;                
                 }else if(ld_on_off == 1){
@@ -152,7 +197,6 @@ void main(void) {
                 if(ptr != NULL) {
                     dcf_on_off = atoi(ptr);
                 }
-
                 if(dcf_on_off == 0){
                     P_DCF = 0;                
                 }else if(dcf_on_off == 1){
@@ -162,40 +206,94 @@ void main(void) {
                 break;
                     
             case SHT : 
-                // Version 2.0
                 ptr = strtok(NULL, "/");
                 if(ptr != NULL) {
                     sht_on_off = atoi(ptr);
                 }
                 if(sht_on_off == 0){
-                    P_SHT_CW = 1;
-                    P_SHT_CCW = 0;
-                    __delay_ms(30);
-                    P_SHT_CW = 0;
-                    P_SHT_CCW = 0;
-                    pho_status = S_SHT;
+                    shutter_close();//シャッター閉
                 }else if(sht_on_off == 1){
-                    P_SHT_CW = 0;
-                    P_SHT_CCW = 1;
-                    __delay_ms(30);
-                    P_SHT_CW = 0;
-                    P_SHT_CCW = 0;
-                    pho_status = S_SHT;
+                    shutter_open();//シャッター開
                 }
-                printf("C\tSHT\t%d\tPHO\t%d\r\n", sht_on_off,pho_status);
+                shutter_safe();
+                hall_status = get_hall_status();
+                //shutter_safe();
+                printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
                 break;
-                // Version 3.0
-                      
-                case PHO :
+   
+            case HAL :
                 ptr = strtok(NULL, "/");
                 if(ptr != NULL) {
-                    pho_status = atoi(ptr);
+                    hall_status = atoi(ptr);
                 }
-                printf("C\tPHO\t%d\r\n", pho_status);
+                hall_status = get_hall_status();
+                printf("C\tHAL\t%d\r\n", hall_status);
                 break;
-                    
+                
             default : break;
         }
     }
 }
 
+void ps_laser_util_init(void){
+    unsigned char a = 0;
+    for(int i=0 ; i < 50 ; i++){
+        __delay_ms(50);
+        P_LED ^= 1;
+    }
+    a = shutter_safe();
+    if(a == 0){
+        printf("System initialization has been completed!!\r\n");
+    }
+}
+
+void shutter_open(void){
+    pwm_percent(SHT_DUTY_OFF);
+    __delay_ms(10);
+    P_SHT_CW = 1;
+    P_SHT_CCW = 0;
+    __delay_ms(10);
+    __delay_ms(OPEN_TIME_INIT);
+    pwm_percent(OPEN_DUTY_STG1);
+    __delay_ms(OPEN_TIME_STG1);
+    pwm_percent(OPEN_DUTY_STG2);
+}
+
+void shutter_close(void){
+    pwm_percent(SHT_DUTY_OFF);
+    __delay_ms(10);
+    P_SHT_CW = 0;
+    P_SHT_CCW = 1;
+    __delay_ms(10);
+    __delay_ms(CLOSE_TIME_INIT);
+    pwm_percent(CLOSE_DUTY_STG1);
+    __delay_ms(CLOSE_TIME_STG1);
+    pwm_percent(CLOSE_DUTY_STG2);
+}
+
+bool get_hall_status(void){
+    return S_HAL;
+}
+
+/*
+ * シャッターとホール素子の状態を監視する関数を実装
+ */
+bool shutter_safe(void) {
+    hall_status = get_hall_status();
+    bool sht_alarm = hall_status ^ sht_on_off;
+    if (sht_alarm == 0) {
+        // 異常検出時の警告出力
+        printf("ALARM!! Shutter abnormality detected!!\r\n");
+//        printf("Hall sensor: %s, Shutter: %s\r\n",
+//               hall_status ? "DETECTED" : "NOT DETECTED",
+//               shutter_status ? "OPEN" : "CLOSED");
+        printf("DO NOT OPERATE LASER!!\r\n");
+        // LED点灯などの視覚的警告
+        P_LED = 1;
+        return false;  // 異常
+    } else {
+        // 正常時
+        P_LED = 0;
+        return true;   // 正常
+    }
+}

@@ -1,29 +1,64 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"1201 C:\Program Files\Microchip\xc8\v2.50\pic\include\proc\pic16f648a.h
-[v _SPBRG `Vuc ~T0 @X0 0 e@153 ]
-"1144
-[v _TXSTA `Vuc ~T0 @X0 0 e@152 ]
-"682
-[v _RCSTA `Vuc ~T0 @X0 0 e@24 ]
-"1675
-[v _TXIF `Vb ~T0 @X0 0 e@100 ]
-"753
-[v _TXREG `Vuc ~T0 @X0 0 e@25 ]
-"1519
-[v _RCIF `Vb ~T0 @X0 0 e@101 ]
-"688
-[s S26 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S26 . RX9D OERR FERR ADEN CREN SREN RX9 SPEN ]
-"698
-[s S27 :3 `uc 1 :1 `uc 1 ]
-[n S27 . . ADDEN ]
-"687
-[u S25 `S26 1 `S27 1 ]
-[n S25 . . . ]
-"703
-[v _RCSTAbits `VS25 ~T0 @X0 0 e@24 ]
-"760
-[v _RCREG `Vuc ~T0 @X0 0 e@26 ]
+[p mainexit ]
+"767 C:\Program Files\Microchip\xc8\v2.50\pic\include\proc\pic16f648a.h
+[v _CMCON `Vuc ~T0 @X0 0 e@31 ]
+"907
+[v _TRISA `Vuc ~T0 @X0 0 e@133 ]
+"969
+[v _TRISB `Vuc ~T0 @X0 0 e@134 ]
+"166
+[v _PORTA `Vuc ~T0 @X0 0 e@5 ]
+"228
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+"69 main.c
+[v _uart_init `(v ~T0 @X0 0 ef ]
+"24 pwm.h
+[v _pwm_init `(v ~T0 @X0 0 ef ]
+"72 main.c
+[v _ps_laser_util_init `(v ~T0 @X0 0 ef ]
+"59 uart.h
+[v _uart_gets `(v ~T0 @X0 0 ef2`*uc`ui ]
+"67 C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdlib.h
+[v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
+"144 main.c
+[c E776 0 1 2 3 4 .. ]
+[n E776 command VER LDP DCF SHT HAL  ]
+"45 C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\string.h
+[v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
+"41
+[v _strtok `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
+"195 C:\Program Files\Microchip\xc8\v2.50\pic\include\c90\stdio.h
+[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+"172 C:\Program Files\Microchip\xc8\v2.50\pic\include\proc\pic16f648a.h
+[s S6 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S6 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
+"171
+[u S5 `S6 1 ]
+[n S5 . . ]
+"183
+[v _PORTAbits `VS5 ~T0 @X0 0 e@5 ]
+"74 main.c
+[v _shutter_close `(v ~T0 @X0 0 ef ]
+"73
+[v _shutter_open `(v ~T0 @X0 0 ef ]
+"76
+[v _shutter_safe `(uc ~T0 @X0 0 ef ]
+"75
+[v _get_hall_status `(uc ~T0 @X0 0 ef ]
+[v F38 `(v ~T0 @X0 1 tf1`ul ]
+"20 C:\Program Files\Microchip\xc8\v2.50\pic\include\builtins.h
+[v __delay `JF38 ~T0 @X0 0 e ]
+[p i __delay ]
+"25 pwm.h
+[v _pwm_percent `(v ~T0 @X0 0 ef1`uc ]
+"234 C:\Program Files\Microchip\xc8\v2.50\pic\include\proc\pic16f648a.h
+[s S8 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S8 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+"233
+[u S7 `S8 1 ]
+[n S7 . . ]
+"245
+[v _PORTBbits `VS7 ~T0 @X0 0 e@6 ]
 [; ;xc.h: 18: extern const char __xc8_OPTIM_SPEED;
 [; ;xc.h: 20: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -618,6 +653,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 118: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 119: extern __bank0 __bit __powerdown;
 [; ;pic.h: 120: extern __bank0 __bit __timeout;
+[; ;stdbool.h: 15: typedef unsigned char bool;
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
@@ -674,242 +710,703 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 195: extern int printf(const char *, ...);
+[; ;stdlib.h: 7: typedef unsigned short wchar_t;
+[; ;stdlib.h: 15: typedef struct {
+[; ;stdlib.h: 16: int rem;
+[; ;stdlib.h: 17: int quot;
+[; ;stdlib.h: 18: } div_t;
+[; ;stdlib.h: 19: typedef struct {
+[; ;stdlib.h: 20: unsigned rem;
+[; ;stdlib.h: 21: unsigned quot;
+[; ;stdlib.h: 22: } udiv_t;
+[; ;stdlib.h: 23: typedef struct {
+[; ;stdlib.h: 24: long quot;
+[; ;stdlib.h: 25: long rem;
+[; ;stdlib.h: 26: } ldiv_t;
+[; ;stdlib.h: 27: typedef struct {
+[; ;stdlib.h: 28: unsigned long quot;
+[; ;stdlib.h: 29: unsigned long rem;
+[; ;stdlib.h: 30: } uldiv_t;
+[; ;stdlib.h: 65: extern double atof(const char *);
+[; ;stdlib.h: 66: extern double strtod(const char *, const char **);
+[; ;stdlib.h: 67: extern int atoi(const char *);
+[; ;stdlib.h: 68: extern unsigned xtoi(const char *) __attribute__((__deprecated__));
+[; ;stdlib.h: 69: extern long atol(const char *);
+[; ;stdlib.h: 73: extern long strtol(const char *, char **, int);
+[; ;stdlib.h: 75: extern int rand(void);
+[; ;stdlib.h: 76: extern void srand(unsigned int);
+[; ;stdlib.h: 77: extern void * calloc(size_t, size_t);
+[; ;stdlib.h: 78: extern div_t div(int numer, int denom);
+[; ;stdlib.h: 79: extern udiv_t udiv(unsigned numer, unsigned denom) __attribute__((__deprecated__));
+[; ;stdlib.h: 80: extern ldiv_t ldiv(long numer, long denom);
+[; ;stdlib.h: 81: extern uldiv_t uldiv(unsigned long numer,unsigned long denom) __attribute__((__deprecated__));
+[; ;stdlib.h: 85: extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+[; ;stdlib.h: 86: extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+[; ;stdlib.h: 87: extern unsigned int _rotl(unsigned int value, unsigned int shift);
+[; ;stdlib.h: 88: extern unsigned int _rotr(unsigned int value, unsigned int shift);
+[; ;stdlib.h: 93: extern void * malloc(size_t);
+[; ;stdlib.h: 94: extern void free(void *);
+[; ;stdlib.h: 95: extern void * realloc(void *, size_t);
+[; ;stdlib.h: 104: extern int atexit(void (*)(void));
+[; ;stdlib.h: 105: extern char * getenv(const char *);
+[; ;stdlib.h: 106: extern char ** environ;
+[; ;stdlib.h: 107: extern int system(char *);
+[; ;stdlib.h: 108: extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+[; ;stdlib.h: 109: extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+[; ;stdlib.h: 110: extern int abs(int);
+[; ;stdlib.h: 111: extern long labs(long);
+[; ;stdlib.h: 113: extern char * itoa(char * buf, int val, int base) __attribute__((__deprecated__));
+[; ;stdlib.h: 114: extern char * utoa(char * buf, unsigned val, int base) __attribute__((__deprecated__));
+[; ;stdlib.h: 119: extern char * ltoa(char * buf, long val, int base) __attribute__((__deprecated__));
+[; ;stdlib.h: 120: extern char * ultoa(char * buf, unsigned long val, int base);
+[; ;stdlib.h: 122: extern char * ftoa(float f, int * status) __attribute__((__deprecated__));
+"20 main.c
+[p x FOSC=INTOSCIO ]
+"21
+[p x WDTE=OFF ]
+"22
+[p x PWRTE=OFF ]
+"23
+[p x MCLRE=ON ]
+"24
+[p x BOREN=ON ]
+"25
+[p x LVP=OFF ]
+"26
+[p x CPD=OFF ]
+"27
+[p x CP=OFF ]
 [; ;uart.h: 55: void init_uart(void);
 [; ;uart.h: 56: void putch(unsigned char byte);
 [; ;uart.h: 57: unsigned char getch(void);
 [; ;uart.h: 58: unsigned char uart_getche(void);
 [; ;uart.h: 59: void uart_gets(char *buffer, uint16_t max_len);
-"7 uart.c
-[v _uart_init `(v ~T0 @X0 1 ef ]
-"8
+[; ;pwm.h: 24: void pwm_init(void);
+[; ;pwm.h: 25: void pwm_percent(uint8_t percent);
+[; ;main.c: 58: enum command {
+[; ;main.c: 59: VER,
+[; ;main.c: 60: LDP,
+[; ;main.c: 61: DCF,
+[; ;main.c: 62: SHT,
+[; ;main.c: 63: HAL
+[; ;main.c: 64: };
+[; ;main.c: 69: void uart_init(void);
+[; ;main.c: 70: void pwm_init(void);
+[; ;main.c: 71: void tmr0_init(void);
+[; ;main.c: 72: void ps_laser_util_init(void);
+[; ;main.c: 73: void shutter_open(void);
+[; ;main.c: 74: void shutter_close(void);
+[; ;main.c: 75: bool get_hall_status(void);
+[; ;main.c: 76: bool shutter_safe(void);
+"81
+[v _ld_on_off `uc ~T0 @X0 1 s ]
+[i _ld_on_off
+-> -> 0 `i `uc
+]
+[; ;main.c: 81: static uint8_t ld_on_off = 0;
+"82
+[v _dcf_on_off `uc ~T0 @X0 1 s ]
+[i _dcf_on_off
+-> -> 0 `i `uc
+]
+[; ;main.c: 82: static uint8_t dcf_on_off = 0;
+"83
+[v _sht_on_off `uc ~T0 @X0 1 s ]
+[i _sht_on_off
+-> -> 0 `i `uc
+]
+[; ;main.c: 83: static uint8_t sht_on_off = 0;
+"84
+[v _hall_status `uc ~T0 @X0 1 s ]
+[i _hall_status
+-> -> 0 `i `uc
+]
+[; ;main.c: 84: static uint8_t hall_status = 0;
+"85
+[v _sht_status `uc ~T0 @X0 1 s ]
+[i _sht_status
+-> -> 0 `i `uc
+]
+[; ;main.c: 85: static uint8_t sht_status = 0;
+[v $root$_main `(v ~T0 @X0 0 e ]
+"90
+[v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;uart.c: 7: void uart_init()
-[; ;uart.c: 8: {
-[e :U _uart_init ]
+[; ;main.c: 90: void main(void) {
+[e :U _main ]
 [f ]
-[; ;uart.c: 9: SPBRG = ((unsigned char)(((4000000 / 16) / 9600) - 1));
-"9
-[e = _SPBRG -> - / / -> 4000000 `l -> -> 16 `i `l -> -> 9600 `i `l -> -> 1 `i `l `uc ]
-[; ;uart.c: 10: TXSTA = (0x00 | 0x04 | 0x20);
-"10
-[e = _TXSTA -> | | -> 0 `i -> 4 `i -> 32 `i `uc ]
-[; ;uart.c: 11: RCSTA = (0x00 | 0x90);
-"11
-[e = _RCSTA -> | -> 0 `i -> 144 `i `uc ]
-[; ;uart.c: 12: }
-"12
-[e :UE 52 ]
-}
-"14
-[v _putch `(v ~T0 @X0 1 ef1`uc ]
-"15
-{
-[; ;uart.c: 14: void putch(unsigned char byte)
-[; ;uart.c: 15: {
-[e :U _putch ]
-"14
-[v _byte `uc ~T0 @X0 1 r1 ]
-"15
-[f ]
-[; ;uart.c: 16: while(!TXIF);
-"16
-[e $U 54  ]
-[e :U 55 ]
-[e :U 54 ]
-[e $ ! _TXIF 55  ]
-[e :U 56 ]
-[; ;uart.c: 17: TXREG = byte;
-"17
-[e = _TXREG _byte ]
-[; ;uart.c: 18: }
-"18
-[e :UE 53 ]
-}
-"20
-[v _getch `(uc ~T0 @X0 1 ef ]
-"21
-{
-[; ;uart.c: 20: unsigned char getch(void)
-[; ;uart.c: 21: {
-[e :U _getch ]
-[f ]
-[; ;uart.c: 22: while(!RCIF)
-"22
-[e $U 58  ]
-[e :U 59 ]
-[; ;uart.c: 23: {
-"23
-{
-"25
-}
+[; ;main.c: 99: CMCON = 0b00000111;
+"99
+[e = _CMCON -> -> 7 `i `uc ]
+[; ;main.c: 100: TRISA = 0b00001000;
+"100
+[e = _TRISA -> -> 8 `i `uc ]
+[; ;main.c: 101: TRISB = 0b00000010;
+"101
+[e = _TRISB -> -> 2 `i `uc ]
+[; ;main.c: 102: PORTA = 0x00;
+"102
+[e = _PORTA -> -> 0 `i `uc ]
+[; ;main.c: 103: PORTB = 0x00;
+"103
+[e = _PORTB -> -> 0 `i `uc ]
+"105
+[v _tmp `uc ~T0 @X0 -> 40 `i a ]
+"106
+[v _axis `i ~T0 @X0 1 a ]
+[; ;main.c: 105: char tmp[40];
+[; ;main.c: 106: int axis = 0;
+[e = _axis -> 0 `i ]
+"107
+[v _rcmd `uc ~T0 @X0 -> 4 `i a ]
+"116
+[v _ptr `*uc ~T0 @X0 1 a ]
+[; ;main.c: 107: char rcmd[4];
+[; ;main.c: 116: char *ptr;
+[; ;main.c: 118: uart_init();
+"118
+[e ( _uart_init ..  ]
+[; ;main.c: 119: pwm_init();
+"119
+[e ( _pwm_init ..  ]
+[; ;main.c: 120: ps_laser_util_init();
+"120
+[e ( _ps_laser_util_init ..  ]
+[; ;main.c: 122: while(1){
+"122
 [e :U 58 ]
-"22
-[e $ ! _RCIF 59  ]
+{
+[; ;main.c: 123: rcmd[0] = 'Q';
+"123
+[e = *U + &U _rcmd * -> -> -> 0 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 124: rcmd[1] = 'Q';
+"124
+[e = *U + &U _rcmd * -> -> -> 1 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 125: rcmd[2] = 'Q';
+"125
+[e = *U + &U _rcmd * -> -> -> 2 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 126: rcmd[3] = '\0';
+"126
+[e = *U + &U _rcmd * -> -> -> 3 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 0 `ui `uc ]
+[; ;main.c: 128: tmp[0] = 'Q';
+"128
+[e = *U + &U _tmp * -> -> -> 0 `i `ui `ux -> -> # *U &U _tmp `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 129: tmp[1] = 'Q';
+"129
+[e = *U + &U _tmp * -> -> -> 1 `i `ui `ux -> -> # *U &U _tmp `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 130: tmp[2] = 'Q';
+"130
+[e = *U + &U _tmp * -> -> -> 2 `i `ui `ux -> -> # *U &U _tmp `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 131: tmp[3] = 'Q';
+"131
+[e = *U + &U _tmp * -> -> -> 3 `i `ui `ux -> -> # *U &U _tmp `ui `ux -> -> 81 `ui `uc ]
+[; ;main.c: 132: tmp[4] = '\0';
+"132
+[e = *U + &U _tmp * -> -> -> 4 `i `ui `ux -> -> # *U &U _tmp `ui `ux -> -> 0 `ui `uc ]
+[; ;main.c: 135: uart_gets(tmp, sizeof(tmp));
+"135
+[e ( _uart_gets (2 , &U _tmp -> # _tmp `ui ]
+[; ;main.c: 137: rcmd[0] = tmp[1];
+"137
+[e = *U + &U _rcmd * -> -> -> 0 `i `ui `ux -> -> # *U &U _rcmd `ui `ux *U + &U _tmp * -> -> -> 1 `i `ui `ux -> -> # *U &U _tmp `ui `ux ]
+[; ;main.c: 138: rcmd[1] = tmp[2];
+"138
+[e = *U + &U _rcmd * -> -> -> 1 `i `ui `ux -> -> # *U &U _rcmd `ui `ux *U + &U _tmp * -> -> -> 2 `i `ui `ux -> -> # *U &U _tmp `ui `ux ]
+[; ;main.c: 139: rcmd[2] = tmp[3];
+"139
+[e = *U + &U _rcmd * -> -> -> 2 `i `ui `ux -> -> # *U &U _rcmd `ui `ux *U + &U _tmp * -> -> -> 3 `i `ui `ux -> -> # *U &U _tmp `ui `ux ]
+[; ;main.c: 140: rcmd[3] = '\0';
+"140
+[e = *U + &U _rcmd * -> -> -> 3 `i `ui `ux -> -> # *U &U _rcmd `ui `ux -> -> 0 `ui `uc ]
+[; ;main.c: 142: axis = atoi(&tmp[4]);
+"142
+[e = _axis ( _atoi (1 -> &U *U + &U _tmp * -> -> -> 4 `i `ui `ux -> -> # *U &U _tmp `ui `ux `*Cuc ]
+"144
+[v _cmd `E776 ~T0 @X0 1 a ]
+[; ;main.c: 144: enum command cmd;
+[; ;main.c: 146: if(strcmp(rcmd,"VER") == 0) {
+"146
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 1C -> 0 `i 60  ]
+{
+[; ;main.c: 147: cmd = VER;
+"147
+[e = _cmd . `E776 0 ]
+"148
+}
+[; ;main.c: 148: }else if(strcmp(rcmd,"LDP") == 0){
+[e $U 61  ]
 [e :U 60 ]
-[; ;uart.c: 25: }
-[; ;uart.c: 28: if(RCSTAbits.OERR) {
-"28
-[e $ ! != -> . . _RCSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 61  ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 2C -> 0 `i 62  ]
 {
-[; ;uart.c: 29: RCSTAbits.CREN = 0;
-"29
-[e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
-[; ;uart.c: 30: RCSTAbits.CREN = 1;
-"30
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-"31
+[; ;main.c: 149: cmd = LDP;
+"149
+[e = _cmd . `E776 1 ]
+"150
 }
-[e :U 61 ]
-[; ;uart.c: 31: }
-[; ;uart.c: 34: if(RCSTAbits.FERR) {
-"34
-[e $ ! != -> . . _RCSTAbits 0 2 `i -> -> -> 0 `i `Vuc `i 62  ]
-{
-"35
-[v _dummy `uc ~T0 @X0 1 a ]
-[; ;uart.c: 35: unsigned char dummy = RCREG;
-[e = _dummy _RCREG ]
-[; ;uart.c: 36: (void)dummy;
-"36
-[e _dummy ]
-"37
-}
+[; ;main.c: 150: }else if(strcmp(rcmd,"DCF") == 0){
+[e $U 63  ]
 [e :U 62 ]
-[; ;uart.c: 37: }
-[; ;uart.c: 39: return RCREG;
-"39
-[e ) _RCREG ]
-[e $UE 57  ]
-[; ;uart.c: 40: }
-"40
-[e :UE 57 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 3C -> 0 `i 64  ]
+{
+[; ;main.c: 151: cmd = DCF;
+"151
+[e = _cmd . `E776 2 ]
+"152
 }
-"42
-[v _uart_getche `(uc ~T0 @X0 1 ef ]
+[; ;main.c: 152: }else if(strcmp(rcmd,"SHT") == 0){
+[e $U 65  ]
+[e :U 64 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 4C -> 0 `i 66  ]
 {
-[; ;uart.c: 42: unsigned char uart_getche(void){
-[e :U _uart_getche ]
-[f ]
-"43
-[v _c `uc ~T0 @X0 1 a ]
-[; ;uart.c: 43: unsigned char c;
-[; ;uart.c: 44: c = getch();
-"44
-[e = _c ( _getch ..  ]
-[; ;uart.c: 45: putch(c);
-"45
-[e ( _putch (1 _c ]
-[; ;uart.c: 46: return c;
-"46
-[e ) _c ]
-[e $UE 63  ]
-[; ;uart.c: 47: }
-"47
-[e :UE 63 ]
+[; ;main.c: 153: cmd = SHT;
+"153
+[e = _cmd . `E776 3 ]
+"154
 }
-"49
-[v _uart_gets `(v ~T0 @X0 1 ef2`*uc`ui ]
-"50
+[; ;main.c: 154: }else if(strcmp(rcmd,"HAL") == 0){
+[e $U 67  ]
+[e :U 66 ]
+[e $ ! == ( _strcmp (2 , -> &U _rcmd `*Cuc :s 5C -> 0 `i 68  ]
 {
-[; ;uart.c: 49: void uart_gets(char *buffer, uint16_t max_len)
-[; ;uart.c: 50: {
-[e :U _uart_gets ]
-"49
-[v _buffer `*uc ~T0 @X0 1 r1 ]
-[v _max_len `ui ~T0 @X0 1 r2 ]
-"50
-[f ]
-"51
-[v _idx `ui ~T0 @X0 1 a ]
-[; ;uart.c: 51: uint16_t idx = 0;
-[e = _idx -> -> 0 `i `ui ]
-"52
-[v _c `uc ~T0 @X0 1 a ]
-[; ;uart.c: 52: char c;
-[; ;uart.c: 55: if(buffer == (0) || max_len == 0) {
-"55
-[e $ ! || == _buffer -> -> 0 `i `*uc == _max_len -> -> 0 `i `ui 65  ]
-{
-[; ;uart.c: 56: return;
-"56
-[e $UE 64  ]
-"57
+[; ;main.c: 155: cmd = HAL;
+"155
+[e = _cmd . `E776 4 ]
+"156
 }
-[e :U 65 ]
-[; ;uart.c: 57: }
-[; ;uart.c: 59: while(idx < max_len - 1) {
-"59
-[e $U 66  ]
-[e :U 67 ]
+[; ;main.c: 156: }else {
+[e $U 69  ]
+[e :U 68 ]
 {
-[; ;uart.c: 60: c = getch();
-"60
-[e = _c ( _getch ..  ]
-[; ;uart.c: 62: if(c == '\r' || c == '\n') {
-"62
-[e $ ! || == -> _c `ui -> 13 `ui == -> _c `ui -> 10 `ui 69  ]
-{
-[; ;uart.c: 63: putch('\r');
-"63
-[e ( _putch (1 -> -> 13 `ui `uc ]
-[; ;uart.c: 64: putch('\n');
-"64
-[e ( _putch (1 -> -> 10 `ui `uc ]
-[; ;uart.c: 65: buffer[idx] = '\0';
-"65
-[e = *U + _buffer * -> _idx `ux -> -> # *U _buffer `ui `ux -> -> 0 `ui `uc ]
-[; ;uart.c: 66: return;
-"66
-[e $UE 64  ]
-"67
+[; ;main.c: 157: continue;
+"157
+[e $U 57  ]
+"158
 }
 [e :U 69 ]
-[; ;uart.c: 67: }
-[; ;uart.c: 69: if((c == '\b' || c == 0x7F) && idx > 0) {
-"69
-[e $ ! && || == -> _c `ui -> 8 `ui == -> _c `i -> 127 `i > _idx -> -> 0 `i `ui 70  ]
+[e :U 67 ]
+[e :U 65 ]
+[e :U 63 ]
+[e :U 61 ]
+[; ;main.c: 158: }
+[; ;main.c: 160: ptr = strtok(tmp, "/");
+"160
+[e = _ptr ( _strtok (2 , &U _tmp :s 6C ]
+[; ;main.c: 176: switch(cmd){
+"176
+[e $U 71  ]
 {
-[; ;uart.c: 70: idx--;
-"70
-[e -- _idx -> -> 1 `i `ui ]
-[; ;uart.c: 71: putch('\b');
-"71
-[e ( _putch (1 -> -> 8 `ui `uc ]
-[; ;uart.c: 72: putch(' ');
-"72
-[e ( _putch (1 -> -> 32 `ui `uc ]
-[; ;uart.c: 73: putch('\b');
-"73
-[e ( _putch (1 -> -> 8 `ui `uc ]
-[; ;uart.c: 74: continue;
-"74
-[e $U 66  ]
-"75
+[; ;main.c: 178: case VER :
+"178
+[e :U 72 ]
+[; ;main.c: 179: printf("C\tVERSION 3.0\r\n");
+"179
+[e ( _printf :s 7C ]
+[; ;main.c: 180: break;
+"180
+[e $U 70  ]
+[; ;main.c: 182: case LDP :
+"182
+[e :U 73 ]
+[; ;main.c: 183: ptr = strtok((0), "/");
+"183
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 8C ]
+[; ;main.c: 184: if(ptr != (0)) {
+"184
+[e $ ! != _ptr -> -> 0 `i `*uc 74  ]
+{
+[; ;main.c: 185: ld_on_off = atoi(ptr);
+"185
+[e = _ld_on_off -> ( _atoi (1 -> _ptr `*Cuc `uc ]
+"186
 }
-[e :U 70 ]
-[; ;uart.c: 75: }
-[; ;uart.c: 77: if(c < 0x20) continue;
-"77
-[e $ ! < -> _c `i -> 32 `i 71  ]
-[e $U 66  ]
+[e :U 74 ]
+[; ;main.c: 186: }
+[; ;main.c: 187: if(ld_on_off == 0){
+"187
+[e $ ! == -> _ld_on_off `i -> 0 `i 75  ]
+{
+[; ;main.c: 188: PORTAbits.RA2 = 0;
+"188
+[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
+"189
+}
+[; ;main.c: 189: }else if(ld_on_off == 1){
+[e $U 76  ]
+[e :U 75 ]
+[e $ ! == -> _ld_on_off `i -> 1 `i 77  ]
+{
+[; ;main.c: 190: PORTAbits.RA2 = 1;
+"190
+[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
+"191
+}
+[e :U 77 ]
+"192
+[e :U 76 ]
+[; ;main.c: 191: }
+[; ;main.c: 192: printf("C\tLDP\t%d\r\n", ld_on_off);
+[e ( _printf , (. :s 9C -> _ld_on_off `i ]
+[; ;main.c: 193: break;
+"193
+[e $U 70  ]
+[; ;main.c: 195: case DCF :
+"195
+[e :U 78 ]
+[; ;main.c: 196: ptr = strtok((0), "/");
+"196
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 10C ]
+[; ;main.c: 197: if(ptr != (0)) {
+"197
+[e $ ! != _ptr -> -> 0 `i `*uc 79  ]
+{
+[; ;main.c: 198: dcf_on_off = atoi(ptr);
+"198
+[e = _dcf_on_off -> ( _atoi (1 -> _ptr `*Cuc `uc ]
+"199
+}
+[e :U 79 ]
+[; ;main.c: 199: }
+[; ;main.c: 200: if(dcf_on_off == 0){
+"200
+[e $ ! == -> _dcf_on_off `i -> 0 `i 80  ]
+{
+[; ;main.c: 201: PORTAbits.RA1 = 0;
+"201
+[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
+"202
+}
+[; ;main.c: 202: }else if(dcf_on_off == 1){
+[e $U 81  ]
+[e :U 80 ]
+[e $ ! == -> _dcf_on_off `i -> 1 `i 82  ]
+{
+[; ;main.c: 203: PORTAbits.RA1 = 1;
+"203
+[e = . . _PORTAbits 0 1 -> -> 1 `i `uc ]
+"204
+}
+[e :U 82 ]
+"205
+[e :U 81 ]
+[; ;main.c: 204: }
+[; ;main.c: 205: printf("C\tDCF\t%d\r\n", dcf_on_off);
+[e ( _printf , (. :s 11C -> _dcf_on_off `i ]
+[; ;main.c: 206: break;
+"206
+[e $U 70  ]
+[; ;main.c: 208: case SHT :
+"208
+[e :U 83 ]
+[; ;main.c: 209: ptr = strtok((0), "/");
+"209
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 12C ]
+[; ;main.c: 210: if(ptr != (0)) {
+"210
+[e $ ! != _ptr -> -> 0 `i `*uc 84  ]
+{
+[; ;main.c: 211: sht_on_off = atoi(ptr);
+"211
+[e = _sht_on_off -> ( _atoi (1 -> _ptr `*Cuc `uc ]
+"212
+}
+[e :U 84 ]
+[; ;main.c: 212: }
+[; ;main.c: 213: if(sht_on_off == 0){
+"213
+[e $ ! == -> _sht_on_off `i -> 0 `i 85  ]
+{
+[; ;main.c: 214: shutter_close();
+"214
+[e ( _shutter_close ..  ]
+"215
+}
+[; ;main.c: 215: }else if(sht_on_off == 1){
+[e $U 86  ]
+[e :U 85 ]
+[e $ ! == -> _sht_on_off `i -> 1 `i 87  ]
+{
+[; ;main.c: 216: shutter_open();
+"216
+[e ( _shutter_open ..  ]
+"217
+}
+[e :U 87 ]
+"218
+[e :U 86 ]
+[; ;main.c: 217: }
+[; ;main.c: 218: shutter_safe();
+[e ( _shutter_safe ..  ]
+[; ;main.c: 219: hall_status = get_hall_status();
+"219
+[e = _hall_status ( _get_hall_status ..  ]
+[; ;main.c: 221: printf("C\tSHT\t%d\tHAL\t%d\r\n", sht_on_off,hall_status);
+"221
+[e ( _printf , , (. :s 13C -> _sht_on_off `i -> _hall_status `i ]
+[; ;main.c: 222: break;
+"222
+[e $U 70  ]
+[; ;main.c: 224: case HAL :
+"224
+[e :U 88 ]
+[; ;main.c: 225: ptr = strtok((0), "/");
+"225
+[e = _ptr ( _strtok (2 , -> -> 0 `i `*uc :s 14C ]
+[; ;main.c: 226: if(ptr != (0)) {
+"226
+[e $ ! != _ptr -> -> 0 `i `*uc 89  ]
+{
+[; ;main.c: 227: hall_status = atoi(ptr);
+"227
+[e = _hall_status -> ( _atoi (1 -> _ptr `*Cuc `uc ]
+"228
+}
+[e :U 89 ]
+[; ;main.c: 228: }
+[; ;main.c: 229: hall_status = get_hall_status();
+"229
+[e = _hall_status ( _get_hall_status ..  ]
+[; ;main.c: 230: printf("C\tHAL\t%d\r\n", hall_status);
+"230
+[e ( _printf , (. :s 15C -> _hall_status `i ]
+[; ;main.c: 231: break;
+"231
+[e $U 70  ]
+[; ;main.c: 233: default : break;
+"233
+[e :U 90 ]
+[e $U 70  ]
+"234
+}
+[; ;main.c: 234: }
+[e $U 70  ]
+"176
 [e :U 71 ]
-[; ;uart.c: 79: buffer[idx++] = c;
-"79
-[e = *U + _buffer * -> ++ _idx -> -> 1 `i `ui `ux -> -> # *U _buffer `ui `ux _c ]
-[; ;uart.c: 80: putch(c);
-"80
-[e ( _putch (1 _c ]
-"81
+[e [\ _cmd , $ . `E776 0 72
+ , $ . `E776 1 73
+ , $ . `E776 2 78
+ , $ . `E776 3 83
+ , $ . `E776 4 88
+ 90 ]
+"234
+[e :U 70 ]
+"235
 }
-[e :U 66 ]
-"59
-[e $ < _idx - _max_len -> -> 1 `i `ui 67  ]
-[e :U 68 ]
-[; ;uart.c: 81: }
-[; ;uart.c: 83: buffer[idx] = '\0';
-"83
-[e = *U + _buffer * -> _idx `ux -> -> # *U _buffer `ui `ux -> -> 0 `ui `uc ]
-[; ;uart.c: 84: }
-"84
-[e :UE 64 ]
+[e :U 57 ]
+"122
+[e $U 58  ]
+[e :U 59 ]
+[; ;main.c: 235: }
+[; ;main.c: 236: }
+"236
+[e :UE 56 ]
 }
+"238
+[v _ps_laser_util_init `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 238: void ps_laser_util_init(void){
+[e :U _ps_laser_util_init ]
+[f ]
+"239
+[v _a `uc ~T0 @X0 1 a ]
+[; ;main.c: 239: unsigned char a = 0;
+[e = _a -> -> 0 `i `uc ]
+[; ;main.c: 240: for(int i=0 ; i < 50 ; i++){
+"240
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 50 `i 92  ]
+[e $U 93  ]
+[e :U 92 ]
+{
+[; ;main.c: 241: _delay((unsigned long)((50)*(4000000/4000.0)));
+"241
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 242: PORTAbits.RA0 ^= 1;
+"242
+[e =^ . . _PORTAbits 0 0 -> -> 1 `i `uc ]
+"243
+}
+"240
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 50 `i 92  ]
+[e :U 93 ]
+"243
+}
+[; ;main.c: 243: }
+[; ;main.c: 244: a = shutter_safe();
+"244
+[e = _a ( _shutter_safe ..  ]
+[; ;main.c: 245: if(a == 0){
+"245
+[e $ ! == -> _a `i -> 0 `i 95  ]
+{
+[; ;main.c: 246: printf("System initialization has been completed!!\r\n");
+"246
+[e ( _printf :s 16C ]
+"247
+}
+[e :U 95 ]
+[; ;main.c: 247: }
+[; ;main.c: 248: }
+"248
+[e :UE 91 ]
+}
+"250
+[v _shutter_open `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 250: void shutter_open(void){
+[e :U _shutter_open ]
+[f ]
+[; ;main.c: 251: pwm_percent(0);
+"251
+[e ( _pwm_percent (1 -> -> 0 `i `uc ]
+[; ;main.c: 252: _delay((unsigned long)((10)*(4000000/4000.0)));
+"252
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 253: PORTBbits.RB0 = 1;
+"253
+[e = . . _PORTBbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 254: PORTBbits.RB5 = 0;
+"254
+[e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 255: _delay((unsigned long)((10)*(4000000/4000.0)));
+"255
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 256: _delay((unsigned long)((18)*(4000000/4000.0)));
+"256
+[e ( __delay (1 -> * -> -> 18 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 257: pwm_percent(80);
+"257
+[e ( _pwm_percent (1 -> -> 80 `i `uc ]
+[; ;main.c: 258: _delay((unsigned long)((5)*(4000000/4000.0)));
+"258
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 259: pwm_percent(40);
+"259
+[e ( _pwm_percent (1 -> -> 40 `i `uc ]
+[; ;main.c: 260: }
+"260
+[e :UE 96 ]
+}
+"262
+[v _shutter_close `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 262: void shutter_close(void){
+[e :U _shutter_close ]
+[f ]
+[; ;main.c: 263: pwm_percent(0);
+"263
+[e ( _pwm_percent (1 -> -> 0 `i `uc ]
+[; ;main.c: 264: _delay((unsigned long)((10)*(4000000/4000.0)));
+"264
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 265: PORTBbits.RB0 = 0;
+"265
+[e = . . _PORTBbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 266: PORTBbits.RB5 = 1;
+"266
+[e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
+[; ;main.c: 267: _delay((unsigned long)((10)*(4000000/4000.0)));
+"267
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 268: _delay((unsigned long)((17)*(4000000/4000.0)));
+"268
+[e ( __delay (1 -> * -> -> 17 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 269: pwm_percent(50);
+"269
+[e ( _pwm_percent (1 -> -> 50 `i `uc ]
+[; ;main.c: 270: _delay((unsigned long)((3)*(4000000/4000.0)));
+"270
+[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 271: pwm_percent(30);
+"271
+[e ( _pwm_percent (1 -> -> 30 `i `uc ]
+[; ;main.c: 272: }
+"272
+[e :UE 97 ]
+}
+"274
+[v _get_hall_status `(uc ~T0 @X0 1 ef ]
+{
+[; ;main.c: 274: bool get_hall_status(void){
+[e :U _get_hall_status ]
+[f ]
+[; ;main.c: 275: return PORTAbits.RA3;
+"275
+[e ) . . _PORTAbits 0 3 ]
+[e $UE 98  ]
+[; ;main.c: 276: }
+"276
+[e :UE 98 ]
+}
+"281
+[v _shutter_safe `(uc ~T0 @X0 1 ef ]
+{
+[; ;main.c: 281: bool shutter_safe(void) {
+[e :U _shutter_safe ]
+[f ]
+[; ;main.c: 282: hall_status = get_hall_status();
+"282
+[e = _hall_status ( _get_hall_status ..  ]
+"283
+[v _sht_alarm `uc ~T0 @X0 1 a ]
+[; ;main.c: 283: bool sht_alarm = hall_status ^ sht_on_off;
+[e = _sht_alarm -> ^ -> _hall_status `i -> _sht_on_off `i `uc ]
+[; ;main.c: 284: if (sht_alarm == 0) {
+"284
+[e $ ! == -> _sht_alarm `i -> 0 `i 100  ]
+{
+[; ;main.c: 286: printf("ALARM!! Shutter abnormality detected!!\r\n");
+"286
+[e ( _printf :s 17C ]
+[; ;main.c: 290: printf("DO NOT OPERATE LASER!!\r\n");
+"290
+[e ( _printf :s 18C ]
+[; ;main.c: 292: PORTAbits.RA0 = 1;
+"292
+[e = . . _PORTAbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 293: return 0;
+"293
+[e ) -> -> 0 `i `uc ]
+[e $UE 99  ]
+"294
+}
+[; ;main.c: 294: } else {
+[e $U 101  ]
+[e :U 100 ]
+{
+[; ;main.c: 296: PORTAbits.RA0 = 0;
+"296
+[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 297: return 1;
+"297
+[e ) -> -> 1 `i `uc ]
+[e $UE 99  ]
+"298
+}
+[e :U 101 ]
+[; ;main.c: 298: }
+[; ;main.c: 299: }
+"299
+[e :UE 99 ]
+}
+[p f _printf 8388736 ]
+[a 4C 83 72 84 0 ]
+[a 1C 86 69 82 0 ]
+[a 2C 76 68 80 0 ]
+[a 5C 72 65 76 0 ]
+[a 3C 68 67 70 0 ]
+[a 6C 47 0 ]
+[a 8C 47 0 ]
+[a 10C 47 0 ]
+[a 12C 47 0 ]
+[a 14C 47 0 ]
+[a 9C 67 9 76 68 80 9 37 100 13 10 0 ]
+[a 13C 67 9 83 72 84 9 37 100 9 72 65 76 9 37 100 13 10 0 ]
+[a 15C 67 9 72 65 76 9 37 100 13 10 0 ]
+[a 11C 67 9 68 67 70 9 37 100 13 10 0 ]
+[a 7C 67 9 86 69 82 83 73 79 78 32 51 46 48 13 10 0 ]
+[a 16C 83 121 115 116 101 109 32 105 110 105 116 105 97 108 105 122 97 116 105 111 110 32 104 97 115 32 98 101 101 110 32 99 111 109 112 108 101 116 101 100 33 33 13 10 0 ]
+[a 17C 65 76 65 82 77 33 33 32 83 104 117 116 116 101 114 32 97 98 110 111 114 109 97 108 105 116 121 32 100 101 116 101 99 116 101 100 33 33 13 10 0 ]
+[a 18C 68 79 32 78 79 84 32 79 80 69 82 65 84 69 32 76 65 83 69 82 33 33 13 10 0 ]

@@ -4,6 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>pwm.h</itemPath>
+      <itemPath>uart.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -17,10 +19,10 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>pwm.c</itemPath>
+      <itemPath>uart.c</itemPath>
     </logicalFolder>
     <itemPath>main.c</itemPath>
-    <itemPath>uart.c</itemPath>
-    <itemPath>uart.h</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
